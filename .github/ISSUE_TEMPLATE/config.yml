@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/NatrocTeam/Natroc-Plugins/security/advisories/new
+    about: Please do not report security vulnerabilities in public issues.
+
+  - name: General discussion
+    url: https://github.com/NatrocTeam/Natroc-Plugins/discussions
+    about: Ask questions, share ideas, or discuss plugin usage here.

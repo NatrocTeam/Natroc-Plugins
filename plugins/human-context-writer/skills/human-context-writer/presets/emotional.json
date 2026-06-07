@@ -1,0 +1,18 @@
+{
+  "name": "emotional",
+  "description": "For writing that keeps a strong, direct, or firm tone without softening the message.",
+  "tone": "clear, direct, and firm without being rude",
+  "maps_to_mode": ["emotional-firm-writing"],
+  "rules": [
+    "Keep the emotion present in the message.",
+    "Do not over-soften with corporate language.",
+    "State the issue clearly and directly.",
+    "Ask for something specific, not a vague promise."
+  ],
+  "avoid": [
+    "opening with 'I hope this finds you well'",
+    "softening phrases like 'it may be worth considering'",
+    "vague requests without a specific outcome",
+    "passive voice that hides the problem"
+  ]
+}

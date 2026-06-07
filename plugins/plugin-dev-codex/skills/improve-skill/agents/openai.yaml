@@ -1,0 +1,5 @@
+interface:
+  display_name: "Improve Skill"
+  short_description: "Turn plugin-eval findings into a rewrite brief"
+policy:
+  allow_implicit_invocation: false

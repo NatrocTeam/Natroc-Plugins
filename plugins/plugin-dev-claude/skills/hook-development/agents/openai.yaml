@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hook Development"
+  short_description: "Build Claude Code plugin hooks for tool validation, automation, session events, and safeguards."
+  default_prompt: "Use $hook-development to design or review a Claude Code plugin hook."

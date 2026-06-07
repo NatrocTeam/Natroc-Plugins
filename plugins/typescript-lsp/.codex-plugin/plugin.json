@@ -1,0 +1,38 @@
+{
+  "name": "typescript-lsp",
+  "version": "5.3.0",
+  "description": "TypeScript and JavaScript language-server guidance for diagnostics, references, definitions, code actions, refactors, and typescript-language-server configuration.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/typescript-language-server/typescript-language-server",
+  "repository": "https://github.com/typescript-language-server/typescript-language-server",
+  "license": "Apache-2.0",
+  "keywords": [
+    "typescript",
+    "javascript",
+    "lsp",
+    "language-server",
+    "tsserver",
+    "diagnostics",
+    "code-actions"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "TypeScript LSP",
+    "shortDescription": "Use TypeScript LSP knowledge from Codex skills.",
+    "longDescription": "TypeScript LSP provides Codex with guidance for using typescript-language-server and tsserver concepts, including diagnostics, definitions, references, rename, organize imports, code actions, refactorings, inlay hints, and LSP configuration. Codex does not load lspServers directly, so the plugin exposes this through skills rather than an LSP manifest field.",
+    "developerName": "TypeScript Language Server",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://github.com/typescript-language-server/typescript-language-server",
+    "defaultPrompt": [
+      "Use $typescript-lsp to diagnose this TS error.",
+      "Use $typescript-lsp to plan a safe rename.",
+      "Use $typescript-lsp to organize TS imports."
+    ],
+    "brandColor": "#3178c7",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
+  }
+}

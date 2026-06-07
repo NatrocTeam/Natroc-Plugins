@@ -1,0 +1,5 @@
+interface:
+  display_name: "Evaluate Plugin"
+  short_description: "Evaluate a local Codex plugin"
+policy:
+  allow_implicit_invocation: false

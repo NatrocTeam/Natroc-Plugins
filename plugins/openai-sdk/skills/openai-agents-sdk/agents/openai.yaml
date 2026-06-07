@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenAI Agents SDK"
+  short_description: "Build or validate OpenAI Agents SDK workflows with tools, handoffs, guardrails, sessions, tracing, and sandbox agents."
+  default_prompt: "Use OpenAI Agents SDK docs to implement, fix, or validate this agent workflow, choose the right orchestration pattern, and verify it."
+policy:
+  allow_implicit_invocation: true

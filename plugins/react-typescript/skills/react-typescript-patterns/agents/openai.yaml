@@ -1,0 +1,4 @@
+interface:
+  display_name: "React TS Patterns"
+  short_description: "Component design patterns for React with TypeScript."
+  default_prompt: "Use $react-typescript-patterns to design this reusable component pattern."

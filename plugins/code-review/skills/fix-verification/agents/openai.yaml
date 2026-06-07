@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fix Verification"
+  short_description: "Run lint, typecheck, tests, build, and relevant audits after fixes; record exact commands and do not claim PASS without evidence."
+  default_prompt: "Use the fix-verification skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "plugin-dev-codex",
+  "version": "0.2.0",
+  "description": "Evaluate Codex and Claude skills and plugins from chat: a chat-first start router, local-first analysis reports, score explanations, token-budget breakdowns, improvement briefs, custom metric packs, and guided benchmarking.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "codex",
+    "plugin",
+    "skill",
+    "evaluation",
+    "quality",
+    "budget",
+    "benchmark"
+  ],
+  "agents": [
+    "./agents/plugin-evaluator.md",
+    "./agents/skill-evaluator.md",
+    "./agents/skill-improver.md",
+    "./agents/metric-pack-builder.md"
+  ],
+  "skills": "./skills/"
+}

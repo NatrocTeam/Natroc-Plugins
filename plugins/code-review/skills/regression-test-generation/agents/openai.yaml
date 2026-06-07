@@ -1,0 +1,6 @@
+interface:
+  display_name: "Regression Test Generation"
+  short_description: "Add or update regression tests for fixed bugs/security issues/API contracts when a test framework exists and the risk warrants it."
+  default_prompt: "Use the regression-test-generation skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

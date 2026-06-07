@@ -1,0 +1,38 @@
+{
+  "name": "context7",
+  "version": "3.1.0",
+  "description": "Fetch up-to-date library documentation, API references, and code examples through the Context7 MCP server.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://context7.com/",
+  "repository": "https://github.com/upstash/context7",
+  "license": "MIT",
+  "keywords": [
+    "context7",
+    "documentation",
+    "mcp",
+    "libraries",
+    "api-reference",
+    "code-examples"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Context7",
+    "shortDescription": "Fetch current library docs and code examples with Context7.",
+    "longDescription": "Context7 connects agents to current library and framework documentation through the Context7 MCP server, reducing stale API answers by resolving library IDs and fetching relevant docs on demand.",
+    "developerName": "Upstash",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://context7.com/",
+    "defaultPrompt": [
+      "Look up current Next.js routing docs with Context7.",
+      "Use Context7 to fetch Prisma relation examples.",
+      "Find the latest Supabase auth API reference."
+    ],
+    "brandColor": "#059669",
+    "composerIcon": "./assets/context7.svg",
+    "logo": "./assets/context7.svg"
+  }
+}

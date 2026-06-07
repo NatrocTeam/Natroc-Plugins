@@ -1,0 +1,6 @@
+interface:
+  display_name: "Reporting Review"
+  short_description: "Deduplicate findings, enforce severity ordering, report schema, evidence separation, verdict, fix options, and unverified sections."
+  default_prompt: "Use the reporting-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

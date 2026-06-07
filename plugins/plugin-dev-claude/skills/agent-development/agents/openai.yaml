@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Development"
+  short_description: "Design Claude Code plugin agents with clear triggers, tools, prompts, and frontmatter."
+  default_prompt: "Use $agent-development to design or review a Claude Code plugin agent."

@@ -1,0 +1,36 @@
+{
+  "name": "human-context-writer",
+  "version": "1.1.0",
+  "description": "A writing plugin that teaches agents to gather context, audit AI-like writing patterns, match the user's voice, and rewrite text without changing the meaning.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "AI",
+    "agent",
+    "context",
+    "writing",
+    "prompts",
+    "instructions",
+    "communication"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Human Context Writer",
+    "shortDescription": "Rewrite, draft, summarize, and explain text in a natural human voice.",
+    "longDescription": "Human Context Writer gives agents a concrete editorial workflow: understand the purpose, audience, medium, tone, language, and must-keep details; audit the draft for common AI-writing patterns; preserve the user's meaning and voice; then produce a clearer, more specific final version. It is based on the same kind of AI-pattern cleanup approach used by humanizer-style writing skills, expanded for emails, GitHub writing, documentation, social posts, summaries, product copy, and technical explanations.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "defaultPrompt": [
+      "Use $human-context-writer to audit this draft for AI-like writing patterns, then rewrite it in my voice.",
+      "Use $human-context-writer to ask only the missing context needed, then improve this text.",
+      "Use $human-context-writer to make this writing clearer, more specific, and less generic without changing the meaning."
+    ],
+    "brandColor": "#2563EB",
+    "composerIcon": "./assets/human-context-writer.svg",
+    "logo": "./assets/human-context-writer.svg"
+  }
+}

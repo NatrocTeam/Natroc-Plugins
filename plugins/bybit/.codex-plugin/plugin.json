@@ -1,0 +1,42 @@
+{
+  "name": "bybit",
+  "version": "1.0.0",
+  "description": "Trade and manage assets on Bybit (spot, derivatives, copy trading, bots, Earn, fiat & on-chain) through the official Bybit MCP server.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://www.bybit.com/",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "bybit",
+    "trading",
+    "crypto",
+    "mcp",
+    "exchange",
+    "derivatives",
+    "spot",
+    "futures",
+    "copy-trading",
+    "earn"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Bybit",
+    "shortDescription": "Trade and manage Bybit assets via the Bybit MCP server.",
+    "longDescription": "Bybit connects agents to the Bybit exchange through the official Bybit MCP server, enabling spot, derivatives, and options trading, position and account management, copy trading, trading bots, Earn products, fiat/P2P, on-chain Alpha tokens, and TradFi instruments. A central skill orchestrates 12 on-demand command modules and enforces global safety and confirmation rules. Requires BYBIT_API_KEY and BYBIT_API_SECRET.",
+    "developerName": "Bybit",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://www.bybit.com/",
+    "defaultPrompt": [
+      "Use $bybit to check my Bybit wallet balance.",
+      "Use $bybit to open a BTCUSDT long with 5x leverage.",
+      "Use $bybit to show the current BTC funding rate."
+    ],
+    "brandColor": "#F7A600",
+    "composerIcon": "./assets/bybit.svg",
+    "logo": "./assets/bybit.svg"
+  }
+}

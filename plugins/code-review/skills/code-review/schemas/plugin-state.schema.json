@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Code Review Plugin State",
+  "type": "object",
+  "required": [
+    "mode",
+    "fix_approved",
+    "approved_findings",
+    "review_report_generated",
+    "last_verification"
+  ]
+}

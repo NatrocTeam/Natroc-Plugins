@@ -1,0 +1,116 @@
+name: Bug report
+description: Report an issue with a plugin, marketplace metadata, installation, or agent behavior.
+title: "bug: "
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug.
+
+        Please include enough detail so the issue can be reproduced and fixed.
+
+  - type: checkboxes
+    id: affected-plugins
+    attributes:
+      label: Affected plugin
+      description: Select the plugin related to this issue. Select multiple if the same issue affects more than one plugin.
+      options:
+        - label: 21st
+        - label: anthropic-sdk
+        - label: bybit
+        - label: code-review
+        - label: context7
+        - label: expo
+        - label: human-context-writer
+        - label: motion
+        - label: natroc-awareness
+        - label: ollama-sdk
+        - label: openai-sdk
+        - label: plugin-dev-claude
+        - label: plugin-dev-codex
+        - label: react-typescript
+        - label: typescript-lsp
+
+  - type: checkboxes
+    id: affected-platforms
+    attributes:
+      label: Affected platform
+      description: Select where the issue happens.
+      options:
+        - label: Claude Code CLI
+        - label: Claude Desktop
+        - label: Codex CLI
+        - label: Codex Desktop
+
+  - type: input
+    id: affected-area
+    attributes:
+      label: Affected area
+      description: Write the affected plugin and platform in one short line.
+      placeholder: "example: code-review on Codex CLI"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Write the marketplace release version if known.
+      placeholder: "example: 1.3.2"
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Explain the problem clearly.
+      placeholder: Tell us what happened, what you expected, and what actually happened.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: List the exact steps needed to reproduce the issue.
+      placeholder: |
+        1. Install plugin ...
+        2. Run command ...
+        3. See error ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or error output
+      description: Paste relevant terminal output, stack traces, or error messages.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Share the environment where the issue happened.
+      placeholder: |
+        OS:
+        Node.js:
+        pnpm/npm:
+        Claude Code/Codex version:
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: I checked the README or plugin documentation.
+          required: true

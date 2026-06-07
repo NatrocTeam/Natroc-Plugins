@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+.env.development.local
+recon.json
+dist/
+build/
+docs/
+package-lock.json
+yarn.lock

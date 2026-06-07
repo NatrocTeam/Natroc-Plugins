@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ollama"
+  short_description: "Route Ollama work to development docs or existing-code validation docs for TypeScript and Python clients."
+  default_prompt: "Use Ollama docs to inspect this project, choose development or validation mode, choose the right client/runtime surface, and verify the result."
+policy:
+  allow_implicit_invocation: true

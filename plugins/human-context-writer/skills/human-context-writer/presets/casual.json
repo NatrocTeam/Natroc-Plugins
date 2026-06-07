@@ -1,0 +1,18 @@
+{
+  "name": "casual",
+  "description": "For friendly and conversational writing.",
+  "tone": "natural, warm, and simple",
+  "maps_to_mode": ["casual-explanation", "social-post"],
+  "rules": [
+    "Use plain language.",
+    "Keep the flow conversational.",
+    "Avoid corporate vocabulary.",
+    "Use contractions when writing in English."
+  ],
+  "avoid": [
+    "formal and stiff wording",
+    "corporate phrases like 'streamline', 'leverage', 'empower'",
+    "heavy bullet point structure",
+    "generic motivational endings"
+  ]
+}

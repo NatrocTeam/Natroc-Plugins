@@ -1,0 +1,33 @@
+{
+  "name": "natroc-plugins",
+  "version": "1.0.0",
+  "description": "Collection of plugins for cross-agent development.",
+  "scripts": {
+    "format:check": "prettier . --check",
+    "format": "prettier . --write",
+    "verify-plugins": "node scripts/verify-plugins.js",
+    "bump": "node scripts/bump-plugin.js",
+    "bump:patch": "node scripts/bump-plugin.js --patch",
+    "bump:minor": "node scripts/bump-plugin.js --minor",
+    "bump:major": "node scripts/bump-plugin.js --major",
+    "publish": "recon publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NatrocTeam/Natroc-Plugins.git"
+  },
+  "keywords": [
+    "natroc-plugins",
+    "natroc",
+    "plugins"
+  ],
+  "author": "PT Kelana Tech Solutions",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NatrocTeam/Natroc-Plugins/issues"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins#readme",
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Integration"
+  short_description: "Integrate MCP servers into Claude Code plugins using .mcp.json and portable plugin paths."
+  default_prompt: "Use $mcp-integration to add or review MCP support in a Claude Code plugin."

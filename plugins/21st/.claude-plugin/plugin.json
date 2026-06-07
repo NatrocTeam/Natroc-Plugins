@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "21st",
+  "version": "1.1.0",
+  "description": "Generate beautiful, modern React UI components and search brand logos instantly through natural language using the 21st.dev Magic MCP server.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://21st.dev/magic",
+  "repository": "https://github.com/21st-dev/magic-mcp",
+  "license": "MIT",
+  "keywords": [
+    "21st",
+    "21st.dev",
+    "magic",
+    "mcp",
+    "ui",
+    "components",
+    "react",
+    "tsx",
+    "shadcn",
+    "tailwind",
+    "logo",
+    "svgl",
+    "design-system",
+    "ui-generation"
+  ],
+  "agents": [
+    "./agents/magic-ui-builder.md",
+    "./agents/logo-asset-integrator.md"
+  ],
+  "skills": "./skills/",
+  "commands": [
+    "./commands/inspire.md",
+    "./commands/logo.md",
+    "./commands/refine.md",
+    "./commands/ui.md"
+  ],
+  "mcpServers": "./.mcp.json"
+}

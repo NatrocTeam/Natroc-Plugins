@@ -1,0 +1,189 @@
+{
+  "name": "natroc-plugins",
+  "interface": {
+    "displayName": "Natroc Plugins"
+  },
+  "plugins": [
+    {
+      "name": "human-context-writer",
+      "source": {
+        "source": "local",
+        "path": "./plugins/human-context-writer"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "natroc-awareness",
+      "source": {
+        "source": "local",
+        "path": "./plugins/natroc-awareness"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "context7",
+      "source": {
+        "source": "local",
+        "path": "./plugins/context7"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "react-typescript",
+      "source": {
+        "source": "local",
+        "path": "./plugins/react-typescript"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "typescript-lsp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/typescript-lsp"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "21st",
+      "source": {
+        "source": "local",
+        "path": "./plugins/21st"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "bybit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/bybit"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "motion",
+      "source": {
+        "source": "local",
+        "path": "./plugins/motion"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "plugin-dev-claude",
+      "source": {
+        "source": "local",
+        "path": "./plugins/plugin-dev-claude"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "plugin-dev-codex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/plugin-dev-codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "expo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/expo"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "code-review",
+      "source": {
+        "source": "local",
+        "path": "./plugins/code-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+
+    {
+      "name": "openai-sdk",
+      "source": {
+        "source": "local",
+        "path": "./plugins/openai-sdk"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "ollama-sdk",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ollama-sdk"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "anthropic-sdk",
+      "source": {
+        "source": "local",
+        "path": "./plugins/anthropic-sdk"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

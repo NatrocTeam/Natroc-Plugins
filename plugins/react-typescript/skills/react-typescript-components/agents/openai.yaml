@@ -1,0 +1,4 @@
+interface:
+  display_name: "React TS Components"
+  short_description: "Check the usage pattern of files that use React Typescript components."
+  default_prompt: "Use $react-typescript-components to type this component API and its event handlers."

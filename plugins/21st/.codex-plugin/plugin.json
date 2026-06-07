@@ -1,0 +1,46 @@
+{
+  "name": "21st",
+  "version": "1.1.0",
+  "description": "21st century development tools and resources.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://21st.dev/magic",
+  "repository": "https://github.com/21st-dev",
+  "license": "MIT",
+  "keywords": [
+    "21st",
+    "21st.dev",
+    "magic",
+    "mcp",
+    "ui",
+    "components",
+    "react",
+    "tsx",
+    "shadcn",
+    "tailwind",
+    "logo",
+    "svgl",
+    "design-system",
+    "ui-generation"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "21st",
+    "shortDescription": "Generate beautiful, modern React UI components and search brand logos instantly through natural language using the 21st.dev Magic MCP server.",
+    "longDescription": "21st connects agents to current library and framework documentation through the 21st MCP server, reducing stale API answers by resolving library IDs and fetching relevant docs on demand.",
+    "developerName": "21st Labs Inc.",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://21st.dev/magic",
+    "defaultPrompt": [
+      "Use $21st to generate a React TSX component with shadcn/ui and Tailwind.",
+      "Use $21st to create or extend a design system: provide Tailwind tokens, component variants, and usage examples.",
+      "Use $21st to ensure accessibility and responsive design: suggest aria attributes and Tailwind utilities."
+    ],
+    "brandColor": "#0332ff",
+    "composerIcon": "./assets/21st.jpeg",
+    "logo": "./assets/21st.jpeg"
+  }
+}

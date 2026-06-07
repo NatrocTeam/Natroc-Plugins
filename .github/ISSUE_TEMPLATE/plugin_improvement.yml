@@ -1,0 +1,120 @@
+name: Plugin improvement
+description: Suggest an improvement for an existing plugin.
+title: "improve: "
+labels: ["enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement.
+
+        Please explain which plugin should be improved and why the change would help.
+
+  - type: checkboxes
+    id: affected-plugins
+    attributes:
+      label: Affected plugin
+      description: Select the plugin related to this improvement. Select multiple if the same improvement affects more than one plugin.
+      options:
+        - label: 21st
+        - label: anthropic-sdk
+        - label: bybit
+        - label: code-review
+        - label: context7
+        - label: expo
+        - label: human-context-writer
+        - label: motion
+        - label: natroc-awareness
+        - label: ollama-sdk
+        - label: openai-sdk
+        - label: plugin-dev-claude
+        - label: plugin-dev-codex
+        - label: react-typescript
+        - label: typescript-lsp
+
+  - type: input
+    id: affected-area
+    attributes:
+      label: Affected area
+      description: Write a short summary of what should be improved.
+      placeholder: "example: code-review skill instructions"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: improvement-type
+    attributes:
+      label: Improvement type
+      description: Select what kind of improvement this is.
+      options:
+        - label: Skill instructions
+        - label: Agent configuration
+        - label: Hook behavior
+        - label: Plugin metadata
+        - label: Marketplace metadata
+        - label: Documentation
+        - label: References
+        - label: Templates
+        - label: Scripts
+        - label: Schemas
+        - label: Other / not sure
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: Describe how the plugin currently behaves or what is currently missing.
+      placeholder: |
+        Currently, the plugin...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed improvement
+      description: Describe the change you want.
+      placeholder: |
+        The plugin should...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why is this needed?
+      description: Explain why this improvement would make the plugin better.
+      placeholder: |
+        This would help because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Add official documentation, GitHub repositories, package links, or examples if relevant.
+      placeholder: |
+        - https://...
+        - https://...
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Add anything else that may help evaluate this improvement.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find a duplicate improvement request.
+          required: true
+        - label: I checked the README or plugin documentation.
+          required: true

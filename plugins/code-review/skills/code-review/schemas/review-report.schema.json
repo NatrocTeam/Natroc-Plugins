@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Code Review Report",
+  "type": "object",
+  "required": [
+    "verdict",
+    "review_mode",
+    "stack_detected",
+    "evidence_policy",
+    "findings",
+    "suggested_fix_options"
+  ],
+  "properties": {
+    "verdict": {
+      "enum": ["PASS", "PASS WITH WARNINGS", "FAIL"]
+    },
+    "review_mode": {
+      "type": "string"
+    },
+    "stack_detected": {
+      "type": "object"
+    },
+    "evidence_policy": {
+      "type": "object"
+    },
+    "findings": {
+      "type": "array"
+    },
+    "suggested_fix_options": {
+      "type": "array"
+    }
+  }
+}

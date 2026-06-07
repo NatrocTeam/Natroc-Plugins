@@ -1,0 +1,342 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "natroc-plugins",
+  "version": "1.0.0",
+  "description": "Discover powerful plugins designed to extend AI agents with new tools, workflows, and capabilities across different use cases.",
+  "owner": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "plugins": [
+    {
+      "name": "human-context-writer",
+      "version": "1.1.0",
+      "description": "Guide agents through context intake, AI-writing pattern audit, voice matching, and natural rewrites that preserve the user's intent.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "category": "productivity",
+      "source": "./plugins/human-context-writer"
+    },
+    {
+      "name": "natroc-awareness",
+      "version": "1.0.0",
+      "description": "Load compact installed Natroc plugin awareness at session start so agents can route tasks to matching plugin skills without dumping every plugin file into context.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/natroc-awareness",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/natroc-awareness",
+      "license": "MIT",
+      "keywords": [
+        "natroc",
+        "plugins",
+        "awareness",
+        "session-start",
+        "skills",
+        "routing",
+        "hooks"
+      ],
+      "category": "developer-tools",
+      "source": "./plugins/natroc-awareness"
+    },
+    {
+      "name": "context7",
+      "version": "3.1.0",
+      "description": "Fetch up-to-date library documentation, API references, and code examples through the Context7 MCP server.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://context7.com/",
+      "repository": "https://github.com/upstash/context7",
+      "license": "MIT",
+      "keywords": [
+        "context7",
+        "documentation",
+        "mcp",
+        "libraries",
+        "api-reference",
+        "code-examples"
+      ],
+      "category": "development",
+      "source": "./plugins/context7"
+    },
+    {
+      "name": "react-typescript",
+      "version": "1.1.0",
+      "description": "Local-first React TypeScript guidance for components, hooks, refs, events, utility types, and reusable patterns.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+      "license": "MIT",
+      "keywords": [
+        "react",
+        "typescript",
+        "tsx",
+        "components",
+        "hooks",
+        "refs",
+        "patterns"
+      ],
+      "category": "development",
+      "source": "./plugins/react-typescript"
+    },
+    {
+      "name": "typescript-lsp",
+      "description": "TypeScript/JavaScript language server for enhanced code intelligence",
+      "version": "1.0.0",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "source": "./plugins/typescript-lsp",
+      "category": "development"
+    },
+    {
+      "name": "21st",
+      "version": "1.1.0",
+      "description": "Generate beautiful, modern React UI components and search brand logos instantly through natural language using the 21st.dev Magic MCP server.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://21st.dev/magic",
+      "repository": "https://github.com/21st-dev/magic-mcp",
+      "license": "MIT",
+      "keywords": [
+        "21st",
+        "21st.dev",
+        "magic",
+        "mcp",
+        "ui",
+        "components",
+        "react",
+        "tsx",
+        "shadcn",
+        "tailwind",
+        "logo",
+        "svgl",
+        "design-system",
+        "ui-generation"
+      ],
+      "category": "development",
+      "source": "./plugins/21st"
+    },
+    {
+      "name": "bybit",
+      "version": "1.0.0",
+      "description": "Trade and manage assets on Bybit (spot, derivatives, copy trading, bots, Earn, fiat & on-chain) through the official Bybit MCP server.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://www.bybit.com/",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+      "license": "MIT",
+      "keywords": [
+        "bybit",
+        "trading",
+        "crypto",
+        "mcp",
+        "exchange",
+        "derivatives",
+        "spot",
+        "futures",
+        "copy-trading",
+        "earn"
+      ],
+      "category": "development",
+      "source": "./plugins/bybit"
+    },
+    {
+      "name": "motion",
+      "version": "1.1.0",
+      "description": "Animation guidance for React and JavaScript using Motion (formerly Framer Motion).",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://motion.dev/",
+      "repository": "https://github.com/motiondivision/motion",
+      "license": "MIT",
+      "keywords": [
+        "motion",
+        "animation",
+        "framer",
+        "react",
+        "tsx",
+        "typescript",
+        "js",
+        "javascript"
+      ],
+      "category": "development",
+      "source": "./plugins/motion"
+    },
+    {
+      "name": "plugin-dev-claude",
+      "version": "1.1.0",
+      "description": "Toolkit for building Claude Code plugins, with skills for creating agents, commands, hooks, MCP integrations, and plugin structure.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://code.claude.com/",
+      "repository": "https://github.com/NatrocTeamplugin-dev-claude",
+      "license": "MIT",
+      "keywords": [
+        "plugin-dev-claude",
+        "claude",
+        "plugin",
+        "development",
+        "skills",
+        "agents",
+        "commands",
+        "hooks",
+        "mcp"
+      ],
+      "category": "development",
+      "source": "./plugins/plugin-dev-claude"
+    },
+    {
+      "name": "plugin-dev-codex",
+      "version": "0.2.0",
+      "description": "Evaluate Codex and Claude skills and plugins locally — analysis reports, score explanations, token budgets, improvement briefs, and guided benchmarking.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://openai.com/",
+      "repository": "https://github.com/NatrocTeamplugin-dev-codex",
+      "license": "MIT",
+      "keywords": [
+        "plugin-dev-codex",
+        "codex",
+        "plugin",
+        "development",
+        "skills",
+        "agents",
+        "commands",
+        "hooks",
+        "mcp"
+      ],
+      "category": "development",
+      "source": "./plugins/plugin-dev-codex"
+    },
+    {
+      "name": "expo",
+      "version": "1.1.0",
+      "description": "Official Expo skills for building, deploying, upgrading, and debugging Expo and React Native apps.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://docs.expo.dev/skills/",
+      "repository": "https://github.com/expo/skills/tree/main/plugins/expo",
+      "license": "MIT",
+      "keywords": [
+        "expo",
+        "react-native",
+        "expo-router",
+        "eas",
+        "mobile",
+        "ios",
+        "android",
+        "deployment",
+        "upgrades",
+        "native-modules"
+      ],
+      "category": "development",
+      "source": "./plugins/expo"
+    },
+    {
+      "name": "code-review",
+      "version": "1.1.0",
+      "description": "Strict evidence-based code review and safe fix workflow for frontend, backend, fullstack, security, database, dependencies, testing, CI/CD, deployment, and verified patching.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/code-review",
+      "license": "Apache-2.0",
+      "keywords": [
+        "code-review",
+        "audit",
+        "security",
+        "frontend",
+        "backend",
+        "testing",
+        "deployment",
+        "fix-workflow"
+      ],
+      "category": "developer-tools",
+      "source": "./plugins/code-review"
+    },
+    {
+      "name": "openai-sdk",
+      "version": "1.1.0",
+      "description": "Self-contained OpenAI Client SDK and Agents SDK documentation for TypeScript/Python development and existing-code validation, including implementation playbooks, security, testing, migration, and failure modes.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/openai-sdk",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/openai-sdk",
+      "license": "MIT",
+      "keywords": [
+        "openai",
+        "sdk",
+        "typescript",
+        "python",
+        "responses-api",
+        "agents-sdk",
+        "client-sdk",
+        "realtime",
+        "structured-outputs",
+        "tools"
+      ],
+      "category": "developer-tools",
+      "source": "./plugins/openai-sdk"
+    },
+    {
+      "name": "ollama-sdk",
+      "version": "1.1.0",
+      "description": "Self-contained Ollama TypeScript and Python client documentation for local/cloud model development and existing-code validation, including streaming, tools, structured outputs, embeddings, runtime, security, testing, and failure modes.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/ollama-sdk",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/ollama-sdk",
+      "license": "MIT",
+      "keywords": [
+        "ollama",
+        "local-llm",
+        "typescript",
+        "python",
+        "chat",
+        "generate",
+        "streaming",
+        "tools",
+        "structured-output",
+        "embeddings"
+      ],
+      "category": "developer-tools",
+      "source": "./plugins/ollama-sdk"
+    },
+    {
+      "name": "anthropic-sdk",
+      "version": "1.1.0",
+      "description": "Self-contained Anthropic Client SDK and Claude Agent SDK documentation for TypeScript/Python development and existing-code validation, including Messages API, streaming, tools, structured output, permissions, sessions, security, testing, and failure modes.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/anthropic-sdk",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/anthropic-sdk",
+      "license": "MIT",
+      "keywords": [
+        "anthropic",
+        "claude",
+        "sdk",
+        "typescript",
+        "python",
+        "messages-api",
+        "agent-sdk",
+        "tools",
+        "streaming",
+        "structured-output"
+      ],
+      "category": "developer-tools",
+      "source": "./plugins/anthropic-sdk"
+    }
+  ]
+}

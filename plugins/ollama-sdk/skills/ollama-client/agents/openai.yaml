@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ollama Client"
+  short_description: "Build or validate official Ollama TypeScript and Python client code."
+  default_prompt: "Use Ollama Client docs to build, fix, or validate this Ollama client integration and verify it."
+policy:
+  allow_implicit_invocation: true

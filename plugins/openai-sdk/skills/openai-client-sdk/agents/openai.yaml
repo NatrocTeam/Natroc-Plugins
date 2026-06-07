@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenAI Client SDK"
+  short_description: "Build or validate direct OpenAI Client SDK code in TypeScript or Python."
+  default_prompt: "Use OpenAI Client SDK docs to build, fix, or validate this direct API integration and verify it."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codebase Discovery"
+  short_description: "Detect project stack, repo structure, configs, entry points, package manager, framework, tests, database, and deployment before audit."
+  default_prompt: "Use the codebase-discovery skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

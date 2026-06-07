@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fix Planning"
+  short_description: "Create safe fix plans mapped to finding IDs with root cause, files, risk, docs basis, tests, verification, and rollback plan."
+  default_prompt: "Use the fix-planning skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "typescript-lsp",
+  "version": "5.3.0",
+  "description": "A TypeScript Language Server Protocol implementation for enhanced development experience.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/typescript-language-server/typescript-language-server",
+  "repository": "https://github.com/typescript-language-server/typescript-language-server",
+  "license": "Apache-2.0",
+  "keywords": ["typescript", "lsp", "language-server", "development"],
+  "commands": "./commands/docs.md",
+  "lspServers": {
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".ts": "typescript",
+        ".tsx": "typescriptreact",
+        ".js": "javascript",
+        ".jsx": "javascriptreact",
+        ".mts": "typescript",
+        ".cts": "typescript",
+        ".mjs": "javascript",
+        ".cjs": "javascript"
+      }
+    }
+  }
+}

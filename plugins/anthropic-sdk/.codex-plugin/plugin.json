@@ -1,0 +1,43 @@
+{
+  "name": "anthropic-sdk",
+  "version": "1.1.0",
+  "description": "Self-contained Anthropic Client SDK and Claude Agent SDK documentation for TypeScript and Python development plus existing-code validation.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/anthropic-sdk",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/anthropic-sdk",
+  "license": "MIT",
+  "keywords": [
+    "anthropic",
+    "claude",
+    "sdk",
+    "typescript",
+    "python",
+    "messages-api",
+    "agent-sdk",
+    "tools",
+    "streaming",
+    "structured-output"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Anthropic SDK",
+    "shortDescription": "Use bundled Anthropic SDK docs to build new integrations and validate existing Client SDK or Claude Agent SDK code.",
+    "longDescription": "Self-contained local documentation for agents doing Anthropic SDK work in TypeScript and Python. Supports two explicit modes: development documentation mode for building or modifying Client SDK and Claude Agent SDK features, and existing-code validation documentation mode for auditing code already using the SDKs. Includes Messages API, streaming helpers, structured output, tool runners, server tools, token counting, batches, models, beta resources, provider variants, Claude Agent SDK query and client flows, permissions, built-in tools, MCP servers, hooks, sessions, session stores, sandboxing, security, testing, failure modes, and production review.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "privacyPolicyURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
+    "brandColor": "#FFFFFF",
+    "composerIcon": "./assets/anthropic.png",
+    "logo": "./assets/anthropic.png",
+    "defaultPrompt": [
+      "Use Anthropic SDK docs to build an Anthropic SDK integration in this app.",
+      "Add a Claude Agent SDK workflow with tools and permissions.",
+      "Use Anthropic SDK docs to validate this existing Anthropic SDK implementation."
+    ]
+  }
+}

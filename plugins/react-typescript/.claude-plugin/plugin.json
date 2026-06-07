@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "react-typescript",
+  "version": "1.1.0",
+  "description": "Local-first React TypeScript guidance for components, hooks, refs, events, utility types, and reusable patterns.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "typescript",
+    "tsx",
+    "components",
+    "hooks",
+    "refs",
+    "patterns"
+  ],
+  "agents": [
+    "./agents/react-typescript-component-engineer.md",
+    "./agents/react-typescript-type-reviewer.md"
+  ],
+  "skills": "./skills/"
+}

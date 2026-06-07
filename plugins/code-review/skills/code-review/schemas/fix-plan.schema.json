@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fix Plan",
+  "type": "object",
+  "required": [
+    "finding_id",
+    "root_cause",
+    "fix_strategy",
+    "files_to_change",
+    "tests_required",
+    "rollback_plan"
+  ]
+}

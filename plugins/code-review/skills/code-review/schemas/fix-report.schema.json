@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fix Report",
+  "type": "object",
+  "required": [
+    "verdict",
+    "findings_fixed",
+    "files_changed",
+    "fix_summary",
+    "docs_basis",
+    "verification_commands",
+    "remaining_risks"
+  ]
+}

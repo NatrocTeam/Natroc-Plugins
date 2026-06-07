@@ -1,0 +1,5 @@
+interface:
+  display_name: "Plugin Eval"
+  short_description: "Choose the right local evaluation workflow"
+policy:
+  allow_implicit_invocation: true

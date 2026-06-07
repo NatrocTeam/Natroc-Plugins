@@ -1,0 +1,6 @@
+interface:
+  display_name: "Security Review"
+  short_description: "Audit security risks using OWASP/official docs: injection, XSS, CSRF, SSRF, secrets, unsafe config, upload, and sensitive data exposure."
+  default_prompt: "Use the security-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

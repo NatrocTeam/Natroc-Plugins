@@ -1,0 +1,4 @@
+interface:
+  display_name: "Motion React"
+  short_description: "Create and refine Motion for React animations, including motion components, variants, gestures, layout animations, scroll animations, and motion values."
+  default_prompt: "Use $motion-react to create or improve Motion animations in React components."

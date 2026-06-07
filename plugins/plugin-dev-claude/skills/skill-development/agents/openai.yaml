@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Development"
+  short_description: "Create and refine Claude Code plugin skills with focused triggers, structure, and bundled resources."
+  default_prompt: "Use $skill-development to create or improve a Claude Code plugin skill."

@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenAI SDK Production Review"
+  short_description: "Validate existing OpenAI SDK code for secrets, correctness, streaming, webhooks, tools, sessions, tracing, and tests."
+  default_prompt: "Use OpenAI SDK Production Review docs to validate this existing implementation and report concrete findings first."
+policy:
+  allow_implicit_invocation: true

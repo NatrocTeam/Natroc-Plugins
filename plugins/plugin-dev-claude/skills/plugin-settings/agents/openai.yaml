@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plugin Settings"
+  short_description: "Design configurable Claude Code plugins using project-local settings files and YAML frontmatter."
+  default_prompt: "Use $plugin-settings to design plugin configuration or local settings."

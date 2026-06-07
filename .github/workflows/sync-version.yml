@@ -1,0 +1,47 @@
+name: Sync Plugin Version
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-version:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.release.prerelease == false }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Read package version
+        id: package
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Package version: $VERSION"
+
+      - name: Sync marketplace version
+        run: node scripts/sync-version.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "Sync Marketplace Version"
+          git config user.email "support@licentora.com"
+
+          git add .claude-plugin/marketplace.json
+
+          if git diff --cached --quiet; then
+            echo "No version changes."
+            exit 0
+          fi
+
+          git commit -m "chore: sync marketplace version to ${{ steps.package.outputs.version }}"
+          git push

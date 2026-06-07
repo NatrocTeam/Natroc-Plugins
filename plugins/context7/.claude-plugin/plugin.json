@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "context7",
+  "version": "3.1.0",
+  "description": "Fetch up-to-date library documentation, API references, and code examples through the Context7 MCP server.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://context7.com/",
+  "repository": "https://github.com/upstash/context7",
+  "license": "MIT",
+  "keywords": [
+    "context7",
+    "documentation",
+    "mcp",
+    "libraries",
+    "api-reference",
+    "code-examples"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/docs.md",
+  "agents": "./agents/docs-researcher.md",
+  "mcpServers": "./.mcp.json"
+}

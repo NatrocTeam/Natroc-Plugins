@@ -1,0 +1,4 @@
+interface:
+  display_name: "Command Development"
+  short_description: "Create Claude Code slash commands with arguments, frontmatter, file references, and interaction patterns."
+  default_prompt: "Use $command-development to create or improve a Claude Code slash command."

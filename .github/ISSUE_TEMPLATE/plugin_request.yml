@@ -1,0 +1,97 @@
+name: Plugin request
+description: Request a new plugin for the Natroc-Plugins marketplace.
+title: "plugin: add "
+labels: ["plugin-request"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting a new plugin.
+
+        Please provide official references and explain how this plugin should help AI agents.
+
+  - type: input
+    id: plugin-name
+    attributes:
+      label: Plugin name
+      description: Write the proposed plugin name.
+      placeholder: "example: nextjs, prisma, shadcn-ui"
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: Explain what this plugin should help agents do.
+      placeholder: |
+        This plugin should help agents...
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Official references
+      description: Add official documentation, GitHub repositories, package links, or other trusted references.
+      placeholder: |
+        - https://github.com/...
+        - https://docs...
+        - https://www.npmjs.com/package/...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: requested-content
+    attributes:
+      label: Requested plugin content
+      description: Select what this plugin should include.
+      options:
+        - label: Skills
+        - label: Hooks
+        - label: Agents
+        - label: References
+        - label: Templates
+        - label: Scripts
+        - label: Schemas
+        - label: Other / not sure
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected agent behavior
+      description: Describe how an AI agent should behave when using this plugin.
+      placeholder: |
+        When this plugin is active, the agent should...
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example use cases
+      description: Add examples of prompts, tasks, or workflows this plugin should support.
+      placeholder: |
+        - User asks...
+        - Agent should...
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Add anything else that may help evaluate this plugin request.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find a duplicate plugin request.
+          required: true
+        - label: I included official references or trusted sources.
+          required: true

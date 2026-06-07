@@ -1,0 +1,6 @@
+interface:
+  display_name: "Docs Grounding"
+  short_description: "Verify framework, library, language, security, database, and deployment claims against official docs or authoritative sources."
+  default_prompt: "Use the docs-grounding skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+policy:
+  allow_implicit_invocation: false

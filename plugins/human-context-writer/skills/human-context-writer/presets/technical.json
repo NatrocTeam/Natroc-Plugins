@@ -1,0 +1,18 @@
+{
+  "name": "technical",
+  "description": "For developer docs, code explanations, GitHub writing, and CLI instructions.",
+  "tone": "precise, practical, and example-driven",
+  "maps_to_mode": ["technical-documentation", "github-writing"],
+  "rules": [
+    "Show commands or code when useful.",
+    "Explain behavior clearly.",
+    "Avoid marketing language.",
+    "Mention assumptions and edge cases when needed."
+  ],
+  "avoid": [
+    "marketing phrases like 'powerful', 'robust', 'seamless', 'cutting-edge'",
+    "vague claims like 'improves developer experience' without specifics",
+    "unnecessary prose when a command or example is clearer",
+    "inflated language about impact or importance"
+  ]
+}

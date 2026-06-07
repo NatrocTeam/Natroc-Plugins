@@ -1,0 +1,35 @@
+{
+  "name": "motion",
+  "version": "1.1.0",
+  "description": "A plugin that provides comprehensive documentation and examples for using the Motion library, including animation techniques, API endpoints, request/response formats, and best practices.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "motion",
+    "documentation",
+    "examples",
+    "animation",
+    "API",
+    "best practices"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Motion Docs",
+    "shortDescription": "Access comprehensive documentation and examples for using the Motion library.",
+    "longDescription": "The Motion Docs plugin provides detailed documentation and practical examples for leveraging the Motion library effectively, covering animation techniques, API endpoints, request/response formats, and best practices.",
+    "developerName": "Matt Perry",
+    "category": "Developer Tools",
+    "websiteURL": "https://motion.dev",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "defaultPrompt": [
+      "Use the motion plugin to access comprehensive documentation and examples for using the Motion library.",
+      "Use the motion plugin to understand the animation techniques for the Motion library.",
+      "Use the motion plugin to explore the available API endpoints and their usage."
+    ],
+    "composerIcon": "./assets/motion.png",
+    "logo": "./assets/motion.png"
+  }
+}

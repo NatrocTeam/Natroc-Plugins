@@ -1,0 +1,39 @@
+{
+  "name": "natroc-awareness",
+  "version": "1.0.0",
+  "description": "Load compact installed Natroc plugin awareness at session start so agents can route tasks to matching plugin skills without dumping every plugin file into context.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/natroc-awareness",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/natroc-awareness",
+  "license": "MIT",
+  "keywords": [
+    "natroc",
+    "plugins",
+    "awareness",
+    "session-start",
+    "skills",
+    "routing",
+    "hooks"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Natroc Awareness",
+    "shortDescription": "Route tasks to installed Natroc plugins.",
+    "longDescription": "Natroc Awareness gives agents a compact inventory of installed Natroc plugins and a routing skill for choosing the right plugin capability without loading every plugin document into context.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Interactive"],
+    "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/natroc-awareness",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
+    "brandColor": "#0F766E",
+    "defaultPrompt": [
+      "Use Natroc Awareness to tell me which installed Natroc plugin fits this task.",
+      "Use Natroc Awareness to route this request to the right plugin skill.",
+      "Use Natroc Awareness to summarize the Natroc plugins detected in this session."
+    ]
+  }
+}

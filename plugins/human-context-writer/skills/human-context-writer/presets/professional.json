@@ -1,0 +1,18 @@
+{
+  "name": "professional",
+  "description": "For polished writing that still sounds natural.",
+  "tone": "professional, confident, and not stiff",
+  "maps_to_mode": ["professional-rewrite", "email"],
+  "rules": [
+    "Be clear and respectful.",
+    "Avoid over-formal wording.",
+    "Do not exaggerate.",
+    "Keep the user's intent visible."
+  ],
+  "avoid": [
+    "over-formal phrases like 'I would like to inquire'",
+    "fake enthusiasm like 'Great news!' or 'I hope this finds you well'",
+    "unnecessary qualifiers like 'It may be beneficial to consider'",
+    "corporate filler like 'synergy', 'value-add', 'moving forward'"
+  ]
+}

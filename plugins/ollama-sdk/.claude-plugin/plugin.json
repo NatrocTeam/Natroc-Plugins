@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "ollama-sdk",
+  "version": "1.1.0",
+  "description": "Self-contained Ollama TypeScript and Python client documentation for local and cloud model development plus existing-code validation.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/ollama-sdk",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/ollama-sdk",
+  "license": "MIT",
+  "keywords": [
+    "ollama",
+    "local-llm",
+    "typescript",
+    "python",
+    "chat",
+    "generate",
+    "streaming",
+    "tools",
+    "structured-output",
+    "embeddings"
+  ],
+  "agents": [
+    "./agents/ollama-client-engineer.md",
+    "./agents/ollama-runtime-engineer.md",
+    "./agents/ollama-reviewer.md"
+  ],
+  "skills": "./skills/"
+}

@@ -1,0 +1,112 @@
+<svg
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <filter id="shadow" x="120" y="100" width="300" height="330" filterUnits="userSpaceOnUse">
+      <feDropShadow
+        dx="0"
+        dy="14"
+        stdDeviation="14"
+        flood-color="#0F172A"
+        flood-opacity="0.18"
+      />
+    </filter>
+  </defs>
+
+  <!-- Full background, no outer spacing -->
+  <rect
+    x="0"
+    y="0"
+    width="512"
+    height="512"
+    rx="110"
+    fill="#2563EB"
+  />
+
+  <!-- Context orbit -->
+  <circle
+    cx="256"
+    cy="256"
+    r="150"
+    stroke="#FFFFFF"
+    stroke-opacity="0.28"
+    stroke-width="12"
+    stroke-linecap="round"
+    stroke-dasharray="28 26"
+  />
+
+  <!-- Context nodes -->
+  <circle cx="139" cy="202" r="18" fill="#FFFFFF" />
+  <circle cx="373" cy="196" r="18" fill="#FFFFFF" />
+  <circle cx="363" cy="334" r="18" fill="#FFFFFF" />
+  <circle cx="154" cy="342" r="18" fill="#FFFFFF" />
+
+  <!-- Main document -->
+  <g filter="url(#shadow)">
+    <path
+      d="M170 118H310L370 178V382C370 392.493 361.493 401 351 401H170C159.507 401 151 392.493 151 382V137C151 126.507 159.507 118 170 118Z"
+      fill="#F8FAFC"
+    />
+    <path
+      d="M310 118V166C310 172.627 315.373 178 322 178H370"
+      fill="#CBD5E1"
+    />
+  </g>
+
+  <!-- Human head -->
+  <circle cx="231" cy="213" r="36" fill="#0F172A" />
+
+  <!-- Human body -->
+  <path
+    d="M171 312C177.5 273 198.5 254 231 254C263.5 254 284.5 273 291 312"
+    stroke="#0F172A"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+
+  <!-- Context lines -->
+  <path
+    d="M287 225H327"
+    stroke="#2563EB"
+    stroke-width="14"
+    stroke-linecap="round"
+  />
+  <path
+    d="M303 263H333"
+    stroke="#2563EB"
+    stroke-width="14"
+    stroke-linecap="round"
+  />
+
+  <!-- Writing pen -->
+  <path
+    d="M286 347L361 272C366.858 266.142 376.355 266.142 382.213 272L390 279.787C395.858 285.645 395.858 295.142 390 301L315 376L276 386L286 347Z"
+    fill="#0F172A"
+  />
+  <path
+    d="M361 272L390 301"
+    stroke="#93C5FD"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M286 347L315 376"
+    stroke="#F8FAFC"
+    stroke-width="8"
+    stroke-linecap="round"
+  />
+
+  <!-- Sparks -->
+  <path
+    d="M118 271L132 278L139 292L146 278L160 271L146 264L139 250L132 264L118 271Z"
+    fill="#FFFFFF"
+  />
+  <path
+    d="M384 125L394 130L399 140L404 130L414 125L404 120L399 110L394 120L384 125Z"
+    fill="#FFFFFF"
+  />
+</svg>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plugin Structure"
+  short_description: "Plan Claude Code plugin layout, manifests, component discovery, and portable paths."
+  default_prompt: "Use $plugin-structure to scaffold or review a Claude Code plugin layout."

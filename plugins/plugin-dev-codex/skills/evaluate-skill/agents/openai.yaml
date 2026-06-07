@@ -1,0 +1,5 @@
+interface:
+  display_name: "Evaluate Skill"
+  short_description: "Evaluate a local Codex skill"
+policy:
+  allow_implicit_invocation: false

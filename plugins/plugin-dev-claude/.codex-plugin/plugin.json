@@ -1,0 +1,37 @@
+{
+  "name": "plugin-dev-claude",
+  "version": "1.1.0",
+  "description": "Plugin development toolkit for creating Claude Code agents, commands, hooks, MCP integrations, settings, structure, and skills.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "plugin-development",
+    "claude-code",
+    "agents",
+    "commands",
+    "hooks",
+    "mcp",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Plugin Dev Claude",
+    "shortDescription": "Build and review Claude Code plugins with structured development guidance.",
+    "longDescription": "Plugin Dev Claude provides Codex-compatible skill metadata for a Claude Code plugin development toolkit, covering plugin structure, skill creation, agent design, command development, hook implementation, MCP integration, and plugin settings patterns.",
+    "developerName": "Anthropic",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://code.claude.com/",
+    "defaultPrompt": [
+      "Use $plugin-structure to review a Claude Code plugin layout.",
+      "Use $skill-development to improve a Claude Code plugin skill.",
+      "Use $hook-development to design a Claude Code plugin hook."
+    ],
+    "brandColor": "#DA7758",
+    "composerIcon": "./assets/claudecode.png",
+    "logo": "./assets/claudecode.png"
+  }
+}

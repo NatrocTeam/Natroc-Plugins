@@ -1,0 +1,4 @@
+interface:
+  display_name: "Motion JavaScript"
+  short_description: "Create and refine Motion animations using the vanilla JavaScript API, including animate, scroll, hover, press, timelines, and performance-safe UI motion."
+  default_prompt: "Use $motion-javascript to create or improve Motion animations with the vanilla JavaScript API."

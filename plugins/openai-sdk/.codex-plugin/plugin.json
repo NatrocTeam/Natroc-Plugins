@@ -1,0 +1,43 @@
+{
+  "name": "openai-sdk",
+  "version": "1.1.0",
+  "description": "Self-contained OpenAI Client SDK and Agents SDK documentation for TypeScript and Python development plus existing-code validation.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/openai-sdk",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/openai-sdk",
+  "license": "MIT",
+  "keywords": [
+    "openai",
+    "sdk",
+    "typescript",
+    "python",
+    "responses-api",
+    "agents-sdk",
+    "client-sdk",
+    "realtime",
+    "structured-outputs",
+    "tools"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "OpenAI SDK",
+    "shortDescription": "Use bundled OpenAI SDK docs to build new integrations and validate existing Client SDK or Agents SDK code.",
+    "longDescription": "Self-contained local documentation for agents doing OpenAI SDK work in TypeScript and Python. Supports two explicit modes: development documentation mode for building or modifying Client SDK and Agents SDK features, and existing-code validation documentation mode for auditing code already using the SDKs. Includes API surface maps, Responses API, structured output, streaming, files, webhooks, Realtime, Azure, errors, retries, pagination, tools, handoffs, guardrails, sessions, tracing, sandbox agents, security, framework recipes, testing, migration, failure modes, and production review.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "privacyPolicyURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
+    "brandColor": "#10A37F",
+    "composerIcon": "./assets/openai.png",
+    "logo": "./assets/openai.png",
+    "defaultPrompt": [
+      "Use OpenAI SDK docs to build an OpenAI SDK integration in this app.",
+      "Add an Agents SDK workflow with tools.",
+      "Use OpenAI SDK docs to validate this existing OpenAI SDK implementation."
+    ]
+  }
+}

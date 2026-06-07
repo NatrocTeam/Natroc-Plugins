@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Code Review Finding",
+  "type": "object",
+  "required": [
+    "finding_id",
+    "severity",
+    "category",
+    "file",
+    "evidence",
+    "docs_basis",
+    "impact",
+    "suggested_fix",
+    "confidence"
+  ],
+  "properties": {
+    "finding_id": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "Blocker",
+        "Critical",
+        "High",
+        "Medium",
+        "Low",
+        "Info",
+        "Unverified"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "file": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "string"
+    },
+    "docs_basis": {
+      "type": "string"
+    },
+    "impact": {
+      "type": "string"
+    },
+    "suggested_fix": {
+      "type": "string"
+    },
+    "confidence": {
+      "enum": ["High", "Medium", "Low"]
+    },
+    "attack_path": {
+      "type": "string"
+    },
+    "root_cause": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "React TS Hooks"
+  short_description: "Check the usage pattern of files that use React Typescript hooks."
+  default_prompt: "Use $react-typescript-hooks to type this hook, reducer, or context provider."

@@ -1,0 +1,157 @@
+# OpenAI SDK
+
+`openai-sdk` is a self-contained Codex and Claude Code plugin for building,
+debugging, reviewing, and hardening software with the OpenAI Client SDKs and
+OpenAI Agents SDKs in TypeScript and Python.
+
+Agents use this plugin as bundled documentation for two primary tasks:
+
+1. Development documentation: build or modify software that uses the OpenAI
+   Client SDK, the OpenAI Agents SDK, or both.
+2. Existing-code validation documentation: inspect, validate, audit, and review
+   code that already uses the OpenAI Client SDK, the OpenAI Agents SDK, or both.
+
+The plugin does not rely on repository-local documentation outside this plugin
+at usage time. Agents should read the bundled skills and references inside this
+folder, infer the target language/framework from the project, and only ask the
+user when a product decision or secret cannot be inferred safely.
+
+## What It Includes
+
+- 4 bundled skills:
+  - `openai-sdk` - router and architecture entrypoint.
+  - `openai-client-sdk` - TypeScript and Python Client SDK implementation.
+  - `openai-agents-sdk` - TypeScript and Python Agents SDK implementation.
+  - `openai-sdk-production-review` - correctness, security, and production review.
+- 3 Claude Code root agents:
+  - `openai-client-sdk-engineer`
+  - `openai-agents-sdk-engineer`
+  - `openai-sdk-reviewer`
+- Local references for SDK selection, Client SDK TypeScript/Python, Agents SDK
+  TypeScript/Python, API surface maps, feature playbooks, framework recipes,
+  security/privacy, migration, testing, failure modes, and production
+  readiness.
+- A dedicated agent usage contract that defines development documentation mode
+  and existing-code validation documentation mode.
+- Codex skill metadata in `skills/*/agents/openai.yaml`.
+
+## Reference Coverage
+
+The plugin includes detailed local references for:
+
+- SDK selection and no-question rules.
+- Agent usage modes for development docs and existing-code validation docs.
+- Client SDK API surface and resource method map.
+- Client SDK feature implementation playbook.
+- Client SDK TypeScript and Python patterns.
+- Agents SDK API surface and concept map.
+- Agents SDK feature implementation playbook.
+- Tools, handoffs, guardrails, sessions, tracing, and sandbox agents.
+- Next.js, Express, FastAPI, Flask, worker, CLI, edge, and browser recipes.
+- Security, privacy, traces, logs, tenant isolation, and retention.
+- Migration and modernization paths.
+- Failure-mode diagnosis and fixes.
+- Testing patterns and production review.
+
+## Agent Usage Contract
+
+Agents using this plugin should:
+
+1. Treat the plugin as the local documentation source for OpenAI SDK
+   development and OpenAI SDK validation work.
+2. Select the usage mode without asking:
+   - Development documentation mode when the user asks to build, add, modify,
+     migrate, debug, or wire OpenAI SDK behavior.
+   - Existing-code validation documentation mode when the user asks to validate,
+     review, audit, check, harden, release-gate, or assess code that already
+     uses OpenAI SDK packages.
+3. Inspect the project first: package manager, runtime, framework, dependencies,
+   existing OpenAI usage, tests, and environment conventions.
+4. Choose the SDK without asking when the request is clear:
+   - Client SDK for direct API calls, text generation, multimodal input, files,
+     embeddings, images, audio, webhooks, Realtime, or API administration.
+   - Agents SDK for multi-step workflows with tools, handoffs, guardrails,
+     sessions, tracing, or sandbox/workspace behavior.
+5. Prefer the repository's existing language and framework patterns.
+6. Keep API keys server-side and read secrets from environment/config.
+7. Add error handling, request IDs, timeouts/retries, streaming behavior, and
+   tests when the change touches production paths.
+8. For validation work, lead with evidence-based findings and specific fixes
+   instead of general explanations.
+9. Avoid sending users to external docs for routine implementation details; use
+   this plugin's bundled local references first.
+
+## Plugin Structure
+
+```text
+openai-sdk/
+├── .codex-plugin/plugin.json
+├── .claude-plugin/plugin.json
+├── agents/
+├── assets/
+├── skills/
+│   ├── openai-sdk/
+│   │   └── references/
+│   ├── openai-client-sdk/
+│   │   └── references/
+│   ├── openai-agents-sdk/
+│   │   └── references/
+│   └── openai-sdk-production-review/
+│       └── references/
+```
+
+## Install/Use
+
+### Claude Code CLI
+
+- Add marketplace
+
+  ```
+  claude plugin marketplace add NatrocTeam/Natroc-Plugins
+  ```
+
+- Install Plugin
+
+  ```
+  claude plugin install openai-sdk@natroc-plugins
+  ```
+
+### Claude Desktop & Claude Web (claude.ai)
+
+Open `Customize` in the left panel and click `+` icon, then select `Create
+plugin` > `Add marketplace`.
+
+- Add marketplace from a repository
+
+  ```
+  NatrocTeam/Natroc-Plugins
+  ```
+
+### Codex CLI
+
+- Add marketplace
+
+  ```
+  codex plugin marketplace add NatrocTeam/Natroc-Plugins
+  ```
+
+- Install Plugin
+  ```
+  codex plugin add openai-sdk@natroc-plugins
+  ```
+
+### Codex Desktop
+
+- Add marketplace
+
+  Source
+
+  ```
+  NatrocTeam/Natroc-Plugins
+  ```
+
+  Git ref (optional)
+
+  ```
+  main
+  ```

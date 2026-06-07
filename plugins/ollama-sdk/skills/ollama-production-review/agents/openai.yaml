@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ollama Production Review"
+  short_description: "Validate existing Ollama code for host safety, cloud keys, correctness, streaming, tools, runtime, and tests."
+  default_prompt: "Use Ollama Production Review docs to validate this existing implementation and report concrete findings first."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenAI SDK"
+  short_description: "Route OpenAI SDK work to development docs or existing-code validation docs for Client SDK and Agents SDK."
+  default_prompt: "Use OpenAI SDK to inspect this project, choose development or validation mode, choose the right SDK, and verify the result."
+policy:
+  allow_implicit_invocation: true

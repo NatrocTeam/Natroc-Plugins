@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.plugin-data/
+code-review-state.json
+*.state.json
+.DS_Store

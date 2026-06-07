@@ -1,0 +1,43 @@
+{
+  "name": "ollama-sdk",
+  "version": "1.1.0",
+  "description": "Self-contained Ollama TypeScript and Python client documentation for local and cloud model development plus existing-code validation.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/ollama-sdk",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/ollama-sdk",
+  "license": "MIT",
+  "keywords": [
+    "ollama",
+    "local-llm",
+    "typescript",
+    "python",
+    "chat",
+    "generate",
+    "streaming",
+    "tools",
+    "structured-output",
+    "embeddings"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ollama",
+    "shortDescription": "Use bundled Ollama docs to build new integrations and validate existing TypeScript or Python client code.",
+    "longDescription": "Self-contained local documentation for agents doing Ollama work in TypeScript and Python. Supports two explicit modes: development documentation mode for building or modifying Ollama local/cloud integrations, and existing-code validation documentation mode for auditing code already using the official Ollama clients. Includes API surface maps, chat, generate, streaming, structured outputs, tool calls, thinking, logprobs, multimodal images, embeddings, model lifecycle, cloud API, web search/fetch, runtime setup, security, testing, failure modes, and production review.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "privacyPolicyURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
+    "brandColor": "#FFFFFF",
+    "composerIcon": "./assets/ollama.png",
+    "logo": "./assets/ollama.png",
+    "defaultPrompt": [
+      "Use Ollama docs to build a local model integration in this app.",
+      "Use Ollama docs to add streaming chat or generate behavior.",
+      "Use Ollama docs to validate this existing Ollama implementation."
+    ]
+  }
+}
