@@ -8,7 +8,6 @@ This plugin intentionally ships **without MCP**. Documentation grounding is hand
 
 - 20 skills for review and fix workflows.
 - 6 Claude Code root agents for discovery, review, security audit, fix planning, patching, and verification.
-- 6 lifecycle hooks for intent, tool, verification, subagent, and final report gates.
 - Deterministic scripts under `skills/code-review/scripts/` for stack detection, report validation, secret redaction, command policy, and patch scope checks.
 - Schemas and templates under `skills/code-review/` for consistent review/fix reports.
 
@@ -98,4 +97,8 @@ plugin` > `Add marketplace`.
 
 ## Plugin structure compliance
 
-This no-MCP build is structured around documented plugin surfaces: `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, root-level `agents/`, bundled `skills/`, plugin `hooks/hooks.json`, and visual `assets/`. Agent-facing references, scripts, schemas, and templates live under `skills/code-review/` so Claude Code loads them through the declared skills surface instead of relying on arbitrary root plugin folders. Each skill has a required `SKILL.md`; `skills/*/agents/openai.yaml` only uses documented skill metadata fields for Codex/OpenAI surfaces.
+This no-MCP build is structured around documented plugin surfaces: `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, root-level `agents/`, bundled `skills/`, and visual `assets/`. Agent-facing references, scripts, schemas, and templates live under `skills/code-review/` so Claude Code loads them through the declared skills surface instead of relying on arbitrary root plugin folders. Each skill has a required `SKILL.md`; `skills/*/agents/openai.yaml` only uses documented skill metadata fields for Codex/OpenAI surfaces.
+
+## License
+
+Apache License 2.0. See [LICENSE](LICENSE) for full text.

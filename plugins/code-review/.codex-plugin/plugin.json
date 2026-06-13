@@ -17,7 +17,6 @@
     "fix-workflow"
   ],
   "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Code Review",
     "shortDescription": "Strict evidence-based code audit and safe fix workflow.",
