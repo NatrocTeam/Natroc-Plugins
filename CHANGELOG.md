@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.0] - 2026-06-14 [(f73b9e1)](https://github.com/NatrocTeam/Natroc-Plugins/commit/f73b9e1dc96b9675852124c6f4aa69ce88e80d61)
+
+### Added
+
+- **nextjs**: New plugin with 3 skills for Next.js development
+  - `next-best-practices` — 19 reference files covering App Router, RSC boundaries, data patterns, error handling, image/font optimization, bundling, parallel routes, self-hosting, and debug tricks
+  - `next-cache-components` — Next.js 16 Cache Components (PPR, `use cache`, `cacheLife`, `cacheTag`, `updateTag`, migration from `unstable_cache`)
+  - `next-upgrade` — Structured migration workflow with codemods and version-specific guides (v14 → v15 → v16)
+- **marketplace**: Register nextjs plugin in `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`
+
 ## [1.1.0] - 2026-06-13 [(ff88cd2)](https://github.com/NatrocTeam/Natroc-Plugins/commit/ff88cd208654431f4229c8ac82022bb293c0ff9c)
 
 ### Changed
