@@ -1,0 +1,44 @@
+{
+  "name": "nextjs",
+  "version": "1.0.0",
+  "description": "Next.js best practices, cache components, and upgrade guidance for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/nextjs",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/nextjs",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "next.js",
+    "react",
+    "app-router",
+    "server-components",
+    "rsc",
+    "cache-components",
+    "ppr",
+    "upgrade",
+    "migration",
+    "typescript"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Next.js",
+    "shortDescription": "Next.js best practices, cache components, upgrade guidance, and production patterns for App Router and Server Components.",
+    "longDescription": "Local-first Next.js guidance for agents building, upgrading, debugging, and reviewing Next.js applications. Covers file conventions, RSC boundaries, async patterns, runtime selection, directives, functions, error handling, data patterns, route handlers, metadata, image/font optimization, bundling, scripts, hydration errors, suspense boundaries, parallel routes, self-hosting, debug tricks, and Next.js 16 Cache Components (PPR, use cache, cacheLife, cacheTag, updateTag). Also includes structured upgrade workflows with codemods and version-specific migration guides.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "privacyPolicyURL": "https://github.com/NatrocTeam/Natroc-Plugins",
+    "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
+    "brandColor": "#000000",
+    "composerIcon": "./assets/nextjs.svg",
+    "logo": "./assets/nextjs.svg",
+    "defaultPrompt": [
+      "Use $nextjs Next.js best practices when building or reviewing App Router pages and Server Components.",
+      "Use $nextjs next-cache-components when implementing Cache Components, use cache directives, PPR, or cache invalidation.",
+      "Use $nextjs next-upgrade when upgrading a project to the latest Next.js version."
+    ]
+  }
+}

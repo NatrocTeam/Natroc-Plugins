@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "nextjs",
+  "version": "1.0.0",
+  "description": "Next.js best practices, cache components, and upgrade guidance for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/nextjs",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/nextjs",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "next.js",
+    "react",
+    "app-router",
+    "server-components",
+    "rsc",
+    "cache-components",
+    "ppr",
+    "upgrade",
+    "migration",
+    "typescript"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
