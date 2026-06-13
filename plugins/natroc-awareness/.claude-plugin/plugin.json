@@ -18,6 +18,5 @@
     "routing",
     "hooks"
   ],
-  "hooks": "./hooks/hooks.json",
   "skills": "./skills/"
 }
