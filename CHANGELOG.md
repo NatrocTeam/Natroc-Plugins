@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2] - 2026-06-13 [(50429ce)](https://github.com/NatrocTeam/Natroc-Plugins/commit/50429ce9e665cc69c8ee47b7cd92acf4eefe5148)
+
+### Fixed
+
+Replace python with python3 in all hook commands
+
 ## [1.0.1] - 2026-06-13 [(88bb15f)](https://github.com/NatrocTeam/Natroc-Plugins/commit/88bb15f6a6a03cf6560ea0ae044270b7849b5111)
 
 ### Fixed
