@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0] - 2026-06-13 [(ff88cd2)](https://github.com/NatrocTeam/Natroc-Plugins/commit/ff88cd208654431f4229c8ac82022bb293c0ff9c)
+
+### Changed
+
+- **code-review**: Remove hooks system entirely — all 6 lifecycle hooks deleted
+- **code-review**: Clean up .codex-plugin/plugin.json hooks reference
+- **code-review**: Update README — remove hooks mentions, add License section referencing Apache 2.0
+
+### Removed
+
+- **code-review**: 820 lines of hook code (hooks.json, \_common.py, and 6 hook scripts)
+
 ## [1.0.2] - 2026-06-13 [(50429ce)](https://github.com/NatrocTeam/Natroc-Plugins/commit/50429ce9e665cc69c8ee47b7cd92acf4eefe5148)
 
 ### Fixed
