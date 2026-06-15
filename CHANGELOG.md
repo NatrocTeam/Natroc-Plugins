@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0] - 2026-06-15 [(193ada7)](https://github.com/NatrocTeam/Natroc-Plugins/commit/193ada77811601707ed657d660279611adcf4fb9)
+
+### Features
+
+- add stitch plugin with MCP server bridge for Google Stitch
+
+Create the stitch plugin bundling @natroc/stitch-mcp as an auto-starting STDIO MCP server, enabling AI agents to interact with the Google Stitch design platform.
+
+Includes:
+- .mcp.json — auto-starts npx @natroc/stitch-mcp with env var expansion
+- .claude-plugin/plugin.json — Claude Code manifest with mcpServers ref
+- .codex-plugin/plugin.json — Codex manifest with interface branding
+- README.md — plugin docs covering setup, env vars, MCP config
+- skills/stitch-mcp/SKILL.md — full skill with 19 tools reference, 5 workflow patterns, security notes, and troubleshooting
+
 ## [1.2.0] - 2026-06-14 [(f73b9e1)](https://github.com/NatrocTeam/Natroc-Plugins/commit/f73b9e1dc96b9675852124c6f4aa69ce88e80d61)
 
 ### Added
