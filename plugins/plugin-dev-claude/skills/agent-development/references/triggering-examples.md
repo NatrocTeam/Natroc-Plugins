@@ -31,8 +31,8 @@ Rules:
 [Two to four representative scenarios as prose bullets. Each describes the situation
 in third person and what the agent should do.]
 
-- **[Short scenario name].** [What the situation looks like — what just happened or what
-  the user is asking for — and what the agent should do in response.]
+- **[Short scenario name].** [What the situation looks like - what just happened or what
+  the user is asking for - and what the agent should do in response.]
 - **[Short scenario name].** [Same.]
 ```
 
@@ -56,13 +56,13 @@ in third person and what the agent should do.]
 
 ### Scenario body (after the lead)
 
-**Purpose:** Describe what happens and what the agent should do — in prose, third person, no quoted utterances.
+**Purpose:** Describe what happens and what the agent should do - in prose, third person, no quoted utterances.
 
 **Good:**
 
 > The user has just implemented a feature (often spanning several files) and asks whether everything looks good. Run a review of the recent diff and report findings.
 
-**Bad (transcript shape — do not use):**
+**Bad (transcript shape - do not use):**
 
 > ```
 > user: "Can you check if everything looks good?"
@@ -103,9 +103,9 @@ The agent should follow a particular tool-use pattern.
 
 If the same intent is commonly phrased multiple ways, mention that in prose:
 
-> **Pre-PR sanity check.** The user signals (in any phrasing — "ready to open a PR", "I think we're done here", "let's ship this") that they're about to open a pull request.
+> **Pre-PR sanity check.** The user signals (in any phrasing - "ready to open a PR", "I think we're done here", "let's ship this") that they're about to open a pull request.
 
-Don't write three near-duplicate scenarios that differ only in the literal phrase — collapse them into one prose scenario that names the variation.
+Don't write three near-duplicate scenarios that differ only in the literal phrase - collapse them into one prose scenario that names the variation.
 
 ## How many scenarios?
 
@@ -129,7 +129,7 @@ description: Use this agent when you need to review code. Typical triggers inclu
 - **User-requested review.** The user asks for a review of recent changes (any phrasing). Run a review of the unstaged diff.
 ```
 
-### Trigger condition only — output format goes elsewhere
+### Trigger condition only - output format goes elsewhere
 
 ```markdown
 - **Review.** The user asks for a review. Run the review and report findings as specified in the Output Format section.
@@ -225,7 +225,7 @@ Fix: rewrite scenarios to match what the agent actually does.
 - Put detailed scenarios in a "When to invoke" body section, as prose bullets
 - Cover both explicit and proactive triggering
 - Describe situations the agent should respond to
-- Mention phrasing variation in prose ("any phrasing — 'ready to ship', 'looks done'") rather than via multiple near-duplicate scenarios
+- Mention phrasing variation in prose ("any phrasing - 'ready to ship', 'looks done'") rather than via multiple near-duplicate scenarios
 - Keep trigger scenarios separate from output format
 
 ## Conclusion

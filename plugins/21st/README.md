@@ -9,15 +9,15 @@ brand logos through natural language or slash commands.
 
 This plugin provides:
 
-- **MCP Server** — `@21st-dev/magic` runs locally via `npx` and exposes four tools.
-- **Skills** — Auto-trigger UI component generation and logo search when the user asks for components or brand assets.
-- **Subagents** — Focused Claude and Codex agents for Magic UI component work and logo asset integration.
-- **Commands** — `/21st:ui`, `/21st:inspire`, `/21st:refine`, and `/21st:logo` for direct invocation.
+- **MCP Server** - `@21st-dev/magic` runs locally via `npx` and exposes four tools.
+- **Skills** - Auto-trigger UI component generation and logo search when the user asks for components or brand assets.
+- **Subagents** - Focused Claude and Codex agents for Magic UI component work and logo asset integration.
+- **Commands** - `/21st:ui`, `/21st:inspire`, `/21st:refine`, and `/21st:logo` for direct invocation.
 
 ## Prerequisites
 
 1. **Node.js** (latest LTS recommended) on your `PATH`.
-2. A **21st.dev Magic API key** — generate one at https://21st.dev/magic/console.
+2. A **21st.dev Magic API key** - generate one at https://21st.dev/magic/console.
 3. Set the API key as an environment variable named `TWENTY_FIRST_API_KEY`:
 
    ```bash
@@ -167,8 +167,8 @@ Search and import brand logos.
 
 The plugin includes two skills that activate without an explicit slash command:
 
-- **magic-ui** — Activates when the user asks to create, refine, or get inspiration for any React UI component.
-- **logo-search** — Activates when the user asks for a brand logo or company icon.
+- **magic-ui** - Activates when the user asks to create, refine, or get inspiration for any React UI component.
+- **logo-search** - Activates when the user asks for a brand logo or company icon.
 
 This means natural-language requests like "buat hero section dengan animasi" or "tambahkan logo GitHub" will trigger the right tool automatically.
 
@@ -207,10 +207,10 @@ The MCP server is launched on demand via `npx`. The first invocation downloads t
 
 ## Troubleshooting
 
-- **`/mcp` shows the server but no tools** — ensure `TWENTY_FIRST_API_KEY` is exported in the shell that launched Claude Code.
-- **Generation fails / hangs** — confirm the API key is valid at https://21st.dev/magic/console and check your remaining generation quota.
-- **`npx` cannot find the package** — verify Node.js is on your `PATH` and run `npx @21st-dev/magic@latest` manually to test.
-- **Browser callback does not open** — the builder tool opens a callback URL; ensure your system has a default browser configured.
+- **`/mcp` shows the server but no tools** - ensure `TWENTY_FIRST_API_KEY` is exported in the shell that launched Claude Code.
+- **Generation fails / hangs** - confirm the API key is valid at https://21st.dev/magic/console and check your remaining generation quota.
+- **`npx` cannot find the package** - verify Node.js is on your `PATH` and run `npx @21st-dev/magic@latest` manually to test.
+- **Browser callback does not open** - the builder tool opens a callback URL; ensure your system has a default browser configured.
 
 ## Links
 

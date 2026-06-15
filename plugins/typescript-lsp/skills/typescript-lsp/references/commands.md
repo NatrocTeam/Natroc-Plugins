@@ -83,7 +83,7 @@ Update all imports across the workspace when a file is renamed or moved.
 
 ## `typescript.tsserverRequest`
 
-Escape hatch — forward an arbitrary tsserver request. Use only when no higher-level LSP method or command covers the use case.
+Escape hatch - forward an arbitrary tsserver request. Use only when no higher-level LSP method or command covers the use case.
 
 | Argument index | Type          | Purpose                                                   |
 | -------------- | ------------- | --------------------------------------------------------- |
@@ -124,4 +124,4 @@ Push runtime configuration to a registered tsserver plugin.
 
 ## Discovering more commands
 
-`textDocument/codeAction` responses may carry tsserver-driven commands (quick fixes, refactors). Always prefer to invoke the `command` returned in the code action over hand-crafting one — the server constructs the correct arguments based on tsserver's response.
+`textDocument/codeAction` responses may carry tsserver-driven commands (quick fixes, refactors). Always prefer to invoke the `command` returned in the code action over hand-crafting one - the server constructs the correct arguments based on tsserver's response.

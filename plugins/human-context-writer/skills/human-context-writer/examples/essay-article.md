@@ -18,7 +18,7 @@ The result is documentation that answers the wrong questions. It tells you how t
 
 A good article intro should:
 
-- open with a real, specific observation — not a broad claim about an "evolving world"
+- open with a real, specific observation - not a broad claim about an "evolving world"
 - have a clear point of view
 - be specific enough to feel grounded
 - set up the article without over-explaining what is about to be said

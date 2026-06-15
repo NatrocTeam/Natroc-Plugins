@@ -28,7 +28,7 @@ Required for autolinking. Must be adjacent to `package.json`.
 
 ## Autolinking
 
-Expo autolinking automatically discovers and links modules that have `expo-module.config.json`. No manual native project configuration needed — install via npm, run `pod install`.
+Expo autolinking automatically discovers and links modules that have `expo-module.config.json`. No manual native project configuration needed - install via npm, run `pod install`.
 
 ### Resolution Order
 

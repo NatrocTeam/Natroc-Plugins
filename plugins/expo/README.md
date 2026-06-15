@@ -63,34 +63,34 @@ actions.
 
 ### App Design
 
-- **building-native-ui** — Build beautiful apps with Expo Router, styling, components, navigation, and animations
-- **codex-expo-run-actions** — Wire `script/build_and_run.sh` and `.codex/environments/environment.toml` so the Codex app Run button starts Expo
-- **expo-api-routes** — Create API routes in Expo Router with EAS Hosting
-- **expo-dev-client** — Build and distribute Expo development clients locally or via TestFlight
-- **expo-tailwind-setup** — Set up Tailwind CSS v4 in Expo with NativeWind v5
-- **expo-ui-jetpack-compose** — Jetpack Compose UI components for Expo
-- **expo-ui-swift-ui** — SwiftUI components for Expo
-- **native-data-fetching** — Network requests, API calls, caching, and offline support
-- **use-dom** — Run web code in a webview on native using DOM components
+- **building-native-ui** - Build beautiful apps with Expo Router, styling, components, navigation, and animations
+- **codex-expo-run-actions** - Wire `script/build_and_run.sh` and `.codex/environments/environment.toml` so the Codex app Run button starts Expo
+- **expo-api-routes** - Create API routes in Expo Router with EAS Hosting
+- **expo-dev-client** - Build and distribute Expo development clients locally or via TestFlight
+- **expo-tailwind-setup** - Set up Tailwind CSS v4 in Expo with NativeWind v5
+- **expo-ui-jetpack-compose** - Jetpack Compose UI components for Expo
+- **expo-ui-swift-ui** - SwiftUI components for Expo
+- **native-data-fetching** - Network requests, API calls, caching, and offline support
+- **use-dom** - Run web code in a webview on native using DOM components
 
 ### Deployment
 
-- **expo-deployment** — Deploy to iOS App Store, Android Play Store, and web hosting
-- **expo-cicd-workflows** — EAS workflow YAML files for CI/CD pipelines
+- **expo-deployment** - Deploy to iOS App Store, Android Play Store, and web hosting
+- **expo-cicd-workflows** - EAS workflow YAML files for CI/CD pipelines
 
 ### Upgrading
 
-- **upgrading-expo** — Upgrade Expo SDK versions and fix dependency issues
+- **upgrading-expo** - Upgrade Expo SDK versions and fix dependency issues
 
 ## Agents Included
 
-- **expo-app-builder** — Build Expo Router apps, native UI, navigation, data
+- **expo-app-builder** - Build Expo Router apps, native UI, navigation, data
   fetching, styling, and app structure.
-- **expo-native-module-author** — Author Expo native modules and views across
+- **expo-native-module-author** - Author Expo native modules and views across
   Swift, Kotlin, and TypeScript.
-- **expo-deployer** — Prepare App Store, Play Store, TestFlight, EAS Build,
+- **expo-deployer** - Prepare App Store, Play Store, TestFlight, EAS Build,
   EAS Hosting, and CI/CD deployment work.
-- **expo-upgrader** — Upgrade Expo SDK versions and resolve dependency or
+- **expo-upgrader** - Upgrade Expo SDK versions and resolve dependency or
   migration issues.
 
 ## Install/Use

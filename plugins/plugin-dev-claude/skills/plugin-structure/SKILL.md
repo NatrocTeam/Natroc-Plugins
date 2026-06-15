@@ -99,7 +99,7 @@ Specify custom paths for components (supplements default directories):
 }
 ```
 
-**Important**: Custom paths supplement defaults—they don't replace them. Components in both default directories and custom paths will load.
+**Important**: Custom paths supplement defaults-they don't replace them. Components in both default directories and custom paths will load.
 
 **Path rules:**
 

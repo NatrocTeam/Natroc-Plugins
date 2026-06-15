@@ -14,7 +14,7 @@ User might say: "Find me a good copy trader", "Follow this leader with 100 USDT"
 
 ## Leader Discovery
 
-### Copy Trading Classic — Recommend Leaderboard
+### Copy Trading Classic - Recommend Leaderboard
 
 ```
 GET /v5/copy-trade/recommend-leader-list
@@ -30,7 +30,7 @@ Returns a curated ranked list (max 5) of Copy Trading Classic leaders. Preserve 
 | `thirtyDayMaxDrawdown` | 30-day max drawdown                            |
 | `thirtyDaySharpeRatio` | 30-day Sharpe ratio                            |
 
-### Copy Trading TradFi — Recommend Leaderboard
+### Copy Trading TradFi - Recommend Leaderboard
 
 ```
 GET /v5/copy-mt5/recommend-provider-list
@@ -46,13 +46,13 @@ Returns a curated ranked list (max 5) of Copy Trading TradFi providers. Response
 | `thirtyDayMaxDrawdown` | 30-day max drawdown                              |
 | `thirtyDaySharpeRatio` | 30-day Sharpe ratio                              |
 
-> **Discovery workflow**: When user asks for a copy trader, call BOTH leaderboard endpoints. Present as two numbered lists (`Classic 1..N`, `TradFi 1..N`) showing 30-day return, max drawdown, and Sharpe ratio side by side. **Do NOT recommend or rank — display the data objectively and let the user decide.** Add disclaimer: "Past performance does not guarantee future results. This is not investment advice — please evaluate risk tolerance before following any trader." Let user choose by index (e.g. "Classic 1" or "TradFi 3").
+> **Discovery workflow**: When user asks for a copy trader, call BOTH leaderboard endpoints. Present as two numbered lists (`Classic 1..N`, `TradFi 1..N`) showing 30-day return, max drawdown, and Sharpe ratio side by side. **Do NOT recommend or rank - display the data objectively and let the user decide.** Add disclaimer: "Past performance does not guarantee future results. This is not investment advice - please evaluate risk tolerance before following any trader." Let user choose by index (e.g. "Classic 1" or "TradFi 3").
 
 ---
 
 ## Follow Binding
 
-### Copy Trading Classic — Create Follow Binding (authentication required)
+### Copy Trading Classic - Create Follow Binding (authentication required)
 
 ```
 POST /v5/copy-trade/private/follower/trade-setting/create
@@ -62,9 +62,9 @@ POST /v5/copy-trade/private/follower/trade-setting/create
 | Param          | Type       | Required | Description                                                                                                                                                      |
 | -------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `leaderMark`   | string     | yes      | Exact leader identifier from leaderboard                                                                                                                         |
-| `investmentE8` | **string** | yes      | Investment amount in **e8 precision** (amount × 100000000). Example: 100 USDT → `"10000000000"`. Must be a **string** — different from TradFi which uses integer |
+| `investmentE8` | **string** | yes      | Investment amount in **e8 precision** (amount × 100000000). Example: 100 USDT → `"10000000000"`. Must be a **string** - different from TradFi which uses integer |
 
-> `investmentE8` e8 precision conversion rule: USDT amount × 100000000 = investmentE8 value. For example, 100 USDT = `"10000000000"`, 200 USDT = `"20000000000"`. Must be ≥ `100000000` (1 USDT) and divisible by `100000000` (whole USDT amounts only). Uses UTA account balance. Do NOT infer `leaderMark` from nickname — must come from leaderboard API.
+> `investmentE8` e8 precision conversion rule: USDT amount × 100000000 = investmentE8 value. For example, 100 USDT = `"10000000000"`, 200 USDT = `"20000000000"`. Must be ≥ `100000000` (1 USDT) and divisible by `100000000` (whole USDT amounts only). Uses UTA account balance. Do NOT infer `leaderMark` from nickname - must come from leaderboard API.
 
 **Response** (on success):
 
@@ -74,14 +74,14 @@ POST /v5/copy-trade/private/follower/trade-setting/create
 | `setLeverageType`      | Leverage setting type applied                                         |
 | `setLeverageErrorCode` | Error code for leverage setting (0 = no error)                        |
 
-> Check `errSymbols` — if non-empty, some symbols failed to configure. Inform the user which symbols had issues.
+> Check `errSymbols` - if non-empty, some symbols failed to configure. Inform the user which symbols had issues.
 
 **After successful bind**, show success message with link (URL-encode `leaderMark` in the URL since it may contain `+`, `=`, `/`):
 
 - Mainnet: `https://www.bybit.com/copyTrade/trade-center/followLeaderDetail?leaderMark=<URL-encoded leaderMark>`
 - Testnet: `https://testnet.bybit.com/copyTrade/trade-center/followLeaderDetail?leaderMark=<URL-encoded leaderMark>`
 
-### Copy Trading TradFi — Create Follow Binding (authentication required)
+### Copy Trading TradFi - Create Follow Binding (authentication required)
 
 ```
 POST /v5/copy-mt5/private/follower/trade-setting/create
@@ -91,7 +91,7 @@ POST /v5/copy-mt5/private/follower/trade-setting/create
 | Param          | Type        | Required | Description                                                                                                                                                      |
 | -------------- | ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `providerMark` | string      | yes      | Exact provider identifier from leaderboard                                                                                                                       |
-| `investmentE8` | **integer** | yes      | Investment amount in **e8 precision** (amount × 100000000). Example: 100 USDT → `10000000000`. Must be an **integer** — different from Classic which uses string |
+| `investmentE8` | **integer** | yes      | Investment amount in **e8 precision** (amount × 100000000). Example: 100 USDT → `10000000000`. Must be an **integer** - different from Classic which uses string |
 
 > `investmentE8` e8 precision conversion rule: USDT amount × 100000000 = investmentE8 value. For example, 100 USDT = `10000000000`, 300 USDT = `30000000000`. Same constraints as Classic: ≥ 1 USDT, whole-number amounts. Uses funding account balance.
 
@@ -162,7 +162,7 @@ Copy trading leaders use the standard Trade and Position endpoints with `categor
 GET /v5/market/instruments-info?category=linear
 ```
 
-> In the response, check the `copyTrading` field — symbols with `"normalOnly"` do not support copy trading; those with `"both"` or `"copyTradingOnly"` are eligible.
+> In the response, check the `copyTrading` field - symbols with `"normalOnly"` do not support copy trading; those with `"both"` or `"copyTradingOnly"` are eligible.
 
 **Place a copy trading order (as leader)**
 
@@ -192,8 +192,8 @@ POST /v5/order/create
 
 | Endpoint                 | Path                                                   | Method | Auth | Key Params                                                    |
 | ------------------------ | ------------------------------------------------------ | ------ | ---- | ------------------------------------------------------------- |
-| Classic Leaderboard      | `/v5/copy-trade/recommend-leader-list`                 | GET    | No   | —                                                             |
-| TradFi Leaderboard       | `/v5/copy-mt5/recommend-provider-list`                 | GET    | No   | —                                                             |
+| Classic Leaderboard      | `/v5/copy-trade/recommend-leader-list`                 | GET    | No   | -                                                             |
+| TradFi Leaderboard       | `/v5/copy-mt5/recommend-provider-list`                 | GET    | No   | -                                                             |
 | Classic Follow Bind      | `/v5/copy-trade/private/follower/trade-setting/create` | POST   | Yes  | leaderMark, investmentE8(string, e8 precision, ×100000000)    |
 | TradFi Follow Bind       | `/v5/copy-mt5/private/follower/trade-setting/create`   | POST   | Yes  | providerMark, investmentE8(integer, e8 precision, ×100000000) |
 | Check Symbol Eligibility | `/v5/market/instruments-info`                          | GET    | No   | category=linear, check `copyTrading` field                    |
@@ -204,12 +204,12 @@ POST /v5/order/create
 
 ## Notes
 
-- Copy trading accounts are always in **hedge mode** — `positionIdx` is required (1=long, 2=short)
+- Copy trading accounts are always in **hedge mode** - `positionIdx` is required (1=long, 2=short)
 - Only USDT Perpetual symbols are supported
 - API Key needs "Contract - Orders & Positions" permission
-- Classic uses `leaderMark` (string); TradFi uses `providerMark` (string) — never confuse
-- Classic `investmentE8` is a string; TradFi `investmentE8` is an integer — match the type exactly
+- Classic uses `leaderMark` (string); TradFi uses `providerMark` (string) - never confuse
+- Classic `investmentE8` is a string; TradFi `investmentE8` is an integer - match the type exactly
 - **`investmentE8` e8 precision**: Investment amount (USDT) × 100000000 = investmentE8 value. 100 USDT = `10000000000`, 300 USDT = `30000000000`
-- `leaderMark`/`providerMark` values contain Base64 characters (`+`, `=`, `/`) — URL-encode them when building links
-- Classic bind uses UTA account; TradFi bind uses funding account — check respective balances before binding
+- `leaderMark`/`providerMark` values contain Base64 characters (`+`, `=`, `/`) - URL-encode them when building links
+- Classic bind uses UTA account; TradFi bind uses funding account - check respective balances before binding
 - On Classic bind success, check `errSymbols` in response for any symbols that failed to configure

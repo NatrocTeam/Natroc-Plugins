@@ -195,7 +195,7 @@
     {
       "name": "plugin-dev-codex",
       "version": "0.2.0",
-      "description": "Evaluate Codex and Claude skills and plugins locally — analysis reports, score explanations, token budgets, improvement briefs, and guided benchmarking.",
+      "description": "Evaluate Codex and Claude skills and plugins locally - analysis reports, score explanations, token budgets, improvement briefs, and guided benchmarking.",
       "author": {
         "name": "PT Kelana Tech Solutions"
       },
@@ -363,6 +363,31 @@
       ],
       "category": "development",
       "source": "./plugins/nextjs"
+    },
+    {
+      "name": "stitch",
+      "version": "1.0.0",
+      "description": "STDIO MCP server bridge for Google Stitch design platform — connect AI agents to 14 native Stitch MCP tools plus 5 virtual SDK tools for project management, screen generation, design systems, and asset management.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+      "license": "MIT",
+      "keywords": [
+        "natroc",
+        "stitch",
+        "google-stitch",
+        "mcp",
+        "bridge",
+        "design",
+        "prototyping",
+        "screen-generation",
+        "design-systems",
+        "google-cloud"
+      ],
+      "category": "development",
+      "source": "./plugins/stitch"
     }
   ]
 }

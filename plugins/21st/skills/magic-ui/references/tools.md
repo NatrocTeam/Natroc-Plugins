@@ -31,7 +31,7 @@ Generate a brand-new React UI component from a natural language description.
 ### Notes
 
 - The returned text snippet is the source of truth. After receiving it, **edit or add files** to integrate the snippet into the codebase.
-- Always pass absolute paths — relative paths are rejected.
+- Always pass absolute paths - relative paths are rejected.
 
 ## 21st_magic_component_inspiration
 
@@ -74,7 +74,7 @@ Re-design and improve an existing React component file.
 | ---------------------------- | ------ | :------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `userMessage`                | string |   yes    | Full user message about refinement.                                                                                                                                                                                  |
 | `absolutePathToRefiningFile` | string |   yes    | Absolute path to the component file.                                                                                                                                                                                 |
-| `context`                    | string |   yes    | Specific UI elements and aspects to improve. Extract from the message, file contents, and conversation history. Return an empty string if no specifics can be inferred — **never hallucinate generic improvements.** |
+| `context`                    | string |   yes    | Specific UI elements and aspects to improve. Extract from the message, file contents, and conversation history. Return an empty string if no specifics can be inferred - **never hallucinate generic improvements.** |
 
 ### Behavior
 
@@ -83,13 +83,13 @@ Re-design and improve an existing React component file.
 
 ### Notes
 
-- Read the file first with the `Read` tool before invoking this — confirm the file exists and contents match expectations.
+- Read the file first with the `Read` tool before invoking this - confirm the file exists and contents match expectations.
 - Apply the suggested change with **minimal, focused edits**. Do not rewrite the entire file if a partial update suffices.
 - Preserve imports, prop types, and exported names unless the refinement explicitly changes them.
 
 ## logo_search
 
-Search and return brand logos in JSX, TSX, or SVG format. **This tool lives in the `logo-search` skill — keep brand-asset workflows separate from component-generation workflows.**
+Search and return brand logos in JSX, TSX, or SVG format. **This tool lives in the `logo-search` skill - keep brand-asset workflows separate from component-generation workflows.**
 
 ### Schema (for reference)
 

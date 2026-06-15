@@ -1,6 +1,6 @@
 ---
 name: typescript-lsp
-description: Use when working with TypeScript or JavaScript code that needs language-server features — go-to-definition, find references, rename symbol, organize imports, code actions, refactorings, inlay hints, diagnostics, hover information, or configuring typescript-language-server. Covers .ts, .tsx, .js, .jsx, .mts, .cts, .mjs, .cjs files. Apply when the user mentions tsserver, LSP, IntelliSense, type errors, auto-import, "fix all", quote style, import sorting, or tsconfig-driven behavior.
+description: Use when working with TypeScript or JavaScript code that needs language-server features - go-to-definition, find references, rename symbol, organize imports, code actions, refactorings, inlay hints, diagnostics, hover information, or configuring typescript-language-server. Covers .ts, .tsx, .js, .jsx, .mts, .cts, .mjs, .cjs files. Apply when the user mentions tsserver, LSP, IntelliSense, type errors, auto-import, "fix all", quote style, import sorting, or tsconfig-driven behavior.
 license: MIT
 compatibility: Requires Node.js >= 18 and the `typescript-language-server` and `typescript` npm packages installed (globally or per-project).
 metadata:
@@ -15,7 +15,7 @@ metadata:
 
 `typescript-language-server` is a thin Language Server Protocol (LSP) wrapper around Microsoft's `tsserver`. It exposes TypeScript / JavaScript code intelligence (completions, diagnostics, refactorings, rename, code actions, inlay hints, etc.) over LSP so any LSP-capable client can drive it.
 
-**Core principle:** the server is a transport — all semantic behavior comes from `tsserver`. Configuration is layered: editor settings → LSP `initializationOptions` → `workspace/didChangeConfiguration` → per-project `tsconfig.json` / `jsconfig.json`.
+**Core principle:** the server is a transport - all semantic behavior comes from `tsserver`. Configuration is layered: editor settings → LSP `initializationOptions` → `workspace/didChangeConfiguration` → per-project `tsconfig.json` / `jsconfig.json`.
 
 ## When to Use
 
@@ -97,12 +97,12 @@ Useful flags:
 
 ## Detailed References
 
-Load these on demand — do not read them all up front.
+Load these on demand - do not read them all up front.
 
-- [Installation & CLI](references/installation.md) — install methods, runtime requirements, every CLI flag
-- [LSP Features](references/lsp-features.md) — code actions, code lens, inlay hints, hover verbosity, semantic tokens, file watching
-- [Configuration](references/configuration.md) — full `initializationOptions`, `tsserver`, `preferences`, and `workspace/didChangeConfiguration` schema
-- [Commands](references/commands.md) — every supported `workspace/executeCommand` with arguments and return types
+- [Installation & CLI](references/installation.md) - install methods, runtime requirements, every CLI flag
+- [LSP Features](references/lsp-features.md) - code actions, code lens, inlay hints, hover verbosity, semantic tokens, file watching
+- [Configuration](references/configuration.md) - full `initializationOptions`, `tsserver`, `preferences`, and `workspace/didChangeConfiguration` schema
+- [Commands](references/commands.md) - every supported `workspace/executeCommand` with arguments and return types
 
 ## Common Pitfalls
 

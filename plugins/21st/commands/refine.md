@@ -10,7 +10,7 @@ allowed-tools:
 
 # /21st:refine
 
-Improve the look-and-feel of an existing React component (button, card, modal, form — molecule-sized, not full pages). The Magic server analyzes the current file and returns a redesigned version plus integration instructions.
+Improve the look-and-feel of an existing React component (button, card, modal, form - molecule-sized, not full pages). The Magic server analyzes the current file and returns a redesigned version plus integration instructions.
 
 ## Usage
 
@@ -35,16 +35,16 @@ Improve the look-and-feel of an existing React component (button, card, modal, f
 
 ## Required Inputs Passed to the Tool
 
-- `userMessage` — the full user request including refinement goals.
-- `absolutePathToRefiningFile` — the absolute path to the component file to refine.
-- `context` — specific UI elements and aspects to improve, extracted from the request, file contents, and conversation history. Be precise. Return an empty string if nothing specific can be inferred — do not hallucinate generic improvements.
+- `userMessage` - the full user request including refinement goals.
+- `absolutePathToRefiningFile` - the absolute path to the component file to refine.
+- `context` - specific UI elements and aspects to improve, extracted from the request, file contents, and conversation history. Be precise. Return an empty string if nothing specific can be inferred - do not hallucinate generic improvements.
 
 ## After the Tool Returns
 
 - Diff the suggested code against the existing file.
 - Preserve the file's existing imports, prop types, and exported names unless the refinement explicitly changes them.
 - Keep the project's design tokens (Tailwind theme, shadcn variants, color palette).
-- Apply the change with minimal, focused edits — do not rewrite the whole file if a partial update suffices.
+- Apply the change with minimal, focused edits - do not rewrite the whole file if a partial update suffices.
 - Run the project's type checker / linter if available.
 
 ## Scope Limits

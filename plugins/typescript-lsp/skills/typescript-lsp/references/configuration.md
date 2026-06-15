@@ -2,8 +2,8 @@
 
 Configuration arrives in two layers:
 
-1. **`initializationOptions`** — passed once in the `initialize` request. Cannot change without restart.
-2. **`workspace/didChangeConfiguration`** — pushed at any time. Carries per-language settings (`typescript.*`, `javascript.*`).
+1. **`initializationOptions`** - passed once in the `initialize` request. Cannot change without restart.
+2. **`workspace/didChangeConfiguration`** - pushed at any time. Carries per-language settings (`typescript.*`, `javascript.*`).
 
 The server also fires `workspace/configuration` requests to pull file-specific values (e.g. formatter `tabSize`).
 

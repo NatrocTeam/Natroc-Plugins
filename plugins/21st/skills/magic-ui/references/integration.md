@@ -26,10 +26,10 @@ The Magic tool returns:
 
 Check every import in the snippet:
 
-- **Already in the project** — leave the import as-is.
-- **shadcn/ui primitives missing** — run `npx shadcn@latest add <component>` to install (with the user's permission).
-- **Third-party packages missing** — confirm with the user before adding new dependencies. Check the latest version with `npm view <pkg> version` before installing.
-- **Lucide / react-icons / Heroicons** — match the icon library already used by the project. Replace if necessary.
+- **Already in the project** - leave the import as-is.
+- **shadcn/ui primitives missing** - run `npx shadcn@latest add <component>` to install (with the user's permission).
+- **Third-party packages missing** - confirm with the user before adding new dependencies. Check the latest version with `npm view <pkg> version` before installing.
+- **Lucide / react-icons / Heroicons** - match the icon library already used by the project. Replace if necessary.
 
 ### 3. Place the File
 
@@ -55,7 +55,7 @@ Name the file in the project's existing convention (`kebab-case.tsx` vs `PascalC
 
 ### 6. Server vs Client Component Boundary (Next.js App Router)
 
-- If the snippet uses hooks (`useState`, `useEffect`, etc.), it is a **client component** — add `"use client"` at the top.
+- If the snippet uses hooks (`useState`, `useEffect`, etc.), it is a **client component** - add `"use client"` at the top.
 - If it is purely presentational (no hooks, no event handlers), it can stay as a **server component**.
 
 ### 7. Accessibility Sanity Check
@@ -106,7 +106,7 @@ Magic may emit literal colors. Map them to the project's theme:
 
 ## When Things Go Wrong
 
-- **Type errors after paste** — usually missing imports or stricter `tsconfig`. Fix imports first, then types.
-- **Styling looks off** — likely a missing Tailwind plugin (e.g., `@tailwindcss/forms`) or a mismatched theme token.
-- **Animations missing** — Magic may use `framer-motion`. Confirm with the user before adding the dependency.
-- **Component depends on shadcn primitives not installed** — run `npx shadcn@latest add <name>` (with the user's permission).
+- **Type errors after paste** - usually missing imports or stricter `tsconfig`. Fix imports first, then types.
+- **Styling looks off** - likely a missing Tailwind plugin (e.g., `@tailwindcss/forms`) or a mismatched theme token.
+- **Animations missing** - Magic may use `framer-motion`. Confirm with the user before adding the dependency.
+- **Component depends on shadcn primitives not installed** - run `npx shadcn@latest add <name>` (with the user's permission).

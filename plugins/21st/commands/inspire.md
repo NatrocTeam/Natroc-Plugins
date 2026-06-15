@@ -29,19 +29,19 @@ Browse the 21st.dev component library for inspiration. Returns matching componen
 
 1. The MCP tool `21st_magic_component_inspiration` searches the 21st.dev component library.
 2. Matching components, previews, and metadata are returned as JSON.
-3. No code is generated yet — review the options first.
+3. No code is generated yet - review the options first.
 4. Use `/21st:ui` afterwards to actually build the chosen direction.
 
 ## Required Inputs Passed to the Tool
 
-- `message` — the full user message (the search phrase after `/21st:inspire`).
-- `searchQuery` — a 2-4 word phrase distilled from the message (e.g., `bento grid layout`).
+- `message` - the full user message (the search phrase after `/21st:inspire`).
+- `searchQuery` - a 2-4 word phrase distilled from the message (e.g., `bento grid layout`).
 
 ## After the Tool Returns
 
 - Summarize the most relevant matches for the user.
 - Recommend one or two strong candidates with a short rationale.
-- Do **not** modify any project files at this stage — this is a research command.
+- Do **not** modify any project files at this stage - this is a research command.
 - When the user picks a direction, follow up with `/21st:ui` to generate the component.
 
 ## Requirements

@@ -5,7 +5,7 @@
 ## Runtime requirements
 
 - **Node.js** 18+ (LTS recommended).
-- **`typescript`** package — either bundled with the install, supplied per-project via `node_modules`, or located through `tsserver.path` / `tsserver.fallbackPath`.
+- **`typescript`** package - either bundled with the install, supplied per-project via `node_modules`, or located through `tsserver.path` / `tsserver.fallbackPath`.
 
 ## Install methods
 
@@ -45,12 +45,12 @@ typescript-language-server --version
 
 | Flag                  | Default | Description                                                             |
 | --------------------- | ------- | ----------------------------------------------------------------------- |
-| `--stdio`             | —       | Communicate over stdin/stdout. Required when launched by an LSP client. |
+| `--stdio`             | -       | Communicate over stdin/stdout. Required when launched by an LSP client. |
 | `--log-level <level>` | `3`     | Verbosity: `4` = log, `3` = info, `2` = warn, `1` = error.              |
-| `-V`, `--version`     | —       | Print version and exit.                                                 |
-| `-h`, `--help`        | —       | Print usage and exit.                                                   |
+| `-V`, `--version`     | -       | Print version and exit.                                                 |
+| `-h`, `--help`        | -       | Print usage and exit.                                                   |
 
-The server has no `--socket` / `--port` mode — `--stdio` is the only supported transport.
+The server has no `--socket` / `--port` mode - `--stdio` is the only supported transport.
 
 ## tsserver discovery order
 

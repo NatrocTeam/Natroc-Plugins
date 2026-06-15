@@ -78,7 +78,7 @@ Agent identifier used for namespacing and invocation.
 
 ### description (required)
 
-Defines when Claude should trigger this agent. **This is the most critical field** — it is loaded into context whenever the agent is registered, so the harness can decide when to dispatch.
+Defines when Claude should trigger this agent. **This is the most critical field** - it is loaded into context whenever the agent is registered, so the harness can decide when to dispatch.
 
 **Must include:**
 

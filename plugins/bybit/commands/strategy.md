@@ -26,7 +26,7 @@ Strategy endpoints use a **different category format** from standard trading end
 | `UTA_INVERSE`        | Inverse perpetual                                      |
 | `UTA_INVERSE_FUTURE` | Inverse futures                                        |
 
-> ⚠️ **IMPORTANT**: Strategy API **ONLY** accepts `UTA_*` category values. Do NOT use `linear` or `spot` — they will be rejected. Map: `linear` → `UTA_USDT`, `spot` → `UTA_SPOT`, `inverse` → `UTA_INVERSE`.
+> ⚠️ **IMPORTANT**: Strategy API **ONLY** accepts `UTA_*` category values. Do NOT use `linear` or `spot` - they will be rejected. Map: `linear` → `UTA_USDT`, `spot` → `UTA_SPOT`, `inverse` → `UTA_INVERSE`.
 
 ---
 
@@ -94,9 +94,9 @@ POST /v5/strategy/create
 
 ### Chase Order
 
-Dynamic price tracking for fast execution — chases best bid/ask.
+Dynamic price tracking for fast execution - chases best bid/ask.
 
-> ⚠️ **CRITICAL**: The `strategyType` value MUST be `chaseOrder` (camelCase). Do NOT use `chase`, `chase_order`, or any other variation — they will be rejected. Always include `"strategyType":"chaseOrder"` in the request body.
+> ⚠️ **CRITICAL**: The `strategyType` value MUST be `chaseOrder` (camelCase). Do NOT use `chase`, `chase_order`, or any other variation - they will be rejected. Always include `"strategyType":"chaseOrder"` in the request body.
 
 **Required**: category, symbol, side, size, strategyType(`chaseOrder`), plus ONE of chaseDistance or chasePercentE4
 
@@ -124,7 +124,7 @@ POST /v5/strategy/create
 
 ### POV (Percentage of Volume)
 
-Adapts child order size to live market activity — execution rate scales with real-time volume.
+Adapts child order size to live market activity - execution rate scales with real-time volume.
 
 > ⚠️ **POV only supports Perp**: `UTA_USDT`, `UTA_USDC`, `UTA_INVERSE`. NOT `UTA_SPOT`.
 
@@ -216,7 +216,7 @@ POST /v5/strategy/create
 | 4    | Cancelled        |
 | 5    | Rejected         |
 
-> ⚠️ **Stop behavior is PERMANENT and IRREVERSIBLE**: Calling `/v5/strategy/stop` permanently terminates the strategy — it **cannot be resumed**. All pending orders are canceled, partially filled orders cancel remaining portion. Filled orders unaffected. **Stopped strategies cannot be resumed under any circumstances** — you must create a new strategy. **There is NO pause/resume functionality available to users**; status=5 (Paused) is system-controlled only and cannot be triggered by user API calls. If a user asks to "pause" or "resume" a strategy, you MUST inform them that pausing and resuming is NOT possible — the only option is to permanently stop the current strategy and create a new one. Rate limit: 10 qps.
+> ⚠️ **Stop behavior is PERMANENT and IRREVERSIBLE**: Calling `/v5/strategy/stop` permanently terminates the strategy - it **cannot be resumed**. All pending orders are canceled, partially filled orders cancel remaining portion. Filled orders unaffected. **Stopped strategies cannot be resumed under any circumstances** - you must create a new strategy. **There is NO pause/resume functionality available to users**; status=5 (Paused) is system-controlled only and cannot be triggered by user API calls. If a user asks to "pause" or "resume" a strategy, you MUST inform them that pausing and resuming is NOT possible - the only option is to permanently stop the current strategy and create a new one. Rate limit: 10 qps.
 
 ---
 
@@ -260,7 +260,7 @@ Strategy endpoints use the **standard V5 response format** (`retCode`/`retMsg`):
 
 - `strategyId` is a UUID returned from the create response -- store it for query/stop calls
 - Only `Running` (2) or `Untriggered` (6) strategies can be stopped
-- **⚠️ Stopping a strategy is PERMANENT and irreversible — it cannot be resumed**
+- **⚠️ Stopping a strategy is PERMANENT and irreversible - it cannot be resumed**
 - TWAP: duration must be divisible by interval; min duration 300s
 - Iceberg: requires ONE of subSize or orderCount; subSize must be < total size
 - Chase: strategyType is `chaseOrder` (camelCase, NOT `chase`); generates frequent order cancellations/replacements (watch rate limits)

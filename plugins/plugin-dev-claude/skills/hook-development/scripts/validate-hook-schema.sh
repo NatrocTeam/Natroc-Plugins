@@ -39,7 +39,7 @@ echo "✅ Valid JSON"
 echo ""
 echo "Checking root structure..."
 # Valid hook events per Claude Code docs: https://code.claude.com/docs/en/hooks
-# Whitelist is intentionally broad — over-inclusion only avoids false "unknown event"
+# Whitelist is intentionally broad - over-inclusion only avoids false "unknown event"
 # warnings, whereas under-inclusion (e.g. omitting SubagentStart) flags valid configs.
 VALID_EVENTS=(
   "SessionStart" "Setup" "SessionEnd"

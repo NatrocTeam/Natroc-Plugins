@@ -40,11 +40,11 @@ Generate a polished, production-ready React UI component from your description u
 
 When invoking the underlying tool, supply:
 
-- `message` — the full user request (the description after `/21st:ui`).
-- `searchQuery` — a 2-4 word phrase that captures the component (e.g., `responsive navigation bar`).
-- `absolutePathToCurrentFile` — the file where the component should be inserted (ask the user if unclear).
-- `absolutePathToProjectDirectory` — the project root.
-- `standaloneRequestQuery` — a focused, hallucination-free summary of what to build, derived from the description, conversation history, and current file context.
+- `message` - the full user request (the description after `/21st:ui`).
+- `searchQuery` - a 2-4 word phrase that captures the component (e.g., `responsive navigation bar`).
+- `absolutePathToCurrentFile` - the file where the component should be inserted (ask the user if unclear).
+- `absolutePathToProjectDirectory` - the project root.
+- `standaloneRequestQuery` - a focused, hallucination-free summary of what to build, derived from the description, conversation history, and current file context.
 
 ## After the Tool Returns
 

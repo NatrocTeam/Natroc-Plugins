@@ -39,8 +39,8 @@ Default format is `TSX` if not specified.
 
 ## Required Inputs Passed to the Tool
 
-- `queries` — an array of company / brand names (lowercase, e.g., `["discord", "github"]`).
-- `format` — one of `TSX`, `JSX`, or `SVG`.
+- `queries` - an array of company / brand names (lowercase, e.g., `["discord", "github"]`).
+- `format` - one of `TSX`, `JSX`, or `SVG`.
 
 ## After the Tool Returns
 

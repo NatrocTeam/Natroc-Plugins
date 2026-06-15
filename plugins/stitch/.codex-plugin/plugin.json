@@ -1,0 +1,44 @@
+{
+  "name": "stitch",
+  "version": "1.0.0",
+  "description": "STDIO MCP server bridge for Google Stitch design platform - connect any AI agent to the full Stitch MCP toolset.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+  "license": "MIT",
+  "keywords": [
+    "natroc",
+    "stitch",
+    "google-stitch",
+    "mcp",
+    "bridge",
+    "design",
+    "prototyping",
+    "screen-generation",
+    "design-systems",
+    "google-cloud"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Stitch MCP",
+    "shortDescription": "Bridge AI agents to Google Stitch design platform via MCP.",
+    "longDescription": "Stitch-MCP is an open-source STDIO bridge that connects AI coding agents (Claude Code, Codex, etc.) to the Google Stitch design platform. It exposes 14 native Stitch MCP tools plus 5 virtual SDK tools - project management, screen generation, design systems, asset upload/download, and more - all through a single `npx @natroc/stitch-mcp` command.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Interactive", "MCP Transport"],
+    "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
+    "brandColor": "#5B8FC3",
+    "composerIcon": "./assets/stitch.png",
+    "logo": "./assets/stitch.png",
+    "defaultPrompt": [
+      "Use Stitch-MCP to generate app screens from text descriptions and manage design systems.",
+      "Connect to Google Stitch to create projects, generate variants, and upload design files.",
+      "Set up the Stitch-MCP bridge to design and prototype with AI-assisted workflows."
+    ]
+  }
+}

@@ -44,7 +44,7 @@ POST /v5/order/cancel
 {"category":"spot","symbol":"BTCUSDT","orderId":"xxx"}
 ```
 
-> **Important**: For spot market buy orders, using `marketUnit=quoteCoin` + USDT amount is recommended over specifying coin quantity — it is more reliable.
+> **Important**: For spot market buy orders, using `marketUnit=quoteCoin` + USDT amount is recommended over specifying coin quantity - it is more reliable.
 
 ---
 
@@ -60,29 +60,29 @@ POST /v5/order/cancel
 | Get Open Orders    | `/v5/order/realtime`                | GET    | category                               | symbol, baseCoin, orderId, orderLinkId, openOnly, limit, cursor                                                       | 50/s       | spot, linear, inverse, option |
 | Cancel All Orders  | `/v5/order/cancel-all`              | POST   | category                               | symbol, baseCoin, settleCoin, orderFilter, stopOrderType                                                              | 10/s       | spot, linear, inverse, option |
 | Order History      | `/v5/order/history`                 | GET    | category                               | symbol, orderId, orderLinkId, orderFilter, orderStatus, startTime, endTime, limit, cursor                             | 50/s       | spot, linear, inverse, option |
-| Batch Place Order  | `/v5/order/create-batch`            | POST   | category, request[]                    | —                                                                                                                     | per-order  | spot, linear, inverse, option |
-| Batch Amend Order  | `/v5/order/amend-batch`             | POST   | category, request[]                    | —                                                                                                                     | per-order  | spot, linear, inverse, option |
-| Batch Cancel Order | `/v5/order/cancel-batch`            | POST   | category, request[]                    | —                                                                                                                     | per-order  | spot, linear, inverse, option |
-| Spot Borrow Check  | `/v5/order/spot-borrow-check`       | GET    | category, symbol, side                 | —                                                                                                                     | —          | spot                          |
-| Pre-check          | `/v5/order/pre-check`               | POST   | (same as create)                       | —                                                                                                                     | —          | spot, linear, inverse, option |
-| DCP                | `/v5/order/disconnected-cancel-all` | POST   | timeWindow                             | —                                                                                                                     | —          | option                        |
+| Batch Place Order  | `/v5/order/create-batch`            | POST   | category, request[]                    | -                                                                                                                     | per-order  | spot, linear, inverse, option |
+| Batch Amend Order  | `/v5/order/amend-batch`             | POST   | category, request[]                    | -                                                                                                                     | per-order  | spot, linear, inverse, option |
+| Batch Cancel Order | `/v5/order/cancel-batch`            | POST   | category, request[]                    | -                                                                                                                     | per-order  | spot, linear, inverse, option |
+| Spot Borrow Check  | `/v5/order/spot-borrow-check`       | GET    | category, symbol, side                 | -                                                                                                                     | -          | spot                          |
+| Pre-check          | `/v5/order/pre-check`               | POST   | (same as create)                       | -                                                                                                                     | -          | spot, linear, inverse, option |
+| DCP                | `/v5/order/disconnected-cancel-all` | POST   | timeWindow                             | -                                                                                                                     | -          | option                        |
 
 ### Spot Margin (authentication required)
 
 | Endpoint               | Path                                               | Method | Required Params | Optional Params              | Categories |
 | ---------------------- | -------------------------------------------------- | ------ | --------------- | ---------------------------- | ---------- |
-| Switch Margin Mode     | `/v5/spot-margin-trade/switch-mode`                | POST   | spotMarginMode  | —                            | spot       |
-| Set Spot Leverage      | `/v5/spot-margin-trade/set-leverage`               | POST   | leverage        | —                            | spot       |
-| VIP Margin Data        | `/v5/spot-margin-trade/data`                       | GET    | —               | —                            | spot       |
+| Switch Margin Mode     | `/v5/spot-margin-trade/switch-mode`                | POST   | spotMarginMode  | -                            | spot       |
+| Set Spot Leverage      | `/v5/spot-margin-trade/set-leverage`               | POST   | leverage        | -                            | spot       |
+| VIP Margin Data        | `/v5/spot-margin-trade/data`                       | GET    | -               | -                            | spot       |
 | Interest Rate History  | `/v5/spot-margin-trade/interest-rate-history`      | GET    | currency        | startTime, endTime, vipLevel | spot       |
-| Margin Status          | `/v5/spot-margin-trade/state`                      | GET    | —               | —                            | spot       |
-| Coin Status            | `/v5/spot-margin-trade/coinstate`                  | GET    | —               | currency                     | spot       |
-| Tiered Collateral Rate | `/v5/spot-margin-trade/collateral`                 | GET    | —               | currency                     | spot       |
-| Auto Repay Mode        | `/v5/spot-margin-trade/get-auto-repay-mode`        | GET    | —               | —                            | spot       |
-| Set Auto Repay         | `/v5/spot-margin-trade/set-auto-repay-mode`        | POST   | —               | —                            | spot       |
-| Max Borrowable         | `/v5/spot-margin-trade/max-borrowable`             | GET    | —               | coin                         | spot       |
-| Position Tiers         | `/v5/spot-margin-trade/position-tiers`             | GET    | —               | —                            | spot       |
-| Repayable Amount       | `/v5/spot-margin-trade/repayment-available-amount` | GET    | —               | —                            | spot       |
+| Margin Status          | `/v5/spot-margin-trade/state`                      | GET    | -               | -                            | spot       |
+| Coin Status            | `/v5/spot-margin-trade/coinstate`                  | GET    | -               | currency                     | spot       |
+| Tiered Collateral Rate | `/v5/spot-margin-trade/collateral`                 | GET    | -               | currency                     | spot       |
+| Auto Repay Mode        | `/v5/spot-margin-trade/get-auto-repay-mode`        | GET    | -               | -                            | spot       |
+| Set Auto Repay         | `/v5/spot-margin-trade/set-auto-repay-mode`        | POST   | -               | -                            | spot       |
+| Max Borrowable         | `/v5/spot-margin-trade/max-borrowable`             | GET    | -               | coin                         | spot       |
+| Position Tiers         | `/v5/spot-margin-trade/position-tiers`             | GET    | -               | -                            | spot       |
+| Repayable Amount       | `/v5/spot-margin-trade/repayment-available-amount` | GET    | -               | -                            | spot       |
 
 ## Enums
 

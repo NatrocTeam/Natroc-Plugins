@@ -34,7 +34,7 @@ User might say: "Buy a meme coin", "Swap USDT for SOL token", "Sell my on-chain 
 ### Get Tradable Token List (View tradable on-chain token list)
 
 > **When the user says "view tradable on-chain token list", "which tokens are available for trading", or "on-chain token list", this endpoint must be called.**
-> **The correct endpoint is `POST /v5/alpha/trade/biz-token-list` — do not use any other endpoint.**
+> **The correct endpoint is `POST /v5/alpha/trade/biz-token-list` - do not use any other endpoint.**
 
 ```
 POST /v5/alpha/trade/biz-token-list
@@ -115,7 +115,7 @@ POST /v5/alpha/trade/asset-list
 
 Rate limit: 3/s (UID), 2000/s global. Empty body.
 
-**Response**: `totalAssetUsd`, `assetList[]` — each with `tokenCode`, `chainCode`, `tokenAddress`, `tokenSymbol`, `tokenAmount`, `tokenAmountUsd`, `tradeFlag`(0=not tradable, 1=tradable), `pnl`, `pnlRatio`, `costPrice`, `lastPrice`, `assetStatus`(0=Running, 1=Delisting soon, 2=Delisted).
+**Response**: `totalAssetUsd`, `assetList[]` - each with `tokenCode`, `chainCode`, `tokenAddress`, `tokenSymbol`, `tokenAmount`, `tokenAmountUsd`, `tradeFlag`(0=not tradable, 1=tradable), `pnl`, `pnlRatio`, `costPrice`, `lastPrice`, `assetStatus`(0=Running, 1=Delisting soon, 2=Delisted).
 
 ### Get Asset Detail
 
@@ -156,7 +156,7 @@ Rate limit: 3/s (UID), 1000/s global.
 
 **Response**: `toTokenAmount`, `minToTokenAmount`, `slippage`, `gas`, `gasUsd`, `platformFee`, `platformFeeUsd`, `swapRate`, `lossRate`, `quoteData`(base64), `correctingCode`(MD5), `quoteMode`, `quoteDataId`, `expireTime`, `modeEstimations[]`.
 
-> **MUST display** to user: expected amount, fees, slippage, exchange rate. Quote expires at `expireTime` — re-fetch if expired. Pass `quoteData`, `correctingCode`, `gas` as-is to execution endpoint.
+> **MUST display** to user: expected amount, fees, slippage, exchange rate. Quote expires at `expireTime` - re-fetch if expired. Pass `quoteData`, `correctingCode`, `gas` as-is to execution endpoint.
 
 ### Execute Purchase (Buy)
 
@@ -178,7 +178,7 @@ Rate limit: 1/s (UID), 2000/s global.
 | quoteMode       | integer | Y        | `0` auto, `1` price priority, `2` success rate priority |
 | correctingCode  | string  | Y        | From quote response (pass as-is)                        |
 
-**Response**: `orderNo` — use to track in order list. Response is **ACK only** (order accepted, not settled).
+**Response**: `orderNo` - use to track in order list. Response is **ACK only** (order accepted, not settled).
 
 ### Execute Redeem (Sell)
 
@@ -240,12 +240,12 @@ Rate limit: 3/s (UID), 2000/s global.
 
 ## Notes
 
-- All endpoints are **POST** (including queries) — this differs from standard V5 GET queries
+- All endpoints are **POST** (including queries) - this differs from standard V5 GET queries
 - Token codes: `CEX_<id>` = centralized exchange tokens (USDT, USDC), `DEX_<id>` = on-chain tokens
-- Always call **getTradeQuote** before purchase/redeem — the `quoteData` and `correctingCode` are required and cannot be fabricated
-- Quotes have an **expiration time** (`expireTime`) — re-fetch if expired
-- Trade execution is **asynchronous** — poll order-list to confirm final status
+- Always call **getTradeQuote** before purchase/redeem - the `quoteData` and `correctingCode` are required and cannot be fabricated
+- Quotes have an **expiration time** (`expireTime`) - re-fetch if expired
+- Trade execution is **asynchronous** - poll order-list to confirm final status
 - `correctingCode` is MD5 of `(quoteData + fromTokenCode + fromTokenAmount + toTokenCode)` for tamper protection
-- Idempotent via `quoteDataId` — duplicate submissions return the same order
+- Idempotent via `quoteDataId` - duplicate submissions return the same order
 - Uses standard V5 response format (`retCode`/`retMsg`)
-- **Querying the tradable on-chain token list must use `POST /v5/alpha/trade/biz-token-list`** — each token in the response contains a `riskFlag` field (0=safe, 1=risk); the risk status must be indicated when displaying the list
+- **Querying the tradable on-chain token list must use `POST /v5/alpha/trade/biz-token-list`** - each token in the response contains a `riskFlag` field (0=safe, 1=risk); the risk status must be indicated when displaying the list

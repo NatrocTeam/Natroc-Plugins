@@ -109,7 +109,7 @@ Rate limit: 3 qps per UID.
 POST /v5/grid/query-grid-detail
 ```
 
-Rate limit: 10 qps per UID. **Note: This is POST, not GET** — pass `grid_id` in request body.
+Rate limit: 10 qps per UID. **Note: This is POST, not GET** - pass `grid_id` in request body.
 
 | Param   | Type    | Required | Description |
 | ------- | ------- | -------- | ----------- |
@@ -388,7 +388,7 @@ Rate limit: 3 qps per UID.
 | bot_id     | integer | Y        | Bot ID to close                                                                  |
 | close_mode | integer | Y        | Settlement mode: `1` BIT, `2` convert to base tokens, `3` convert to quote token |
 
-> `status_code=503` means bot is in the middle of an investment cycle — retry later.
+> `status_code=503` means bot is in the middle of an investment cycle - retry later.
 
 ---
 
@@ -520,9 +520,9 @@ Trading Bot endpoints use numeric error codes in the 70000-89999 range:
 ## Notes
 
 - All bot creation/close endpoints are POST and require authentication
-- All "Get Detail" endpoints are **POST** (not GET) — pass the bot ID in the request body
+- All "Get Detail" endpoints are **POST** (not GET) - pass the bot ID in the request body
 - Always validate parameters before creating a bot (spot grid: `validate-input`, futures grid: `fgridbot/validate`, martingale: `fmartingalebot/getlimit`, combo: `fcombobot/getlimit`)
-- Bot IDs (`grid_id`, `bot_id`) are returned from create responses — store them for subsequent detail/close calls
+- Bot IDs (`grid_id`, `bot_id`) are returned from create responses - store them for subsequent detail/close calls
 - Spot Grid and DCA close endpoints require `close_mode` to specify how remaining assets are settled
 - Account must be UTA (Unified Trading Account) type to use futures bots (error 70028/80010)
 - **Enum fields in responses** have been converted from integers to protobuf string constants (e.g. status `4` → `FUTURE_GRID_STATUS_RUNNING`, mode `1` → `F_MART_MODE_MARTINGALE_MODE_LONG`). Request enum fields for martingale bot (`martingale_mode`, `auto_cycle_toggle`, `stop_type`) also use string constants now.

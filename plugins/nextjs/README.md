@@ -5,7 +5,7 @@ reviewing Next.js applications with App Router, React Server Components, and
 the latest Next.js features.
 
 Agents use this plugin as a local reference for Next.js conventions, patterns,
-and upgrade paths — no external documentation needed during development work.
+and upgrade paths - no external documentation needed during development work.
 
 ## What's Included
 
@@ -14,7 +14,7 @@ This plugin provides three skills:
 | Skill                   | Description                                                                                                                                                                                                                                                                         |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `next-best-practices`   | File conventions, RSC boundaries, async patterns, runtime selection, directives, functions, error handling, data patterns, route handlers, metadata, image/font optimization, bundling, scripts, hydration errors, suspense boundaries, parallel routes, self-hosting, debug tricks |
-| `next-cache-components` | Next.js 16 Cache Components — PPR, `use cache` directive, `cacheLife`, `cacheTag`, `updateTag`, cache invalidation, migration from `unstable_cache`                                                                                                                                 |
+| `next-cache-components` | Next.js 16 Cache Components - PPR, `use cache` directive, `cacheLife`, `cacheTag`, `updateTag`, cache invalidation, migration from `unstable_cache`                                                                                                                                 |
 | `next-upgrade`          | Structured upgrade workflow with codemods, version-specific migration guides (v14 → v15 → v16), and dependency management                                                                                                                                                           |
 
 ## Prerequisites

@@ -2,15 +2,15 @@
 
 Trade and manage your Bybit account directly from Claude Code or Codex. This
 plugin connects to the Bybit exchange through the official Bybit MCP server and
-exposes the Bybit V5 API — spot, derivatives, options, copy trading, trading
-bots, Earn, fiat/P2P, on-chain Alpha tokens, and TradFi — behind a single
+exposes the Bybit V5 API - spot, derivatives, options, copy trading, trading
+bots, Earn, fiat/P2P, on-chain Alpha tokens, and TradFi - behind a single
 orchestrating skill with built-in safety rules.
 
 ## What's Included
 
-- **MCP Server** — [`bybit-official-trading-server`](https://www.npmjs.com/package/bybit-official-trading-server), the official Bybit trading server, wired through `.mcp.json`.
-- **Skill** — `bybit`, the orchestrator that enforces global safety/confirmation rules and routes each request to the right module.
-- **Commands** — 12 on-demand reference modules under the `bybit` namespace (`/bybit:account`, `/bybit:spot`, …) that document the V5 API surface.
+- **MCP Server** - [`bybit-official-trading-server`](https://www.npmjs.com/package/bybit-official-trading-server), the official Bybit trading server, wired through `.mcp.json`.
+- **Skill** - `bybit`, the orchestrator that enforces global safety/confirmation rules and routes each request to the right module.
+- **Commands** - 12 on-demand reference modules under the `bybit` namespace (`/bybit:account`, `/bybit:spot`, …) that document the V5 API surface.
 
 ## Installation
 
@@ -77,7 +77,7 @@ The MCP server needs Bybit API credentials, provided as environment variables:
 | `BYBIT_API_KEY`    | Your Bybit API key    |
 | `BYBIT_API_SECRET` | Your Bybit API secret |
 
-Create an API key in your Bybit account (**API Management**) and grant only the permissions you need (e.g. _Contract — Orders & Positions_ for derivatives and copy trading). Set them in your shell or agent environment before use:
+Create an API key in your Bybit account (**API Management**) and grant only the permissions you need (e.g. _Contract - Orders & Positions_ for derivatives and copy trading). Set them in your shell or agent environment before use:
 
 ```bash
 export BYBIT_API_KEY="your-api-key"
@@ -126,7 +126,7 @@ Each module is a namespaced command loaded on demand by the `bybit` skill:
 
 ## Usage Examples
 
-The plugin works from natural language — the skill picks the right module:
+The plugin works from natural language - the skill picks the right module:
 
 - "Check my Bybit wallet balance"
 - "Buy 500 USDT of BTC on spot"

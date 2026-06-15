@@ -56,19 +56,19 @@ GET /v5/market/orderbook?category=linear&symbol=BTCUSDT&limit=50
 | Recent Trades         | `/v5/market/recent-trade`              | GET    | category, symbol               | baseCoin, limit                         | spot, linear, inverse, option |
 | Open Interest         | `/v5/market/open-interest`             | GET    | category, symbol, intervalTime | startTime, endTime, limit, cursor       | linear, inverse               |
 | Historical Volatility | `/v5/market/historical-volatility`     | GET    | category                       | baseCoin, period, startTime, endTime    | option                        |
-| Insurance Fund        | `/v5/market/insurance`                 | GET    | —                              | coin                                    | —                             |
+| Insurance Fund        | `/v5/market/insurance`                 | GET    | -                              | coin                                    | -                             |
 | Risk Limit            | `/v5/market/risk-limit`                | GET    | category                       | symbol                                  | linear, inverse               |
 | Delivery Price        | `/v5/market/delivery-price`            | GET    | category                       | symbol, baseCoin, limit, cursor         | linear, inverse, option       |
 | Long/Short Ratio      | `/v5/market/account-ratio`             | GET    | category, symbol, period       | limit                                   | linear, inverse               |
 | Price Limit           | `/v5/market/price-limit`               | GET    | symbol                         | category                                | linear, inverse               |
-| Index Components      | `/v5/market/index-price-components`    | GET    | indexName                      | —                                       | —                             |
-| Fee Group             | `/v5/market/fee-group-info`            | GET    | productType                    | groupId                                 | —                             |
+| Index Components      | `/v5/market/index-price-components`    | GET    | indexName                      | -                                       | -                             |
+| Fee Group             | `/v5/market/fee-group-info`            | GET    | productType                    | groupId                                 | -                             |
 | New Delivery Price    | `/v5/market/new-delivery-price`        | GET    | category, baseCoin             | settleCoin                              | linear, inverse, option       |
-| ADL Alert             | `/v5/market/adlAlert`                  | GET    | —                              | symbol                                  | linear, inverse               |
+| ADL Alert             | `/v5/market/adlAlert`                  | GET    | -                              | symbol                                  | linear, inverse               |
 | RPI Orderbook         | `/v5/market/rpi_orderbook`             | GET    | symbol, limit                  | category                                | spot                          |
-| Server Time           | `/v5/market/time`                      | GET    | —                              | —                                       | —                             |
-| System Status         | `/v5/system/status`                    | GET    | —                              | id, state                               | —                             |
-| Announcements         | `/v5/announcements/index`              | GET    | —                              | locale, type, tag, page, limit          | —                             |
+| Server Time           | `/v5/market/time`                      | GET    | -                              | -                                       | -                             |
+| System Status         | `/v5/system/status`                    | GET    | -                              | id, state                               | -                             |
+| Announcements         | `/v5/announcements/index`              | GET    | -                              | locale, type, tag, page, limit          | -                             |
 
 ## Enums
 

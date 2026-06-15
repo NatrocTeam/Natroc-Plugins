@@ -63,13 +63,13 @@ Guide the user through creating a complete, high-quality Claude Code plugin from
 
 1. Load plugin-structure skill to understand component types
 2. Analyze plugin requirements and determine needed components:
-   - **Skills**: Specialized knowledge OR user-initiated actions (deploy, configure, analyze). Skills are the preferred format for both — see note below.
+   - **Skills**: Specialized knowledge OR user-initiated actions (deploy, configure, analyze). Skills are the preferred format for both - see note below.
    - **Agents**: Autonomous tasks? (validation, generation, analysis)
    - **Hooks**: Event-driven automation? (validation, notifications)
    - **MCP**: External service integration? (databases, APIs)
    - **Settings**: User configuration? (.local.md files)
 
-   > **Note:** The `commands/` directory is a legacy format. For new plugins, user-invoked slash commands should be created as skills in `skills/<name>/SKILL.md`. Both are loaded identically — the only difference is file layout. `commands/` remains an acceptable legacy alternative.
+   > **Note:** The `commands/` directory is a legacy format. For new plugins, user-invoked slash commands should be created as skills in `skills/<name>/SKILL.md`. Both are loaded identically - the only difference is file layout. `commands/` remains an acceptable legacy alternative.
 
 3. For each component type needed, identify:
    - How many of each type
@@ -145,7 +145,7 @@ Guide the user through creating a complete, high-quality Claude Code plugin from
    mkdir -p plugin-name/skills/<skill-name>   # one dir per skill, each with a SKILL.md
    mkdir -p plugin-name/agents                # if needed
    mkdir -p plugin-name/hooks                 # if needed
-   # Note: plugin-name/commands/ is a legacy alternative to skills/ — prefer skills/
+   # Note: plugin-name/commands/ is a legacy alternative to skills/ - prefer skills/
    ```
 4. Create plugin.json manifest using Write tool:
    ```json

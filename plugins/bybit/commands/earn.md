@@ -8,13 +8,13 @@ description: "Bybit Earn: savings, dual asset, liquidity & PWM"
 
 ## Table of Contents
 
-1. [Earn Products](#scenario-earn-products) — FlexibleSaving & OnChain
-2. [Fixed Term](#scenario-fixed-term) — FixedTermSaving / FundPool / FundPoolPremium
-3. [Advance Earn](#scenario-advance-earn) — Dual Assets / Smart Leverage / DoubleWin / Discount Buy
-4. [Liquidity Mining](#scenario-liquidity-mining) — Pool liquidity provision
-5. [BYUSDT Token](#scenario-byusdt-token) — Mint / Redeem earn token
-6. [Hold-to-Earn](#scenario-hold-to-earn) — Airdrop yield by holding coins
-7. [PWM (Private Wealth Management)](#scenario-pwm) — Institutional fund management & user investment plans
+1. [Earn Products](#scenario-earn-products) - FlexibleSaving & OnChain
+2. [Fixed Term](#scenario-fixed-term) - FixedTermSaving / FundPool / FundPoolPremium
+3. [Advance Earn](#scenario-advance-earn) - Dual Assets / Smart Leverage / DoubleWin / Discount Buy
+4. [Liquidity Mining](#scenario-liquidity-mining) - Pool liquidity provision
+5. [BYUSDT Token](#scenario-byusdt-token) - Mint / Redeem earn token
+6. [Hold-to-Earn](#scenario-hold-to-earn) - Airdrop yield by holding coins
+7. [PWM (Private Wealth Management)](#scenario-pwm) - Institutional fund management & user investment plans
 
 ---
 
@@ -26,7 +26,7 @@ description: "Bybit Earn: savings, dual asset, liquidity & PWM"
 >
 > **`isSlippageProtected`** (SmartLeverage/DoubleWin Redeem): `true` = reject if actual amount falls below `estRedeemAmount` beyond slippage threshold; `false` (default) = execute regardless of slippage.
 >
-> **`orderLinkId` uniqueness**: For Liquidity Mining and Advance Earn, once an `orderLinkId` is used, the same value **cannot be reused** — resubmission returns an error. Always generate a unique value per request.
+> **`orderLinkId` uniqueness**: For Liquidity Mining and Advance Earn, once an `orderLinkId` is used, the same value **cannot be reused** - resubmission returns an error. Always generate a unique value per request.
 
 ### `accountType` by Product
 
@@ -55,7 +55,7 @@ GET  /v5/earn/yield?category=FlexibleSaving&coin=USDT
 GET  /v5/earn/hourly-yield?category=FlexibleSaving
 ```
 
-> Place Order requires all 7 params. Get `productId` from product list first. **OnChain** uses identical flow — replace `category` with `OnChain`, `accountType` must be `FUND`. On-chain transactions may have waiting times.
+> Place Order requires all 7 params. Get `productId` from product list first. **OnChain** uses identical flow - replace `category` with `OnChain`, `accountType` must be `FUND`. On-chain transactions may have waiting times.
 
 | Endpoint     | Path                    | Method | Required                                                               | Optional                                                           |
 | ------------ | ----------------------- | ------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -76,7 +76,7 @@ User might say: "fixed term savings", "fund pool", "fixed deposit", "lock USDT f
 
 > Fixed-duration earn products. Sub-categories: **FixedTermSaving**, **FundPool** (may allow early redemption at discounted APY), **FundPoolPremium**.
 >
-> **Tiered APY**: `tieredApyList` — APY varies by amount tier (`max: "-1"` = unlimited). **Multi-coin rewards**: `interestCoinApyList` — interest may be paid in a different coin.
+> **Tiered APY**: `tieredApyList` - APY varies by amount tier (`max: "-1"` = unlimited). **Multi-coin rewards**: `interestCoinApyList` - interest may be paid in a different coin.
 >
 > **Early redemption**: Only if `allowEarlyRedemption=true` and `redemptionLimitDuration` has passed. FundPool → `earlyRedemptionApy` (discounted); FixedTermSaving → **zero** earnings. Warn user before confirming. Normal maturity redemption is automatic.
 >
@@ -101,14 +101,14 @@ POST /v5/earn/fixed-term/position/auto-invest
 
 | Endpoint        | Path                                       | Method | Auth | Rate | Required                                                    | Optional                                                                   |
 | --------------- | ------------------------------------------ | ------ | ---- | ---- | ----------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Product List    | `/v5/earn/fixed-term/product`              | GET    | No   | 50/s | —                                                           | coin                                                                       |
+| Product List    | `/v5/earn/fixed-term/product`              | GET    | No   | 50/s | -                                                           | coin                                                                       |
 | Place Order     | `/v5/earn/fixed-term/place-order`          | POST   | Yes  | 5/s  | productId, category, coin, amount, accountType, orderLinkId | autoInvest (FundPool only)                                                 |
-| Redeem          | `/v5/earn/fixed-term/redeem`               | POST   | Yes  | 5/s  | productId, category, positionId                             | —                                                                          |
-| Set Auto-Invest | `/v5/earn/fixed-term/position/auto-invest` | POST   | Yes  | 5/s  | productId, category, positionId, status                     | —                                                                          |
-| Position        | `/v5/earn/fixed-term/position`             | GET    | Yes  | 10/s | —                                                           | productId, category, coin                                                  |
-| Order           | `/v5/earn/fixed-term/order`                | GET    | Yes  | 10/s | —                                                           | orderType, productId, category, orderId, startTime, endTime, limit, cursor |
+| Redeem          | `/v5/earn/fixed-term/redeem`               | POST   | Yes  | 5/s  | productId, category, positionId                             | -                                                                          |
+| Set Auto-Invest | `/v5/earn/fixed-term/position/auto-invest` | POST   | Yes  | 5/s  | productId, category, positionId, status                     | -                                                                          |
+| Position        | `/v5/earn/fixed-term/position`             | GET    | Yes  | 10/s | -                                                           | productId, category, coin                                                  |
+| Order           | `/v5/earn/fixed-term/order`                | GET    | Yes  | 10/s | -                                                           | orderType, productId, category, orderId, startTime, endTime, limit, cursor |
 
-> **`status` enum** (auto-invest): `Enable` \| `Disable` (string — **not a boolean**). When `productId` is passed to `order` history, `category` must also be supplied.
+> **`status` enum** (auto-invest): `Enable` \| `Disable` (string - **not a boolean**). When `productId` is passed to `order` history, `category` must also be supplied.
 
 **Enums**: category: `FixedTermSaving`|`FundPool`|`FundPoolPremium` · status: `Available`|`SoldOut`|`NotStarted` · orderType: `Stake`|`Redeem`|`Reinvest` · accountType: `FUND`|`UNIFIED`
 
@@ -135,10 +135,10 @@ GET /v5/earn/advance/order?category=SmartLeverage
 
 **⚠️ Mandatory flow**
 
-> 1. **Ask direction** if not specified — BuyLow or SellHigh
+> 1. **Ask direction** if not specified - BuyLow or SellHigh
 > 2. `GET /v5/earn/advance/product?category=DualAssets` → find `productId`
 > 3. `GET /v5/earn/advance/product-extra-info?category=DualAssets&productId=<id>` → get quotes
-> 4. **Check `expiredAt`** — only use non-expired quotes. **Always tell user the expiration time.**
+> 4. **Check `expiredAt`** - only use non-expired quotes. **Always tell user the expiration time.**
 > 5. **Confirm with user** before placing: direction, coin & amount, strike price (`selectPrice`), APY, `expiredAt`. **Do not place until user confirms.**
 > 6. `POST /v5/earn/advance/place-order`
 
@@ -159,7 +159,7 @@ POST /v5/earn/advance/place-order
 {"category":"DualAssets","productId":81749,"orderType":"Stake","amount":"20","accountType":"FUND","coin":"USDT","orderLinkId":"unique-id-003","dualAssetsExtra":{"orderDirection":"BuyLow","selectPrice":"69500","apyE8":855000000}}
 ```
 
-> All 8 params required. `dualAssetsExtra`: `orderDirection`(BuyLow/SellHigh), `selectPrice`, `apyE8` — must match valid non-expired quote. BuyLow → invest USDT; SellHigh → invest BTC.
+> All 8 params required. `dualAssetsExtra`: `orderDirection`(BuyLow/SellHigh), `selectPrice`, `apyE8` - must match valid non-expired quote. BuyLow → invest USDT; SellHigh → invest BTC.
 
 ### Smart Leverage (Future Boost)
 
@@ -179,7 +179,7 @@ POST /v5/earn/advance/place-order
 > 1. `GET /v5/earn/advance/get-redeem-est-amount-list?category=SmartLeverage&positionIds=<id>` → cached **10 min**
 > 2. Check `success=true`, place with `smartLeverageRedeemExtra` (`positionId`, `estRedeemAmount`)
 >
-> Redemption blocked within **60 min** before settlement. Top-level `amount` = original staked amount (required). `estRedeemAmount` = actual payout (may differ due to P&L) — always use value from estimation API.
+> Redemption blocked within **60 min** before settlement. Top-level `amount` = original staked amount (required). `estRedeemAmount` = actual payout (may differ due to P&L) - always use value from estimation API.
 
 ```
 GET /v5/earn/advance/product?category=SmartLeverage
@@ -205,7 +205,7 @@ POST /v5/earn/advance/place-order
 
 ### DoubleWin
 
-> Structured product — profit from large price movements in **either direction**. If price moves beyond upper/lower buffer at settlement, user profits; otherwise partial principal loss.
+> Structured product - profit from large price movements in **either direction**. If price moves beyond upper/lower buffer at settlement, user profits; otherwise partial principal loss.
 
 **⚠️ Mandatory Stake flow**
 
@@ -217,7 +217,7 @@ POST /v5/earn/advance/place-order
 **⚠️ Mandatory Redeem flow**
 
 > 1. `GET /v5/earn/advance/get-redeem-est-amount-list?category=DoubleWin&positionIds=<id>` → cached **10 min**
-> 2. Place with `doubleWinRedeemExtra` (`positionId`, `estRedeemAmount`). Top-level `amount` is **not required** for DoubleWin Redeem (system uses original staked amount). `estRedeemAmount` = actual payout — always from estimation API.
+> 2. Place with `doubleWinRedeemExtra` (`positionId`, `estRedeemAmount`). Top-level `amount` is **not required** for DoubleWin Redeem (system uses original staked amount). `estRedeemAmount` = actual payout - always from estimation API.
 >
 > Redemption blocked within **30 min** before settlement.
 
@@ -246,7 +246,7 @@ POST /v5/earn/advance/place-order
 > - **Knocked out** (settlement price ≥ `knockoutPrice`): receive USDT principal + coupon (`knockoutCouponE8` annualized × durationDays / 365).
 > - **Exercised** (settlement price < `knockoutPrice`): receive underlying asset at `purchasePrice` (`settleType=Base`) or equivalent USDT (`settleType=Quote`).
 >
-> `duration` filter not applicable (ignored). Only `Stake` supported — no pre-settlement redemption.
+> `duration` filter not applicable (ignored). Only `Stake` supported - no pre-settlement redemption.
 
 **⚠️ Mandatory flow**: `GET product` → `GET product-extra-info` for quotes (returns `currentPrice`, `purchasePrice`, `knockoutPrice`, `knockoutCouponE8`, `maxInvestmentAmount`, `instUid`, `expiredAt`) → check `expiredAt` (only use non-expired, **tell user expiry**) → confirm underlying asset, amount, purchase price, knockout price, coupon, settlement preference → `POST place-order` with `discountBuyExtra`.
 
@@ -255,14 +255,14 @@ POST /v5/earn/advance/place-order
 {"category":"DiscountBuy","productId":54321,"orderType":"Stake","amount":"100","accountType":"FUND","coin":"USDT","orderLinkId":"db-stake-001","discountBuyExtra":{"initialPrice":"67890.50","purchasePrice":"65000.00","knockoutPrice":"72000.00","knockoutCouponE8":200000000,"instUid":1001,"settleType":"Base"}}
 ```
 
-> `discountBuyExtra` — all 6 required. Pass values **as-is** from `product-extra-info`:
+> `discountBuyExtra` - all 6 required. Pass values **as-is** from `product-extra-info`:
 >
-> - `initialPrice` — spot at order time (from `currentPrice`), max 8 decimals, used for slippage protection
-> - `purchasePrice` — strike (from quote)
-> - `knockoutPrice` — knockout barrier (from quote); must be strictly greater than `purchasePrice`
-> - `knockoutCouponE8` — coupon annualized × 10⁸ (from quote), integer
-> - `instUid` — market maker UID (from quote), integer
-> - `settleType` — `Base` (receive underlying) \| `Quote` (receive USDT); only applies when exercised
+> - `initialPrice` - spot at order time (from `currentPrice`), max 8 decimals, used for slippage protection
+> - `purchasePrice` - strike (from quote)
+> - `knockoutPrice` - knockout barrier (from quote); must be strictly greater than `purchasePrice`
+> - `knockoutCouponE8` - coupon annualized × 10⁸ (from quote), integer
+> - `instUid` - market maker UID (from quote), integer
+> - `settleType` - `Base` (receive underlying) \| `Quote` (receive USDT); only applies when exercised
 
 ### Redeem Estimation (SmartLeverage / DoubleWin shared)
 
@@ -276,11 +276,11 @@ GET /v5/earn/advance/get-redeem-est-amount-list?category=SmartLeverage&positionI
 
 All on `wss://stream.bybit.com/v5/public/fp`. Subscribe: `{"op":"subscribe","args":["<topic>"]}`
 
-**`earn.dualassets.offers`** — `p`=productId, `c`=currentPrice, `b`=buyLowPrice[], `s`=sellHighPrice[]. Inner: `s`=selectPrice, `a`=apyE8, `m`=maxInvestmentAmount, `x`=expiredAt.
+**`earn.dualassets.offers`** - `p`=productId, `c`=currentPrice, `b`=buyLowPrice[], `s`=sellHighPrice[]. Inner: `s`=selectPrice, `a`=apyE8, `m`=maxInvestmentAmount, `x`=expiredAt.
 
-**`earn.smartleverage.offers`** — `p`=productId, `c`=currentPrice (→`initialPrice`), `b`=breakevenPrice (→`breakevenPrice`), `e`=expireAt, `m`=maxInvestmentAmount. Empty `b` = no valid quote.
+**`earn.smartleverage.offers`** - `p`=productId, `c`=currentPrice (→`initialPrice`), `b`=breakevenPrice (→`breakevenPrice`), `e`=expireAt, `m`=maxInvestmentAmount. Empty `b` = no valid quote.
 
-**`earn.doublewin.offers`** (fixed-range only) — `p`=productId, `c`=currentPrice (→`initialPrice`), `l`=leverage, `m`=maxInvestmentAmount, `e`=expireTime. Empty `l` = no valid quote. RFQ products use `/double-win-leverage` endpoint.
+**`earn.doublewin.offers`** (fixed-range only) - `p`=productId, `c`=currentPrice (→`initialPrice`), `l`=leverage, `m`=maxInvestmentAmount, `e`=expireTime. Empty `l` = no valid quote. RFQ products use `/double-win-leverage` endpoint.
 
 ### Advance Earn API Reference
 
@@ -291,8 +291,8 @@ All on `wss://stream.bybit.com/v5/public/fp`. Subscribe: `{"op":"subscribe","arg
 | Place Order    | `/v5/earn/advance/place-order`                | POST   | Yes  | 5/s  | category, productId, orderType, amount, accountType, coin, orderLinkId + category extra | interestCard (not for DiscountBuy)                                 |
 | Position       | `/v5/earn/advance/position`                   | GET    | Yes  | 10/s | category                                                                                | productId, coin, limit, cursor                                     |
 | Order          | `/v5/earn/advance/order`                      | GET    | Yes  | 10/s | category                                                                                | productId, orderId, orderLinkId, startTime, endTime, limit, cursor |
-| Redeem Est.    | `/v5/earn/advance/get-redeem-est-amount-list` | GET    | Yes  | 10/s | category(SL/DW), positionIds                                                            | —                                                                  |
-| DW Leverage    | `/v5/earn/advance/double-win-leverage`        | GET    | Yes  | 1/s  | productId, initialPrice, lowerPrice, upperPrice                                         | —                                                                  |
+| Redeem Est.    | `/v5/earn/advance/get-redeem-est-amount-list` | GET    | Yes  | 10/s | category(SL/DW), positionIds                                                            | -                                                                  |
+| DW Leverage    | `/v5/earn/advance/double-win-leverage`        | GET    | Yes  | 1/s  | productId, initialPrice, lowerPrice, upperPrice                                         | -                                                                  |
 
 **category enum**: `DualAssets`|`SmartLeverage`|`DoubleWin`|`DiscountBuy`
 
@@ -352,20 +352,20 @@ GET /v5/earn/liquidity-mining/yield-records
 GET /v5/earn/liquidity-mining/liquidation-records
 ```
 
-> **Order endpoint behavior**: Pass `orderId` or `orderLinkId` alone to retrieve a single order (`Pending` orders visible). Without `orderId`/`orderLinkId`, returns a paginated list (`Pending` excluded; `Success`, `Processing`, and `Fail` orders are all included). `status` filter supports `Success`|`Processing` only — `Fail` orders are returned by default but passing `status=Fail` returns error `180001`.
+> **Order endpoint behavior**: Pass `orderId` or `orderLinkId` alone to retrieve a single order (`Pending` orders visible). Without `orderId`/`orderLinkId`, returns a paginated list (`Pending` excluded; `Success`, `Processing`, and `Fail` orders are all included). `status` filter supports `Success`|`Processing` only - `Fail` orders are returned by default but passing `status=Fail` returns error `180001`.
 
 | Endpoint            | Path                      | Method | Required                                                     | Optional                                                                              |
 | ------------------- | ------------------------- | ------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
-| Product             | `.../product`             | GET    | —                                                            | baseCoin, quoteCoin                                                                   |
+| Product             | `.../product`             | GET    | -                                                            | baseCoin, quoteCoin                                                                   |
 | Add Liquidity       | `.../add-liquidity`       | POST   | productId, orderLinkId, (quoteAmount or baseAmount)          | quoteAccountType, baseAccountType, leverage                                           |
 | Remove Liquidity    | `.../remove-liquidity`    | POST   | productId, orderLinkId, positionId                           | removeRate, removeType                                                                |
-| Reinvest            | `.../reinvest`            | POST   | productId, orderLinkId, positionId                           | —                                                                                     |
-| Add Margin          | `.../add-margin`          | POST   | productId, orderLinkId, positionId, amount, quoteAccountType | —                                                                                     |
-| Claim Interest      | `.../claim-interest`      | POST   | productId                                                    | —                                                                                     |
-| Position            | `.../position`            | GET    | —                                                            | productId, baseCoin                                                                   |
-| Order               | `.../order`               | GET    | —                                                            | orderId, orderLinkId, productId, orderType, status, startTime, endTime, limit, cursor |
-| Yield Records       | `.../yield-records`       | GET    | —                                                            | baseCoin, quoteCoin, startTime, endTime, limit, cursor                                |
-| Liquidation Records | `.../liquidation-records` | GET    | —                                                            | baseCoin, quoteCoin, startTime, endTime, limit, cursor                                |
+| Reinvest            | `.../reinvest`            | POST   | productId, orderLinkId, positionId                           | -                                                                                     |
+| Add Margin          | `.../add-margin`          | POST   | productId, orderLinkId, positionId, amount, quoteAccountType | -                                                                                     |
+| Claim Interest      | `.../claim-interest`      | POST   | productId                                                    | -                                                                                     |
+| Position            | `.../position`            | GET    | -                                                            | productId, baseCoin                                                                   |
+| Order               | `.../order`               | GET    | -                                                            | orderId, orderLinkId, productId, orderType, status, startTime, endTime, limit, cursor |
+| Yield Records       | `.../yield-records`       | GET    | -                                                            | baseCoin, quoteCoin, startTime, endTime, limit, cursor                                |
+| Liquidation Records | `.../liquidation-records` | GET    | -                                                            | baseCoin, quoteCoin, startTime, endTime, limit, cursor                                |
 
 ---
 
@@ -391,7 +391,7 @@ GET /v5/earn/token/product?coin=BYUSDT
 
 > Returns: `productId`, `mintFeeRateE8`, `redeemFeeRateE8`, `minInvestment`, `userHolding`, `leftQuota`, `canMint`, `savingsBalance`, `aprE8`, `bonusAprE8`, `bonusMaxAmount`, `baseCoinPrecision`, `tokenPrecision`.
 >
-> **`canMint=false`**: quota exhausted (`leftQuota`), suggest retry later. **Mint prerequisite**: deducts from FlexibleSaving — check `savingsBalance` first.
+> **`canMint=false`**: quota exhausted (`leftQuota`), suggest retry later. **Mint prerequisite**: deducts from FlexibleSaving - check `savingsBalance` first.
 
 ```
 GET /v5/earn/token/order?coin=BYUSDT
@@ -405,13 +405,13 @@ GET /v5/earn/token/history-apr?coin=BYUSDT&range=2
 
 | Endpoint      | Path                          | Method | Auth | Required                                          | Optional                                                           |
 | ------------- | ----------------------------- | ------ | ---- | ------------------------------------------------- | ------------------------------------------------------------------ |
-| Place Order   | `/v5/earn/token/place-order`  | POST   | Yes  | coin, orderLinkId, orderType, amount, accountType | —                                                                  |
+| Place Order   | `/v5/earn/token/place-order`  | POST   | Yes  | coin, orderLinkId, orderType, amount, accountType | -                                                                  |
 | Order List    | `/v5/earn/token/order`        | GET    | Yes  | coin                                              | orderLinkId, orderId, orderType, startTime, endTime, cursor, limit |
-| Position      | `/v5/earn/token/position`     | GET    | Yes  | coin                                              | —                                                                  |
-| Product Info  | `/v5/earn/token/product`      | GET    | No   | coin                                              | —                                                                  |
+| Position      | `/v5/earn/token/position`     | GET    | Yes  | coin                                              | -                                                                  |
+| Product Info  | `/v5/earn/token/product`      | GET    | No   | coin                                              | -                                                                  |
 | Yield History | `/v5/earn/token/yield`        | GET    | Yes  | coin                                              | startTime, endTime, limit, cursor                                  |
 | Hourly Yield  | `/v5/earn/token/hourly-yield` | GET    | Yes  | coin                                              | startTime, endTime, limit, cursor                                  |
-| APR History   | `/v5/earn/token/history-apr`  | GET    | No   | coin, range                                       | —                                                                  |
+| APR History   | `/v5/earn/token/history-apr`  | GET    | No   | coin, range                                       | -                                                                  |
 
 ---
 
@@ -419,11 +419,11 @@ GET /v5/earn/token/history-apr?coin=BYUSDT&range=2
 
 User might say: "hold to earn", "airdrop yield", "holding rewards", "USDE yield"
 
-> Earn yield by holding eligible coins (USDE, USD1) — no staking needed, yield distributed daily as airdrops.
+> Earn yield by holding eligible coins (USDE, USD1) - no staking needed, yield distributed daily as airdrops.
 
 | Endpoint      | Path                                  | Method | Auth | Required     | Optional                   |
 | ------------- | ------------------------------------- | ------ | ---- | ------------ | -------------------------- |
-| Product List  | `/v5/earn/hold-to-earn/product`       | GET    | No   | —            | —                          |
+| Product List  | `/v5/earn/hold-to-earn/product`       | GET    | No   | -            | -                          |
 | Yield History | `/v5/earn/hold-to-earn/yield-history` | GET    | Yes  | limit (1-49) | timeStart, timeEnd, cursor |
 
 > **Notes**:
@@ -438,23 +438,23 @@ User might say: "hold to earn", "airdrop yield", "holding rewards", "USDE yield"
 
 User might say: "private wealth", "PWM", "investment plan", "fund management", "asset manager", "subscribe plan", "redeem plan"
 
-> Private Wealth Management — institutional fund management and user investment plans.
+> Private Wealth Management - institutional fund management and user investment plans.
 
-### PWM — User Side
+### PWM - User Side
 
 | Endpoint           | Path                                       | Method | Auth | Required                                         | Optional                                                                       |
 | ------------------ | ------------------------------------------ | ------ | ---- | ------------------------------------------------ | ------------------------------------------------------------------------------ |
-| List Plans         | `/v5/earn/pwm/investment-plan/all`         | GET    | Yes  | —                                                | planId, status, limit, cursor                                                  |
-| Plan Detail        | `/v5/earn/pwm/investment-plan/detail`      | GET    | Yes  | planId                                           | —                                                                              |
-| New Plan Detail    | `/v5/earn/pwm/investment-plan/new-plan`    | GET    | Yes  | planId                                           | —                                                                              |
+| List Plans         | `/v5/earn/pwm/investment-plan/all`         | GET    | Yes  | -                                                | planId, status, limit, cursor                                                  |
+| Plan Detail        | `/v5/earn/pwm/investment-plan/detail`      | GET    | Yes  | planId                                           | -                                                                              |
+| New Plan Detail    | `/v5/earn/pwm/investment-plan/new-plan`    | GET    | Yes  | planId                                           | -                                                                              |
 | Subscribe          | `/v5/earn/pwm/investment-plan/subscribe`   | POST   | Yes  | planId, orderLinkId                              | accountType                                                                    |
 | Invest More        | `/v5/earn/pwm/investment-plan/invest-more` | POST   | Yes  | planId, category, productId, amount, orderLinkId | accountType                                                                    |
 | Redeem             | `/v5/earn/pwm/investment-plan/redeem`      | POST   | Yes  | planId, category, productId, orderLinkId         | amount, shares, positionId                                                     |
 | Claim              | `/v5/earn/pwm/investment-plan/claim`       | POST   | Yes  | planId, orderLinkId                              | toAccountType                                                                  |
 | Asset Trend        | `/v5/earn/pwm/investment-plan/asset-trend` | GET    | Yes  | planId                                           | startTime, endTime                                                             |
 | Fund NAV           | `/v5/earn/pwm/investment-plan/fund-nav`    | GET    | Yes  | fundId                                           | startTime, endTime                                                             |
-| Order List         | `/v5/earn/pwm/investment-plan/order`       | GET    | Yes  | —                                                | planId, category, type, status, startTime, endTime, limit, cursor, orderLinkId |
-| Product Cards      | `/v5/earn/pwm/customize-plan/product`      | GET    | No   | —                                                | —                                                                              |
+| Order List         | `/v5/earn/pwm/investment-plan/order`       | GET    | Yes  | -                                                | planId, category, type, status, startTime, endTime, limit, cursor, orderLinkId |
+| Product Cards      | `/v5/earn/pwm/customize-plan/product`      | GET    | No   | -                                                | -                                                                              |
 | Create Custom Plan | `/v5/earn/pwm/customize-plan/create`       | POST   | Yes  | products[], orderLinkId                          | accountType                                                                    |
 
 > **Notes**:
@@ -464,21 +464,21 @@ User might say: "private wealth", "PWM", "investment plan", "fund management", "
 > - `accountType`: `FUND` (default), `UNIFIED`.
 > - Redeem uses `shares` for `equityFund` category, `amount` for others.
 
-### PWM — Institutional Side
+### PWM - Institutional Side
 
 | Endpoint               | Path                                                | Method | Auth | Required                                                            | Optional                    |
 | ---------------------- | --------------------------------------------------- | ------ | ---- | ------------------------------------------------------------------- | --------------------------- |
-| List Funds             | `/v5/earn/pwm/asset-manager/all-funds`              | GET    | Yes  | —                                                                   | —                           |
-| Create Fund            | `/v5/earn/pwm/asset-manager/create-fund`            | POST   | Yes  | fundName, coin, profitShareRate, managementFeeRate, reqLinkId       | —                           |
-| Settle Profit          | `/v5/earn/pwm/asset-manager/settle-profit`          | POST   | Yes  | fundId, reqLinkId                                                   | —                           |
-| Create Investment Plan | `/v5/earn/pwm/asset-manager/create-investment-plan` | POST   | Yes  | accountUid, planName, planType, investmentDistribution[], reqLinkId | —                           |
-| Get Plans              | `/v5/earn/pwm/asset-manager/get-investment-plan`    | GET    | Yes  | —                                                                   | —                           |
+| List Funds             | `/v5/earn/pwm/asset-manager/all-funds`              | GET    | Yes  | -                                                                   | -                           |
+| Create Fund            | `/v5/earn/pwm/asset-manager/create-fund`            | POST   | Yes  | fundName, coin, profitShareRate, managementFeeRate, reqLinkId       | -                           |
+| Settle Profit          | `/v5/earn/pwm/asset-manager/settle-profit`          | POST   | Yes  | fundId, reqLinkId                                                   | -                           |
+| Create Investment Plan | `/v5/earn/pwm/asset-manager/create-investment-plan` | POST   | Yes  | accountUid, planName, planType, investmentDistribution[], reqLinkId | -                           |
+| Get Plans              | `/v5/earn/pwm/asset-manager/get-investment-plan`    | GET    | Yes  | -                                                                   | -                           |
 | Manage Plan            | `/v5/earn/pwm/asset-manager/manage-investment-plan` | POST   | Yes  | planId, reqLinkId                                                   | updateStatus, updateFunds[] |
-| List Orders            | `/v5/earn/pwm/asset-manager/all-order`              | GET    | Yes  | —                                                                   | —                           |
-| Manage Order           | `/v5/earn/pwm/asset-manager/manage-order`           | POST   | Yes  | orderId, action, reqLinkId                                          | —                           |
-| Create Sub-Account     | `/v5/earn/pwm/asset-manager/create-sub-account`     | POST   | Yes  | fundId, reqLinkId                                                   | —                           |
-| Fund Transfer          | `/v5/earn/pwm/fund-transfer`                        | POST   | Yes  | transferId, fromUserId, toUserId, amount, coin                      | —                           |
-| Transfer Records       | `/v5/earn/pwm/query-fund-transfer-result`           | GET    | Yes  | —                                                                   | transferId, fromUserId      |
+| List Orders            | `/v5/earn/pwm/asset-manager/all-order`              | GET    | Yes  | -                                                                   | -                           |
+| Manage Order           | `/v5/earn/pwm/asset-manager/manage-order`           | POST   | Yes  | orderId, action, reqLinkId                                          | -                           |
+| Create Sub-Account     | `/v5/earn/pwm/asset-manager/create-sub-account`     | POST   | Yes  | fundId, reqLinkId                                                   | -                           |
+| Fund Transfer          | `/v5/earn/pwm/fund-transfer`                        | POST   | Yes  | transferId, fromUserId, toUserId, amount, coin                      | -                           |
+| Transfer Records       | `/v5/earn/pwm/query-fund-transfer-result`           | GET    | Yes  | -                                                                   | transferId, fromUserId      |
 
 > **Notes**:
 >

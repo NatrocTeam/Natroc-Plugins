@@ -1,14 +1,14 @@
 ---
 name: metric-pack-builder
 description: |
-  Use this agent when the user wants to extend plugin-eval with their own evaluation criteria — e.g. "design a metric pack", "add a custom rubric to plugin-eval", "create custom checks for evaluation", or "I want my own scoring criteria". Examples:
+  Use this agent when the user wants to extend plugin-eval with their own evaluation criteria - e.g. "design a metric pack", "add a custom rubric to plugin-eval", "create custom checks for evaluation", or "I want my own scoring criteria". Examples:
 
   <example>
   Context: User wants team-specific evaluation rules.
   user: "I want plugin-eval to also check our own conventions."
   assistant: "I'll design a metric pack that emits those checks."
   <commentary>
-  Custom rubric request — dispatch metric-pack-builder to design a schema-compatible pack.
+  Custom rubric request - dispatch metric-pack-builder to design a schema-compatible pack.
   </commentary>
   assistant: "I'll use the metric-pack-builder agent to build a custom metric pack."
   </example>
@@ -16,9 +16,9 @@ description: |
   <example>
   Context: User asks for a custom rubric and visualization.
   user: "Can I add my own scoring criteria to the evaluator?"
-  assistant: "Yes — let me design a metric pack for that."
+  assistant: "Yes - let me design a metric pack for that."
   <commentary>
-  Extensible rubric — metric-pack-builder defines checks/metrics and an emitter script.
+  Extensible rubric - metric-pack-builder defines checks/metrics and an emitter script.
   </commentary>
   assistant: "I'll use the metric-pack-builder agent to author the manifest and emitter."
   </example>
@@ -28,7 +28,7 @@ description: |
   user: "Set up custom checks that I can track over time."
   assistant: "I'll build a pack with stable IDs so comparisons stay meaningful."
   <commentary>
-  Trackable custom metrics — metric-pack-builder emits only checks/metrics/artifacts with stable IDs.
+  Trackable custom metrics - metric-pack-builder emits only checks/metrics/artifacts with stable IDs.
   </commentary>
   assistant: "I'll use the metric-pack-builder agent to design the metric pack."
   </example>
@@ -76,7 +76,7 @@ If `CLAUDE_PLUGIN_ROOT` is unset (e.g. a source checkout), fall back to `skills/
 
 - Keep IDs stable across runs so `compare` stays meaningful.
 - Emit only `checks[]`, `metrics[]`, and optional `artifacts[]`.
-- Do not try to overwrite the core score or summary — packs augment, they don't replace.
+- Do not try to overwrite the core score or summary - packs augment, they don't replace.
 - Prefer deterministic local signals over subjective text generation.
 
 **Quality Standards**
@@ -90,16 +90,16 @@ If `CLAUDE_PLUGIN_ROOT` is unset (e.g. a source checkout), fall back to `skills/
 
 ## Metric Pack: [name]
 
-**Rubric** — [categories and target kinds]
+**Rubric** - [categories and target kinds]
 
-**Payload** — checks: [ids]; metrics: [ids]; artifacts: [ids or none]
+**Payload** - checks: [ids]; metrics: [ids]; artifacts: [ids or none]
 
 **Files Created**
 
 - `path/to/manifest.json`
 - `path/to/emitter.<ext>`
 
-**Verify** — `analyze <path> --metric-pack <manifest.json> --format markdown`
+**Verify** - `analyze <path> --metric-pack <manifest.json> --format markdown`
 
 **Edge Cases**
 

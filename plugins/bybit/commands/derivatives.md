@@ -23,7 +23,7 @@ GET /v5/position/list?category=linear&symbol=BTCUSDT
 # One-way: use positionIdx=0 for all orders
 # Hedge: use positionIdx=1 (Buy/Long), positionIdx=2 (Sell/Short)
 
-# 2b. (Optional) Switch position mode — only if user explicitly requests
+# 2b. (Optional) Switch position mode - only if user explicitly requests
 POST /v5/position/switch-mode
 {"category":"linear","coin":"USDT","mode":0}   # 0=one-way, 3=hedge
 # retCode=0 → switched successfully
@@ -40,7 +40,7 @@ POST /v5/position/set-leverage
 {"category":"linear","symbol":"BTCUSDT","buyLeverage":"10","sellLeverage":"10"}
 ```
 
-> **Position mode check**: Always query position mode via `/v5/position/list` before placing the first order in a session. Cache the result (one-way vs hedge) and use the correct `positionIdx` for all subsequent orders. One-way mode: `positionIdx=0`. Hedge mode: `positionIdx=1` (long), `positionIdx=2` (short). Never call switch-mode to "detect" — it changes state.
+> **Position mode check**: Always query position mode via `/v5/position/list` before placing the first order in a session. Cache the result (one-way vs hedge) and use the correct `positionIdx` for all subsequent orders. One-way mode: `positionIdx=0`. Hedge mode: `positionIdx=1` (long), `positionIdx=2` (short). Never call switch-mode to "detect" - it changes state.
 
 > **Large Order Risk Warning**: Before placing any order, estimate the notional value = qty × current_price / leverage. If the notional value exceeds 1,000,000 USD (or the required margin exceeds the account's available balance), you MUST:
 >
@@ -111,7 +111,7 @@ POST /v5/position/trading-stop
 - Use `positionIdx=1` for long, `positionIdx=2` for short
 - Remember the account is in hedge mode and automatically include positionIdx in subsequent orders
 
-> **Category confirmation**: When the user says "BTCUSDT", you must confirm whether they mean spot or derivatives — do not assume.
+> **Category confirmation**: When the user says "BTCUSDT", you must confirm whether they mean spot or derivatives - do not assume.
 
 ---
 
@@ -159,16 +159,16 @@ POST /v5/position/trading-stop
 | Order History     | `/v5/order/history`    | GET    | category                               | symbol, orderId, orderLinkId, orderFilter, orderStatus, startTime, endTime, limit, cursor                                             | 50/s       | spot, linear, inverse, option |
 
 > **`rpiTakerAccess`** (Place Order, optional boolean, default `false`): When `true`, allows this order to be filled against RPI (Retail Price Improvement) orders. Response field `rpiMatchedQty` in Order History shows cumulative RPI-matched quantity.
-> | Batch Place Order | `/v5/order/create-batch` | POST | category, request[] | — | per-order | spot, linear, inverse, option |
-> | Batch Amend Order | `/v5/order/amend-batch` | POST | category, request[] | — | per-order | spot, linear, inverse, option |
-> | Batch Cancel Order | `/v5/order/cancel-batch` | POST | category, request[] | — | per-order | spot, linear, inverse, option |
+> | Batch Place Order | `/v5/order/create-batch` | POST | category, request[] | - | per-order | spot, linear, inverse, option |
+> | Batch Amend Order | `/v5/order/amend-batch` | POST | category, request[] | - | per-order | spot, linear, inverse, option |
+> | Batch Cancel Order | `/v5/order/cancel-batch` | POST | category, request[] | - | per-order | spot, linear, inverse, option |
 
 ### Position (authentication required)
 
 | Endpoint             | Path                                | Method | Required Params                             | Optional Params                                                                                                       | Categories                    |
 | -------------------- | ----------------------------------- | ------ | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | Get Position         | `/v5/position/list`                 | GET    | category                                    | symbol, baseCoin, settleCoin, limit, cursor                                                                           | linear, inverse, option       |
-| Set Leverage         | `/v5/position/set-leverage`         | POST   | category, symbol, buyLeverage, sellLeverage | —                                                                                                                     | linear, inverse               |
+| Set Leverage         | `/v5/position/set-leverage`         | POST   | category, symbol, buyLeverage, sellLeverage | -                                                                                                                     | linear, inverse               |
 | Switch Position Mode | `/v5/position/switch-mode`          | POST   | category, mode                              | coin, symbol                                                                                                          | linear, inverse               |
 | Set Trading Stop     | `/v5/position/trading-stop`         | POST   | category, symbol, tpslMode, positionIdx     | takeProfit, stopLoss, trailingStop, tpTriggerBy, slTriggerBy, activePrice, tpSize, slSize, tpLimitPrice, slLimitPrice | linear, inverse               |
 | Set Auto Add Margin  | `/v5/position/set-auto-add-margin`  | POST   | category, symbol, autoAddMargin             | positionIdx                                                                                                           | linear, inverse               |
@@ -176,7 +176,7 @@ POST /v5/position/trading-stop
 | Execution History    | `/v5/execution/list`                | GET    | category                                    | symbol, baseCoin, orderId, startTime, endTime, execType, limit, cursor                                                | spot, linear, inverse, option |
 | Closed PnL           | `/v5/position/closed-pnl`           | GET    | category, symbol                            | startTime, endTime, limit, cursor                                                                                     | linear, inverse               |
 | Closed Options       | `/v5/position/get-closed-positions` | GET    | category                                    | symbol, limit, cursor                                                                                                 | option                        |
-| Confirm Pending MMR  | `/v5/position/confirm-pending-mmr`  | POST   | category, symbol                            | —                                                                                                                     | linear, inverse               |
+| Confirm Pending MMR  | `/v5/position/confirm-pending-mmr`  | POST   | category, symbol                            | -                                                                                                                     | linear, inverse               |
 
 ## Enums
 

@@ -16,7 +16,7 @@ Use `git reset HEAD~1` to undo the last commit while keeping the changes in your
 git reset HEAD~1
 ```
 
-If you want to completely remove the commit and discard the changes, use `--hard` instead. But be careful — that is not reversible.
+If you want to completely remove the commit and discard the changes, use `--hard` instead. But be careful - that is not reversible.
 
 ## Notes
 

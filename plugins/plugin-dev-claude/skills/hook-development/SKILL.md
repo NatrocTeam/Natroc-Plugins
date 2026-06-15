@@ -672,7 +672,7 @@ echo "$output" | jq .
 | PostCompact       | After compact    | Restore context          |
 | Notification      | User notified    | Logging, reactions       |
 
-> Not exhaustive — see https://code.claude.com/docs/en/hooks for the full event list.
+> Not exhaustive - see https://code.claude.com/docs/en/hooks for the full event list.
 
 ### Best Practices
 

@@ -37,7 +37,7 @@ Inlay hint visibility is controlled by `[language].inlayHints.*` settings (see [
 - `includeInlayPropertyDeclarationTypeHints`
 - `includeInlayFunctionLikeReturnTypeHints`
 - `includeInlayEnumMemberValueHints`
-- `interactiveInlayHints` (TS 5.2.2+) — hint parts become hoverable / clickable
+- `interactiveInlayHints` (TS 5.2.2+) - hint parts become hoverable / clickable
 
 ## Hover
 
@@ -109,13 +109,13 @@ Supports `textDocument/formatting`, `textDocument/rangeFormatting`, and `textDoc
 
 ## File Watching
 
-By default the server watches files itself. Set `tsserver.useClientFileWatcher: true` (TS 5.4.4+) to delegate watching to the client via `workspace/didChangeWatchedFiles` — recommended for large projects, network drives, and clients with native watchers.
+By default the server watches files itself. Set `tsserver.useClientFileWatcher: true` (TS 5.4.4+) to delegate watching to the client via `workspace/didChangeWatchedFiles` - recommended for large projects, network drives, and clients with native watchers.
 
 ## Notifications & Custom Methods
 
-- **`$/typescriptVersion`** — sent post-initialization with the resolved tsserver version and source.
-- **`workspace/configuration`** — server pulls per-file editor settings on demand.
-- **`window/showMessage` / `window/showMessageRequest`** — used for surfacing tsserver errors or interactive prompts.
+- **`$/typescriptVersion`** - sent post-initialization with the resolved tsserver version and source.
+- **`workspace/configuration`** - server pulls per-file editor settings on demand.
+- **`window/showMessage` / `window/showMessageRequest`** - used for surfacing tsserver errors or interactive prompts.
 
 ## Interactive Refactorings
 
