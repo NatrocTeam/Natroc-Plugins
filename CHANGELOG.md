@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.0] - 2026-06-17 [(8505dc0)](https://github.com/NatrocTeam/Natroc-Plugins/commit/8505dc0888e9be11d38db8457844a34a1bf65399)
+
+### Added
+
+- **nextjs**: New `next-docs` skill — curated index of official Next.js 16.2.9 documentation across 6 reference categories (Getting Started, Guides, API Reference, Glossary, Architecture, Community)
+- **nextjs**: 5 new reference files under `skills/next-docs/references/` — API-Reference.md, Glossary.md, Guides.md, Getting-Started.md, Architecture.md, Community.md
+
+### Changed
+
+- **nextjs**: Expand `next-best-practices` file-conventions.md, functions.md, directives, error-handling, metadata, self-hosting, and debug-tricks references
+- **nextjs**: Minor improvements to `next-cache-components` and `next-upgrade` skill descriptions
+- **nextjs**: Update README to reflect 4-skill structure, add `next-docs` to skills table, usage section, and plugin tree
+- **nextjs**: Replace `nextjs.svg` with `nextjs.png` asset
+- **marketplace**: Update main README Available Plugins table — add bybit, nextjs, and stitch plugins
+- **marketplace**: Update `.claude-plugin/marketplace.json` description and both plugin manifests
+
 ## [1.3.0] - 2026-06-15 [(193ada7)](https://github.com/NatrocTeam/Natroc-Plugins/commit/193ada77811601707ed657d660279611adcf4fb9)
 
 ### Features
@@ -9,6 +25,7 @@
 Create the stitch plugin bundling @natroc/stitch-mcp as an auto-starting STDIO MCP server, enabling AI agents to interact with the Google Stitch design platform.
 
 Includes:
+
 - .mcp.json — auto-starts npx @natroc/stitch-mcp with env var expansion
 - .claude-plugin/plugin.json — Claude Code manifest with mcpServers ref
 - .codex-plugin/plugin.json — Codex manifest with interface branding
