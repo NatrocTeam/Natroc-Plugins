@@ -2,7 +2,7 @@
 
 Handle errors gracefully in Next.js applications.
 
-Reference: https://nextjs.org/docs/app/getting-started/error-handling
+Reference: https://nextjs.org/docs/app/getting-started/error-handling.md
 
 ## Error Boundaries
 
@@ -62,7 +62,7 @@ export default function GlobalError({
 
 **Do NOT wrap navigation APIs in try-catch.** They throw special errors that Next.js handles internally.
 
-Reference: https://nextjs.org/docs/app/api-reference/functions/redirect#behavior
+Reference: https://nextjs.org/docs/app/api-reference/functions/redirect.md on line 56
 
 ```tsx
 'use server'

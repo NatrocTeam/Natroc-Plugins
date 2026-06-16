@@ -320,7 +320,7 @@ export async function GET() {
 
 ## OpenNext: Serverless Without Vercel
 
-[OpenNext](https://open-next.js.org/) adapts Next.js for AWS Lambda, Cloudflare Workers, etc.
+[OpenNext](https://opennext.js.org/) adapts Next.js for AWS Lambda, Cloudflare Workers, etc.
 
 ```bash
 npx create-sst@latest

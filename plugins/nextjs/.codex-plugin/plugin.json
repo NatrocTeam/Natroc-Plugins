@@ -1,6 +1,6 @@
 {
   "name": "nextjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Next.js best practices, cache components, and upgrade guidance for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
   "author": {
     "name": "PT Kelana Tech Solutions"
@@ -11,6 +11,8 @@
   "keywords": [
     "nextjs",
     "next.js",
+    "docs",
+    "documentation",
     "react",
     "app-router",
     "server-components",
@@ -33,8 +35,8 @@
     "privacyPolicyURL": "https://github.com/NatrocTeam/Natroc-Plugins",
     "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
     "brandColor": "#000000",
-    "composerIcon": "./assets/nextjs.svg",
-    "logo": "./assets/nextjs.svg",
+    "composerIcon": "./assets/nextjs.png",
+    "logo": "./assets/nextjs.png",
     "defaultPrompt": [
       "Use $nextjs Next.js best practices when building or reviewing App Router pages and Server Components.",
       "Use $nextjs next-cache-components when implementing Cache Components, use cache directives, PPR, or cache invalidation.",

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "nextjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Next.js best practices, cache components, and upgrade guidance for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
   "author": {
     "name": "PT Kelana Tech Solutions"
@@ -12,6 +12,8 @@
   "keywords": [
     "nextjs",
     "next.js",
+    "docs",
+    "documentation",
     "react",
     "app-router",
     "server-components",

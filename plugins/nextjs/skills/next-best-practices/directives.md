@@ -23,7 +23,7 @@ export function Counter() {
 }
 ```
 
-Reference: https://react.dev/reference/rsc/use-client
+Reference: https://react.dev/reference/rsc/use-client.md
 
 ### `'use server'`
 
@@ -49,7 +49,7 @@ export default function Page() {
 }
 ```
 
-Reference: https://react.dev/reference/rsc/use-server
+Reference: https://react.dev/reference/rsc/use-server.md
 
 ---
 
@@ -71,4 +71,4 @@ Requires `cacheComponents: true` in `next.config.ts`.
 
 For detailed usage including cache profiles, `cacheLife()`, `cacheTag()`, and `updateTag()`, see the `next-cache-components` skill.
 
-Reference: https://nextjs.org/docs/app/api-reference/directives/use-cache
+Reference: https://nextjs.org/docs/app/api-reference/directives/use-cache.md

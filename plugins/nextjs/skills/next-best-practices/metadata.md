@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 
 ## Metadata File Conventions
 
-Reference: https://nextjs.org/docs/app/getting-started/project-structure#metadata-file-conventions
+Reference: https://nextjs.org/docs/app/getting-started/project-structure#metadata-file-conventions on line 115
 
 Place these files in `app/` directory (or route segments):
 

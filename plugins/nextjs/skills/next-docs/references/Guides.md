@@ -1,0 +1,68 @@
+## [Guides](https://nextjs.org/docs/app/guides.md)
+
+Learn how to implement common patterns and real-world use cases using Next.js
+
+- [AI Coding Agents](https://nextjs.org/docs/app/guides/ai-agents.md): Learn how to configure your Next.js project so AI coding agents use up-to-date documentation instead of outdated training data.
+- [Analytics](https://nextjs.org/docs/app/guides/analytics.md): Measure and track page performance using Next.js Speed Insights
+- [Authentication](https://nextjs.org/docs/app/guides/authentication.md): Learn how to implement authentication in your Next.js application.
+- [Backend for Frontend](https://nextjs.org/docs/app/guides/backend-for-frontend.md): Learn how to use Next.js as a backend framework
+- [Caching (Previous Model)](https://nextjs.org/docs/app/guides/caching-without-cache-components.md): Learn how to cache and revalidate data using fetch options, unstable_cache, and route segment configs for projects not using Cache Components.
+- [CDN Caching](https://nextjs.org/docs/app/guides/cdn-caching.md): Learn how CDN caching works with Next.js, including what works today, cache variability, and the direction toward pathname-based cache keying.
+- [CI Build Caching](https://nextjs.org/docs/app/guides/ci-build-caching.md): Learn how to configure CI to cache Next.js builds
+- [Content Security Policy](https://nextjs.org/docs/app/guides/content-security-policy.md): Learn how to set a Content Security Policy (CSP) for your Next.js application.
+- [CSS-in-JS](https://nextjs.org/docs/app/guides/css-in-js.md): Use CSS-in-JS libraries with Next.js
+- [Custom Server](https://nextjs.org/docs/app/guides/custom-server.md): Start a Next.js app programmatically using a custom server.
+- [Data Security](https://nextjs.org/docs/app/guides/data-security.md): Learn the built-in data security features in Next.js and learn best practices for protecting your application's data.
+- [Debugging](https://nextjs.org/docs/app/guides/debugging.md): Learn how to debug your Next.js application with VS Code, Chrome DevTools, or Firefox DevTools.
+- [Deploying to Platforms](https://nextjs.org/docs/app/guides/deploying-to-platforms.md): Understand which Next.js features require specific platform capabilities and how to choose the right deployment target.
+- [Draft Mode](https://nextjs.org/docs/app/guides/draft-mode.md): Next.js has draft mode to toggle between static and dynamic pages. You can learn how it works with App Router here.
+- [Environment Variables](https://nextjs.org/docs/app/guides/environment-variables.md): Learn to add and access environment variables in your Next.js application.
+- [Forms](https://nextjs.org/docs/app/guides/forms.md): Learn how to create forms in Next.js with React Server Actions.
+- [How Revalidation Works](https://nextjs.org/docs/app/guides/how-revalidation-works.md): A deep dive into how Next.js revalidates cached content, including the tag system, cache consistency, and multi-instance coordination.
+- [ISR](https://nextjs.org/docs/app/guides/incremental-static-regeneration.md): Learn how to create or update static pages at runtime with Incremental Static Regeneration.
+- [Instrumentation](https://nextjs.org/docs/app/guides/instrumentation.md): Learn how to use instrumentation to run code at server startup in your Next.js app
+- [Internationalization](https://nextjs.org/docs/app/guides/internationalization.md): Add support for multiple languages with internationalized routing and localized content.
+- [JSON-LD](https://nextjs.org/docs/app/guides/json-ld.md): Learn how to add JSON-LD to your Next.js application to describe your content to search engines and AI.
+- [Lazy Loading](https://nextjs.org/docs/app/guides/lazy-loading.md): Lazy load imported libraries and React Components to improve your application's loading performance.
+- [Development Environment](https://nextjs.org/docs/app/guides/local-development.md): Learn how to optimize your local development environment with Next.js.
+- [Next.js MCP Server](https://nextjs.org/docs/app/guides/mcp.md): Learn how to use Next.js MCP support to allow coding agents access to your application state
+- [MDX](https://nextjs.org/docs/app/guides/mdx.md): Learn how to configure MDX and use it in your Next.js apps.
+- [Memory Usage](https://nextjs.org/docs/app/guides/memory-usage.md): Optimize memory used by your application in development and production.
+- [Migrating](https://nextjs.org/docs/app/guides/migrating.md): Learn how to migrate from popular frameworks to Next.js
+  - [App Router](https://nextjs.org/docs/app/guides/migrating/app-router-migration.md): Learn how to upgrade your existing Next.js application from the Pages Router to the App Router.
+  - [Create React App](https://nextjs.org/docs/app/guides/migrating/from-create-react-app.md): Learn how to migrate your existing React application from Create React App to Next.js.
+  - [Vite](https://nextjs.org/docs/app/guides/migrating/from-vite.md): Learn how to migrate your existing React application from Vite to Next.js.
+- [Migrating to Cache Components](https://nextjs.org/docs/app/guides/migrating-to-cache-components.md): Learn how to migrate from route segment configs to Cache Components in Next.js.
+- [Multi-tenant](https://nextjs.org/docs/app/guides/multi-tenant.md): Learn how to build multi-tenant apps with the App Router.
+- [Multi-zones](https://nextjs.org/docs/app/guides/multi-zones.md): Learn how to build micro-frontends using Next.js Multi-Zones to deploy multiple Next.js apps under a single domain.
+- [OpenTelemetry](https://nextjs.org/docs/app/guides/open-telemetry.md): Learn how to instrument your Next.js app with OpenTelemetry.
+- [Package Bundling](https://nextjs.org/docs/app/guides/package-bundling.md): Learn how to analyze and optimize your application's server and client bundles with the Next.js Bundle Analyzer for Turbopack, and the `@next/bundle-analyzer` plugin for Webpack.
+- [PPR Platform Guide](https://nextjs.org/docs/app/guides/ppr-platform-guide.md): A guide for platform engineers on implementing PPR support, from basic origin rendering to optimized CDN integration.
+- [Prefetching](https://nextjs.org/docs/app/guides/prefetching.md): Learn how to configure prefetching in Next.js
+- [Preserving UI state](https://nextjs.org/docs/app/guides/preserving-ui-state.md): Learn how React's Activity component preserves UI state across navigations in Next.js and how to control what resets.
+- [Preventing Flash](https://nextjs.org/docs/app/guides/preventing-flash-before-hydration.md): Learn how to correct server-rendered content before the browser paints, avoiding visible flash when the page hydrates.
+- [Production](https://nextjs.org/docs/app/guides/production-checklist.md): Recommendations to ensure the best performance and user experience before taking your Next.js application to production.
+- [PWAs](https://nextjs.org/docs/app/guides/progressive-web-apps.md): Learn how to build a Progressive Web Application (PWA) with Next.js.
+- [Public pages](https://nextjs.org/docs/app/guides/public-static-pages.md): Learn how to build public, "static" pages that share data across users, such as landing pages, list pages (products, blogs, etc.), marketing and news sites.
+- [Redirecting](https://nextjs.org/docs/app/guides/redirecting.md): Learn the different ways to handle redirects in Next.js.
+- [Rendering Philosophy](https://nextjs.org/docs/app/guides/rendering-philosophy.md): Learn how Next.js treats static and dynamic rendering as a spectrum at the component level, and what this means for deployment.
+- [Sass](https://nextjs.org/docs/app/guides/sass.md): Style your Next.js application using Sass.
+- [Scripts](https://nextjs.org/docs/app/guides/scripts.md): Optimize 3rd party scripts with the built-in Script component.
+- [Self-Hosting](https://nextjs.org/docs/app/guides/self-hosting.md): Learn how to self-host your Next.js application on a Node.js server, Docker image, or static HTML files (static exports).
+- [SPAs](https://nextjs.org/docs/app/guides/single-page-applications.md): Next.js fully supports building Single-Page Applications (SPAs).
+- [Static Exports](https://nextjs.org/docs/app/guides/static-exports.md): Next.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.
+- [Streaming](https://nextjs.org/docs/app/guides/streaming.md): Learn how streaming works in Next.js and how to use it to progressively render UI as data becomes available.
+- [Tailwind CSS v3](https://nextjs.org/docs/app/guides/tailwind-v3-css.md): Style your Next.js Application using Tailwind CSS v3 for broader browser support.
+- [Testing](https://nextjs.org/docs/app/guides/testing.md): Learn how to set up Next.js with four commonly used testing tools — Cypress, Playwright, Vitest, and Jest.
+  - [Cypress](https://nextjs.org/docs/app/guides/testing/cypress.md): Learn how to set up Cypress with Next.js for End-to-End (E2E) and Component Testing.
+  - [Jest](https://nextjs.org/docs/app/guides/testing/jest.md): Learn how to set up Jest with Next.js for Unit Testing and Snapshot Testing.
+  - [Playwright](https://nextjs.org/docs/app/guides/testing/playwright.md): Learn how to set up Playwright with Next.js for End-to-End (E2E) Testing.
+  - [Vitest](https://nextjs.org/docs/app/guides/testing/vitest.md): Learn how to set up Vitest with Next.js for Unit Testing.
+- [Third Party Libraries](https://nextjs.org/docs/app/guides/third-party-libraries.md): Optimize the performance of third-party libraries in your application with the `@next/third-parties` package.
+- [Upgrading](https://nextjs.org/docs/app/guides/upgrading.md): Learn how to upgrade to the latest versions of Next.js.
+  - [Codemods](https://nextjs.org/docs/app/guides/upgrading/codemods.md): Use codemods to upgrade your Next.js codebase when new features are released.
+  - [Version 14](https://nextjs.org/docs/app/guides/upgrading/version-14.md): Upgrade your Next.js Application from Version 13 to 14.
+  - [Version 15](https://nextjs.org/docs/app/guides/upgrading/version-15.md): Upgrade your Next.js Application from Version 14 to 15.
+  - [Version 16](https://nextjs.org/docs/app/guides/upgrading/version-16.md): Upgrade your Next.js Application from Version 15 to 16.
+- [Videos](https://nextjs.org/docs/app/guides/videos.md): Recommendations and best practices for optimizing videos in your Next.js application.
+- [View transitions](https://nextjs.org/docs/app/guides/view-transitions.md): Learn how to use view transitions to communicate meaning during navigation, loading, and content changes in a Next.js app.
