@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0] - 2026-06-17 [(fd77fe6)](https://github.com/NatrocTeam/Natroc-Plugins/commit/fd77fe6095dcb97cd82503344635363fa837dd54)
+
+### Added
+
+Midtrans plugin and plugin assets
+
+- Add new Midtrans payment gateway plugin with skills for Node.js, PHP, and Python clients
+- Include Midtrans API references, gotchas, and endpoint documentation
+- Add branded assets (PNG/SVG logos) for 10+ plugins
+- Update agent configurations (openai.yaml) for skills across plugins
+- Sync marketplace metadata with new plugin additions
+
 ## [1.4.0] - 2026-06-17 [(8505dc0)](https://github.com/NatrocTeam/Natroc-Plugins/commit/8505dc0888e9be11d38db8457844a34a1bf65399)
 
 ### Added
