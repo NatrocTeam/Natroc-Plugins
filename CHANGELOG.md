@@ -1,5 +1,47 @@
 # Changelog
 
+## [1.6.0] - 2026-06-18 [(594f821)](https://github.com/NatrocTeam/Natroc-Plugins/commit/594f8219ac3a78c177a63eceef5571e6c7df379b)
+
+### Added
+
+- **natroc-awareness**: Pure bash SessionStart hooks (zero Python dependency)
+  - Separate hook configs for Claude Code (`hooks.json`) and Codex (`hooks-codex.json`)
+  - Cross-platform polyglot wrapper (`run-hook.cmd`) for Windows compatibility
+  - Full SKILL.md injection at session start following the superpowers pattern
+  - Dynamic routing table built from marketplace.json plus filesystem scan
+  - Bash hook scripts (`session-start`, `session-start-codex`) with graceful fallback
+
+### Changed
+
+- **natroc-awareness**: Strengthen SKILL.md enforcement language with `<EXTREMELY-IMPORTANT>`
+  block, Routing Red Flags table, and imperative routing priorities
+- **natroc-awareness**: Remove hardcoded plugin list from SKILL.md — routing table is now
+  the single source of truth
+- **natroc-awareness**: Bump version to 1.1.0
+- **midtrans**: Rewrite Codex defaultPrompt for payment gateway context (Snap transaction,
+  payment status, refund processing)
+- **verifier**: Allow `.cmd` and extensionless bash hook command files
+- **verifier**: Handle `hooks-codex.json` alongside `hooks.json`
+- **docs**: AGENTS.md — fix repo structure diagram, remove phantom CODEOWNERS, add
+  `rules/` and `scripts/`, remove unsupported plugin root folders, document hook command
+  formats and bump scripts
+- **docs**: README.md — add Contributing, License, Changelog, and Validation sections,
+  mark natroc-awareness as recommended first install
+- **docs**: CONTRIBUTING.md — document `hooks-codex.json`, hook formats, and pnpm prerequisite
+- **docs**: rules/verify.md — fix phrasing, document `hooks-codex.json`, replace ambiguous
+  `...` with explicit allowed skill folders
+- **issue-templates**: Add midtrans, nextjs, stitch to plugin checklists
+
+### Removed
+
+- **natroc-awareness**: 335-line Python hook script (`session_start_context.py`)
+
+### Fixed
+
+- **marketplace**: Sync natroc-awareness version 1.0.0 → 1.1.0
+- **marketplace**: Sync typescript-lsp version 1.0.0 → 5.3.0
+- **midtrans**: Fix copy-pasted defaultPrompt from human-context-writer
+
 ## [1.5.0] - 2026-06-17 [(fd77fe6)](https://github.com/NatrocTeam/Natroc-Plugins/commit/fd77fe6095dcb97cd82503344635363fa837dd54)
 
 ### Added
