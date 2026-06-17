@@ -36,6 +36,8 @@
         └── ...
 ```
 
+> Directories under `skills/` that are not skill folders (e.g. `assets/`) are ignored by the verifier.
+
 > NOTE for `hooks.json`
 >
 > `hooks.json` can be stored in the plugin root or inside a folder named hooks (not both).

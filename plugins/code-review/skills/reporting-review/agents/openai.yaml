@@ -1,6 +1,10 @@
 interface:
-  display_name: "Reporting Review"
+  display_name: "Code Review - Reporting Review"
   short_description: "Deduplicate findings, enforce severity ordering, report schema, evidence separation, verdict, fix options, and unverified sections."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the reporting-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

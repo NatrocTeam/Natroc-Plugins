@@ -1,6 +1,10 @@
 interface:
-  display_name: "Testing CI Review"
+  display_name: "Code Review - Testing CI Review"
   short_description: "Audit tests, lint, typecheck, coverage of critical flows, CI workflows, regression tests, and verification commands."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the testing-ci-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

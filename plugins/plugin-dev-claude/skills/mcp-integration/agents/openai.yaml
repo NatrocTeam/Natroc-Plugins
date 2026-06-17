@@ -1,4 +1,10 @@
 interface:
   display_name: "MCP Integration"
   short_description: "Integrate MCP servers into Claude Code plugins using .mcp.json and portable plugin paths."
+  icon_small: "./assets/claudecode.png"
+  icon_large: "./assets/claudecode.png"
+  brand_color: "#10A37F"
   default_prompt: "Use $mcp-integration to add or review MCP support in a Claude Code plugin."
+
+policy:
+  allow_implicit_invocation: true

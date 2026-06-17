@@ -1,6 +1,10 @@
 interface:
-  display_name: "Claude Agent SDK"
+  display_name: "Anthropic SDK - Claude Agent SDK"
   short_description: "Build and debug programmatic Claude Code agents with TypeScript or Python."
+  icon_small: "./assets/anthropic.png"
+  icon_large: "./assets/anthropic.png"
+  brand_color: "#FFFFFF"
   default_prompt: "Use the Claude Agent SDK docs to implement query(), ClaudeSDKClient, tools, hooks, MCP, sessions, and permissions."
+
 policy:
   allow_implicit_invocation: true

@@ -1,5 +1,10 @@
 interface:
-  display_name: "Metric Pack Designer"
+  display_name: "Plugin Dev Codex - Metric Pack Designer"
   short_description: "Design custom metric packs for plugin-eval"
+  icon_small: "./assets/assets/plugin-dev-codex.svg"
+  icon_large: "./assets/assets/plugin-dev-codex.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $plugin-dev-codex:metric-pack-designer to design custom metric packs for plugin-eval."
+
 policy:
   allow_implicit_invocation: false

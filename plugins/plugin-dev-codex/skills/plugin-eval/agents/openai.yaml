@@ -1,5 +1,10 @@
 interface:
-  display_name: "Plugin Eval"
+  display_name: "Plugin Dev Codex - Plugin Eval"
   short_description: "Choose the right local evaluation workflow"
+  icon_small: "./assets/assets/plugin-dev-codex.svg"
+  icon_large: "./assets/assets/plugin-dev-codex.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $plugin-dev-codex:plugin-eval to choose the right local evaluation workflow for my needs."
+
 policy:
   allow_implicit_invocation: true

@@ -1,0 +1,36 @@
+{
+  "name": "midtrans",
+  "version": "1.0.0",
+  "description": "A plugin for interacting with the Midtrans payment gateway.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "midtrans",
+    "payment gateway",
+    "integration",
+    "financial transactions",
+    "refunds",
+    "online payments",
+    "API"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Midtrans",
+    "shortDescription": "A plugin for interacting with the Midtrans payment gateway.",
+    "longDescription": "Midtrans is a comprehensive payment solution that allows businesses to accept payments online. This plugin provides seamless integration with the Midtrans API, enabling agents to manage payments, refunds, and other financial transactions.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "defaultPrompt": [
+      "Use $midtrans to audit this draft for AI-like writing patterns, then rewrite it in my voice.",
+      "Use $midtrans to ask only the missing context needed, then improve this text.",
+      "Use $midtrans to make this writing clearer, more specific, and less generic without changing the meaning."
+    ],
+    "brandColor": "#307FC1",
+    "composerIcon": "./assets/midtrans.png",
+    "logo": "./assets/midtrans.png"
+  }
+}

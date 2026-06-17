@@ -1,5 +1,10 @@
 interface:
-  display_name: "Evaluate Skill"
+  display_name: "Plugin Dev Codex - Evaluate Skill"
   short_description: "Evaluate a local Codex skill"
+  icon_small: "./assets/assets/plugin-dev-codex.svg"
+  icon_large: "./assets/assets/plugin-dev-codex.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $plugin-dev-codex:evaluate-plugin to evaluate a Codex skill."
+
 policy:
   allow_implicit_invocation: false

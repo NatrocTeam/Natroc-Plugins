@@ -5,14 +5,14 @@ description: A skill to fetch documentation from the Next.js website.
 
 # Next.js Documentation
 
-> Reference and guides for Next.js 16.2.9 — the React framework for building full-stack web applications. Sections cover Getting Started, App Router, Architecture, and Community Resources.
+> Reference and guides for Next.js 16.2.9 - the React framework for building full-stack web applications. Sections cover Getting Started, App Router, Architecture, and Community Resources.
 
 doc-version: 16.2.9
 doc-version-notes: Some features may have extended or refined behavior in minor or patch releases
 
 ## How to Use This Skill
 
-This skill is a **curated index** of the official Next.js 16.2.9 documentation — it does not contain the full docs, but links you directly to the right page on `nextjs.org/docs`. Use it as a quick lookup table when you need to locate specific Next.js documentation.
+This skill is a **curated index** of the official Next.js 16.2.9 documentation - it does not contain the full docs, but links you directly to the right page on `nextjs.org/docs`. Use it as a quick lookup table when you need to locate specific Next.js documentation.
 
 ### Quick Lookup by User Need
 
@@ -27,15 +27,15 @@ This skill is a **curated index** of the official Next.js 16.2.9 documentation �
 
 ### Workflow
 
-1. **Identify the topic** — match the user's question to one of the four reference categories above.
-2. **Open the reference file** — read the relevant `.md` file in `references/` to find the exact link.
-3. **Fetch the official page** — use the link to open or fetch the full documentation from `nextjs.org`.
+1. **Identify the topic** - match the user's question to one of the four reference categories above.
+2. **Open the reference file** - read the relevant `.md` file in `references/` to find the exact link.
+3. **Fetch the official page** - use the link to open or fetch the full documentation from `nextjs.org`.
 
 ### When NOT to Use
 
-- You already have the Next.js best-practices skill (`next-best-practices`) loaded — it contains opinionated guidance that may answer the question directly.
-- You need code examples for a specific library — use the `context7` skill instead to fetch current docs.
-- The task is about caching or upgrading — the `next-cache-components` and `next-upgrade` skills have dedicated workflows for those.
+- You already have the Next.js best-practices skill (`next-best-practices`) loaded - it contains opinionated guidance that may answer the question directly.
+- You need code examples for a specific library - use the `context7` skill instead to fetch current docs.
+- The task is about caching or upgrading - the `next-cache-components` and `next-upgrade` skills have dedicated workflows for those.
 
 ## [Getting Started](./references/Getting-Started.md)
 

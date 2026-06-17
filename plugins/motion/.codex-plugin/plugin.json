@@ -30,6 +30,7 @@
       "Use the motion plugin to explore the available API endpoints and their usage."
     ],
     "composerIcon": "./assets/motion.png",
-    "logo": "./assets/motion.png"
+    "logo": "./assets/motion.png",
+    "brandColor": "#FFF62A"
   }
 }

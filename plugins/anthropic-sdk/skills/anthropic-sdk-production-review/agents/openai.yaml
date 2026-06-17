@@ -1,6 +1,10 @@
 interface:
   display_name: "Anthropic SDK Review"
   short_description: "Validate existing Anthropic Client SDK or Claude Agent SDK code for correctness, security, reliability, and tests."
+  icon_small: "./assets/anthropic.png"
+  icon_large: "./assets/anthropic.png"
+  brand_color: "#FFFFFF"
   default_prompt: "Use Anthropic SDK production review docs to audit this implementation and report evidence-based findings."
+
 policy:
   allow_implicit_invocation: true

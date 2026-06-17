@@ -1,6 +1,10 @@
 interface:
-  display_name: "API Contract Review"
+  display_name: "Code Review - API Contract Review"
   short_description: "Audit frontend-backend API contracts: request/response schemas, status codes, errors, pagination, filtering, sorting, versioning, and timezone."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the api-contract-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

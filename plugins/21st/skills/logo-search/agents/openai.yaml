@@ -1,0 +1,10 @@
+interface:
+  display_name: "21st - Logo Search"
+  short_description: "Find logos"
+  icon_small: "./assets/21st.jpeg"
+  icon_large: "./assets/21st.jpeg"
+  brand_color: "#0332ff"
+  default_prompt: "Find logos for a given query."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,4 +1,10 @@
 interface:
   display_name: "Native Data Fetching"
   short_description: "Implement and debug Expo network requests, caching, auth, offline support, and Expo Router data loaders"
+  icon_small: "./assets/expo.png"
+  icon_large: "./assets/expo.png"
+  brand_color: "#000020"
   default_prompt: "Use $native-data-fetching for Expo data fetching work: fetch wrappers, React Query or SWR setup, error handling, retry/cancellation, authenticated requests, environment-based API URLs, offline behavior, and Expo Router loaders."
+
+policy:
+  allow_implicit_invocation: true

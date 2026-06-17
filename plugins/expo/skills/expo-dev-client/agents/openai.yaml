@@ -1,4 +1,10 @@
 interface:
   display_name: "Expo Dev Client"
   short_description: "Create and use Expo development clients when Expo Go is not enough"
+  icon_small: "./assets/expo.png"
+  icon_large: "./assets/expo.png"
+  brand_color: "#000020"
   default_prompt: "Use $expo-dev-client to decide whether an Expo development client is required, configure development EAS profiles, build local or cloud dev clients, and connect them to Metro."
+
+policy:
+  allow_implicit_invocation: true

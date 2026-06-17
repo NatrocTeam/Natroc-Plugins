@@ -1,6 +1,10 @@
 interface:
-  display_name: "Anthropic Client SDK"
+  display_name: "Anthropic SDK - Anthropic Client SDK"
   short_description: "Build and debug direct Claude API integrations with @anthropic-ai/sdk or anthropic."
+  icon_small: "./assets/anthropic.png"
+  icon_large: "./assets/anthropic.png"
+  brand_color: "#FFFFFF"
   default_prompt: "Use the Anthropic Client SDK docs to implement direct Claude API calls, streaming, tools, structured output, or validation."
+
 policy:
   allow_implicit_invocation: true

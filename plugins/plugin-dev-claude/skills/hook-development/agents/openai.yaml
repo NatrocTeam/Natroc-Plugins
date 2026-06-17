@@ -1,4 +1,10 @@
 interface:
   display_name: "Hook Development"
   short_description: "Build Claude Code plugin hooks for tool validation, automation, session events, and safeguards."
+  icon_small: "./assets/claudecode.png"
+  icon_large: "./assets/claudecode.png"
+  brand_color: "#10A37F"
   default_prompt: "Use $hook-development to design or review a Claude Code plugin hook."
+
+policy:
+  allow_implicit_invocation: true

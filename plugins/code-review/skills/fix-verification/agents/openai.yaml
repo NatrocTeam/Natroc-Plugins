@@ -1,6 +1,10 @@
 interface:
-  display_name: "Fix Verification"
+  display_name: "Code Review - Fix Verification"
   short_description: "Run lint, typecheck, tests, build, and relevant audits after fixes; record exact commands and do not claim PASS without evidence."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the fix-verification skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

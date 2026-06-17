@@ -1,0 +1,10 @@
+interface:
+  display_name: "Midtrans - Node.js"
+  short_description: "Integrate Midtrans payment gateway in Node.js - Snap, Core API, Snap BI (Direct Debit/VA/Qris), Iris disbursement, subscriptions, and tokenization. Use when building Midtrans payments in Node.js backend."
+  icon_small: "./assets/midtrans.png"
+  icon_large: "./assets/midtrans.png"
+  brand_color: "#307FC1"
+  default_prompt: "Use the midtrans-nodejs skill to integrate Midtrans payment gateway in Node.js. Choose the right product (Snap, Core API, SnapBi, Iris), configure midtrans-client, implement the payment flow, and handle HTTP notifications."
+
+policy:
+  allow_implicit_invocation: true

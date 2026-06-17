@@ -369,7 +369,7 @@
     {
       "name": "stitch",
       "version": "1.0.0",
-      "description": "STDIO MCP server bridge for Google Stitch design platform — connect AI agents to 14 native Stitch MCP tools plus 5 virtual SDK tools for project management, screen generation, design systems, and asset management.",
+      "description": "STDIO MCP server bridge for Google Stitch design platform - connect AI agents to 14 native Stitch MCP tools plus 5 virtual SDK tools for project management, screen generation, design systems, and asset management.",
       "author": {
         "name": "PT Kelana Tech Solutions"
       },
@@ -390,6 +390,28 @@
       ],
       "category": "development",
       "source": "./plugins/stitch"
+    },
+    {
+      "name": "midtrans",
+      "version": "1.0.0",
+      "description": "A plugin for interacting with the Midtrans payment gateway.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/midtrans",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/midtrans",
+      "license": "MIT",
+      "keywords": [
+        "midtrans",
+        "payment gateway",
+        "integration",
+        "financial transactions",
+        "refunds",
+        "online payments",
+        "API"
+      ],
+      "category": "development",
+      "source": "./plugins/midtrans"
     }
   ]
 }

@@ -1,6 +1,10 @@
 interface:
   display_name: "Code Review"
   short_description: "Strict orchestrator for evidence-based code audit and safe fix workflow. Use when the user asks to review, audit, check, security-review, release-gate, or fix code after review."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the code-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
   allow_implicit_invocation: true

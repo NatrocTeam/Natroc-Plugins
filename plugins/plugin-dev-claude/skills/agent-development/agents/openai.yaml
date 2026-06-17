@@ -1,4 +1,10 @@
 interface:
   display_name: "Agent Development"
   short_description: "Design Claude Code plugin agents with clear triggers, tools, prompts, and frontmatter."
+  icon_small: "./assets/claudecode.png"
+  icon_large: "./assets/claudecode.png"
+  brand_color: "#10A37F"
   default_prompt: "Use $agent-development to design or review a Claude Code plugin agent."
+
+policy:
+  allow_implicit_invocation: true

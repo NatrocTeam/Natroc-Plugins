@@ -213,7 +213,7 @@ A part of the URL path (between two slashes) defined by a folder in the `app` di
 
 ## RSC Payload
 
-The React Server Component Payload—a compact binary representation of the rendered React Server Components tree. Contains the rendered result of Server Components, placeholders for Client Components, and props passed between them. Learn more in [Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components.md) on line 103.
+The React Server Component Payload-a compact binary representation of the rendered React Server Components tree. Contains the rendered result of Server Components, placeholders for Client Components, and props passed between them. Learn more in [Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components.md) on line 103.
 
 # S
 

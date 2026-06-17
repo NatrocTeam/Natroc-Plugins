@@ -1,6 +1,10 @@
 interface:
-  display_name: "Patch Implementation"
+  display_name: "Code Review - Patch Implementation"
   short_description: "Apply minimal safe patches only after explicit approval, preserving public API and avoiding unrelated refactors or dependency additions."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the patch-implementation skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

@@ -53,7 +53,7 @@ Learn how to implement common patterns and real-world use cases using Next.js
 - [Static Exports](https://nextjs.org/docs/app/guides/static-exports.md): Next.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.
 - [Streaming](https://nextjs.org/docs/app/guides/streaming.md): Learn how streaming works in Next.js and how to use it to progressively render UI as data becomes available.
 - [Tailwind CSS v3](https://nextjs.org/docs/app/guides/tailwind-v3-css.md): Style your Next.js Application using Tailwind CSS v3 for broader browser support.
-- [Testing](https://nextjs.org/docs/app/guides/testing.md): Learn how to set up Next.js with four commonly used testing tools — Cypress, Playwright, Vitest, and Jest.
+- [Testing](https://nextjs.org/docs/app/guides/testing.md): Learn how to set up Next.js with four commonly used testing tools - Cypress, Playwright, Vitest, and Jest.
   - [Cypress](https://nextjs.org/docs/app/guides/testing/cypress.md): Learn how to set up Cypress with Next.js for End-to-End (E2E) and Component Testing.
   - [Jest](https://nextjs.org/docs/app/guides/testing/jest.md): Learn how to set up Jest with Next.js for Unit Testing and Snapshot Testing.
   - [Playwright](https://nextjs.org/docs/app/guides/testing/playwright.md): Learn how to set up Playwright with Next.js for End-to-End (E2E) Testing.

@@ -1,4 +1,10 @@
 interface:
-  display_name: "Expo Deployment"
+  display_name: "Expo - Deployment"
   short_description: "Deploy Expo apps to TestFlight, App Store, Play Store, EAS Hosting, and API routes"
+  icon_small: "./assets/expo.png"
+  icon_large: "./assets/expo.png"
+  brand_color: "#000020"
   default_prompt: "Use $expo-deployment when preparing production EAS builds, store submissions, web deploys, TestFlight distribution, app-store metadata, version management, or deployment workflows for an Expo app."
+
+policy:
+  allow_implicit_invocation: true

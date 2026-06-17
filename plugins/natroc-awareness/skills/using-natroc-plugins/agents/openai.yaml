@@ -1,5 +1,7 @@
 interface:
   display_name: "Natroc Plugin Awareness"
   short_description: "Route tasks to installed Natroc plugins"
+  default_prompt: "Use $using-natroc-plugins to route tasks."
+
 policy:
   allow_implicit_invocation: true

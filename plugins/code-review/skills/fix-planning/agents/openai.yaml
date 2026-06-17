@@ -1,6 +1,10 @@
 interface:
-  display_name: "Fix Planning"
+  display_name: "Code Review - Fix Planning"
   short_description: "Create safe fix plans mapped to finding IDs with root cause, files, risk, docs basis, tests, verification, and rollback plan."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the fix-planning skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

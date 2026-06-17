@@ -1,0 +1,10 @@
+interface:
+  display_name: "21st - Magic UI"
+  short_description: "Generate or polish UI components"
+  icon_small: "./assets/21st.jpeg"
+  icon_large: "./assets/21st.jpeg"
+  brand_color: "#0332ff"
+  default_prompt: "Generate or polished UI variants of any component."
+
+policy:
+  allow_implicit_invocation: true

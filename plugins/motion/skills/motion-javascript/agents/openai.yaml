@@ -1,4 +1,10 @@
 interface:
-  display_name: "Motion JavaScript"
+  display_name: "Motion - JavaScript"
   short_description: "Create and refine Motion animations using the vanilla JavaScript API, including animate, scroll, hover, press, timelines, and performance-safe UI motion."
+  icon_small: "./assets/motion.png"
+  icon_large: "./assets/motion.png"
+  brand_color: "#FFF62A"
   default_prompt: "Use $motion-javascript to create or improve Motion animations with the vanilla JavaScript API."
+
+policy:
+  allow_implicit_invocation: true

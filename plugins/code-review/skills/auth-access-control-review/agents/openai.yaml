@@ -1,6 +1,10 @@
 interface:
-  display_name: "Auth Access Control Review"
+  display_name: "Code Review - Auth Access Control Review"
   short_description: "Strictly audit authentication, authorization, ownership checks, role/permission checks, object-level access control, and auth flow misuse."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the auth-access-control-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

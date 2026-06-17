@@ -812,7 +812,12 @@ function validateSkills(pluginName, pluginPath) {
 
   const skillsDir = path.join(pluginPath, "skills");
   const entries = fs.readdirSync(skillsDir, { withFileTypes: true });
-  const skillDirs = entries.filter((entry) => entry.isDirectory());
+
+  const nonSkillDirNames = new Set(["assets"]);
+
+  const skillDirs = entries.filter(
+    (entry) => entry.isDirectory() && !nonSkillDirNames.has(entry.name),
+  );
 
   for (const entry of entries) {
     if (!entry.isDirectory()) {

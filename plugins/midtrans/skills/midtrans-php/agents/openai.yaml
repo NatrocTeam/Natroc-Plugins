@@ -1,0 +1,10 @@
+interface:
+  display_name: "Midtrans - PHP"
+  short_description: "Integrate Midtrans payment gateway in PHP - Snap, Core API, Snap BI (Direct Debit/VA/Qris), subscriptions, and tokenization. Use when building Midtrans payments with PHP backend and Composer."
+  icon_small: "./assets/midtrans.png"
+  icon_large: "./assets/midtrans.png"
+  brand_color: "#307FC1"
+  default_prompt: "Use the midtrans-php skill to integrate Midtrans payment gateway in PHP. Configure \\Midtrans\\Config static properties, choose the right product (Snap, Core API, SnapBi), implement the payment flow, and handle HTTP notifications via \\Midtrans\\Notification."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,10 @@
 interface:
-  display_name: "Regression Test Generation"
+  display_name: "Code Review - Regression Test Generation"
   short_description: "Add or update regression tests for fixed bugs/security issues/API contracts when a test framework exists and the risk warrants it."
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use the regression-test-generation skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true
