@@ -7,16 +7,18 @@ This plugin is intentionally small. It is a routing layer, not a replacement for
 ## What it includes
 
 - One bootstrap skill: `using-natroc-plugins`.
-- One `SessionStart` hook for Claude Code-compatible runtimes.
+- Two `SessionStart` hooks: `hooks.json` (Claude Code) and `hooks-codex.json` (Codex).
+- Pure bash hook scripts (`session-start`, `session-start-codex`) - zero dependencies, no Python required.
+- A cross-platform polyglot wrapper (`run-hook.cmd`) for Windows compatibility.
 - A bounded marketplace and manifest scanner that checks nearby installed plugin folders and avoids scanning the user's whole disk.
 
 ## How it works
 
-1. The `SessionStart` hook runs `hooks/session_start_context.py`.
-2. The hook scans nearby plugin folders for `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`.
+1. The `SessionStart` hook runs `hooks/session-start` (pure bash, zero dependencies).
+2. The hook scans nearby plugin folders for `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` manifests, plus marketplace files.
 3. It also reads nearby Natroc marketplace files when they are available.
 4. It derives routing lines from plugin descriptions, keywords, categories, and skill folder names.
-5. It injects a short `additionalContext` message that tells the agent which Natroc plugins were detected and how to route tasks.
+5. It injects the full `using-natroc-plugins` skill content (enforcement rules) plus a compact routing summary that tells the agent which Natroc plugins were detected and how to route tasks.
 6. The agent loads only the matching plugin skill or metadata when the user's task needs it.
 
 ## Boundaries
@@ -98,7 +100,10 @@ natroc-awareness/
 ├── .codex-plugin/plugin.json
 ├── hooks/
 │   ├── hooks.json
-│   └── session_start_context.py
+│   ├── hooks-codex.json
+│   ├── run-hook.cmd
+│   ├── session-start
+│   └── session-start-codex
 └── skills/
     └── using-natroc-plugins/
         ├── SKILL.md
@@ -107,7 +112,7 @@ natroc-awareness/
 
 ## Version
 
-1.0.0 - Initial dynamic marketplace-aware routing skill and `SessionStart` context hook.
+1.1.0 - Pure bash hooks (zero Python dependency), separate Claude/Codex SessionStart hooks, cross-platform polyglot wrapper, full SKILL.md injection at session start.
 
 ## Author
 

@@ -696,17 +696,19 @@ function validateHooks(pluginName, pluginPath) {
       continue;
     }
 
-    if (entry.name === "hooks.json") {
-      readJson(pluginName, entryPath, "hooks/hooks.json");
+    if (entry.name === "hooks.json" || entry.name === "hooks-codex.json") {
+      readJson(pluginName, entryPath, `hooks/${entry.name}`);
       continue;
     }
 
-    if (path.extname(entry.name).toLowerCase() !== ".py") {
+    const hookExt = path.extname(entry.name).toLowerCase();
+    const allowedHookExts = new Set([".py", ".cmd", ""]);
+    if (!allowedHookExts.has(hookExt)) {
       addIssue(
         pluginName,
         entryPath,
-        "Hook command files must use the .py extension.",
-        "Rename or replace this hook command with a Python file, or document another supported hook format in rules/verify.md.",
+        "Hook command files must use .py, .cmd, or no extension (bash script).",
+        "Rename or replace this hook command with a supported format, or document another supported hook format in rules/verify.md.",
       );
     }
   }

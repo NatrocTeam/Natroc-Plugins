@@ -19,7 +19,7 @@
     },
     {
       "name": "natroc-awareness",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Load compact installed Natroc plugin awareness at session start so agents can route tasks to matching plugin skills without dumping every plugin file into context.",
       "author": {
         "name": "PT Kelana Tech Solutions"
@@ -84,7 +84,7 @@
     {
       "name": "typescript-lsp",
       "description": "TypeScript/JavaScript language server for enhanced code intelligence",
-      "version": "1.0.0",
+      "version": "5.3.0",
       "author": {
         "name": "PT Kelana Tech Solutions"
       },

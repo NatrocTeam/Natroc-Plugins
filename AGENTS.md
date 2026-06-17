@@ -15,10 +15,7 @@ It contains:
 - Skills
 - Hooks
 - Agent configuration files
-- References
-- Templates
-- Scripts
-- Schemas
+- Validation rules and scripts
 - Documentation
 - GitHub community and workflow files
 
@@ -41,10 +38,8 @@ Before making changes, read the relevant files in this order:
    - `skills/`
    - `hooks/`
    - `agents/`
-   - `references/`
-   - `templates/`
-   - `schemas/`
-   - `scripts/`
+   - `commands/`
+   - `assets/`
 
 Do not edit files before understanding the plugin structure and the affected metadata.
 
@@ -66,18 +61,23 @@ plugins/
     .codex-plugin/
       plugin.json
     agents/
+    assets/
+    commands/
     hooks/
-    references/
-    schemas/
-    scripts/
     skills/
-    templates/
 
 .github/
   ISSUE_TEMPLATE/
   workflows/
-  CODEOWNERS
   pull_request_template.md
+
+rules/
+  verify.md
+
+scripts/
+  verify-plugins.js
+  bump-plugin.js
+  sync-version.js
 ```
 
 Not every plugin is required to contain every optional folder. Only add folders and files that are useful for the plugin.
@@ -154,10 +154,8 @@ Check these fields carefully:
 - Skill paths
 - Hook paths
 - Agent configuration paths
-- Reference paths
-- Template paths
-- Script paths
-- Schema paths
+- Command paths
+- Asset paths
 
 Repository URLs for plugin folders should point to valid GitHub tree paths:
 
@@ -182,13 +180,11 @@ README.md
 skills/
 hooks/
 agents/
-references/
-templates/
-schemas/
-scripts/
+commands/
+assets/
 ```
 
-Use these folders only when needed.
+Use these folders only when needed. See `rules/verify.md` for the complete list of allowed plugin root directories and files.
 
 ### `skills/`
 
@@ -206,6 +202,17 @@ A skill should:
 ### `hooks/`
 
 Use `hooks/` for lifecycle behavior or deterministic workflow guidance.
+
+Hook configuration uses JSON files:
+
+- `hooks.json` - Claude Code hook configuration.
+- `hooks-codex.json` - Codex hook configuration.
+
+Hook command files may use these formats:
+
+- `.py` - Python hook commands.
+- Extensionless - Bash hook scripts (e.g. `session-start`).
+- `.cmd` - Cross-platform polyglot wrappers (e.g. `run-hook.cmd`).
 
 A hook should:
 
@@ -226,48 +233,24 @@ Agent configuration should:
 - Define responsibilities, boundaries, and expected behavior.
 - Avoid claiming capabilities that are not supported by the plugin.
 
-### `references/`
+### `commands/`
 
-Use `references/` for source material, official docs excerpts, summaries, or structured reference notes.
+Use `commands/` for Claude Code slash commands in Markdown format.
 
-References should:
+Commands should:
 
-- Prefer official documentation.
-- Include enough context for future maintainers.
-- Avoid stale or unsupported claims.
-- Be updated when upstream behavior changes.
+- Have a clear, discoverable name.
+- Be scoped to a specific action.
+- Include usage instructions and examples where helpful.
 
-### `templates/`
+### `assets/`
 
-Use `templates/` for reusable issue, prompt, code, config, or workflow templates.
+Use `assets/` for plugin images and screenshots (Codex).
 
-Templates should:
+Assets should:
 
-- Be easy to copy.
-- Use placeholders clearly.
-- Avoid environment-specific assumptions unless documented.
-
-### `schemas/`
-
-Use `schemas/` for JSON Schema or other validation schemas.
-
-Schemas should:
-
-- Match the actual files they validate.
-- Be strict enough to catch mistakes.
-- Avoid unsupported fields.
-
-### `scripts/`
-
-Use `scripts/` for deterministic automation.
-
-Scripts should:
-
-- Be safe to run locally.
-- Avoid destructive behavior by default.
-- Include clear error messages.
-- Avoid network access unless necessary and documented.
-- Avoid writing outside the repository unless explicitly intended.
+- Use supported image formats: jpeg, jpg, png, svg.
+- Place screenshots in an optional `screenshots/` subdirectory.
 
 ## Documentation rules
 
@@ -299,11 +282,23 @@ When editing marketplace metadata:
 
 Do not change versions unless the task is specifically about versioning, release preparation, or marketplace synchronization.
 
-If a version change is requested, check:
+Use the bump scripts - do not edit version fields by hand unless the bump script cannot run:
 
-- Root package metadata
-- Marketplace metadata
-- Plugin metadata
+```bash
+pnpm run bump          # interactive mode
+pnpm run bump:patch
+pnpm run bump:minor
+pnpm run bump:major
+```
+
+The bump scripts update the selected plugin version in:
+
+- `.claude-plugin/marketplace.json`
+- `plugins/<plugin-name>/.claude-plugin/plugin.json`
+- `plugins/<plugin-name>/.codex-plugin/plugin.json`
+
+If a version change is requested, also check:
+
 - Changelog or release notes, if applicable
 - Existing version sync scripts or workflows
 
@@ -313,16 +308,15 @@ Do not create a release commit unless explicitly requested.
 
 Before finalizing changes, inspect available scripts in `package.json`.
 
-Common checks may include:
+Common checks:
 
 ```bash
+pnpm run verify-plugins
 pnpm run format:check
 pnpm run format
 ```
 
-Only run scripts that exist in `package.json`.
-
-If a requested validation script does not exist, do not claim it was run.
+Run `pnpm run verify-plugins` after any structural change to plugins, hooks, skills, or manifests. Only run scripts that exist in `package.json`. If a requested validation script does not exist, do not claim it was run.
 
 ## Pull request rules
 

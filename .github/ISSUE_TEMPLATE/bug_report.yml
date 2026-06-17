@@ -24,13 +24,16 @@ body:
         - label: context7
         - label: expo
         - label: human-context-writer
+        - label: midtrans
         - label: motion
         - label: natroc-awareness
+        - label: nextjs
         - label: ollama-sdk
         - label: openai-sdk
         - label: plugin-dev-claude
         - label: plugin-dev-codex
         - label: react-typescript
+        - label: stitch
         - label: typescript-lsp
 
   - type: checkboxes

@@ -25,22 +25,26 @@
 ├── commands/                                   # Optional: for Claude Only and must be in markdown format
 ├── hooks/                                      # Optional: lifecycle for Both Agents
 │   ├── hooks.json
-│   └── user_prompt_submit_intent_gate.py       # Optional for hooks command
+│   ├── hooks-codex.json                        # Optional: Codex variant
+│   ├── user_prompt_submit_intent_gate.py       # Optional for hooks command (Python)
+│   ├── session-start                           # Optional for hooks command (bash)
+│   └── run-hook.cmd                            # Optional: cross-platform polyglot wrapper
 └── skills/                                     # Must have at least one skill
     └── <skill-name>/
-        ├── SKILL.md                            # `name` in frontmatter must match with `<skill-name>` folder
+        ├── SKILL.md                            # `name` in frontmatter must match `<skill-name>` folder
         ├── agents/                             # Optional: Skill metadata for Codex Only and must be in yaml format
         │   └── openai.yaml                     # Just one file
+        ├── assets/                             # Optional: skill-level assets (ignored by verifier)
         ├── references/                         # Optional
         ├── scripts/                            # Optional
-        └── ...
+        └── templates/                          # Optional
 ```
 
 > Directories under `skills/` that are not skill folders (e.g. `assets/`) are ignored by the verifier.
 
-> NOTE for `hooks.json`
+> NOTE for `hooks.json` and `hooks-codex.json`
 >
-> `hooks.json` can be stored in the plugin root or inside a folder named hooks (not both).
+> `hooks.json` and `hooks-codex.json` can be stored in the plugin root or inside a folder named hooks (not both).
 
 ## Plugin Version
 
