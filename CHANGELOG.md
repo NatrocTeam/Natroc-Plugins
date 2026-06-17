@@ -15,20 +15,20 @@
 
 - **natroc-awareness**: Strengthen SKILL.md enforcement language with `<EXTREMELY-IMPORTANT>`
   block, Routing Red Flags table, and imperative routing priorities
-- **natroc-awareness**: Remove hardcoded plugin list from SKILL.md — routing table is now
+- **natroc-awareness**: Remove hardcoded plugin list from SKILL.md - routing table is now
   the single source of truth
 - **natroc-awareness**: Bump version to 1.1.0
 - **midtrans**: Rewrite Codex defaultPrompt for payment gateway context (Snap transaction,
   payment status, refund processing)
 - **verifier**: Allow `.cmd` and extensionless bash hook command files
 - **verifier**: Handle `hooks-codex.json` alongside `hooks.json`
-- **docs**: AGENTS.md — fix repo structure diagram, remove phantom CODEOWNERS, add
+- **docs**: AGENTS.md - fix repo structure diagram, remove phantom CODEOWNERS, add
   `rules/` and `scripts/`, remove unsupported plugin root folders, document hook command
   formats and bump scripts
-- **docs**: README.md — add Contributing, License, Changelog, and Validation sections,
+- **docs**: README.md - add Contributing, License, Changelog, and Validation sections,
   mark natroc-awareness as recommended first install
-- **docs**: CONTRIBUTING.md — document `hooks-codex.json`, hook formats, and pnpm prerequisite
-- **docs**: rules/verify.md — fix phrasing, document `hooks-codex.json`, replace ambiguous
+- **docs**: CONTRIBUTING.md - document `hooks-codex.json`, hook formats, and pnpm prerequisite
+- **docs**: rules/verify.md - fix phrasing, document `hooks-codex.json`, replace ambiguous
   `...` with explicit allowed skill folders
 - **issue-templates**: Add midtrans, nextjs, stitch to plugin checklists
 
