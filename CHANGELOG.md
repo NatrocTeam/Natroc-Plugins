@@ -1,5 +1,44 @@
 # Changelog
 
+## [1.8.0] - 2026-06-18 [(684dc3b)](https://github.com/NatrocTeam/Natroc-Plugins/commit/684dc3b57b5d184fa0e9166d2411e3f800151f84)
+
+### Added
+
+- **threejs**: New skill-only plugin for Three.js 3D graphics development
+  - 10 bundled skills: fundamentals, geometry, materials, shaders, lighting,
+    animation, interaction, loaders, textures, post-processing
+  - Claude Code and Codex plugin manifests with brand color `#049EF4`
+  - Plugin README with skills table and Agent Usage Contract
+
+### Changed
+
+- **all plugins**: Standardize `openai.yaml` Codex skill metadata across 81 files
+  - Fix `display_name` to consistent `<Plugin> - <Skill Name>` format
+  - Rewrite `short_description` as concise single phrase
+  - Rewrite `default_prompt` as detailed user-facing queries without `$` or `@`
+    prefixes, grounded against each skill's SKILL.md domain
+  - Sync `brand_color` with the plugin's codex manifest
+- **all plugins**: Standardize `.codex-plugin/plugin.json` manifests across 20 files
+  - Limit `defaultPrompt` to exactly 3 entries
+  - Rewrite all prompts as detailed user-facing queries without `$` or `@`
+    prefixes, covering each plugin's primary domains
+- **bybit**: Remove `$bybit` prefix from codex defaultPrompt
+- **context7**: Improve defaultPrompt detail with specific library/doc examples
+- **midtrans**: Remove `@Midtrans` prefix from codex defaultPrompt
+- **motion**: Remove `$motion-*` prefix, rewrite prompts as user-facing queries
+- **nextjs**: Remove `$nextjs` prefix, add detailed App Router/cache/upgrade prompts
+- **react-typescript**: Remove `$react-typescript` prefix, add typed component
+  API examples in defaultPrompt
+- **typescript-lsp**: Remove `$typescript-lsp` prefix, add diagnostic/rename
+  workflow examples
+- **xquik**: Remove `Use Xquik` pattern, rewrite as user-facing data
+  automation workflow prompts
+
+### Fixed
+
+- **plugin-dev-codex**: Correct `allow_implicit_invocation` from `false` to
+  `true` in 3 skill files
+
 ## [1.7.0] - 2026-06-18 [(fdabf14)](https://github.com/NatrocTeam/Natroc-Plugins/commit/fdabf14cdea8be12c882c19e5d083cd81e328cc0)
 
 ### Added
