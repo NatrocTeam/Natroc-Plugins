@@ -1,6 +1,6 @@
 # Natroc Awareness
 
-`natroc-awareness` gives coding agents a compact inventory of installed Natroc plugins at session start so they can route user requests to the right plugin skills without loading every plugin file into context.
+`natroc-awareness` gives coding agents a lightweight routing bootstrap at session start so they can route user requests to the right plugin skills without loading every plugin file into context.
 
 This plugin is intentionally small. It is a routing layer, not a replacement for the individual plugin skills.
 
@@ -10,27 +10,27 @@ This plugin is intentionally small. It is a routing layer, not a replacement for
 - Two `SessionStart` hooks: `hooks.json` (Claude Code) and `hooks-codex.json` (Codex).
 - Pure bash hook scripts (`session-start`, `session-start-codex`) - zero dependencies, no Python required.
 - A cross-platform polyglot wrapper (`run-hook.cmd`) for Windows compatibility.
-- A bounded marketplace and manifest scanner that checks nearby installed plugin folders and avoids scanning the user's whole disk.
+- On-demand routing guidance for inspecting nearby marketplace files and plugin manifests only when needed.
 
 ## How it works
 
 1. The `SessionStart` hook runs `hooks/session-start` (pure bash, zero dependencies).
-2. The hook scans nearby plugin folders for `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` manifests, plus marketplace files.
-3. It also reads nearby Natroc marketplace files when they are available.
-4. It derives routing lines from plugin descriptions, keywords, categories, and skill folder names.
-5. It injects the full `using-natroc-plugins` skill content (enforcement rules) plus a compact routing summary that tells the agent which Natroc plugins were detected and how to route tasks.
-6. The agent loads only the matching plugin skill or metadata when the user's task needs it.
+2. The hook injects the full `using-natroc-plugins` skill content so the agent knows to route Natroc plugin tasks first.
+3. When a user request points to a Natroc plugin domain, the agent routes automatically without requiring the user to name a plugin, skill, agent, command, hook, or connector.
+4. The agent inspects nearby marketplace files, plugin manifests, and capability folders on demand.
+5. The agent loads only the matching plugin skill, agent, command, hook guidance, connector metadata, or supporting artifact when the user's task needs it.
 
 ## Boundaries
 
 - Does not read all plugin docs at startup.
+- Does not scan marketplace files or plugin manifests at startup.
 - Does not scan the entire computer.
 - Does not claim a plugin is installed unless it is detected near the current plugin installation.
 - Does not use network access.
 - Does not collect secrets or environment values.
 - Does not require a manually maintained plugin index.
 
-If only marketplace metadata is available, the agent should describe those entries as available in the nearby Natroc marketplace, not confirmed installed plugins.
+If only marketplace metadata is available during on-demand inspection, the agent should describe those entries as available in the nearby Natroc marketplace, not confirmed installed plugins.
 
 ## Install/use
 
@@ -112,7 +112,7 @@ natroc-awareness/
 
 ## Version
 
-1.1.0 - Pure bash hooks (zero Python dependency), separate Claude/Codex SessionStart hooks, cross-platform polyglot wrapper, full SKILL.md injection at session start.
+2.0.0 - Lightweight SessionStart bootstrap with on-demand marketplace and manifest inspection, separate Claude/Codex SessionStart hooks, cross-platform polyglot wrapper, and full SKILL.md injection at session start.
 
 ## Author
 

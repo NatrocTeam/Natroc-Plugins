@@ -2,25 +2,16 @@
 # =============================================================================
 # SessionStart hook for natroc-awareness (Codex)
 #
-# Codex sets PLUGIN_ROOT as the primary env var; CLAUDE_PLUGIN_ROOT may also be
-# set. We export both so the scanner can find the plugin root regardless.
-#
-# Otherwise identical to the Claude Code session-start hook.
+# Keep startup light: inject only the bootstrap skill. Plugin marketplace and
+# manifest inspection happens on demand after a task points to a plugin domain.
 # =============================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="${PLUGIN_ROOT:-$(cd "${SCRIPT_DIR}/.." && pwd)}"
 
-# Codex sets PLUGIN_ROOT; also set CLAUDE_PLUGIN_ROOT so marketplace scanner
-# can find plugin root through either variable.
 export CODEX_PLUGIN_ROOT="${PLUGIN_ROOT}"
 export CLAUDE_PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$PLUGIN_ROOT}"
-
-# =============================================================================
-# All helper functions are identical to session-start
-# (duplicated for portability - Codex hooks must be self-contained)
-# =============================================================================
 
 escape_for_json() {
     local s="$1"
@@ -32,214 +23,15 @@ escape_for_json() {
     printf '%s' "$s"
 }
 
-extract_json_value() {
-    local key="$1"
-    sed -n "s/.*\"${key}\"[[:space:]]*:[[:space:]]*\"\\([^\"]*\\)\".*/\\1/p" | head -1
-}
-
-extract_json_array() {
-    sed -n '/\[/,/\]/ s/[[:space:]]*"\\([^"]*\\)".*/\\1/p' | tr '\n' ',' | sed 's/,$//; s/,/, /g'
-}
-
-find_marketplace_file() {
-    local base="$1"
-    local search="$base"
-    for _ in 1 2 3 4; do
-        for candidate in \
-            "${search}/.claude-plugin/marketplace.json" \
-            "${search}/.agents/plugins/marketplace.json"; do
-            if [ -f "$candidate" ]; then
-                echo "$candidate"
-                return 0
-            fi
-        done
-        search="$(dirname "$search")"
-    done
-    return 1
-}
-
-marketplace_base_dir() {
-    local mf="$1"
-    case "$mf" in
-        */.claude-plugin/marketplace.json)
-            dirname "$(dirname "$mf")"
-            ;;
-        */.agents/plugins/marketplace.json)
-            dirname "$(dirname "$(dirname "$mf")")"
-            ;;
-        *)
-            dirname "$mf"
-            ;;
-    esac
-}
-
-is_plugin_installed() {
-    local base="$1"
-    local name="$2"
-    [ -f "${base}/plugins/${name}/.claude-plugin/plugin.json" ] && return 0
-    [ -f "${base}/plugins/${name}/.codex-plugin/plugin.json" ] && return 0
-    return 1
-}
-
-get_plugin_skills() {
-    local base="$1"
-    local name="$2"
-    local skills_dir="${base}/plugins/${name}/skills"
-    [ ! -d "$skills_dir" ] && { echo ""; return; }
-    local skills=""
-    for sdir in "${skills_dir}/"*/; do
-        [ -f "${sdir}SKILL.md" ] && skills="${skills}$(basename "$sdir"), "
-    done
-    echo "${skills%, }" | sed 's/, $//'
-}
-
-get_plugin_keywords() {
-    local base="$1"
-    local name="$2"
-    local manifest=""
-    for candidate in \
-        "${base}/plugins/${name}/.claude-plugin/plugin.json" \
-        "${base}/plugins/${name}/.codex-plugin/plugin.json"; do
-        [ -f "$candidate" ] && { manifest="$candidate"; break; }
-    done
-    [ -z "$manifest" ] && { echo ""; return; }
-    extract_json_array < "$manifest"
-}
-
-build_routing_line() {
-    local name="$1"
-    local description="$2"
-    local keywords="$3"
-    local skills="$4"
-
-    local triggers=""
-    if [ -n "$keywords" ]; then
-        triggers=$(echo "$keywords" | tr ',' '\n' | sed 's/^ *//;s/ *$//' | grep -vxi "$name" | head -5 | tr '\n' ',' | sed 's/,$//; s/,/, /g')
-    fi
-    if [ -z "$triggers" ] && [ -n "$skills" ]; then
-        triggers=$(echo "$skills" | tr ',' '\n' | sed 's/^ *//;s/ *$//' | sed 's/-/ /g' | head -4 | tr '\n' ',' | sed 's/,$//; s/,/, /g')
-    fi
-    [ -z "$triggers" ] && triggers="tasks related to ${name}"
-
-    local skill_ref=""
-    if [ -n "$skills" ]; then
-        local first_skill=$(echo "$skills" | cut -d',' -f1 | sed 's/^ *//')
-        skill_ref="\`${name}:${first_skill}\`"
-    else
-        skill_ref="the \`${name}\` plugin"
-    fi
-
-    echo "- **${name}**: For ${triggers} - invoke ${skill_ref}. ${description}"
-}
-
-build_routing_table() {
-    local mf="$1"
-    local base="$2"
-
-    local lines=""
-    local installed_label="Detected installed Natroc plugins near this plugin root"
-    local installed_list=""
-    local max_plugins=40
-
-    local entries
-    entries=$(awk '
-    BEGIN { in_plugins=0; name=""; desc=""; src=""; depth=0; count=0 }
-    /"plugins"\s*:\s*\[/  { in_plugins=1; next }
-    # Only exit on the plugins array closing bracket (2-space indent "  ]")
-    # NOT on nested array closings like keywords (6+ space indent)
-    in_plugins && /^  \]/ { exit }
-    in_plugins {
-        # Plugin entry open: 4-space indent brace
-        if ($0 ~ /^    \{/) { depth=1; name=""; desc=""; src=""; next }
-        # Plugin entry close: 4-space indent brace (depth guard skips nested objects)
-        if ($0 ~ /^    \}\s*,?\s*$/ && depth == 1) {
-            if (name != "") {
-                printf "%s|%s|%s\n", name, desc, src
-                count++
-                if (count >= '"$max_plugins"') exit
-            }
-            depth=0
-            next
-        }
-        # Extract fields only at plugin level (6-space indent, depth 1)
-        if (depth == 1) {
-            if (match($0, /^      "name"\s*:\s*"([^"]+)"/, a))       { name=a[1] }
-            if (match($0, /^      "description"\s*:\s*"([^"]+)"/, a)) { desc=a[1] }
-            if (match($0, /^      "source"\s*:\s*"([^"]+)"/, a))     { src=a[1] }
-        }
-    }' "$mf" 2>/dev/null || echo ""
-    )
-
-    if [ -z "$entries" ]; then
-        echo "Routing table unavailable: could not parse marketplace.json"
-        return
-    fi
-
-    local old_ifs="$IFS"
-    IFS=$'\n'
-    for entry in $entries; do
-        [ -z "$entry" ] && continue
-        local pname=$(echo "$entry" | cut -d'|' -f1)
-        local pdesc=$(echo "$entry" | cut -d'|' -f2)
-        local psrc=$(echo "$entry" | cut -d'|' -f3)
-        [ -z "$pname" ] && continue
-
-        local pkeywords=""
-        local pskills=""
-
-        if is_plugin_installed "$base" "$pname"; then
-            installed_list="${installed_list}${pname}, "
-            pkeywords=$(get_plugin_keywords "$base" "$pname")
-            pskills=$(get_plugin_skills "$base" "$pname")
-        fi
-
-        lines="${lines}$(build_routing_line "$pname" "$pdesc" "$pkeywords" "$pskills")\n"
-    done
-    IFS="$old_ifs"
-
-    installed_list=$(echo "$installed_list" | sed 's/, $//')
-
-    local header=""
-    if [ -n "$installed_list" ]; then
-        header="${installed_label}: ${installed_list}.\n\n"
-    fi
-    header="${header}This context is generated dynamically from nearby marketplace files, plugin manifests, and skill folder names.\n"
-    header="${header}Do not load every plugin file at startup.\n\n"
-    header="${header}If a plugin appears only in marketplace metadata, describe it as available in the nearby Natroc marketplace, not confirmed installed.\n\n"
-    header="${header}## ROUTING TABLE - match task to plugin, then invoke the listed skill"
-
-    printf "%b\n\n%b\n\n" "$header" "$lines"
-    printf "If NO plugin matches the user's task domain, proceed without a plugin. Do not invent plugin capabilities."
-}
-
-# =============================================================================
-# MAIN
-# =============================================================================
-
 SKILL_FILE="${PLUGIN_ROOT}/skills/using-natroc-plugins/SKILL.md"
-skill_content=""
 if [ -f "$SKILL_FILE" ]; then
     skill_content=$(cat "$SKILL_FILE")
 else
     skill_content="# Natroc Plugin Awareness\n\nError: using-natroc-plugins SKILL.md not found."
 fi
 
-MARKETPLACE_FILE=$(find_marketplace_file "$PLUGIN_ROOT" 2>/dev/null || echo "")
-routing_table=""
-
-if [ -n "$MARKETPLACE_FILE" ]; then
-    MARKETPLACE_BASE=$(marketplace_base_dir "$MARKETPLACE_FILE")
-    routing_table=$(build_routing_table "$MARKETPLACE_FILE" "$MARKETPLACE_BASE" 2>/dev/null || echo "")
-fi
-
-if [ -z "$routing_table" ]; then
-    routing_table="Routing table unavailable. Invoke the \`natroc-awareness:using-natroc-plugins\` skill or inspect plugin manifests manually."
-fi
-
 skill_escaped=$(escape_for_json "$skill_content")
-routing_escaped=$(escape_for_json "$routing_table")
-
-session_context="<EXTREMELY-IMPORTANT>\nYou have Natroc Plugin Awareness.\n\n**Below is the full content of your 'natroc-awareness:using-natroc-plugins' skill. For all other Natroc plugin skills, use the 'Skill' tool:**\n\n${skill_escaped}\n</EXTREMELY-IMPORTANT>\n\n${routing_escaped}"
+session_context="<EXTREMELY-IMPORTANT>\nYou have Natroc Plugin Awareness.\n\n**Below is the full content of your 'natroc-awareness:using-natroc-plugins' skill. For all other Natroc plugin skills, follow the Codex skill-loading instructions in that skill:**\n\n${skill_escaped}\n</EXTREMELY-IMPORTANT>"
 
 printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}\n' "$session_context"
 
