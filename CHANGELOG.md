@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.7.0] - 2026-06-18 [(fdabf14)](https://github.com/NatrocTeam/Natroc-Plugins/commit/fdabf14cdea8be12c882c19e5d083cd81e328cc0)
+
+### Added
+
+- **xquik**: New skill-only plugin for X data automation workflows
+  - Bundled `xquik` skill routes agents to public Xquik docs, SDKs (`x-developer`),
+    REST API, MCP, webhooks, and public source examples
+  - Claude Code and Codex plugin manifests with full interface branding
+  - SVG icon with light/dark mode support via `prefers-color-scheme`
+  - Codex agent config (`openai.yaml`) with implicit invocation enabled
+  - Plugin README with Agent Usage Contract and install instructions
+- **marketplace**: Register xquik in `.claude-plugin/marketplace.json` and
+  `.agents/plugins/marketplace.json`
+- **docs**: Add xquik to root README plugins table
+
 ## [1.6.1] - 2026-06-18 [(4aa6d44)](https://github.com/NatrocTeam/Natroc-Plugins/commit/4aa6d44b9dd62e3df9a8986a9021c6b4a3932c6a)
 
 ### Fixed
