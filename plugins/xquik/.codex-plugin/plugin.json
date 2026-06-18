@@ -1,0 +1,39 @@
+{
+  "name": "xquik",
+  "version": "1.0.0",
+  "description": "X data automation guidance for using Xquik docs, SDKs, REST API, MCP, webhooks, and public source examples.",
+  "author": {
+    "name": "Xquik"
+  },
+  "homepage": "https://docs.xquik.com",
+  "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+  "license": "MIT",
+  "keywords": [
+    "xquik",
+    "x",
+    "twitter",
+    "automation",
+    "api",
+    "mcp",
+    "webhooks",
+    "sdk"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Xquik",
+    "shortDescription": "Use Xquik docs and public examples for X data automation.",
+    "longDescription": "Xquik provides REST API, SDK, MCP, webhook, and skill guidance for X data automation workflows. This plugin routes agents to public Xquik docs, the published x-developer package, and public source examples while keeping secrets in user-managed environment configuration.",
+    "developerName": "Xquik",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://docs.xquik.com",
+    "brandColor": "#4C2626",
+    "composerIcon": "./assets/xquik.svg",
+    "logo": "./assets/xquik.svg",
+    "defaultPrompt": [
+      "Use Xquik to plan an X data automation workflow.",
+      "Use Xquik docs to wire the REST API or SDK.",
+      "Use Xquik to review an X data integration."
+    ]
+  }
+}

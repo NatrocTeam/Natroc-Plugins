@@ -1,0 +1,10 @@
+interface:
+  display_name: "Xquik"
+  short_description: "Use Xquik public docs and examples for X data automation."
+  icon_small: "./assets/xquik.svg"
+  icon_large: "./assets/xquik.svg"
+  brand_color: "#4C2626"
+  default_prompt: "Use Xquik to choose the right public docs, SDK, REST API, MCP, webhook, or skill surface for this X data automation workflow."
+
+policy:
+  allow_implicit_invocation: true
