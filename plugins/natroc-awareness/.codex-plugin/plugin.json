@@ -25,11 +25,7 @@
     "longDescription": "Natroc Awareness gives agents a compact inventory of installed Natroc plugins and a routing skill for choosing the right plugin capability without loading every plugin document into context.",
     "developerName": "PT Kelana Tech Solutions",
     "category": "Developer Tools",
-    "capabilities": [
-      "Read",
-      "Write",
-      "Interactive"
-    ],
+    "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/natroc-awareness",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
     "termsOfServiceURL": "https://github.com/NatrocTeam/Natroc-Plugins/blob/main/LICENSE",
