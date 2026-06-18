@@ -1,6 +1,6 @@
 {
   "name": "human-context-writer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A writing plugin that teaches agents to gather context, audit AI-like writing patterns, match the user's voice, and rewrite text without changing the meaning.",
   "author": {
     "name": "PT Kelana Tech Solutions"

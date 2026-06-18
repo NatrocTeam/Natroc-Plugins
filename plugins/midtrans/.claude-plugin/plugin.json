@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
   "name": "midtrans",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A plugin for Midtrans payment gateway integration.",
   "author": {
     "name": "PT Kelana Tech Solutions"

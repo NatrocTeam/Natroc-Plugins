@@ -51,12 +51,7 @@ All API classes use **static methods**. No instantiation needed.
 | `$paymentIdempotencyKey` | string | null    | Idempotency key for retry safety           |
 | `$curlOptions`           | array  | []      | Custom cURL options                        |
 
-### Base URLs (automatic based on `$isProduction`)
-
-| Product  | Sandbox                                    | Production                         |
-| -------- | ------------------------------------------ | ---------------------------------- |
-| Core API | `https://api.sandbox.midtrans.com`         | `https://api.midtrans.com`         |
-| Snap     | `https://app.sandbox.midtrans.com/snap/v1` | `https://app.midtrans.com/snap/v1` |
+Base URLs are set automatically based on `$isProduction`.
 
 ## Product Decision Guide
 
@@ -113,7 +108,7 @@ $params = [
 $snapToken = \Midtrans\Snap::getSnapToken($params);
 ```
 
-When `item_details` is present, Snap auto-calculates `gross_amount` from items (quantity × price) and overrides whatever was set.
+When `item_details` is present, Snap auto-calculates `gross_amount` from items (quantity x price) and overrides whatever was set.
 
 ### Frontend (Snap JS)
 
@@ -225,228 +220,17 @@ Supports Direct Debit (Gopay, Dana, Shopeepay), VA (Bank Transfer), and Qris.
     -><action>($externalId)         // createPayment, cancel, refund, getStatus
 ```
 
-### Direct Debit (Gopay/Dana/Shopeepay)
+All SnapBi config values can be overridden inline per-call via chain methods (withPrivateKey, withClientId, withClientSecret, withPartnerId, withChannelId, withDeviceId, withDebuglId).
 
-```php
-date_default_timezone_set('Asia/Jakarta');
-$time_stamp = date('c');
-$date = new DateTime($time_stamp);
-$external_id = 'order-' . uniqid();
-$date->modify('+10 minutes');
-$valid_until = $date->format('c');
-
-$debitParams = [
-    'partnerReferenceNo' => $external_id,
-    'chargeToken' => '',
-    'merchantId' => 'YOUR_MERCHANT_ID',
-    'urlParam' => [[
-        'url' => 'https://www.mysite.com/callback',
-        'type' => 'PAY_RETURN',
-        'isDeeplink' => 'Y',
-    ]],
-    'validUpTo' => $valid_until,
-    'payOptionDetails' => [[
-        'payMethod' => 'DANA',            // GOPAY, DANA, SHOPEEPAY
-        'payOption' => 'DANA',
-        'transAmount' => [
-            'value' => '100.0',
-            'currency' => 'IDR',
-        ],
-    ]],
-    'additionalInfo' => [
-        'customerDetails' => [
-            'phone' => '081122334455',
-            'firstName' => 'Andri',
-            'lastName' => 'Litani',
-            'email' => 'andri@litani.com',
-        ],
-        'items' => [[
-            'id' => '1',
-            'price' => ['value' => '100.00', 'currency' => 'IDR'],
-            'quantity' => 1,
-            'name' => 'Apple',
-            'brand' => 'Apple',
-            'category' => 'Subscription',
-            'merchantName' => 'amazon prime',
-        ]],
-    ],
-];
-
-$response = \SnapBi\SnapBi::directDebit()
-    ->withBody($debitParams)
-    ->createPayment($external_id);
-```
-
-### VA (Bank Transfer)
-
-```php
-$external_id = 'order-' . uniqid();
-$customerVaNo = '6280123456';
-
-$vaParams = [
-    'partnerServiceId' => '   70012',
-    'customerNo' => $customerVaNo,
-    'virtualAccountNo' => '   70012' . $customerVaNo,
-    'virtualAccountName' => 'Jokul Doe',
-    'virtualAccountEmail' => 'jokul@email.com',
-    'virtualAccountPhone' => '6281828384858',
-    'trxId' => $external_id,
-    'totalAmount' => ['value' => '10000.00', 'currency' => 'IDR'],
-    'additionalInfo' => [
-        'merchantId' => 'YOUR_MERCHANT_ID',
-        'bank' => 'mandiri',
-        'flags' => ['shouldRandomizeVaNumber' => false],
-        // mandiri-specific bill info (optional):
-        'mandiri' => [
-            'billInfo1' => 'bank_name',
-            'billInfo2' => 'mandiri',
-            'billInfo3' => 'Name:',
-            'billInfo4' => 'Budi Utomo',
-        ],
-        'customerDetails' => [ /* ... */ ],
-        'items' => [ /* ... */ ],
-    ],
-];
-
-$response = \SnapBi\SnapBi::va()
-    ->withBody($vaParams)
-    ->createPayment($external_id);
-```
-
-Supported banks: `bca`, `mandiri`, `bni`, `bri`, `permata`.
-
-### Qris
-
-```php
-$qrisBody = [
-    'partnerReferenceNo' => $external_id,
-    'amount' => ['value' => '1500.00', 'currency' => 'IDR'],
-    'merchantId' => 'YOUR_MERCHANT_ID',
-    'validityPeriod' => '2030-07-03T12:08:56-07:00',
-    'additionalInfo' => [
-        'acquirer' => 'gopay',
-        'items' => [ /* ... */ ],
-        'customerDetails' => [
-            'email' => 'merchant-ops@midtrans.com',
-            'firstName' => 'Merchant',
-            'lastName' => 'Operation',
-            'phone' => '+6281932358123',
-        ],
-        'countryCode' => 'ID',
-        'locale' => 'id_ID',
-    ],
-];
-
-$response = \SnapBi\SnapBi::qris()
-    ->withBody($qrisBody)
-    ->createPayment($external_id);
-```
-
-### Get Status / Cancel / Refund
-
-```php
-// Direct Debit status by externalId
-$response = \SnapBi\SnapBi::directDebit()
-    ->withBody(['originalExternalId' => '...', 'serviceCode' => '54'])
-    ->getStatus($external_id);
-
-// Direct Debit cancel by referenceNo
-$response = \SnapBi\SnapBi::directDebit()
-    ->withBody(['originalReferenceNo' => 'A120240902...'])
-    ->cancel($external_id);
-
-// Direct Debit refund
-$response = \SnapBi\SnapBi::directDebit()
-    ->withBody([
-        'originalReferenceNo' => 'A120240828...',
-        'reason' => 'some-reason',
-        'refundAmount' => ['value' => '100.00', 'currency' => 'IDR'],
-    ])
-    ->refund($external_id);
-```
-
-### Additional Headers
-
-```php
-$response = \SnapBi\SnapBi::va()
-    ->withAccessTokenHeader(['debug-id' => 'va debug id', 'X-DEVICE-ID' => 'va device id'])
-    ->withTransactionHeader(['debug-id' => 'va debug id', 'X-DEVICE-ID' => 'va device id'])
-    ->withBody($vaParams)
-    ->createPayment($external_id);
-```
-
-### Reuse Access Token
-
-```php
-$response = \SnapBi\SnapBi::va()
-    ->withAccessToken('your-saved-access-token')
-    ->withBody($vaParams)
-    ->createPayment($external_id);
-```
-
-### Override Config Per-Call
-
-All SnapBi config values can be overridden inline via chain methods:
-
-```php
-$response = \SnapBi\SnapBi::directDebit()
-    ->withBody($body)
-    ->withPrivateKey("-----BEGIN PRIVATE KEY-----\n...")
-    ->withClientId('override-client-id')
-    ->withClientSecret('override-client-secret')
-    ->withPartnerId('override-partner-id')
-    ->withChannelId('override-channel-id')
-    ->withDeviceId('device-unique-id')
-    ->withDebuglId('debug-trace-id')  // NOTE: lowercase L: withDebug*l*Id
-    ->createPayment($externalId);
-```
-
-These override the static `\SnapBi\Config` values for that specific call only.
+**Full code examples for Direct Debit, VA, Qris, Get Status/Cancel/Refund, Headers, Webhook Verification, and config override**: see [examples/snapbi-payments.md](examples/snapbi-payments.md).
 
 **Gotcha**: The method is `withDebuglId()` (lowercase letter "L", not capital "I"). This is a known typo in the SDK.
-
-### Webhook Notification Verification
-
-```php
-$payload = json_decode('{ "originalPartnerReferenceNo": "...", ... }');
-$xSignature = 'CgjmAyC9OZ3pB2Jh...';  // from X-Signature header
-$xTimeStamp = '2024-10-07T15:45:22+07:00'; // from X-Timestamp header
-$notificationUrlPath = '/v1.0/debit/notify';
-
-$isVerified = \SnapBi\SnapBi::notification()
-    ->withBody($payload)
-    ->withSignature($xSignature)
-    ->withTimeStamp($xTimeStamp)
-    ->withNotificationUrlPath($notificationUrlPath)
-    ->isWebhookNotificationVerified();
-// Returns boolean
-```
 
 ---
 
 ## Subscription API
 
 ```php
-// Create subscription (credit card)
-$param = [
-    'name' => 'MONTHLY_2021',
-    'amount' => '14000',
-    'currency' => 'IDR',
-    'payment_type' => 'credit_card',
-    'token' => 'SAVED_CARD_TOKEN_ID',
-    'schedule' => [
-        'interval' => 1,
-        'interval_unit' => 'month',
-        'max_interval' => 12,
-        'start_time' => '2025-11-25 07:25:01 +0700',
-    ],
-    'metadata' => ['description' => 'Recurring payment'],
-    'customer_details' => [
-        'first_name' => 'John', 'last_name' => 'Doe',
-        'email' => 'john@example.com', 'phone' => '+62812345678',
-    ],
-];
-
 $response = \Midtrans\CoreApi::createSubscription($param);
 $response = \Midtrans\CoreApi::getSubscription($subscriptionId);
 $response = \Midtrans\CoreApi::disableSubscription($subscriptionId);
@@ -454,19 +238,11 @@ $response = \Midtrans\CoreApi::enableSubscription($subscriptionId);
 $response = \Midtrans\CoreApi::updateSubscription($subscriptionId, $updateParam);
 ```
 
+See the [Node.js examples](../midtrans-nodejs/examples/iris-subscription-tokenization.md) for the full parameter structure (API shape is identical across SDKs).
+
 ## Tokenization API (Gopay)
 
 ```php
-// Link gopay account
-$param = [
-    'payment_type' => 'gopay',
-    'gopay_partner' => [
-        'phone_number' => '81234567891',
-        'country_code' => '62',
-        'redirect_url' => 'https://mysite.com/gopay-callback',
-    ],
-];
-
 $response = \Midtrans\CoreApi::linkPaymentAccount($param);
 $response = \Midtrans\CoreApi::getPaymentAccount($accountId);
 $response = \Midtrans\CoreApi::unlinkPaymentAccount($accountId);
@@ -558,38 +334,24 @@ The exception message contains the API response body for debugging.
 
 ## Advanced
 
-### Override/Append Notification URL
-
 ```php
+// Override/Append Notification URL (max 3 URLs each; if both set, only override is used)
 \Midtrans\Config::$overrideNotifUrl = 'https://example.com/test1,https://example.com/test2';
 \Midtrans\Config::$appendNotifUrl = 'https://example.com/test1';
-// Max 3 URLs each. If both set, only $overrideNotifUrl is used.
-```
 
-### Idempotency Key (Retry Safety)
-
-```php
+// Idempotency Key (Retry Safety)
 \Midtrans\Config::$paymentIdempotencyKey = 'Unique-ID';
-```
 
-### Custom cURL Options
-
-```php
+// Custom cURL Options
 \Midtrans\Config::$curlOptions = [
     CURLOPT_CONNECTTIMEOUT => 30,
     CURLOPT_TIMEOUT => 60,
     CURLOPT_HTTPHEADER => ['X-Custom: value'],
 ];
-```
 
-### Sanitizer
-
-```php
+// Sanitizer
 \Midtrans\Config::$isSanitized = true;
-// Automatically validates and modifies charge params:
-// - Trims strings
-// - Converts to proper types
-// - Validates required fields
+// Automatically validates and modifies charge params: trims strings, converts types, validates required fields
 ```
 
 ---
@@ -599,7 +361,7 @@ The exception message contains the API response body for debugging.
 - **Static properties**: Config is global. Changing `$serverKey` mid-request affects all subsequent calls.
 - **PHP 5.4+ required**: The library checks PHP version on load.
 - **ext-curl, ext-json, ext-openssl required**: These PHP extensions must be enabled.
-- **`Snap::getSnapToken()` auto-calculates gross_amount**: When `item_details` present, `quantity × price` sum overrides `transaction_details.gross_amount`.
+- **`Snap::getSnapToken()` auto-calculates gross_amount**: When `item_details` present, `quantity x price` sum overrides `transaction_details.gross_amount`.
 - **Core API `cardRegister`/`cardToken` use `clientKey` auth**: Not `serverKey`. The SDK handles this - pass `Config::$clientKey` properly.
 - **Notification endpoint must respond with HTTP 200**: Otherwise Midtrans will retry.
 - **Only IDR supported** for most payment methods.
@@ -615,3 +377,4 @@ The exception message contains the API response body for debugging.
 - [API Endpoints Reference](references/api-endpoints.md) - full endpoint catalog
 - [SnapBi Parameters & Signatures](references/snap-bi-params.md) - signature flow, header details, notification verification
 - [Gotchas & Edge Cases](references/gotchas.md) - detailed pitfalls and solutions
+- [SnapBi Payment Examples](examples/snapbi-payments.md) - Direct Debit, VA, Qris, Cancel, Refund, Webhook code

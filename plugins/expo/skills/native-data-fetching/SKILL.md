@@ -498,14 +498,7 @@ User: "My app needs to work offline"
 User: "How do I handle authentication tokens?"
 -> Store in expo-secure-store, implement refresh flow
 
-User: "API calls are slow"
--> Check caching strategy, use React Query staleTime
-
-User: "How do I configure different API URLs for dev and prod?"
--> Use EXPO*PUBLIC* env vars with .env.development and .env.production files
-
-User: "Where should I put my API key?"
--> Client-safe keys: EXPO*PUBLIC* in .env. Secret keys: non-prefixed env vars in API routes only
-
-User: "How do I load data for a page in Expo Router?"
--> See references/expo-router-loaders.md for route-level loaders (web, SDK 55+). For native, use React Query or fetch.
+User: "API calls are slow" -> Check caching strategy, use React Query staleTime.
+User: "How do I configure different API URLs for dev and prod?" -> Use EXPO_PUBLIC env vars with .env files.
+User: "Where should I put my API key?" -> Client-safe: EXPO_PUBLIC in .env. Secrets: API routes only.
+User: "How do I load data for a page?" -> See references/expo-router-loaders.md.

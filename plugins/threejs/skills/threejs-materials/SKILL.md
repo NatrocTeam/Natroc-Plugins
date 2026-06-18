@@ -500,21 +500,4 @@ material.needsUpdate = true; // Only needed for some changes
 
 ```javascript
 // Material pooling
-const materialCache = new Map();
-function getMaterial(color) {
-  const key = color.toString(16);
-  if (!materialCache.has(key)) {
-    materialCache.set(key, new THREE.MeshStandardMaterial({ color }));
-  }
-  return materialCache.get(key);
-}
-
-// Dispose when done
-material.dispose();
 ```
-
-## See Also
-
-- `threejs-textures` - Texture loading and configuration
-- `threejs-shaders` - Custom shader development
-- `threejs-lighting` - Light interaction with materials

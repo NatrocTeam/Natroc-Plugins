@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "human-context-writer",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Guide agents through context intake, AI-writing pattern audit, voice matching, and natural rewrites that preserve the user's intent.",
       "author": {
         "name": "PT Kelana Tech Solutions"
@@ -170,7 +170,7 @@
     },
     {
       "name": "plugin-dev-claude",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Toolkit for building Claude Code plugins, with skills for creating agents, commands, hooks, MCP integrations, and plugin structure.",
       "author": {
         "name": "PT Kelana Tech Solutions"
@@ -393,7 +393,7 @@
     },
     {
       "name": "midtrans",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "A plugin for interacting with the Midtrans payment gateway.",
       "author": {
         "name": "PT Kelana Tech Solutions"
@@ -435,6 +435,54 @@
       ],
       "category": "development",
       "source": "./plugins/xquik"
+    },
+    {
+      "name": "threejs",
+      "version": "1.1.0",
+      "description": "Three.js 3D graphics guidance for scenes, geometry, materials, shaders, lighting, animation, interaction, loaders, textures, and post-processing.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://threejs.org/",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/threejs",
+      "license": "MIT",
+      "keywords": [
+        "threejs",
+        "three.js",
+        "3d",
+        "webgl",
+        "webgpu",
+        "graphics",
+        "animation",
+        "shaders",
+        "materials",
+        "geometry"
+      ],
+      "category": "development",
+      "source": "./plugins/threejs"
+    },
+    {
+      "name": "supabase",
+      "version": "1.0.0",
+      "description": "Supabase guidance - Database, Auth, Edge Functions, Realtime, Storage, Vectors, and CLI.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://supabase.com/docs",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/supabase",
+      "license": "MIT",
+      "keywords": [
+        "supabase",
+        "database",
+        "auth",
+        "edge-functions",
+        "realtime",
+        "storage",
+        "vectors",
+        "postgres"
+      ],
+      "category": "development",
+      "source": "./plugins/supabase"
     }
   ]
 }

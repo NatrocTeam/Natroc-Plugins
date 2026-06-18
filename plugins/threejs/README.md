@@ -5,7 +5,7 @@ graphics development on the web.
 
 Agents use this plugin for scene setup, geometry creation, material authoring,
 shader programming, lighting, animation, user interaction, model loading,
-texture management, and post-processing — all grounded against the official
+texture management, and post-processing - all grounded against the official
 Three.js documentation and API reference.
 
 ## What It Includes
@@ -37,7 +37,7 @@ Agents using this plugin should:
 2. Use the official Three.js docs (`https://threejs.org/docs/`) as source truth.
 3. Prefer `MeshStandardMaterial` or `MeshPhysicalMaterial` for realistic rendering.
 4. Prefer `glTF` (`.glb`/`.gltf`) as the recommended 3D model format.
-5. Keep shaders minimal — use built-in materials when possible.
+5. Keep shaders minimal - use built-in materials when possible.
 6. Never invent API methods, parameters, or behavior that do not exist in the official Three.js source.
 7. Verify generated code examples match the Three.js version the user's project uses.
 

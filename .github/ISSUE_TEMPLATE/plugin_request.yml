@@ -1,6 +1,6 @@
 name: Plugin request
 description: Request a new plugin for the Natroc-Plugins marketplace.
-title: "plugin: add "
+title: "PR Title"
 labels: ["plugin-request"]
 
 body:

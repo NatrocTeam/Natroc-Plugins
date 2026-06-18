@@ -12,14 +12,19 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: prettier-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   prettier:
     name: Check formatting
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6

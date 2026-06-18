@@ -89,52 +89,6 @@ bloomPass.threshold = 0.5;
 bloomPass.radius = 0.8;
 ```
 
-### Selective Bloom
-
-Apply bloom only to specific objects.
-
-```javascript
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-
-// Layer setup
-const BLOOM_LAYER = 1;
-const bloomLayer = new THREE.Layers();
-bloomLayer.set(BLOOM_LAYER);
-
-// Mark objects to bloom
-glowingMesh.layers.enable(BLOOM_LAYER);
-
-// Dark material for non-blooming objects
-const darkMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-const materials = {};
-
-function darkenNonBloomed(obj) {
-  if (obj.isMesh && !bloomLayer.test(obj.layers)) {
-    materials[obj.uuid] = obj.material;
-    obj.material = darkMaterial;
-  }
-}
-
-function restoreMaterial(obj) {
-  if (materials[obj.uuid]) {
-    obj.material = materials[obj.uuid];
-    delete materials[obj.uuid];
-  }
-}
-
-// Custom render loop
-function render() {
-  // Render bloom pass
-  scene.traverse(darkenNonBloomed);
-  composer.render();
-  scene.traverse(restoreMaterial);
-
-  // Render final scene over bloom
-  renderer.render(scene, camera);
-}
-```
-
 ### FXAA (Anti-Aliasing)
 
 ```javascript
@@ -197,38 +151,6 @@ ssaoPass.output = SSAOPass.OUTPUT.Default;
 // SSAOPass.OUTPUT.Normal - Normal buffer
 ```
 
-### Depth of Field (DOF)
-
-```javascript
-import { BokehPass } from "three/addons/postprocessing/BokehPass.js";
-
-const bokehPass = new BokehPass(scene, camera, {
-  focus: 10.0, // Focus distance
-  aperture: 0.025, // Aperture (smaller = more DOF)
-  maxblur: 0.01, // Max blur amount
-});
-
-composer.addPass(bokehPass);
-
-// Update focus dynamically
-bokehPass.uniforms["focus"].value = distanceToTarget;
-```
-
-### Film Grain
-
-```javascript
-import { FilmPass } from "three/addons/postprocessing/FilmPass.js";
-
-const filmPass = new FilmPass(
-  0.35, // noise intensity
-  0.5, // scanline intensity
-  648, // scanline count
-  false, // grayscale
-);
-
-composer.addPass(filmPass);
-```
-
 ### Vignette
 
 ```javascript
@@ -270,39 +192,7 @@ composer.addPass(gammaPass);
 import { RenderPixelatedPass } from "three/addons/postprocessing/RenderPixelatedPass.js";
 
 const pixelPass = new RenderPixelatedPass(6, scene, camera); // 6 = pixel size
-
 composer.addPass(pixelPass);
-```
-
-### Glitch Effect
-
-```javascript
-import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
-
-const glitchPass = new GlitchPass();
-glitchPass.goWild = false; // Continuous glitching
-
-composer.addPass(glitchPass);
-```
-
-### Halftone
-
-```javascript
-import { HalftonePass } from "three/addons/postprocessing/HalftonePass.js";
-
-const halftonePass = new HalftonePass(window.innerWidth, window.innerHeight, {
-  shape: 1, // 1 = dot, 2 = ellipse, 3 = line, 4 = square
-  radius: 4, // Dot size
-  rotateR: Math.PI / 12,
-  rotateB: (Math.PI / 12) * 2,
-  rotateG: (Math.PI / 12) * 3,
-  scatter: 0,
-  blending: 1,
-  blendingMode: 1,
-  greyscale: false,
-});
-
-composer.addPass(halftonePass);
 ```
 
 ### Outline
@@ -329,111 +219,11 @@ outlinePass.selectedObjects = [mesh1, mesh2];
 composer.addPass(outlinePass);
 ```
 
+**Additional effects**: Selective Bloom, Depth of Field, Film Grain, Glitch, Halftone, and Multi-Pass Rendering -- see [examples/effects-gallery.md](examples/effects-gallery.md).
+
 ## Custom ShaderPass
 
-Create your own post-processing effects.
-
-```javascript
-import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-
-const CustomShader = {
-  uniforms: {
-    tDiffuse: { value: null }, // Required: input texture
-    time: { value: 0 },
-    intensity: { value: 1.0 },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tDiffuse;
-    uniform float time;
-    uniform float intensity;
-    varying vec2 vUv;
-
-    void main() {
-      vec2 uv = vUv;
-
-      // Wave distortion
-      uv.x += sin(uv.y * 10.0 + time) * 0.01 * intensity;
-
-      vec4 color = texture2D(tDiffuse, uv);
-      gl_FragColor = color;
-    }
-  `,
-};
-
-const customPass = new ShaderPass(CustomShader);
-composer.addPass(customPass);
-
-// Update in animation loop
-customPass.uniforms.time.value = clock.getElapsedTime();
-```
-
-### Invert Colors Shader
-
-```javascript
-const InvertShader = {
-  uniforms: {
-    tDiffuse: { value: null },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tDiffuse;
-    varying vec2 vUv;
-
-    void main() {
-      vec4 color = texture2D(tDiffuse, vUv);
-      gl_FragColor = vec4(1.0 - color.rgb, color.a);
-    }
-  `,
-};
-```
-
-### Chromatic Aberration
-
-```javascript
-const ChromaticAberrationShader = {
-  uniforms: {
-    tDiffuse: { value: null },
-    amount: { value: 0.005 },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tDiffuse;
-    uniform float amount;
-    varying vec2 vUv;
-
-    void main() {
-      vec2 dir = vUv - 0.5;
-      float dist = length(dir);
-
-      float r = texture2D(tDiffuse, vUv - dir * amount * dist).r;
-      float g = texture2D(tDiffuse, vUv).g;
-      float b = texture2D(tDiffuse, vUv + dir * amount * dist).b;
-
-      gl_FragColor = vec4(r, g, b, 1.0);
-    }
-  `,
-};
-```
+Create your own post-processing effects using `ShaderPass`. Requires a shader object with `tDiffuse` uniform, `vertexShader`, and `fragmentShader`. See [examples/custom-shaders.md](examples/custom-shaders.md) for wave distortion, invert colors, chromatic aberration, and WebGPU examples.
 
 ## Combining Multiple Effects
 
@@ -481,61 +271,14 @@ composer.addPass(fxaaPass);
 ## Render to Texture
 
 ```javascript
-// Create render target
 const renderTarget = new THREE.WebGLRenderTarget(512, 512);
 
-// Render scene to target
 renderer.setRenderTarget(renderTarget);
 renderer.render(scene, camera);
 renderer.setRenderTarget(null);
 
-// Use texture
 const texture = renderTarget.texture;
 otherMaterial.map = texture;
-```
-
-## Multi-Pass Rendering
-
-```javascript
-// Multiple composers for different scenes/layers
-const bgComposer = new EffectComposer(renderer);
-bgComposer.addPass(new RenderPass(bgScene, camera));
-
-const fgComposer = new EffectComposer(renderer);
-fgComposer.addPass(new RenderPass(fgScene, camera));
-fgComposer.addPass(bloomPass);
-
-// Combine in render loop
-function animate() {
-  // Render background without clearing
-  renderer.autoClear = false;
-  renderer.clear();
-
-  bgComposer.render();
-
-  // Render foreground over it
-  renderer.clearDepth();
-  fgComposer.render();
-}
-```
-
-## WebGPU Post-Processing (Three.js r150+)
-
-```javascript
-import { postProcessing } from "three/addons/nodes/Nodes.js";
-import { pass, bloom, dof } from "three/addons/nodes/Nodes.js";
-
-// Using node-based system
-const scenePass = pass(scene, camera);
-const bloomNode = bloom(scenePass, 0.5, 0.4, 0.85);
-
-const postProcessing = new THREE.PostProcessing(renderer);
-postProcessing.outputNode = bloomNode;
-
-// Render
-function animate() {
-  postProcessing.render();
-}
 ```
 
 ## Performance Tips
@@ -600,3 +343,5 @@ window.addEventListener("resize", onWindowResize);
 - `threejs-shaders` - Custom shader development
 - `threejs-textures` - Render targets
 - `threejs-fundamentals` - Renderer setup
+- [Effects Gallery](examples/effects-gallery.md) - Selective Bloom, DOF, Film, Glitch, Halftone, Multi-pass
+- [Custom Shader Examples](examples/custom-shaders.md) - Wave, Invert, Chromatic Aberration, WebGPU

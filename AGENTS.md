@@ -183,7 +183,7 @@ Categories describe **what domain the plugin serves**, not what technology it us
 - A Midtrans plugin **MUST** use `finance`, **NOT** `payments` or `midtrans`.
 - A Docker plugin **MUST** use `devops`, **NOT** `containerization`.
 
-Framework, language, library, and tool names are `keywords` — they **MUST NOT** be used as categories.
+Framework, language, library, and tool names are `keywords` - they **MUST NOT** be used as categories.
 
 **Mandatory rules:**
 
@@ -283,7 +283,7 @@ Assets should:
 When editing documentation, you **MUST**:
 
 1. Keep instructions concise and actionable.
-2. Use exact file paths — never approximate paths.
+2. Use exact file paths - never approximate paths.
 3. Use valid commands that actually exist in `package.json` scripts.
 4. Keep installation instructions consistent across plugin READMEs.
 5. Update documentation when behavior or metadata changes.
@@ -309,7 +309,7 @@ When editing marketplace metadata, you **MUST**:
 
 **MUST NOT** change versions unless the task is specifically about versioning, release preparation, or marketplace synchronization.
 
-**MUST** use the bump scripts — **MUST NOT** edit version fields by hand unless the bump script cannot run:
+**MUST** use the bump scripts - **MUST NOT** edit version fields by hand unless the bump script cannot run:
 
 ```bash
 pnpm run bump          # interactive mode
@@ -426,7 +426,7 @@ https://github.com/NatrocTeam/Natroc-Plugins/security/advisories/new
 
 If the correct change is unclear, you **MUST**:
 
-1. Inspect the relevant files first — never guess.
+1. Inspect the relevant files first - never guess.
 2. Make the smallest safe change that addresses the problem.
 3. Preserve existing behavior unless explicitly asked to change it.
 4. Leave a note explaining the uncertainty and what was decided.

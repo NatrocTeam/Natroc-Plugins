@@ -12,7 +12,7 @@ const color = (text, ...codes) =>
 
 const styles = {
   bold: "1",
-  dim: "2",
+  blue: "96",
   red: "31",
   green: "32",
   yellow: "33",
@@ -811,6 +811,38 @@ function validateSkillAgents(pluginName, skillPath) {
   }
 }
 
+function getSkillBody(pluginName, filePath) {
+  const text = readText(pluginName, filePath, "SKILL.md");
+  if (text === null) {
+    return null;
+  }
+
+  const normalized = text.replace(/^﻿/, "");
+  const lines = normalized.split(/\r?\n/);
+
+  if (lines[0] !== "---") {
+    return null;
+  }
+
+  // Find second --- to locate end of frontmatter
+  const endIndex = lines.slice(1).findIndex((line) => line.trim() === "---");
+  if (endIndex === -1) {
+    return null;
+  }
+
+  // Body starts after the second ---
+  const bodyStart = endIndex + 2;
+  const bodyLines = lines.slice(bodyStart);
+  const body = bodyLines.join("\n");
+
+  return { lines: bodyLines, text: body };
+}
+
+function estimateTokens(text) {
+  // Rough estimate: ~4 characters per token for English text
+  return Math.ceil(text.length / 4);
+}
+
 function validateSkill(pluginName, skillPath, skillName) {
   checkedSkills += 1;
 
@@ -838,6 +870,101 @@ function validateSkill(pluginName, skillPath, skillName) {
         skillMdPath,
         "SKILL.md frontmatter name must match the skill folder name.",
         `Set the frontmatter name to "${skillName}" or rename the folder to match.`,
+      );
+    }
+
+    const rawDescription = parseFrontmatterValue(frontmatter, "description");
+
+    if (rawDescription === null || rawDescription === "") {
+      addIssue(
+        pluginName,
+        skillMdPath,
+        "SKILL.md frontmatter is missing a required description field.",
+        "Add a description to the YAML frontmatter.",
+      );
+    } else {
+      // Check description length (max 1024 characters)
+      if (rawDescription.length > 1024) {
+        addIssue(
+          pluginName,
+          skillMdPath,
+          `SKILL.md frontmatter description is ${rawDescription.length} characters (max 1024).`,
+          "Shorten the description to 1024 characters or fewer.",
+        );
+      }
+
+      // Check for colon in single-line description values
+      if (
+        rawDescription !== ">" &&
+        rawDescription !== "|" &&
+        rawDescription.includes(":")
+      ) {
+        addIssue(
+          pluginName,
+          skillMdPath,
+          "SKILL.md frontmatter description must not contain a colon.",
+          "Remove the colon from the description line, or wrap the value in quotes.",
+        );
+      }
+
+      // Check folded multiline descriptions (lines after the > or | marker)
+      if (rawDescription === ">" || rawDescription === "|") {
+        const lines = frontmatter.split(/\r?\n/);
+        const descIndex = lines.findIndex((l) => /^description:/.test(l));
+        if (descIndex !== -1) {
+          // Collect only the description block lines (indented, until next key or ---)
+          const multilineLines = [];
+          for (let i = descIndex + 1; i < lines.length; i++) {
+            const line = lines[i];
+            if (/^[A-Za-z0-9_-]+:\s*/.test(line) || line.trim() === "---") {
+              break;
+            }
+            multilineLines.push(line);
+          }
+          const multilineContent = multilineLines.join("\n").trim();
+          if (multilineContent.includes(":")) {
+            addIssue(
+              pluginName,
+              skillMdPath,
+              "SKILL.md frontmatter description must not contain a colon.",
+              "Remove the colon from the multiline description, or wrap the value in quotes.",
+            );
+          }
+          if (multilineContent.length > 1024) {
+            addIssue(
+              pluginName,
+              skillMdPath,
+              `SKILL.md frontmatter multiline description is ${multilineContent.length} characters (max 1024).`,
+              "Shorten the multiline description to 1024 characters or fewer.",
+            );
+          }
+        }
+      }
+    }
+  }
+
+  // Validate skill body (content after frontmatter)
+  const body = getSkillBody(pluginName, skillMdPath);
+  if (body !== null) {
+    const lineCount = body.lines.length;
+    if (lineCount > 500) {
+      const excess = lineCount - 500;
+      addIssue(
+        pluginName,
+        skillMdPath,
+        `SKILL.md body is ${lineCount} lines (max 500 lines) - ${excess} lines over the limit.`,
+        `Move the ${excess} excess lines to references/, examples/, or scripts/ under the skill folder. Keep only core workflow and guardrails in SKILL.md.`,
+      );
+    }
+
+    const tokenCount = estimateTokens(body.text);
+    if (tokenCount > 5000) {
+      const excess = tokenCount - 5000;
+      addIssue(
+        pluginName,
+        skillMdPath,
+        `SKILL.md body is approximately ${tokenCount} tokens (max 5000 tokens) - ~${excess} tokens over the limit.`,
+        `Move code examples to examples/, API references to references/, and utility logic to scripts/ under the skill folder. Target: trim ~${excess} tokens.`,
       );
     }
   }
@@ -888,13 +1015,82 @@ function validateSkills(pluginName, pluginPath) {
   }
 }
 
-function validatePlugin(pluginName, pluginPath) {
+function validateAppJson(pluginName, pluginPath, codexManifest) {
+  const appJsonPath = path.join(pluginPath, ".app.json");
+
+  if (!exists(appJsonPath)) {
+    return;
+  }
+
+  if (!fs.statSync(appJsonPath).isFile()) {
+    addIssue(
+      pluginName,
+      appJsonPath,
+      ".app.json must be a file.",
+      "Replace .app.json with a regular JSON file.",
+    );
+    return;
+  }
+
+  // Validate .app.json is valid JSON
+  readJson(pluginName, appJsonPath, ".app.json");
+
+  // Must be referenced in .codex-plugin/plugin.json
+  if (codexManifest === null) {
+    addIssue(
+      pluginName,
+      appJsonPath,
+      ".app.json exists but .codex-plugin/plugin.json is missing or invalid.",
+      'Add an "apps" field to .codex-plugin/plugin.json pointing to ./.app.json.',
+    );
+    return;
+  }
+
+  if (typeof codexManifest.apps !== "string") {
+    addIssue(
+      pluginName,
+      path.join(pluginPath, ".codex-plugin", "plugin.json"),
+      '.app.json exists but codex manifest is missing the "apps" field.',
+      'Add "apps": "./.app.json" to .codex-plugin/plugin.json.',
+    );
+    return;
+  }
+
+  if (!codexManifest.apps.startsWith("./")) {
+    addIssue(
+      pluginName,
+      path.join(pluginPath, ".codex-plugin", "plugin.json"),
+      `Codex manifest "apps" must start with "./" (got "${codexManifest.apps}").`,
+      'Change the "apps" value to start with "./".',
+    );
+    return;
+  }
+
+  const expectedAppPath = path.join(pluginPath, codexManifest.apps.slice(2));
+  if (!exists(expectedAppPath)) {
+    addIssue(
+      pluginName,
+      path.join(pluginPath, ".codex-plugin", "plugin.json"),
+      `Codex manifest "apps" points to "${codexManifest.apps}" but the file does not exist.`,
+      'Fix the "apps" path to point to the correct .app.json file.',
+    );
+  }
+}
+
+function validatePlugin(
+  pluginName,
+  pluginPath,
+  claudeMarketplace,
+  codexMarketplace,
+) {
   checkedPlugins += 1;
 
   validatePluginRootEntries(pluginName, pluginPath);
   validateReadme(pluginName, pluginPath);
   validateOptionalJsonFile(pluginName, pluginPath, ".app.json", ".app.json");
   validateOptionalJsonFile(pluginName, pluginPath, ".mcp.json", ".mcp.json");
+
+  validateMarketplaceCoverage(pluginName, claudeMarketplace, codexMarketplace);
 
   const claudeManifest = validateManifestDir(
     pluginName,
@@ -924,9 +1120,36 @@ function validatePlugin(pluginName, pluginPath) {
     );
   }
 
+  // Cross-check manifest version against Claude marketplace version
+  if (
+    claudeManifest !== null &&
+    typeof claudeManifest.version === "string" &&
+    claudeMarketplace !== null &&
+    Array.isArray(claudeMarketplace.plugins)
+  ) {
+    const marketplaceEntry = claudeMarketplace.plugins.find(
+      (p) => p && p.name === pluginName,
+    );
+
+    if (
+      marketplaceEntry &&
+      typeof marketplaceEntry.version === "string" &&
+      marketplaceEntry.version !== claudeManifest.version
+    ) {
+      addIssue(
+        pluginName,
+        path.join(pluginPath, ".claude-plugin", "plugin.json"),
+        `Claude manifest version (${claudeManifest.version}) must match marketplace version (${marketplaceEntry.version}).`,
+        `Set both versions to the same value in .claude-plugin/plugin.json and .claude-plugin/marketplace.json.`,
+      );
+    }
+  }
+
   if (codexManifest !== null) {
     validateCodexManifestCategory(pluginName, pluginPath, codexManifest);
   }
+
+  validateAppJson(pluginName, pluginPath, codexManifest);
 
   validateRootAgents(pluginName, pluginPath);
   validateCommands(pluginName, pluginPath);
@@ -939,7 +1162,10 @@ function printHeader() {
   console.log("");
   console.log(color(" natroc-plugins · verify", styles.bold, styles.cyan));
   console.log(
-    color(" ─────────────────────────────────────────────────────", styles.dim),
+    color(
+      " ─────────────────────────────────────────────────────",
+      styles.blue,
+    ),
   );
 }
 
@@ -977,7 +1203,7 @@ function printIssues() {
   console.log("");
   console.log(
     color(
-      ` ${checkedPlugins} ${pluginWord}, ${checkedSkills} ${skillWord} — ${issues.length} ${issueWord} found`,
+      ` ${checkedPlugins} ${pluginWord}, ${checkedSkills} ${skillWord} - ${issues.length} ${issueWord} found`,
       styles.bold,
     ),
   );
@@ -997,22 +1223,22 @@ function printIssues() {
     pluginIssues.forEach((issue, index) => {
       const num = String(index + 1).padStart(2, " ");
       console.log(color(`   ${num}. ${issue.problem}`, styles.red));
-      console.log(color(`       path  ${issue.path}`, styles.dim));
-      console.log(color(`       fix   ${issue.fix}`, styles.dim));
+      console.log(color(`       path  ${issue.path}`, styles.blue));
+      console.log(color(`       fix   ${issue.fix}`, styles.blue));
     });
 
     console.log("");
   }
 
   console.log(color(" Actions", styles.bold, styles.cyan));
-  console.log(color("   1. Fix each item listed above.", styles.dim));
+  console.log(color("   1. Fix each item listed above.", styles.blue));
   console.log(
     color(
       "   2. If intentional, document it in rules/verify.md first.",
-      styles.dim,
+      styles.blue,
     ),
   );
-  console.log(color("   3. Run pnpm run verify-plugins again.", styles.dim));
+  console.log(color("   3. Run pnpm run verify-plugins again.", styles.blue));
   console.log("");
 }
 
@@ -1064,16 +1290,22 @@ function validateMarketplaceFiles() {
     "marketplace.json",
   );
 
+  let claudeMarketplace = null;
+  let codexMarketplace = null;
+
   // Validate .claude-plugin/marketplace.json
   if (exists(claudeMarketplacePath)) {
-    const marketplace = readJson(
+    claudeMarketplace = readJson(
       "marketplace",
       claudeMarketplacePath,
       "Claude marketplace",
     );
 
-    if (marketplace !== null && Array.isArray(marketplace.plugins)) {
-      for (const plugin of marketplace.plugins) {
+    if (
+      claudeMarketplace !== null &&
+      Array.isArray(claudeMarketplace.plugins)
+    ) {
+      for (const plugin of claudeMarketplace.plugins) {
         if (!plugin || !plugin.name) {
           continue;
         }
@@ -1086,6 +1318,16 @@ function validateMarketplaceFiles() {
           `Claude marketplace entry "${plugin.name}"`,
         );
       }
+    } else if (
+      claudeMarketplace !== null &&
+      !Array.isArray(claudeMarketplace.plugins)
+    ) {
+      addIssue(
+        "marketplace",
+        claudeMarketplacePath,
+        "Claude marketplace is missing a valid plugins array.",
+        "Add a plugins array to .claude-plugin/marketplace.json.",
+      );
     }
   } else {
     addIssue(
@@ -1098,14 +1340,14 @@ function validateMarketplaceFiles() {
 
   // Validate .agents/plugins/marketplace.json
   if (exists(codexMarketplacePath)) {
-    const marketplace = readJson(
+    codexMarketplace = readJson(
       "marketplace",
       codexMarketplacePath,
       "Codex marketplace",
     );
 
-    if (marketplace !== null && Array.isArray(marketplace)) {
-      for (const plugin of marketplace) {
+    if (codexMarketplace !== null && Array.isArray(codexMarketplace.plugins)) {
+      for (const plugin of codexMarketplace.plugins) {
         if (!plugin || !plugin.name) {
           continue;
         }
@@ -1118,6 +1360,16 @@ function validateMarketplaceFiles() {
           `Codex marketplace entry "${plugin.name}"`,
         );
       }
+    } else if (
+      codexMarketplace !== null &&
+      !Array.isArray(codexMarketplace.plugins)
+    ) {
+      addIssue(
+        "marketplace",
+        codexMarketplacePath,
+        "Codex marketplace is missing a valid plugins array.",
+        "Add a plugins array to .agents/plugins/marketplace.json.",
+      );
     }
   } else {
     addIssue(
@@ -1126,6 +1378,46 @@ function validateMarketplaceFiles() {
       "Missing .agents/plugins/marketplace.json.",
       "Create the Codex marketplace file with a plugins array.",
     );
+  }
+
+  // Return both marketplaces for reverse lookup
+  return { claude: claudeMarketplace, codex: codexMarketplace };
+}
+
+function validateMarketplaceCoverage(
+  pluginName,
+  claudeMarketplace,
+  codexMarketplace,
+) {
+  const claudePath = ".claude-plugin/marketplace.json";
+  const codexPath = ".agents/plugins/marketplace.json";
+
+  if (claudeMarketplace !== null && Array.isArray(claudeMarketplace.plugins)) {
+    const found = claudeMarketplace.plugins.some(
+      (p) => p && p.name === pluginName,
+    );
+    if (!found) {
+      addIssue(
+        pluginName,
+        claudePath,
+        `Plugin "${pluginName}" is not listed in Claude marketplace.`,
+        `Add an entry for "${pluginName}" to ${claudePath}.`,
+      );
+    }
+  }
+
+  if (codexMarketplace !== null && Array.isArray(codexMarketplace.plugins)) {
+    const found = codexMarketplace.plugins.some(
+      (p) => p && p.name === pluginName,
+    );
+    if (!found) {
+      addIssue(
+        pluginName,
+        codexPath,
+        `Plugin "${pluginName}" is not listed in Codex marketplace.`,
+        `Add an entry for "${pluginName}" to ${codexPath}.`,
+      );
+    }
   }
 }
 
@@ -1176,10 +1468,15 @@ function main() {
     return;
   }
 
-  validateMarketplaceFiles();
+  const marketplaces = validateMarketplaceFiles();
 
   for (const pluginEntry of pluginEntries) {
-    validatePlugin(pluginEntry.name, path.join(pluginsDir, pluginEntry.name));
+    validatePlugin(
+      pluginEntry.name,
+      path.join(pluginsDir, pluginEntry.name),
+      marketplaces.claude,
+      marketplaces.codex,
+    );
   }
 
   if (issues.length === 0) {

@@ -55,9 +55,9 @@ Every plugin needs a `category` from the allowed list in `rules/category.md`. Ca
 
 **Incorrect:**
 
-- `nextjs`, `react`, `typescript` — use `keywords` for these
-- `midtrans`, `stripe` — use `development` or `finance`
-- `developer-tools` — not in the allowed list, use `development`
+- `nextjs`, `react`, `typescript` - use `keywords` for these
+- `midtrans`, `stripe` - use `development` or `finance`
+- `developer-tools` - not in the allowed list, use `development`
 
 Use lowercase kebab-case in `.claude-plugin/marketplace.json` and Title Case in `.agents/plugins/marketplace.json` and `.codex-plugin/plugin.json`. The verifier checks this automatically.
 

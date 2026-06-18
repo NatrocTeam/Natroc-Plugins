@@ -6,11 +6,11 @@
 
 - **natroc-awareness**: Strengthen automatic plugin discovery and routing
   - Bump version to 2.1.0
-  - Expand SKILL.md routing workflow — agents MUST perform capability
+  - Expand SKILL.md routing workflow - agents MUST perform capability
     discovery before handling any user request, even without explicit
     plugin mentions
   - Add workflow agents, subagents, commands, connectors to routing scope
-  - Streamline hook scripts (`session-start`, `session-start-codex`) —
+  - Streamline hook scripts (`session-start`, `session-start-codex`) -
     reduce verbosity while maintaining routing table accuracy
 - **marketplace**: Sync natroc-awareness version to 2.1.0
 

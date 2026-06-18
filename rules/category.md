@@ -103,7 +103,7 @@ Does not have a `category` field. Categories only exist in marketplace entries.
 1. **Pick from this list only.** Unlisted categories are rejected during review.
 2. **One plugin, one category.** Pick the domain the plugin primarily serves.
 3. **Categories are domains, not technologies.** React, Docker, Stripe, WordPress
-   are not categories — they are `keywords`. Use the `keywords` field for those.
+   are not categories - they are `keywords`. Use the `keywords` field for those.
 4. **Match the casing per file.** See table above.
 5. **To add a new category,** open a PR against `rules/category.md` justifying why
    the new category is needed. The category must be broad enough to serve multiple

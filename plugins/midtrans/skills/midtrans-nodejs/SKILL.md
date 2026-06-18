@@ -54,14 +54,7 @@ snap.apiConfig.isProduction = false;
 snap.apiConfig.serverKey = "YOUR_SERVER_KEY";
 ```
 
-### Base URLs (automatic based on `isProduction`)
-
-| Product  | Sandbox                                        | Production                             |
-| -------- | ---------------------------------------------- | -------------------------------------- |
-| Core API | `https://api.sandbox.midtrans.com`             | `https://api.midtrans.com`             |
-| Snap     | `https://app.sandbox.midtrans.com/snap/v1`     | `https://app.midtrans.com/snap/v1`     |
-| Iris     | `https://app.sandbox.midtrans.com/iris/api/v1` | `https://app.midtrans.com/iris/api/v1` |
-| SnapBi   | `https://merchants.sbx.midtrans.com`           | `https://merchants.midtrans.com`       |
+Base URLs are set automatically based on `isProduction`. See [references/base-urls.md](references/base-urls.md).
 
 ## Product Decision Guide
 
@@ -172,10 +165,7 @@ Core payment methods:
 | `cardToken(parameter)`      | `/v2/token`                   | GET  |
 | `cardPointInquiry(tokenId)` | `/v2/point_inquiry/{tokenId}` | GET  |
 
-Additional methods documented in later sections:
-
-- **Subscription**: `createSubscription()`, `getSubscription()`, `enableSubscription()`, `disableSubscription()`, `updateSubscription()`
-- **Tokenization**: `linkPaymentAccount()`, `getPaymentAccount()`, `unlinkPaymentAccount()`
+Additional methods: `createSubscription()`, `getSubscription()`, `enableSubscription()`, `disableSubscription()`, `updateSubscription()`, `linkPaymentAccount()`, `getPaymentAccount()`, `unlinkPaymentAccount()`.
 
 ### Credit Card Charge
 
@@ -230,208 +220,25 @@ midtransClient.SnapBi
   .<action>(externalId)             // createPayment, cancel, refund, getStatus
 ```
 
-### Direct Debit (Gopay/Dana/Shopeepay)
+All SnapBi config values can be overridden inline per-call via chain methods (withPrivateKey, withClientId, withClientSecret, withPartnerId, withChannelId, withDeviceId, withDebugId, withTimeout).
 
-```js
-const directDebitBody = {
-  partnerReferenceNo: externalId,
-  chargeToken: "",
-  merchantId: "YOUR_MERCHANT_ID",
-  urlParam: {
-    url: "https://your-site.com/notification",
-    type: "PAY_RETURN",
-    isDeeplink: "N",
-  },
-  validUpTo: "2030-07-20T20:34:15.452305Z",
-  payOptionDetails: [
-    {
-      payMethod: "GOPAY", // GOPAY, DANA, SHOPEEPAY
-      payOption: "GOPAY_WALLET",
-      transAmount: { value: "1500", currency: "IDR" },
-    },
-  ],
-  additionalInfo: {
-    customerDetails: {
-      firstName: "...",
-      lastName: "...",
-      email: "...",
-      phone: "...",
-    },
-    items: [
-      {
-        id: "1",
-        price: { value: "1500.00", currency: "IDR" },
-        quantity: 1,
-        name: "...",
-      },
-    ],
-  },
-};
+**Full code examples for Direct Debit, VA, Qris, Get Status/Cancel/Refund, Webhook Verification, and config override**: see [examples/snapbi-payments.md](examples/snapbi-payments.md).
 
-const result = await midtransClient.SnapBi.directDebit()
-  .withBody(directDebitBody)
-  .createPayment(externalId);
-```
-
-### VA (Bank Transfer)
-
-```js
-const vaBody = {
-  partnerServiceId: "    1234",
-  customerNo: "0000000000",
-  virtualAccountNo: "    12340000000000",
-  virtualAccountName: "Merchant Operation",
-  virtualAccountEmail: "merchant-ops@midtrans.com",
-  virtualAccountPhone: "6281932358123",
-  trxId: externalId,
-  totalAmount: { value: "1500.00", currency: "IDR" },
-  expiredDate: "2030-07-20T20:50:04Z",
-  additionalInfo: {
-    merchantId: "YOUR_MERCHANT_ID",
-    bank: "bca", // bca, mandiri, bni, bri, permata
-    flags: { shouldRandomizeVaNumber: true },
-    customerDetails: {
-      /* ... */
-    },
-    items: [
-      /* ... */
-    ],
-  },
-};
-
-const result = await midtransClient.SnapBi.va()
-  .withBody(vaBody)
-  .createPayment(externalId);
-```
-
-### Qris
-
-```js
-const qrisBody = {
-  partnerReferenceNo: externalId,
-  merchantId: "YOUR_MERCHANT_ID",
-  amount: { value: "1500.00", currency: "IDR" },
-  validityPeriod: "2030-07-03T12:08:56-07:00",
-  additionalInfo: {
-    acquirer: "gopay",
-    customerDetails: {
-      firstName: "...",
-      lastName: "...",
-      email: "...",
-      phone: "...",
-    },
-    items: [
-      /* ... */
-    ],
-    countryCode: "ID",
-    locale: "id_ID",
-  },
-};
-
-const result = await midtransClient.SnapBi.qris()
-  .withBody(qrisBody)
-  .createPayment(externalId);
-```
-
-### Get Status / Cancel / Refund
-
-```js
-// Get status
-await midtransClient.SnapBi.directDebit()
-  .withBody({ originalExternalId: "...", serviceCode: "54" })
-  .getStatus(externalId);
-
-// Cancel
-await midtransClient.SnapBi.directDebit()
-  .withBody({ originalReferenceNo: "A120240930..." })
-  .cancel(externalId);
-
-// Refund
-await midtransClient.SnapBi.directDebit()
-  .withBody({ originalReferenceNo: "A120240930...", reason: "refund reason" })
-  .refund(externalId);
-```
-
-### Reuse Access Token
-
-```js
-await midtransClient.SnapBi.directDebit()
-  .withBody(body)
-  .withAccessToken("saved-access-token")
-  .createPayment(externalId);
-```
-
-### Override Config Per-Call
-
-All SnapBi config values can be overridden inline via chain methods:
-
-```js
-await midtransClient.SnapBi.directDebit()
-  .withBody(body)
-  .withPrivateKey("-----BEGIN PRIVATE KEY-----\n...")
-  .withClientId("override-client-id")
-  .withClientSecret("override-client-secret")
-  .withPartnerId("override-partner-id")
-  .withChannelId("override-channel-id")
-  .withDeviceId("device-unique-id")
-  .withDebugId("debug-trace-id")
-  .withTimeout(15000) // ms, default 10000
-  .createPayment(externalId);
-```
-
-These override the static `SnapBiConfig` values for that specific call only.
-
-### Webhook Notification Verification
-
-```js
-const isVerified = midtransClient.SnapBi.notification()
-  .withNotificationPayload(notificationPayload) // JSON body from webhook
-  .withSignature(signature) // X-Signature header
-  .withTimeStamp(timeStamp) // X-Timestamp header
-  .withNotificationUrlPath("/v1.0/debit/notify") // webhook path
-  .isWebhookNotificationVerified();
-// Returns boolean
-```
-
-For full SnapBi request/response structures and signature generation details, see:
-
-- [references/snap-bi-params.md](references/snap-bi-params.md)
+For request/response structures and signature generation details, see [references/snap-bi-params.md](references/snap-bi-params.md).
 
 ---
 
 ## Iris Disbursement API
 
-Money disbursement to Indonesian bank accounts.
+Money disbursement to Indonesian bank accounts. See [examples/iris-subscription-tokenization.md](examples/iris-subscription-tokenization.md) for full methods table and code examples.
 
 ```js
 const iris = new midtransClient.Iris({
   isProduction: false,
   serverKey: "YOUR_API_KEY",
 });
-```
 
-### Methods
-
-| Method                                  | Description                    |
-| --------------------------------------- | ------------------------------ |
-| `ping()`                                | Health check                   |
-| `createBeneficiaries(param)`            | Register beneficiary account   |
-| `updateBeneficiaries(aliasName, param)` | Update beneficiary             |
-| `getBeneficiaries()`                    | List all beneficiaries         |
-| `createPayouts(param)`                  | Create payout                  |
-| `approvePayouts(param)`                 | Approve payout                 |
-| `rejectPayouts(param)`                  | Reject payout                  |
-| `getPayoutDetails(referenceNo)`         | Get payout status              |
-| `getTransactionHistory(param)`          | Statement/transaction history  |
-| `getTopupChannels()`                    | List top-up channels           |
-| `getBalance()`                          | Check Iris balance             |
-| `getFacilitatorBankAccounts()`          | List facilitator bank accounts |
-| `getFacilitatorBalance(bankAccountId)`  | Facilitator account balance    |
-| `getBeneficiaryBanks()`                 | List supported banks           |
-| `validateBankAccount(param)`            | Validate bank account number   |
-
-```js
-// Create beneficiary
+// Key operations:
 await iris.createBeneficiaries({
   name: "Budi Susanto",
   account: "0611101146",
@@ -439,15 +246,11 @@ await iris.createBeneficiaries({
   alias_name: "budisusantoo",
   email: "budi@example.com",
 });
-
-// Create payout
 await iris.createPayouts({
   payouts: [
     { beneficiary_name: "budisusantoo", amount: "100000", notes: "Payment" },
   ],
 });
-
-// Validate account
 await iris.validateBankAccount({ bank: "bca", account: "0611101146" });
 ```
 
@@ -455,31 +258,9 @@ await iris.validateBankAccount({ bank: "bca", account: "0611101146" });
 
 ## Subscription API
 
-Recurring payments using saved card tokens or linked gopay accounts.
+Recurring payments using saved card tokens or linked gopay accounts. See [examples/iris-subscription-tokenization.md](examples/iris-subscription-tokenization.md) for full parameter structure.
 
 ```js
-// Create subscription (credit card)
-const param = {
-  name: "MONTHLY_2021",
-  amount: "14000",
-  currency: "IDR",
-  payment_type: "credit_card",
-  token: "SAVED_CARD_TOKEN_ID", // from initial charge response
-  schedule: {
-    interval: 1,
-    interval_unit: "month",
-    max_interval: 12,
-    start_time: "2025-11-25 07:25:01 +0700",
-  },
-  metadata: { description: "Recurring payment for A" },
-  customer_details: {
-    first_name: "John",
-    last_name: "Doe",
-    email: "john@example.com",
-    phone: "+62812345678",
-  },
-};
-
 await coreApi.createSubscription(param);
 await coreApi.getSubscription(subscriptionId);
 await coreApi.enableSubscription(subscriptionId);
@@ -489,20 +270,10 @@ await coreApi.updateSubscription(subscriptionId, updateParam);
 
 ## Tokenization API
 
-Link/unlink gopay account for subscription/recurring use.
+Link/unlink gopay account for subscription/recurring use. See [examples/iris-subscription-tokenization.md](examples/iris-subscription-tokenization.md) for full examples.
 
 ```js
-// Link gopay account
-const param = {
-  payment_type: "gopay",
-  gopay_partner: {
-    phone_number: "81212345678",
-    country_code: "62",
-    redirect_url: "https://www.mysite.com/gopay-callback",
-  },
-};
-
-const linkResponse = await coreApi.linkPaymentAccount(param);
+await coreApi.linkPaymentAccount(param);
 await coreApi.getPaymentAccount(accountId);
 await coreApi.unlinkPaymentAccount(accountId);
 ```
@@ -608,19 +379,14 @@ snap
 
 ## Advanced
 
-### Custom HTTP Config
-
 ```js
+// Custom HTTP config
 snap.httpClient.http_client.defaults.timeout = 2500;
 snap.httpClient.http_client.defaults.headers.common["My-Header"] = "value";
-```
 
-### Override/Append Notification URL
-
-```js
+// Override/Append Notification URL
 snap.httpClient.http_client.defaults.headers.common["X-Override-Notification"] =
   "https://mysite.com/midtrans-notification-handler";
-
 snap.httpClient.http_client.defaults.headers.common["X-Append-Notification"] =
   "https://mysite.com/midtrans-notification-handler";
 ```
@@ -642,8 +408,8 @@ snap.httpClient.http_client.defaults.headers.common["X-Append-Notification"] =
 
 ## Reference Files
 
-For detailed API endpoint listings, SnapBi signature mechanics, and more edge cases, read on demand:
-
 - [API Endpoints Reference](references/api-endpoints.md) - full endpoint catalog
 - [SnapBi Parameters & Signatures](references/snap-bi-params.md) - signature flow, header details, notification verification
 - [Gotchas & Edge Cases](references/gotchas.md) - detailed pitfalls and solutions
+- [SnapBi Payment Examples](examples/snapbi-payments.md) - Direct Debit, VA, Qris, Cancel, Refund, Webhook code
+- [Iris, Subscription & Tokenization Examples](examples/iris-subscription-tokenization.md) - full API methods and usage

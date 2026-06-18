@@ -500,13 +500,4 @@ my-plugin/
 - Verify custom paths in manifest are correct
 - Restart Claude Code to reload plugin configuration
 
-**Conflicts between plugins**:
-
-- Use unique, descriptive component names
-- Namespace commands with plugin name if needed
-- Document potential conflicts in plugin README
-- Consider command prefixes for related functionality
-
----
-
-For detailed examples and advanced patterns, see files in `references/` and `examples/` directories.
+For detailed examples, advanced patterns, and conflict resolution between plugins, see `references/` and `examples/` directories.
