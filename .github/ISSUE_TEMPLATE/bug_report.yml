@@ -35,6 +35,7 @@ body:
         - label: react-typescript
         - label: stitch
         - label: typescript-lsp
+        - label: xquik
 
   - type: checkboxes
     id: affected-platforms

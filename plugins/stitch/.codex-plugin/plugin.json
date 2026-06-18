@@ -27,7 +27,7 @@
     "shortDescription": "Bridge AI agents to Google Stitch design platform via MCP.",
     "longDescription": "Stitch-MCP is an open-source STDIO bridge that connects AI coding agents (Claude Code, Codex, etc.) to the Google Stitch design platform. It exposes 14 native Stitch MCP tools plus 5 virtual SDK tools - project management, screen generation, design systems, asset upload/download, and more - all through a single `npx @natroc/stitch-mcp` command.",
     "developerName": "PT Kelana Tech Solutions",
-    "category": "Developer Tools",
+    "category": "Development",
     "capabilities": ["Read", "Interactive", "MCP Transport"],
     "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",

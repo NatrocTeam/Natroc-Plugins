@@ -27,14 +27,16 @@ Before making changes, read the relevant files in this order:
 
 1. `README.md`
 2. `CONTRIBUTING.md`
-3. `.claude-plugin/marketplace.json`
-4. `.agents/plugins/marketplace.json`
-5. The affected plugin README:
+3. `rules/category.md`
+4. `rules/verify.md`
+5. `.claude-plugin/marketplace.json`
+6. `.agents/plugins/marketplace.json`
+7. The affected plugin README:
    - `plugins/<plugin-name>/README.md`
-6. The affected plugin metadata:
+8. The affected plugin metadata:
    - `plugins/<plugin-name>/.claude-plugin/plugin.json`
    - `plugins/<plugin-name>/.codex-plugin/plugin.json`
-7. Any affected plugin folders:
+9. Any affected plugin folders:
    - `skills/`
    - `hooks/`
    - `agents/`
@@ -73,6 +75,7 @@ plugins/
 
 rules/
   verify.md
+  category.md
 
 scripts/
   verify-plugins.js
@@ -84,46 +87,47 @@ Not every plugin is required to contain every optional folder. Only add folders 
 
 ## General rules for AI assistants
 
-When working in this repository:
+These rules are **mandatory**. Violating any of them will cause the change to be rejected.
 
-1. Make small, focused changes.
-2. Do not rewrite large files unless necessary.
-3. Preserve the existing repository style and naming conventions.
-4. Prefer clear, deterministic instructions over vague guidance.
-5. Do not add model-specific behavior unless a platform-specific file requires it.
-6. Do not invent plugin capabilities.
-7. Do not invent unsupported metadata fields.
-8. Do not remove existing functionality unless explicitly requested.
-9. Do not update release versions unless the task is specifically about a release.
-10. Do not change marketplace metadata without checking the matching plugin metadata.
-11. Do not add generated files, build artifacts, caches, or local environment files.
-12. Do not include secrets, tokens, private keys, or credentials.
-13. Do not make claims in documentation that are not supported by the plugin files or official references.
+1. **MUST** make small, focused changes. Do not rewrite large files unless explicitly necessary.
+2. **MUST** preserve the existing repository style, naming conventions, and folder layout.
+3. **MUST** use clear, deterministic instructions. Do not write vague or ambiguous guidance.
+4. **MUST NOT** add model-specific behavior unless the file is explicitly platform-specific.
+5. **MUST NOT** invent plugin capabilities, endpoints, parameters, response fields, or pricing.
+6. **MUST NOT** add unsupported metadata fields. Only use fields documented in existing manifests.
+7. **MUST NOT** remove existing functionality unless explicitly requested by the user.
+8. **MUST NOT** change release versions unless the task is specifically about versioning.
+9. **MUST NOT** change marketplace metadata without verifying the matching plugin metadata.
+10. **MUST NOT** commit generated files, build artifacts, caches, lockfiles, or local environment files.
+11. **MUST NOT** commit secrets, tokens, private keys, passwords, or credentials.
+12. **MUST NOT** make claims in documentation that are not verifiable against plugin files or official references.
+13. **MUST** run `pnpm run verify-plugins` after any structural change to plugins, skills, hooks, or manifests.
+14. **MUST** run `pnpm run format:check` before finalizing changes. Fix formatting failures with `pnpm run format`.
 
 ## Model-agnostic writing rule
 
-This repository may be used by many different AI agents, tools, models, editors, CLIs, and runtimes.
+This repository is used by many different AI agents, tools, models, editors, CLIs, and runtimes.
 
-When writing documentation, skills, hooks, or agent instructions:
+When writing documentation, skills, hooks, or agent instructions, you **MUST**:
 
-- Use generic terms like `AI assistant`, `agent`, `coding agent`, or `runtime`.
-- Avoid naming a specific model unless the file is explicitly for a specific platform.
-- Avoid assuming a single vendor, editor, or runtime.
+- Use generic terms: `AI assistant`, `agent`, `coding agent`, or `runtime`.
+- **MUST NOT** name a specific model unless the file is explicitly platform-specific.
+- **MUST NOT** assume a single vendor, editor, or runtime.
 - Keep instructions portable across compatible AI coding tools.
 
-Acceptable:
+**Acceptable:**
 
 ```md
 The agent should inspect the relevant files before proposing changes.
 ```
 
-Avoid:
+**Rejected:**
 
 ```md
 Claude should inspect the relevant files before proposing changes.
 ```
 
-Acceptable when editing a platform-specific manifest:
+**Acceptable** when editing a platform-specific manifest:
 
 ```md
 This plugin supports Claude Code CLI.
@@ -131,7 +135,7 @@ This plugin supports Claude Code CLI.
 
 ## Plugin metadata rules
 
-When editing plugin metadata, keep these files consistent:
+You **MUST** keep these files consistent when editing any plugin metadata:
 
 ```txt
 .claude-plugin/marketplace.json
@@ -141,7 +145,7 @@ plugins/<plugin-name>/.codex-plugin/plugin.json
 plugins/<plugin-name>/README.md
 ```
 
-Check these fields carefully:
+You **MUST** verify these fields match across all affected files:
 
 - Plugin name
 - Display name
@@ -157,17 +161,39 @@ Check these fields carefully:
 - Command paths
 - Asset paths
 
-Repository URLs for plugin folders should point to valid GitHub tree paths:
+Repository URLs for plugin folders **MUST** point to valid GitHub tree paths:
 
 ```txt
 https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/<plugin-name>
 ```
 
-Do not use invalid folder URLs such as:
+**MUST NOT** use invalid folder URLs:
 
 ```txt
 https://github.com/NatrocTeam/Natroc-Plugins/plugins/<plugin-name>
 ```
+
+## Category rules
+
+Every plugin in the marketplace **MUST** have a `category`. The allowed list is defined in `rules/category.md`. **Any category outside this list will be rejected.**
+
+Categories describe **what domain the plugin serves**, not what technology it uses:
+
+- A Next.js plugin **MUST** use `development`, **NOT** `nextjs`.
+- A Midtrans plugin **MUST** use `finance`, **NOT** `payments` or `midtrans`.
+- A Docker plugin **MUST** use `devops`, **NOT** `containerization`.
+
+Framework, language, library, and tool names are `keywords` — they **MUST NOT** be used as categories.
+
+**Mandatory rules:**
+
+1. **MUST** pick from the allowed list in `rules/category.md` only.
+2. **MUST** use lowercase kebab-case in `.claude-plugin/marketplace.json`.
+3. **MUST** use Title Case in `.agents/plugins/marketplace.json` and `.codex-plugin/plugin.json` (`interface.category`).
+4. **MUST NOT** add a new category without updating `rules/category.md` and the verifier together.
+5. **MUST** use `development` / `Development` when no other category fits.
+
+The verifier enforces this automatically. Changes with invalid categories will fail CI.
 
 ## Plugin folder rules
 
@@ -254,35 +280,36 @@ Assets should:
 
 ## Documentation rules
 
-When editing documentation:
+When editing documentation, you **MUST**:
 
 1. Keep instructions concise and actionable.
-2. Use exact file paths.
-3. Use valid commands.
+2. Use exact file paths — never approximate paths.
+3. Use valid commands that actually exist in `package.json` scripts.
 4. Keep installation instructions consistent across plugin READMEs.
 5. Update documentation when behavior or metadata changes.
-6. Do not document features that are not implemented.
-7. Do not remove warnings or limitations unless the limitation has been fixed.
-8. Prefer examples that users can copy and run.
+6. **MUST NOT** document features that are not implemented.
+7. **MUST NOT** remove warnings or limitations unless the limitation has been fixed.
+8. **MUST** include examples that users can copy and run directly.
 
 ## Marketplace rules
 
-When editing marketplace metadata:
+When editing marketplace metadata, you **MUST**:
 
-1. Check both marketplace files.
-2. Check the matching plugin metadata.
-3. Check the plugin README.
-4. Check all repository URLs.
-5. Check all plugin paths.
-6. Keep descriptions consistent but not unnecessarily duplicated.
-7. Do not add a plugin to the marketplace unless its folder and metadata exist.
-8. Do not remove a plugin from the marketplace unless explicitly requested.
+1. Check both `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`.
+2. Verify the matching plugin metadata in both `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`.
+3. Verify the plugin README matches the marketplace entry.
+4. Verify all repository URLs point to valid GitHub tree paths.
+5. Verify all plugin paths resolve to existing directories.
+6. Verify the `category` field is in the allowed list (see `rules/category.md`).
+7. Keep descriptions consistent but not unnecessarily duplicated.
+8. **MUST NOT** add a plugin to the marketplace unless its folder and metadata exist.
+9. **MUST NOT** remove a plugin from the marketplace unless explicitly requested.
 
 ## Versioning rules
 
-Do not change versions unless the task is specifically about versioning, release preparation, or marketplace synchronization.
+**MUST NOT** change versions unless the task is specifically about versioning, release preparation, or marketplace synchronization.
 
-Use the bump scripts - do not edit version fields by hand unless the bump script cannot run:
+**MUST** use the bump scripts — **MUST NOT** edit version fields by hand unless the bump script cannot run:
 
 ```bash
 pnpm run bump          # interactive mode
@@ -291,54 +318,60 @@ pnpm run bump:minor
 pnpm run bump:major
 ```
 
-The bump scripts update the selected plugin version in:
+The bump scripts update:
 
 - `.claude-plugin/marketplace.json`
 - `plugins/<plugin-name>/.claude-plugin/plugin.json`
 - `plugins/<plugin-name>/.codex-plugin/plugin.json`
 
-If a version change is requested, also check:
+When a version change is requested, also verify:
 
-- Changelog or release notes, if applicable
-- Existing version sync scripts or workflows
+- Changelog is updated (`CHANGELOG.md`)
+- Release notes or tags are prepared if applicable
+- Sync scripts and workflows are consistent
 
-Do not create a release commit unless explicitly requested.
+**MUST NOT** create a release commit unless explicitly requested.
 
 ## Validation rules
 
-Before finalizing changes, inspect available scripts in `package.json`.
-
-Common checks:
+**MUST** run these checks before finalizing any change:
 
 ```bash
 pnpm run verify-plugins
 pnpm run format:check
+```
+
+If formatting fails, **MUST** run:
+
+```bash
 pnpm run format
 ```
 
-Run `pnpm run verify-plugins` after any structural change to plugins, hooks, skills, or manifests. Only run scripts that exist in `package.json`. If a requested validation script does not exist, do not claim it was run.
+**MUST** run `pnpm run verify-plugins` after any structural change to plugins, hooks, skills, or manifests. **MUST NOT** skip validation. **MUST NOT** claim validation was performed unless it was actually run and passed.
 
 ## Pull request rules
 
-A good pull request should include:
+Every pull request **MUST** include:
 
 - A clear summary
 - A focused set of changes
 - A list of affected plugins
 - Notes about metadata changes
 - Notes about documentation changes
-- Validation performed
+- Validation performed (with exact command output)
 - Any known limitations
 
-Before opening or updating a pull request, check:
+Before opening or updating a pull request, all of these **MUST** be true:
 
 - [ ] Affected plugin files were reviewed.
 - [ ] Affected `plugin.json` files were reviewed.
 - [ ] Affected `marketplace.json` files were reviewed.
-- [ ] README links and installation instructions were checked.
+- [ ] README links and installation instructions were verified.
 - [ ] File paths and repository URLs are valid.
-- [ ] Formatting was checked when possible.
-- [ ] Documentation was updated if behavior changed.
+- [ ] `pnpm run verify-plugins` was run and passed.
+- [ ] `pnpm run format:check` was run and passed (or `pnpm run format` was applied).
+- [ ] Documentation was updated if behavior or metadata changed.
+- [ ] Category is valid per `rules/category.md` (if marketplace entry was added or changed).
 
 ## Commit message guidance
 
@@ -391,12 +424,12 @@ https://github.com/NatrocTeam/Natroc-Plugins/security/advisories/new
 
 ## When uncertain
 
-If the correct change is unclear:
+If the correct change is unclear, you **MUST**:
 
-1. Inspect the relevant files first.
-2. Prefer the smallest safe change.
-3. Preserve existing behavior.
-4. Leave a note explaining the uncertainty.
-5. Do not invent missing standards, fields, or capabilities.
+1. Inspect the relevant files first — never guess.
+2. Make the smallest safe change that addresses the problem.
+3. Preserve existing behavior unless explicitly asked to change it.
+4. Leave a note explaining the uncertainty and what was decided.
+5. **MUST NOT** invent missing standards, fields, endpoints, capabilities, or conventions.
 
-The priority is correctness, maintainability, and clear repository behavior.
+The priority is correctness, maintainability, and clear repository behavior. When in doubt, ask before acting.

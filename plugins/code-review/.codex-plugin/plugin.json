@@ -22,7 +22,7 @@
     "shortDescription": "Strict evidence-based code audit and safe fix workflow.",
     "longDescription": "Review code with hard evidence rules, docs grounding, severity gates, fix approval gates, verification gates, and consistent reports. This plugin intentionally has no MCP dependency.",
     "developerName": "PT Kelana Tech Solutions",
-    "category": "Developer Tools",
+    "category": "Development",
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/code-review",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",

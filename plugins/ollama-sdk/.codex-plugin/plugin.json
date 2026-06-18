@@ -26,7 +26,7 @@
     "shortDescription": "Use bundled Ollama docs to build new integrations and validate existing TypeScript or Python client code.",
     "longDescription": "Self-contained local documentation for agents doing Ollama work in TypeScript and Python. Supports two explicit modes: development documentation mode for building or modifying Ollama local/cloud integrations, and existing-code validation documentation mode for auditing code already using the official Ollama clients. Includes API surface maps, chat, generate, streaming, structured outputs, tool calls, thinking, logprobs, multimodal images, embeddings, model lifecycle, cloud API, web search/fetch, runtime setup, security, testing, failure modes, and production review.",
     "developerName": "PT Kelana Tech Solutions",
-    "category": "Developer Tools",
+    "category": "Development",
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins",
     "privacyPolicyURL": "https://github.com/NatrocTeam/Natroc-Plugins",

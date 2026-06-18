@@ -8,10 +8,11 @@ Read these files before editing plugin content:
 
 1. `README.md`
 2. `rules/verify.md`
-3. `.claude-plugin/marketplace.json`
-4. `.agents/plugins/marketplace.json`
-5. The affected plugin `README.md`
-6. The affected `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`
+3. `rules/category.md`
+4. `.claude-plugin/marketplace.json`
+5. `.agents/plugins/marketplace.json`
+6. The affected plugin `README.md`
+7. The affected `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`
 
 Keep changes small. Do not update plugin versions, marketplace metadata, or release files unless the contribution is specifically about those files.
 
@@ -41,6 +42,24 @@ Follow the current structure in `rules/verify.md`:
 - Claude and Codex plugin manifest versions must match.
 
 Do not commit generated files or runtime caches such as `__pycache__/`, `.env`, build output, or local lockfiles not used by this repository.
+
+## Choosing a Category
+
+Every plugin needs a `category` from the allowed list in `rules/category.md`. Categories are broad domains, not technology names.
+
+**Correct:**
+
+- `development` for a Next.js, React, or TypeScript plugin
+- `finance` for a Midtrans or Stripe plugin
+- `web` for an SEO or accessibility plugin
+
+**Incorrect:**
+
+- `nextjs`, `react`, `typescript` — use `keywords` for these
+- `midtrans`, `stripe` — use `development` or `finance`
+- `developer-tools` — not in the allowed list, use `development`
+
+Use lowercase kebab-case in `.claude-plugin/marketplace.json` and Title Case in `.agents/plugins/marketplace.json` and `.codex-plugin/plugin.json`. The verifier checks this automatically.
 
 ## Metadata
 

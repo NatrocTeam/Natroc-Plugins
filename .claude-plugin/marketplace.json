@@ -36,7 +36,7 @@
         "routing",
         "hooks"
       ],
-      "category": "developer-tools",
+      "category": "development",
       "source": "./plugins/natroc-awareness"
     },
     {
@@ -260,7 +260,7 @@
         "deployment",
         "fix-workflow"
       ],
-      "category": "developer-tools",
+      "category": "development",
       "source": "./plugins/code-review"
     },
     {
@@ -285,7 +285,7 @@
         "structured-outputs",
         "tools"
       ],
-      "category": "developer-tools",
+      "category": "development",
       "source": "./plugins/openai-sdk"
     },
     {
@@ -310,7 +310,7 @@
         "structured-output",
         "embeddings"
       ],
-      "category": "developer-tools",
+      "category": "development",
       "source": "./plugins/ollama-sdk"
     },
     {
@@ -335,7 +335,7 @@
         "streaming",
         "structured-output"
       ],
-      "category": "developer-tools",
+      "category": "development",
       "source": "./plugins/anthropic-sdk"
     },
     {

@@ -42,6 +42,44 @@ const imageExtensions = new Set([".jpeg", ".jpg", ".png", ".svg"]);
 const yamlExtensions = new Set([".yaml", ".yml"]);
 const codexSkillMetadataFile = "openai.yaml";
 
+const ALLOWED_CATEGORIES_KEBAB = new Set([
+  "ai",
+  "analytics",
+  "automation",
+  "cloud",
+  "communication",
+  "content",
+  "data",
+  "design",
+  "development",
+  "devops",
+  "documentation",
+  "ecommerce",
+  "finance",
+  "identity",
+  "infrastructure",
+  "integration",
+  "mobile",
+  "monitoring",
+  "productivity",
+  "project-management",
+  "security",
+  "social",
+  "testing",
+  "web",
+]);
+
+function toTitleCase(kebab) {
+  return kebab
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+const ALLOWED_CATEGORIES_TITLE = new Set(
+  [...ALLOWED_CATEGORIES_KEBAB].map(toTitleCase),
+);
+
 const issues = [];
 let checkedPlugins = 0;
 let checkedSkills = 0;
@@ -90,7 +128,7 @@ function readJson(pluginName, filePath, label) {
       pluginName,
       filePath,
       `${label} must be valid JSON: ${error.message}`,
-      "Fix the JSON syntax, then run `npm run verify-plugins` again.",
+      "Fix the JSON syntax, then run `pnpm run verify-plugins` again.",
     );
     return null;
   }
@@ -886,6 +924,10 @@ function validatePlugin(pluginName, pluginPath) {
     );
   }
 
+  if (codexManifest !== null) {
+    validateCodexManifestCategory(pluginName, pluginPath, codexManifest);
+  }
+
   validateRootAgents(pluginName, pluginPath);
   validateCommands(pluginName, pluginPath);
   validateAssets(pluginName, pluginPath);
@@ -894,21 +936,27 @@ function validatePlugin(pluginName, pluginPath) {
 }
 
 function printHeader() {
-  console.log(color("verify-plugins", styles.bold, styles.cyan));
-  console.log(
-    color(
-      "Checking plugin structure, required files, manifest versions, and documented file formats.",
-      styles.dim,
-    ),
-  );
   console.log("");
+  console.log(color(" natroc-plugins · verify", styles.bold, styles.cyan));
+  console.log(
+    color(" ─────────────────────────────────────────────────────", styles.dim),
+  );
+}
+
+function pluralize(word, count) {
+  return count === 1 ? word : `${word}s`;
 }
 
 function printSuccess() {
-  console.log(color("PASS", styles.bold, styles.green));
+  console.log("");
   console.log(
-    `Checked ${checkedPlugins} plugin(s) and ${checkedSkills} skill(s). No verify.md violations found.`,
+    color(
+      ` ${checkedPlugins} ${pluralize("plugin", checkedPlugins)}, ${checkedSkills} ${pluralize("skill", checkedSkills)}`,
+      styles.bold,
+    ),
   );
+  console.log(color(" ✓ All checks passed", styles.bold, styles.green));
+  console.log("");
 }
 
 function printIssues() {
@@ -922,30 +970,184 @@ function printIssues() {
     grouped.get(issue.pluginName).push(issue);
   }
 
-  console.log(color("FAIL", styles.bold, styles.red));
+  const issueWord = pluralize("issue", issues.length);
+  const pluginWord = pluralize("plugin", checkedPlugins);
+  const skillWord = pluralize("skill", checkedSkills);
+
+  console.log("");
   console.log(
-    `Checked ${checkedPlugins} plugin(s) and ${checkedSkills} skill(s). Found ${issues.length} issue(s).`,
+    color(
+      ` ${checkedPlugins} ${pluginWord}, ${checkedSkills} ${skillWord} — ${issues.length} ${issueWord} found`,
+      styles.bold,
+    ),
   );
+  console.log(color(" ✗ Verification failed", styles.bold, styles.red));
   console.log("");
 
   for (const [pluginName, pluginIssues] of grouped) {
-    console.log(color(`Plugin: ${pluginName}`, styles.bold, styles.yellow));
+    const entryWord = pluralize("issue", pluginIssues.length);
+    console.log(
+      color(
+        ` ▸ ${pluginName} (${pluginIssues.length} ${entryWord})`,
+        styles.bold,
+        styles.yellow,
+      ),
+    );
 
     pluginIssues.forEach((issue, index) => {
-      console.log(`  ${index + 1}. ${color(issue.problem, styles.red)}`);
-      console.log(`     Path: ${issue.path}`);
-      console.log(`     Do:   ${issue.fix}`);
+      const num = String(index + 1).padStart(2, " ");
+      console.log(color(`   ${num}. ${issue.problem}`, styles.red));
+      console.log(color(`       path  ${issue.path}`, styles.dim));
+      console.log(color(`       fix   ${issue.fix}`, styles.dim));
     });
 
     console.log("");
   }
 
-  console.log(color("What to do next", styles.bold, styles.cyan));
-  console.log("  1. Fix each item listed above.");
+  console.log(color(" Actions", styles.bold, styles.cyan));
+  console.log(color("   1. Fix each item listed above.", styles.dim));
   console.log(
-    "  2. If a new folder or file format is intentional, document it in rules/verify.md first.",
+    color(
+      "   2. If intentional, document it in rules/verify.md first.",
+      styles.dim,
+    ),
   );
-  console.log("  3. Run `npm run verify-plugins` again.");
+  console.log(color("   3. Run pnpm run verify-plugins again.", styles.dim));
+  console.log("");
+}
+
+function validateCategory(pluginName, filePath, category, allowedSet, label) {
+  if (category === undefined || category === null || category === "") {
+    addIssue(
+      pluginName,
+      filePath,
+      `${label} is missing a required category field.`,
+      `Set "category" to one of the allowed values listed in rules/category.md.`,
+    );
+    return;
+  }
+
+  if (typeof category !== "string") {
+    addIssue(
+      pluginName,
+      filePath,
+      `${label} category must be a string.`,
+      `Set "category" to one of the allowed values listed in rules/category.md.`,
+    );
+    return;
+  }
+
+  if (!allowedSet.has(category)) {
+    const allowed = [...allowedSet]
+      .sort()
+      .map((c) => `"${c}"`)
+      .join(", ");
+    addIssue(
+      pluginName,
+      filePath,
+      `${label} category "${category}" is not in the allowed list (rules/category.md).`,
+      `Replace "${category}" with one of: ${allowed}.`,
+    );
+  }
+}
+
+function validateMarketplaceFiles() {
+  const claudeMarketplacePath = path.join(
+    rootDir,
+    ".claude-plugin",
+    "marketplace.json",
+  );
+  const codexMarketplacePath = path.join(
+    rootDir,
+    ".agents",
+    "plugins",
+    "marketplace.json",
+  );
+
+  // Validate .claude-plugin/marketplace.json
+  if (exists(claudeMarketplacePath)) {
+    const marketplace = readJson(
+      "marketplace",
+      claudeMarketplacePath,
+      "Claude marketplace",
+    );
+
+    if (marketplace !== null && Array.isArray(marketplace.plugins)) {
+      for (const plugin of marketplace.plugins) {
+        if (!plugin || !plugin.name) {
+          continue;
+        }
+
+        validateCategory(
+          plugin.name,
+          claudeMarketplacePath,
+          plugin.category,
+          ALLOWED_CATEGORIES_KEBAB,
+          `Claude marketplace entry "${plugin.name}"`,
+        );
+      }
+    }
+  } else {
+    addIssue(
+      "marketplace",
+      claudeMarketplacePath,
+      "Missing .claude-plugin/marketplace.json.",
+      "Create the Claude Code marketplace file with a plugins array.",
+    );
+  }
+
+  // Validate .agents/plugins/marketplace.json
+  if (exists(codexMarketplacePath)) {
+    const marketplace = readJson(
+      "marketplace",
+      codexMarketplacePath,
+      "Codex marketplace",
+    );
+
+    if (marketplace !== null && Array.isArray(marketplace)) {
+      for (const plugin of marketplace) {
+        if (!plugin || !plugin.name) {
+          continue;
+        }
+
+        validateCategory(
+          plugin.name,
+          codexMarketplacePath,
+          plugin.category,
+          ALLOWED_CATEGORIES_TITLE,
+          `Codex marketplace entry "${plugin.name}"`,
+        );
+      }
+    }
+  } else {
+    addIssue(
+      "marketplace",
+      codexMarketplacePath,
+      "Missing .agents/plugins/marketplace.json.",
+      "Create the Codex marketplace file with a plugins array.",
+    );
+  }
+}
+
+function validateCodexManifestCategory(pluginName, pluginPath, manifest) {
+  if (manifest === null || typeof manifest !== "object") {
+    return;
+  }
+
+  if (!manifest.interface || typeof manifest.interface !== "object") {
+    return;
+  }
+
+  const category = manifest.interface.category;
+  const manifestPath = path.join(pluginPath, ".codex-plugin", "plugin.json");
+
+  validateCategory(
+    pluginName,
+    manifestPath,
+    category,
+    ALLOWED_CATEGORIES_TITLE,
+    `Codex manifest interface.category for "${pluginName}"`,
+  );
 }
 
 function main() {
@@ -973,6 +1175,8 @@ function main() {
     process.exitCode = 1;
     return;
   }
+
+  validateMarketplaceFiles();
 
   for (const pluginEntry of pluginEntries) {
     validatePlugin(pluginEntry.name, path.join(pluginsDir, pluginEntry.name));

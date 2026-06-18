@@ -21,7 +21,7 @@
     "shortDescription": "Access comprehensive documentation and examples for using the Motion library.",
     "longDescription": "The Motion Docs plugin provides detailed documentation and practical examples for leveraging the Motion library effectively, covering animation techniques, API endpoints, request/response formats, and best practices.",
     "developerName": "Matt Perry",
-    "category": "Developer Tools",
+    "category": "Development",
     "websiteURL": "https://motion.dev",
     "capabilities": ["Read", "Write", "Interactive"],
     "defaultPrompt": [
