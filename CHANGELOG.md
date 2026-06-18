@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.10.0] - 2026-06-19 [(59fce2a)](https://github.com/NatrocTeam/Natroc-Plugins/commit/59fce2aa85898e751983214ae4d60de714a3eb71)
+
+### Added
+
+- **supabase**: New plugin with 2 skills and 35 Postgres best-practice references
+  - `supabase` skill - Database, Auth, Edge Functions, Realtime, Storage, Vectors, CLI/MCP
+  - `supabase-postgres-best-practices` skill - 35 references covering schema design, query optimization, indexing, RLS, connection pooling, locking, monitoring, and more
+  - Claude Code and Codex plugin manifests with brand color `#3ECF8E`
+  - `.app.json` connector app for Codex
+- **verifier**: Add SKILL.md body size validation - max 500 lines and ~5000 tokens for content after the frontmatter block
+- **verifier**: Add `.app.json` validation - require `apps` field in codex manifest with `"./"` prefix when `.app.json` is present at plugin root
+- **verifier**: Add marketplace coverage check - every plugin under `plugins/` must have entries in both `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`
+- **verifier**: Add three-way version consistency check - Claude manifest, Codex manifest, and Claude marketplace versions must match
+- **verifier**: Add SKILL.md frontmatter description validation - required field, max 1024 characters, must not contain colon characters
+- **docs**: Add `rules/verify.md` - complete documentation of all 14 validation categories performed by the verifier
+- **docs**: Add `rules/category.md` - 24 allowed plugin categories (domains, not technologies) with usage rules per marketplace file
+- **docs**: Add `AUDIT.md` - comprehensive audit of `.github/` directory
+- **marketplace**: Register threejs and supabase in both marketplace files
+- **docs**: Add threejs and supabase to root README plugin table
+
+### Changed
+
+- **all plugins**: Trim SKILL.md bodies to under 500 lines - move detailed code examples to `examples/` files and reference tables to `references/` files across expo, human-context-writer, midtrans, plugin-dev-claude, and threejs plugins
+- **issue-templates**: Merge `plugin_improvement.yml` into `bug_report.yml` as unified form with type dropdown; add threejs and supabase to plugin checkboxes
+- **pull-request-template**: Add `pnpm run verify-plugins`, category validation per `rules/category.md`, and marketplace checks to the checklist; add Validation performed section
+- **workflows**: Standardize all workflows on `actions/checkout@v6`, add concurrency groups and timeout-minutes to all jobs
+- **workflows**: Fix `bump-version.yml` - upgrade to Natroc Bot token for push access, add `workflow_dispatch` trigger, pin Node.js to `22.22.3`
+- **workflows**: Add `bump-version.yml` to tracked files
+- **marketplace**: Update versions for human-context-writer, midtrans, plugin-dev-claude, and threejs in marketplace entries
+
+### Fixed
+
+- **code-review**: Update descriptions in `evidence-policy` and `security-review` SKILL.md files for clarity (commit `81fbf26`)
+
 ## [1.9.0] - 2026-06-19 [(7071472)](https://github.com/NatrocTeam/Natroc-Plugins/commit/707147255e94b48b95b7cc7b1dd1ba589c631007)
 
 ### Changed
