@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.9.0] - 2026-06-19 [(7071472)](https://github.com/NatrocTeam/Natroc-Plugins/commit/707147255e94b48b95b7cc7b1dd1ba589c631007)
+
+### Changed
+
+- **natroc-awareness**: Strengthen automatic plugin discovery and routing
+  - Bump version to 2.1.0
+  - Expand SKILL.md routing workflow — agents MUST perform capability
+    discovery before handling any user request, even without explicit
+    plugin mentions
+  - Add workflow agents, subagents, commands, connectors to routing scope
+  - Streamline hook scripts (`session-start`, `session-start-codex`) —
+    reduce verbosity while maintaining routing table accuracy
+- **marketplace**: Sync natroc-awareness version to 2.1.0
+
 ## [1.8.0] - 2026-06-18 [(684dc3b)](https://github.com/NatrocTeam/Natroc-Plugins/commit/684dc3b57b5d184fa0e9166d2411e3f800151f84)
 
 ### Added
