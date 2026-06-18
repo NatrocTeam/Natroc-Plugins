@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.1] - 2026-06-18 [(4aa6d44)](https://github.com/NatrocTeam/Natroc-Plugins/commit/4aa6d44b9dd62e3df9a8986a9021c6b4a3932c6a)
+
+### Fixed
+
+- **natroc-awareness**: Fix hook scripts not executable - `run-hook.cmd`, `session-start`, and
+  `session-start-codex` were missing the executable bit (`100644` instead of `100755`), causing
+  SessionStart hook to fail with `Permission denied` when invoked directly as a command by
+  Claude Code. Execute permission is now tracked in git so fresh clones preserve it.
+
 ## [1.6.0] - 2026-06-18 [(594f821)](https://github.com/NatrocTeam/Natroc-Plugins/commit/594f8219ac3a78c177a63eceef5571e6c7df379b)
 
 ### Added
