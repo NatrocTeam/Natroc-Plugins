@@ -1,6 +1,6 @@
 ---
 name: security-review
-description: Use when reviewing OWASP-style security risks: injection, XSS, CSRF, SSRF, secrets, unsafe config, upload handling, or sensitive data exposure.
+description: Use when reviewing OWASP-style security risks injection, XSS, CSRF, SSRF, secrets, unsafe config, upload handling, or sensitive data exposure.
 ---
 
 # Security Review

@@ -1,6 +1,6 @@
 ---
 name: evidence-policy
-description: Use when enforcing review finding requirements: file evidence, docs basis, impact, fix, confidence, and unverified classification.
+description: Use when enforcing review finding requirements file evidence, docs basis, impact, fix, confidence, and unverified classification.
 ---
 
 # Evidence Policy
