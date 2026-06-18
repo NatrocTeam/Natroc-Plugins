@@ -35,9 +35,9 @@
     "composerIcon": "./assets/openai.png",
     "logo": "./assets/openai.png",
     "defaultPrompt": [
-      "Use OpenAI SDK docs to build an OpenAI SDK integration in this app.",
-      "Add an Agents SDK workflow with tools.",
-      "Use OpenAI SDK docs to validate this existing OpenAI SDK implementation."
+      "Use OpenAI SDK documentation to build a new integration with the OpenAI Client SDK or Agents SDK in this project.",
+      "Use OpenAI SDK documentation to validate existing OpenAI API or Agents SDK code for security, correctness, and production readiness.",
+      "Add OpenAI Agents SDK workflows with tools, handoffs, guardrails, sessions, and tracing to this project."
     ]
   }
 }

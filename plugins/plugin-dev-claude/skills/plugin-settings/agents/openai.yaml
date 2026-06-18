@@ -1,10 +1,10 @@
 interface:
-  display_name: "Plugin Settings"
-  short_description: "Design configurable Claude Code plugins using project-local settings files and YAML frontmatter."
+  display_name: "Plugin Dev Claude - Plugin Settings Pattern for Claude Code Plugins"
+  short_description: "Design configurable plugins with local settings and YAML frontmatter."
   icon_small: "./assets/claudecode.png"
   icon_large: "./assets/claudecode.png"
-  brand_color: "#10A37F"
-  default_prompt: "Use $plugin-settings to design plugin configuration or local settings."
+  brand_color: "#DA7758"
+  default_prompt: "Help me design user-configurable plugin settings using local configuration files with YAML frontmatter."
 
 policy:
   allow_implicit_invocation: true

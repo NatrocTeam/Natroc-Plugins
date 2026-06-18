@@ -1,10 +1,10 @@
 interface:
   display_name: "Midtrans - Python"
-  short_description: "Integrate Midtrans payment gateway in Python - Snap, Core API, subscriptions, and tokenization. Includes direct REST call patterns for Snap BI and Iris. Use when building Midtrans payments in Python backend."
+  short_description: "Snap, Core API, subscriptions, and tokenization with midtransclient."
   icon_small: "./assets/midtrans.png"
   icon_large: "./assets/midtrans.png"
   brand_color: "#307FC1"
-  default_prompt: "Use the midtrans-python skill to integrate Midtrans payment gateway in Python. Configure midtransclient, choose the right product (Snap, Core API), implement the payment flow, handle HTTP notifications, and use direct REST calls for SnapBi and Iris when needed."
+  default_prompt: "Create a Snap payment transaction in Python using midtransclient, pass customer details and itemized order data, get the redirect URL for the payment page, and handle the incoming HTTP notification to verify and update my order status."
 
 policy:
   allow_implicit_invocation: true

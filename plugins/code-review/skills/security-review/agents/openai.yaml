@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Security Review"
-  short_description: "Audit security risks using OWASP/official docs: injection, XSS, CSRF, SSRF, secrets, unsafe config, upload, and sensitive data exposure."
+  short_description: "Audit OWASP-style security risks and vulnerabilities."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the security-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Review the codebase for security vulnerabilities. Check for injection risks, cross-site scripting, cross-site request forgery, server-side request forgery, hardcoded secrets, unsafe configuration, insecure upload handling, and sensitive data exposure."
 
 policy:
   allow_implicit_invocation: true

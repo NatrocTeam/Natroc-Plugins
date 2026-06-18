@@ -1,7 +1,8 @@
 interface:
-  display_name: "React TypeScript"
-  short_description: "Check all files that use React Typescript or scoped-path that use React Typescript"
-  default_prompt: "Use $react-typescript to build or review React TypeScript code with the bundled local references."
+  display_name: "React TypeScript - React TypeScript"
+  short_description: "Build, review, and debug React TypeScript code using bundled local references and examples."
+  default_prompt: "Build or review this React TypeScript code using the bundled local references for components, hooks, context, events, refs, types, and patterns."
+  brand_color: "#3178C6"
 
 policy:
   allow_implicit_invocation: true

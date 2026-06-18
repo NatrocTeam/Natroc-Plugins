@@ -1,10 +1,10 @@
 interface:
   display_name: "Expo - Codex Expo Run Actions"
-  short_description: "Wire Expo projects into the Codex app Run button and action terminal"
+  short_description: "Wire Expo projects into the Codex app Run button and action terminal."
   icon_small: "./assets/expo.png"
   icon_large: "./assets/expo.png"
   brand_color: "#000020"
-  default_prompt: "Use $codex-expo-run-actions to create an Expo project-local run script, wire .codex/environments/environment.toml, expose a Codex app Run action, and optionally add direct iOS, Android, web, dev-client, tunnel, or export buttons."
+  default_prompt: "Set up a Codex Run action for my Expo project that starts the dev server with tunnel mode, adds separate buttons for iOS simulator and Android emulator, and configures the environment settings in .codex/environments/environment.toml."
 
 policy:
   allow_implicit_invocation: true

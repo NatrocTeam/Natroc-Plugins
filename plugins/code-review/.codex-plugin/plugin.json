@@ -36,9 +36,9 @@
       "./assets/screenshots/security-gate.svg"
     ],
     "defaultPrompt": [
-      "Use Code Review strict mode to audit this repository, produce a review report first, and ask before applying fixes.",
-      "Use Code Review release-gate mode to decide whether this project is safe to merge or release.",
-      "Use Code Review security-gate mode to audit auth, secrets, injection, XSS, CSRF, SSRF, and unsafe config."
+      "Use Code Review to audit this codebase with evidence-based findings, follow fix approval gates, and verify every patch before closing.",
+      "Use Code Review to run a security-focused audit checking for injection, XSS, CSRF, SSRF, secrets exposure, and unsafe configuration.",
+      "Use Code Review to perform a frontend, backend, database, or dependency supply chain review of this project."
     ]
   }
 }

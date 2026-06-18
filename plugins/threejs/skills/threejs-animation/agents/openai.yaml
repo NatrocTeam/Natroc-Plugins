@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Animation"
+  short_description: "Keyframe animation, skeletal animation, morph targets, and animation mixing."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Load an animated glTF character with skeletal animation via AnimationMixer, play a walk cycle clip, and smoothly crossfade to a run clip when the character speed increases."
+
+policy:
+  allow_implicit_invocation: true

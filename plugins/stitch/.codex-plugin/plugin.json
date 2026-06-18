@@ -36,9 +36,9 @@
     "composerIcon": "./assets/stitch.png",
     "logo": "./assets/stitch.png",
     "defaultPrompt": [
-      "Use Stitch-MCP to generate app screens from text descriptions and manage design systems.",
-      "Connect to Google Stitch to create projects, generate variants, and upload design files.",
-      "Set up the Stitch-MCP bridge to design and prototype with AI-assisted workflows."
+      "Generate a mobile app screen in Google Stitch from a text description, specifying the layout, components, and color theme, then export it as a design file.",
+      "Create a new Stitch project with a shared design system, then generate multiple screen variants applying the same component library and brand tokens.",
+      "Upload a Figma design file to Stitch, convert it into an editable project, and download the generated screen assets for development handoff."
     ]
   }
 }

@@ -1,7 +1,8 @@
 interface:
-  display_name: "React TS Patterns"
-  short_description: "Component design patterns for React with TypeScript."
-  default_prompt: "Use $react-typescript-patterns to design this reusable component pattern."
+  display_name: "React TypeScript - Patterns"
+  short_description: "Reusable React patterns with polymorphic props, discriminated unions, and generic components."
+  default_prompt: "Design a reusable React TypeScript component pattern with proper polymorphic props, discriminated unions, or generic constraints following the bundled patterns references."
+  brand_color: "#3178C6"
 
 policy:
   allow_implicit_invocation: true

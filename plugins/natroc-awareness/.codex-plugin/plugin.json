@@ -33,9 +33,9 @@
     "composerIcon": "./assets/natroc-plugins.svg",
     "logo": "./assets/natroc-plugins.svg",
     "defaultPrompt": [
-      "Use @Natroc-Awareness to tell me which installed Natroc plugin fits this task.",
-      "Use @Natroc-Awareness to route this request to the right plugin skill.",
-      "Use @Natroc-Awareness to summarize the Natroc plugins detected in this session."
+      "Analyze my task and route it to the most suitable installed Natroc plugin before taking any action.",
+      "Check if any Natroc plugins match my request domain and invoke the right skill for me.",
+      "List all Natroc plugins installed in this session and summarize what each one handles."
     ]
   }
 }

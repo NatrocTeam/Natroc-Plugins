@@ -1,9 +1,10 @@
 interface:
   display_name: "Code Review - Deployment Config Review"
-  short_description: "Audit production readiness: Docker, compose, env vars, healthchecks, CORS/cookies, TLS/reverse proxy, logs, process mode, CI deploy."
+  short_description: "Review deployment infrastructure and configuration."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the deployment-config-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Review deployment and infrastructure configuration. Check Dockerfiles, compose files, environment variables, healthchecks, CORS settings, cookie security, TLS configuration, reverse proxy setup, logging, and CI deploy pipelines."
+
 policy:
   allow_implicit_invocation: true

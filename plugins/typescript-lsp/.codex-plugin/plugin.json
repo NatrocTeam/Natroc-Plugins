@@ -27,9 +27,9 @@
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://github.com/typescript-language-server/typescript-language-server",
     "defaultPrompt": [
-      "Use $typescript-lsp to diagnose this TS error.",
-      "Use $typescript-lsp to plan a safe rename.",
-      "Use $typescript-lsp to organize TS imports."
+      "Diagnose a TypeScript type error showing why a union type is not narrowing correctly after a conditional check, and suggest a fix using discriminated unions or type predicates.",
+      "Rename a React component across my entire project safely by finding all references, imports, and JSX usages, then apply the rename with confidence that no runtime behavior changes.",
+      "Organize all TypeScript imports in my file by grouping external packages first, then internal project imports, remove unused imports, and sort alphabetically within each group."
     ],
     "brandColor": "#3178c7",
     "composerIcon": "./assets/logo.png",

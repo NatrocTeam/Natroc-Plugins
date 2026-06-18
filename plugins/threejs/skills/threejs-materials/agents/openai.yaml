@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Materials"
+  short_description: "PBR, MeshStandardMaterial, MeshPhysicalMaterial, and shader materials."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Create a MeshStandardMaterial with albedo, normal, roughness, and metalness texture maps, then apply it to a mesh with proper UV scaling and wrapping."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Geometry"
+  short_description: "Built-in shapes, BufferGeometry, custom geometry, and instanced rendering."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Create a custom BufferGeometry with vertex positions, normals, and UVs defined from scratch, then instance it thousands of times across a surface using InstancedMesh."
+
+policy:
+  allow_implicit_invocation: true

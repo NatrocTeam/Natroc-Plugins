@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Performance Review"
-  short_description: "Audit frontend/backend/database performance risks: bundle size, rerenders, large lists, slow queries, N+1, caching, memory, blocking work."
+  short_description: "Audit frontend, backend, and database performance."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the performance-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Review the codebase for performance risks. Check frontend bundle size, unnecessary rerenders, large list rendering, slow database queries, N+1 patterns, missing caching, memory leaks, and blocking operations."
 
 policy:
   allow_implicit_invocation: true

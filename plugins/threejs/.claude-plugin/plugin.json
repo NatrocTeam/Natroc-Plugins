@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "threejs",
+  "version": "1.0.0",
+  "description": "Three.js 3D graphics guidance for scenes, geometry, materials, shaders, lighting, animation, interaction, loaders, textures, and post-processing.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://threejs.org/",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/threejs",
+  "license": "MIT",
+  "keywords": [
+    "threejs",
+    "three.js",
+    "3d",
+    "webgl",
+    "webgpu",
+    "graphics",
+    "animation",
+    "shaders",
+    "materials",
+    "geometry"
+  ],
+  "skills": "./skills/"
+}

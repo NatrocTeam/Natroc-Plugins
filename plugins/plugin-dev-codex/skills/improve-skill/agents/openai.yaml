@@ -1,10 +1,10 @@
 interface:
   display_name: "Plugin Dev Codex - Improve Skill"
-  short_description: "Turn plugin-eval findings into a rewrite brief"
+  short_description: "Turn evaluation findings into a concrete rewrite brief for a skill"
   icon_small: "./assets/assets/plugin-dev-codex.svg"
   icon_large: "./assets/assets/plugin-dev-codex.svg"
   brand_color: "#0F766E"
-  default_prompt: "Use $plugin-dev-codex:improve-plugin to create a rewrite brief for a Codex skill based on plugin-eval findings."
+  default_prompt: "Take the evaluation findings for this skill and create a concrete rewrite brief with actionable improvements."
 
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

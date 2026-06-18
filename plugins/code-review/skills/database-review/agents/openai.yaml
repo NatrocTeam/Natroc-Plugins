@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Database Review"
-  short_description: "Audit database schemas, migrations, constraints, indexes, transactions, race conditions, query safety, N+1 risks, and consistency."
+  short_description: "Review database schemas, queries, and migrations."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the database-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Review database schemas, migrations, constraints, indexes, transactions, and query patterns. Check for race conditions, N+1 query risks, missing constraints, unsafe migrations, and data consistency issues."
 
 policy:
   allow_implicit_invocation: true

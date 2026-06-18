@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Codebase Discovery"
-  short_description: "Detect project stack, repo structure, configs, entry points, package manager, framework, tests, database, and deployment before audit."
+  short_description: "Identify repo stack, structure, and entry points."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the codebase-discovery skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Explore the repository to identify its tech stack, project structure, config files, entry points, package manager, framework, test setup, database, and deployment configuration before starting a review."
 
 policy:
   allow_implicit_invocation: true

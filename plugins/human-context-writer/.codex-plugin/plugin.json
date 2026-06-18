@@ -25,9 +25,9 @@
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Interactive"],
     "defaultPrompt": [
-      "Use $human-context-writer to audit this draft for AI-like writing patterns, then rewrite it in my voice.",
-      "Use $human-context-writer to ask only the missing context needed, then improve this text.",
-      "Use $human-context-writer to make this writing clearer, more specific, and less generic without changing the meaning."
+      "Audit this draft for AI-like writing patterns and rewrite it in a natural human voice.",
+      "Ask clarifying questions about purpose, audience, and tone, then improve this text.",
+      "Make this writing clearer, more specific, and less generic while preserving the original meaning."
     ],
     "brandColor": "#2563EB",
     "composerIcon": "./assets/human-context-writer.svg",

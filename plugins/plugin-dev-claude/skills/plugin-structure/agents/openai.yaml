@@ -1,10 +1,10 @@
 interface:
-  display_name: "Plugin Structure"
-  short_description: "Plan Claude Code plugin layout, manifests, component discovery, and portable paths."
+  display_name: "Plugin Dev Claude - Plugin Structure for Claude Code"
+  short_description: "Scaffold plugin layout, manifests, and auto-discovery configuration."
   icon_small: "./assets/claudecode.png"
   icon_large: "./assets/claudecode.png"
-  brand_color: "#10A37F"
-  default_prompt: "Use $plugin-structure to scaffold or review a Claude Code plugin layout."
+  brand_color: "#DA7758"
+  default_prompt: "Guide me through scaffolding a Claude Code plugin with proper directory layout, manifest, and auto-discovery configuration."
 
 policy:
   allow_implicit_invocation: true

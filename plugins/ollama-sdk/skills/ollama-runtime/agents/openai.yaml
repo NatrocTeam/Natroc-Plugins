@@ -1,10 +1,10 @@
 interface:
-  display_name: "Ollama - Runtime"
-  short_description: "Build or validate Ollama daemon, host, cloud, and model lifecycle behavior."
+  display_name: "Ollama - Ollama Runtime"
+  short_description: "Build and debug Ollama daemon, host configuration, and model lifecycle behavior."
   icon_small: "./assets/ollama.png"
   icon_large: "./assets/ollama.png"
   brand_color: "#FFFFFF"
-  default_prompt: "Use Ollama Runtime docs to configure, fix, or validate daemon, host, model lifecycle, and cloud behavior."
+  default_prompt: "Use the Ollama Runtime documentation to configure the local daemon, manage model lifecycle, set up cloud API access, and validate deployment boundaries in this project."
 
 policy:
   allow_implicit_invocation: true

@@ -1,10 +1,10 @@
 interface:
   display_name: "Plugin Dev Codex - Plugin Eval"
-  short_description: "Choose the right local evaluation workflow"
+  short_description: "Choose the right local evaluation workflow for your needs"
   icon_small: "./assets/assets/plugin-dev-codex.svg"
   icon_large: "./assets/assets/plugin-dev-codex.svg"
   brand_color: "#0F766E"
-  default_prompt: "Use $plugin-dev-codex:plugin-eval to choose the right local evaluation workflow for my needs."
+  default_prompt: "Guide me through evaluating a local skill or plugin, explain the scores, and help me decide what to run next."
 
 policy:
   allow_implicit_invocation: true

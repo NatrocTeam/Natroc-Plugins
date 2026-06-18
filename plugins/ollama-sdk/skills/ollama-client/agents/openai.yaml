@@ -1,10 +1,10 @@
 interface:
-  display_name: "Ollama - Client SDK"
-  short_description: "Build or validate official Ollama TypeScript and Python client code."
+  display_name: "Ollama - Ollama Client"
+  short_description: "Build and debug official Ollama client integrations in TypeScript or Python."
   icon_small: "./assets/ollama.png"
   icon_large: "./assets/ollama.png"
   brand_color: "#FFFFFF"
-  default_prompt: "Use Ollama Client docs to build, fix, or validate this Ollama client integration and verify it."
+  default_prompt: "Use the Ollama Client documentation to implement chat, generate, streaming, tool calls, structured outputs, and embeddings in this project."
 
 policy:
   allow_implicit_invocation: true

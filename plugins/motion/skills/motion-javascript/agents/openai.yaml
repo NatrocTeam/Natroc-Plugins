@@ -1,10 +1,10 @@
 interface:
   display_name: "Motion - JavaScript"
-  short_description: "Create and refine Motion animations using the vanilla JavaScript API, including animate, scroll, hover, press, timelines, and performance-safe UI motion."
+  short_description: "Animate, scroll, hover, press, and timeline animations with vanilla JS."
   icon_small: "./assets/motion.png"
   icon_large: "./assets/motion.png"
   brand_color: "#FFF62A"
-  default_prompt: "Use $motion-javascript to create or improve Motion animations with the vanilla JavaScript API."
+  default_prompt: "Animate a DOM element with a spring-based scale and opacity entrance using Motion's animate function, then chain a scroll-driven parallax effect that moves a background element as the user scrolls down the page."
 
 policy:
   allow_implicit_invocation: true

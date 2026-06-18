@@ -1,10 +1,10 @@
 interface:
-  display_name: "Expo Tailwind Setup"
-  short_description: "Set up Tailwind CSS v4, react-native-css, NativeWind v5, and CSS wrappers in Expo"
+  display_name: "Expo - Tailwind Setup"
+  short_description: "Tailwind CSS v4, react-native-css, NativeWind v5, and CSS wrappers in Expo."
   icon_small: "./assets/expo.png"
   icon_large: "./assets/expo.png"
   brand_color: "#000020"
-  default_prompt: "Use $expo-tailwind-setup to install and configure Tailwind CSS v4 with Expo, NativeWind v5, react-native-css, Metro, PostCSS, global CSS, typed component wrappers, and theme variables."
+  default_prompt: "Install and configure Tailwind CSS v4 in my Expo project with NativeWind v5, set up the Metro config for CSS processing, create a global CSS file with theme variables, and add the typed component wrapper for className support."
 
 policy:
   allow_implicit_invocation: true

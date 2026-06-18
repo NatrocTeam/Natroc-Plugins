@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Textures"
+  short_description: "Texture mapping, UV coordinates, environment maps, and mipmapping."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Load color, roughness, and normal textures with TextureLoader, apply them to a MeshStandardMaterial, configure repeat wrapping and mipmap filtering, and use an HDR equirectangular map as the scene environment."
+
+policy:
+  allow_implicit_invocation: true

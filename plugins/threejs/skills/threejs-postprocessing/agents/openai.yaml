@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Postprocessing"
+  short_description: "EffectComposer, bloom, SSAO, depth of field, and custom passes."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Set up an EffectComposer with an UnrealBloomPass for emissive glow on light sources, an SSAOPass for ambient occlusion in crevices, and a ShaderPass with a custom color grading LUT."
+
+policy:
+  allow_implicit_invocation: true

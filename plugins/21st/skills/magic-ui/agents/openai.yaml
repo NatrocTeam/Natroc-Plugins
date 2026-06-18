@@ -1,10 +1,10 @@
 interface:
-  display_name: "21st - Magic UI"
-  short_description: "Generate or polish UI components"
+  display_name: "21st - Magic UI - 21st.dev Component Generation"
+  short_description: "Generate production-ready React UI components with Tailwind"
   icon_small: "./assets/21st.jpeg"
   icon_large: "./assets/21st.jpeg"
   brand_color: "#0332ff"
-  default_prompt: "Generate or polished UI variants of any component."
+  default_prompt: "Create a modern React UI component with shadcn/ui and Tailwind CSS, or refine an existing component for better design and accessibility."
 
 policy:
   allow_implicit_invocation: true

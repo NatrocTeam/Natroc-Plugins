@@ -1,10 +1,10 @@
 interface:
   display_name: "Plugin Dev Codex - Metric Pack Designer"
-  short_description: "Design custom metric packs for plugin-eval"
+  short_description: "Design custom metric packs with local evaluation rubrics for teams"
   icon_small: "./assets/assets/plugin-dev-codex.svg"
   icon_large: "./assets/assets/plugin-dev-codex.svg"
   brand_color: "#0F766E"
-  default_prompt: "Use $plugin-dev-codex:metric-pack-designer to design custom metric packs for plugin-eval."
+  default_prompt: "Help me design a custom metric pack with evaluation rubrics tailored to my team's specific needs."
 
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

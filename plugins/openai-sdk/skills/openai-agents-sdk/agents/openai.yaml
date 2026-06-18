@@ -1,10 +1,10 @@
 interface:
-  display_name: "OpenAI SDK - Agents SDK"
-  short_description: "Build or validate OpenAI Agents SDK workflows with tools, handoffs, guardrails, sessions, tracing, and sandbox agents."
+  display_name: "OpenAI SDK - OpenAI Agents SDK"
+  short_description: "Build and debug OpenAI Agents SDK workflows with tools, handoffs, guardrails, and tracing."
   icon_small: "./assets/openai.png"
   icon_large: "./assets/openai.png"
   brand_color: "#10A37F"
-  default_prompt: "Use OpenAI Agents SDK docs to implement, fix, or validate this agent workflow, choose the right orchestration pattern, and verify it."
+  default_prompt: "Use the OpenAI Agents SDK documentation to implement agent workflows with tools, handoffs, guardrails, sessions, and tracing in this project."
 
 policy:
   allow_implicit_invocation: true

@@ -1,10 +1,10 @@
 interface:
   display_name: "Plugin Dev Codex - Evaluate Plugin"
-  short_description: "Evaluate a local Codex plugin"
+  short_description: "Evaluate a local Codex plugin with engineer-friendly reporting"
   icon_small: "./assets/assets/plugin-dev-codex.svg"
   icon_large: "./assets/assets/plugin-dev-codex.svg"
   brand_color: "#0F766E"
-  default_prompt: "Use $evaluate-plugin to evaluate a local Codex plugin."
+  default_prompt: "Give me a full analysis of this plugin, explain why it scored the way it did, and tell me what to fix first."
 
 policy:
   allow_implicit_invocation: true

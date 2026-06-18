@@ -38,7 +38,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 
 ## Plugins Installation
 
-### Claude Code
+### Claude
 
 - Claude Code CLI
 
@@ -50,7 +50,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
   claude plugin install natroc-awareness@natroc-plugins
   ```
 
-- Claude Desktop (MacOS & Windows)
+- Claude Desktop (macOS & Windows)
 
   ```
   # Repository
@@ -65,11 +65,11 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
   # Add marketplace
   codex plugin marketplace add NatrocTeam/Natroc-Plugins
 
-  #install plugin from natroc marketplace
+  # Install plugin from natroc marketplace
   codex plugin add natroc-awareness@natroc-plugins
   ```
 
-- Codex Desktop (MacOS and Windows)
+- Codex Desktop (macOS and Windows)
 
   ```
   # Source

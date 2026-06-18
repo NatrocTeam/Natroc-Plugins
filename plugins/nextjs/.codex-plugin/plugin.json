@@ -38,9 +38,9 @@
     "composerIcon": "./assets/nextjs.png",
     "logo": "./assets/nextjs.png",
     "defaultPrompt": [
-      "Use $nextjs Next.js best practices when building or reviewing App Router pages and Server Components.",
-      "Use $nextjs next-cache-components when implementing Cache Components, use cache directives, PPR, or cache invalidation.",
-      "Use $nextjs next-upgrade when upgrading a project to the latest Next.js version."
+      "Build a Next.js App Router page with React Server Components, async data fetching in a server component, and a client component for interactive state with proper Suspense boundaries.",
+      "Implement Next.js cache components with the use cache directive, set cacheLife and cacheTag for incremental revalidation, and configure PPR for a product detail page.",
+      "Upgrade my Next.js project from v14 to v16 by running the codemods, migrating to async request APIs, replacing deprecated image and link imports, and validating the build output."
     ]
   }
 }

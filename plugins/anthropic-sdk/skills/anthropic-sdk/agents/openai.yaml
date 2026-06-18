@@ -1,10 +1,10 @@
 interface:
-  display_name: "Anthropic SDK"
-  short_description: "Route Anthropic SDK work to development docs or existing-code validation docs for Client SDK and Claude Agent SDK."
+  display_name: "Anthropic SDK - Anthropic SDK"
+  short_description: "Entrypoint for Anthropic Client SDK and Claude Agent SDK development and validation documentation."
   icon_small: "./assets/anthropic.png"
   icon_large: "./assets/anthropic.png"
   brand_color: "#FFFFFF"
-  default_prompt: "Use Anthropic SDK docs to inspect this project, choose development or validation mode, choose the right SDK, and verify the result."
+  default_prompt: "Use Anthropic SDK documentation to build a new integration or validate existing Client SDK and Claude Agent SDK code in this project."
 
 policy:
   allow_implicit_invocation: true

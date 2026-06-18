@@ -35,9 +35,9 @@
     "composerIcon": "./assets/ollama.png",
     "logo": "./assets/ollama.png",
     "defaultPrompt": [
-      "Use Ollama docs to build a local model integration in this app.",
-      "Use Ollama docs to add streaming chat or generate behavior.",
-      "Use Ollama docs to validate this existing Ollama implementation."
+      "Use Ollama documentation to build a new integration with the Ollama client, runtime, or cloud API in this project.",
+      "Use Ollama documentation to validate existing Ollama code for host safety, streaming correctness, and production readiness.",
+      "Add Ollama chat, generate, streaming, tool calling, or structured output features to this project."
     ]
   }
 }

@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Interaction"
+  short_description: "Raycasting, orbit controls, pointer events, and object selection."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Add OrbitControls for camera navigation, implement raycasting to detect hover and click on individual meshes in a group, and highlight the selected object by changing its emissive property."
+
+policy:
+  allow_implicit_invocation: true

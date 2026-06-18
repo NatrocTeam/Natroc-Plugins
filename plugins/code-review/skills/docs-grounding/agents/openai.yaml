@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Docs Grounding"
-  short_description: "Verify framework, library, language, security, database, and deployment claims against official docs or authoritative sources."
+  short_description: "Verify code claims against official documentation."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the docs-grounding skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Verify technical claims in the codebase against official documentation. Cross-reference framework usage, library APIs, language features, security patterns, database queries, and deployment configurations with authoritative sources."
 
 policy:
   allow_implicit_invocation: true

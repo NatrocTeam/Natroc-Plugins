@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Fundamentals"
+  short_description: "Scene setup, cameras, renderer, Object3D hierarchy, and transforms."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Set up a Three.js scene with a perspective camera, a WebGLRenderer with shadow maps enabled, and an Object3D hierarchy where child meshes are positioned relative to a parent group."
+
+policy:
+  allow_implicit_invocation: true

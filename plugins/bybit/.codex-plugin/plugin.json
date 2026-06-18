@@ -31,9 +31,9 @@
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://www.bybit.com/",
     "defaultPrompt": [
-      "Use $bybit to check my Bybit wallet balance.",
-      "Use $bybit to open a BTCUSDT long with 5x leverage.",
-      "Use $bybit to show the current BTC funding rate."
+      "Check my Bybit account wallet balances across spot, derivatives, and funding accounts, then show the total portfolio value in USDT.",
+      "Place a limit buy order for BTCUSDT on Bybit spot with a specified quantity and price, then verify the order was filled.",
+      "Check the current funding rate and open interest for BTCUSDT perpetual contract on Bybit derivatives."
     ],
     "brandColor": "#F7A600",
     "composerIcon": "./assets/bybit.svg",

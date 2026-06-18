@@ -35,9 +35,9 @@
     "composerIcon": "./assets/anthropic.png",
     "logo": "./assets/anthropic.png",
     "defaultPrompt": [
-      "Use Anthropic SDK docs to build an Anthropic SDK integration in this app.",
-      "Add a Claude Agent SDK workflow with tools and permissions.",
-      "Use Anthropic SDK docs to validate this existing Anthropic SDK implementation."
+      "Use Anthropic SDK documentation to build a new integration with the Anthropic Client SDK or Claude Agent SDK in this project.",
+      "Use Anthropic SDK documentation to validate existing Claude API or Agent SDK code for security, correctness, and production readiness.",
+      "Add programmatic Claude Code agent workflows with tools, permissions, MCP servers, sessions, and hooks to this project."
     ]
   }
 }

@@ -26,9 +26,9 @@
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://code.claude.com/",
     "defaultPrompt": [
-      "Use $plugin-structure to review a Claude Code plugin layout.",
-      "Use $skill-development to improve a Claude Code plugin skill.",
-      "Use $hook-development to design a Claude Code plugin hook."
+      "Use Plugin Dev Claude to scaffold a new Claude Code plugin with proper structure, manifest, and auto-discovery configuration.",
+      "Use Plugin Dev Claude to create a skill with focused triggers, progressive disclosure, and bundled resources.",
+      "Use Plugin Dev Claude to design and implement Claude Code agent workflows, slash commands, and event-driven hooks."
     ],
     "brandColor": "#DA7758",
     "composerIcon": "./assets/claudecode.png",

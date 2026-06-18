@@ -27,9 +27,9 @@
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://context7.com/",
     "defaultPrompt": [
-      "Look up current Next.js routing docs with Context7.",
-      "Use Context7 to fetch Prisma relation examples.",
-      "Find the latest Supabase auth API reference."
+      "Look up the current API reference for Next.js App Router route handlers, including the supported HTTP methods, caching behavior, and request/response types in the latest stable version.",
+      "Fetch Prisma documentation for one-to-many and many-to-many relation queries, including nested writes, connect/disconnect patterns, and the latest include and select API.",
+      "Find the Supabase Auth documentation for passwordless email sign-in with PKCE flow, including the client-side setup, server-side verification, and Row Level Security policies."
     ],
     "brandColor": "#059669",
     "composerIcon": "./assets/context7.svg",

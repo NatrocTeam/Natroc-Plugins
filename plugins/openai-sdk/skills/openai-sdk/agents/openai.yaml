@@ -1,10 +1,10 @@
 interface:
-  display_name: "OpenAI SDK - Client SDK"
-  short_description: "Route OpenAI SDK work to development docs or existing-code validation docs for Client SDK and Agents SDK."
+  display_name: "OpenAI SDK - OpenAI SDK"
+  short_description: "Entrypoint for OpenAI Client SDK and Agents SDK development and validation documentation."
   icon_small: "./assets/openai.png"
   icon_large: "./assets/openai.png"
   brand_color: "#10A37F"
-  default_prompt: "Use OpenAI SDK to inspect this project, choose development or validation mode, choose the right SDK, and verify the result."
+  default_prompt: "Use OpenAI SDK documentation to build a new integration or validate existing Client SDK and Agents SDK code in this project."
 
 policy:
   allow_implicit_invocation: true

@@ -26,9 +26,9 @@
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/react-typescript",
     "defaultPrompt": [
-      "Use $react-typescript to review this React TS code.",
-      "Use $react-typescript to type this hook.",
-      "Use $react-typescript to find this component API."
+      "Type a React component's props with an interface that extends HTMLAttributes for a div wrapper, handles children, and excludes a conflicting native prop with Omit.",
+      "Type a custom useFetch hook with generics for the return data shape, proper useRef for caching, useCallback for the fetch function, and discriminated union state for loading, success, and error.",
+      "Create a polymorphic Button component with the as prop that infers the correct HTML element type, merges refs with useRef, and restricts valid elements to button and a elements only."
     ]
   }
 }

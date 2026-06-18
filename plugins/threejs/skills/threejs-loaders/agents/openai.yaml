@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Loaders"
+  short_description: "glTF, FBX, OBJ, DRACO, TextureLoader, and loading progress."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Load a glTF model with GLTFLoader, apply DRACO decompression for compressed geometry, display a loading progress bar, and handle load errors with a fallback mesh."
+
+policy:
+  allow_implicit_invocation: true

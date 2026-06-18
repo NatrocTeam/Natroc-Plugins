@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Shaders"
+  short_description: "GLSL shaders, ShaderMaterial, uniforms, and custom visual effects."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Write a GLSL vertex shader that displaces geometry using a noise function, pass time and amplitude uniforms from JavaScript via ShaderMaterial, and apply a color ramp in the fragment shader."
+
+policy:
+  allow_implicit_invocation: true

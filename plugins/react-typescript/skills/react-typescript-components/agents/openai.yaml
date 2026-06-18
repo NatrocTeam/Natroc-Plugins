@@ -1,7 +1,8 @@
 interface:
-  display_name: "React TS Components"
-  short_description: "Check the usage pattern of files that use React Typescript components."
-  default_prompt: "Use $react-typescript-components to type this component API and its event handlers."
+  display_name: "React TypeScript - Components"
+  short_description: "Type React component props, JSX returns, event handlers, children, and error boundaries."
+  default_prompt: "Type this React component's props, JSX return type, children, and DOM event handlers with proper TypeScript following the bundled component references."
+  brand_color: "#3178C6"
 
 policy:
   allow_implicit_invocation: true

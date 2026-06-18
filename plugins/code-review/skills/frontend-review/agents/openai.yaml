@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Frontend Review"
-  short_description: "Audit frontend code across frameworks for rendering, state, data fetching, forms, accessibility, routing, client-side security, and performance."
+  short_description: "Review frontend rendering, state, and accessibility."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the frontend-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Review the frontend code for correctness and quality. Examine component rendering, state management, data fetching, form handling, accessibility, routing, client-side security, and performance issues."
 
 policy:
   allow_implicit_invocation: true

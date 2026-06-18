@@ -1,10 +1,10 @@
 interface:
-  display_name: "Natroc Plugin Awareness"
-  short_description: "Route tasks to installed Natroc plugins"
+  display_name: "Natroc Awareness - Using Natroc Plugins - Mandatory Domain Routing"
+  short_description: "Route tasks to the best matching installed Natroc plugin"
   icon_small: "./assets/natroc-plugins.svg"
   icon_large: "./assets/natroc-plugins.svg"
   brand_color: "#787878"
-  default_prompt: "Use $natroc-awareness:using-natroc-plugins to route tasks."
+  default_prompt: "Match my request to the right installed Natroc plugin and invoke its skill before responding."
 
 policy:
   allow_implicit_invocation: true

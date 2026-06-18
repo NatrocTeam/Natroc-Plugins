@@ -1,10 +1,10 @@
 interface:
-  display_name: "Skill Development"
-  short_description: "Create and refine Claude Code plugin skills with focused triggers, structure, and bundled resources."
+  display_name: "Plugin Dev Claude - Skill Development for Claude Code Plugins"
+  short_description: "Create plugin skills with triggers, progressive disclosure, and resources."
   icon_small: "./assets/claudecode.png"
   icon_large: "./assets/claudecode.png"
-  brand_color: "#10A37F"
-  default_prompt: "Use $skill-development to create or improve a Claude Code plugin skill."
+  brand_color: "#DA7758"
+  default_prompt: "Help me create an effective Claude Code plugin skill with focused triggers, progressive disclosure, and bundled resources."
 
 policy:
   allow_implicit_invocation: true

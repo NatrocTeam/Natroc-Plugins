@@ -1,0 +1,41 @@
+{
+  "name": "threejs",
+  "version": "1.0.0",
+  "description": "Three.js 3D graphics guidance for scenes, geometry, materials, shaders, lighting, animation, interaction, loaders, textures, and post-processing.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://threejs.org/",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/threejs",
+  "license": "MIT",
+  "keywords": [
+    "threejs",
+    "three.js",
+    "3d",
+    "webgl",
+    "webgpu",
+    "graphics",
+    "animation",
+    "shaders",
+    "materials",
+    "geometry"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Three.js",
+    "shortDescription": "Three.js 3D graphics library guidance for the web.",
+    "longDescription": "Complete Three.js guidance covering scene setup, geometry, materials (PBR, standard, shader), shaders (GLSL, WGSL), lighting, shadows, animation, interaction (raycasting, controls), model loaders (glTF, FBX, OBJ), textures, post-processing, and render pipeline optimization.",
+    "developerName": "PT Kelana Tech Solutions",
+    "category": "Development",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://threejs.org/",
+    "brandColor": "#FFFFFF",
+    "composerIcon": "./assets/threejs.svg",
+    "logo": "./assets/threejs.svg",
+    "defaultPrompt": [
+      "Set up a Three.js scene with a perspective camera, a WebGLRenderer with shadows and tone mapping enabled, and multiple light sources including directional and ambient lights.",
+      "Create a MeshStandardMaterial with albedo, normal, roughness, and metalness texture maps applied to a glTF model loaded via GLTFLoader.",
+      "Add an EffectComposer with an UnrealBloomPass for emissive glow and a tone mapping pass for HDR rendering."
+    ]
+  }
+}

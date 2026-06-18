@@ -1,10 +1,10 @@
 interface:
-  display_name: "Expo Module"
-  short_description: "Build Expo native modules and native views with Swift, Kotlin, TypeScript, autolinking, and config plugins"
+  display_name: "Expo - Module"
+  short_description: "Build Expo native modules and views with Swift, Kotlin, TypeScript, and config plugins."
   icon_small: "./assets/expo.png"
   icon_large: "./assets/expo.png"
   brand_color: "#000020"
-  default_prompt: "Use $expo-module to scaffold, implement, clean up, or review Expo native modules, native views, shared objects, lifecycle hooks, autolinking configuration, and config plugins."
+  default_prompt: "Create an Expo native module that exposes a device sensor to JavaScript via the Expo Modules API, implement the module definition in TypeScript, the native implementation in Swift and Kotlin, and add a config plugin to inject the required Info.plist permissions."
 
 policy:
   allow_implicit_invocation: true

@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Evidence Policy"
-  short_description: "Enforce strict finding requirements: file evidence, docs basis, impact, suggested fix, confidence, and unverified classification."
+  short_description: "Enforce evidence requirements in review findings."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the evidence-policy skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Enforce evidence requirements for review findings. Ensure each finding includes file paths with line numbers, documentation basis, impact assessment, suggested fix, confidence level, and proper classification of unverified claims."
 
 policy:
   allow_implicit_invocation: true

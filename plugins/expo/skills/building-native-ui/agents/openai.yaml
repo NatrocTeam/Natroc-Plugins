@@ -1,10 +1,10 @@
 interface:
   display_name: "Expo - Building Native UI"
-  short_description: "Build beautiful Expo Router UI with native-feeling navigation, controls, media, animation, and visual effects"
+  short_description: "Expo Router UI with navigation, controls, media, animation, and visual effects."
   icon_small: "./assets/expo.png"
   icon_large: "./assets/expo.png"
   brand_color: "#000020"
-  default_prompt: "Use $building-native-ui to build or refactor Expo Router UI, choose native-feeling navigation and controls, structure routes, style screens, and decide when Expo Go is enough before creating native builds."
+  default_prompt: "Build an Expo Router app with a native tab bar, stack navigation for nested screens, haptic feedback on gestures, and a bottom sheet that adapts to the platform's native feel."
 
 policy:
   allow_implicit_invocation: true

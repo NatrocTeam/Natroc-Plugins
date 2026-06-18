@@ -1,7 +1,8 @@
 interface:
-  display_name: "React TS Types"
-  short_description: "Type-safe React props, hooks, refs, events, context, and reusable component APIs."
-  default_prompt: "Use $react-typescript-types to create or review idiomatic TypeScript types for React components."
+  display_name: "React TypeScript - Types"
+  short_description: "Choose idiomatic React and TypeScript types for components, refs, props, and utility types."
+  default_prompt: "Choose the correct React TypeScript types for this component API including render types, utility types, and prop mirroring using the bundled type references."
+  brand_color: "#3178C6"
 
 policy:
   allow_implicit_invocation: true

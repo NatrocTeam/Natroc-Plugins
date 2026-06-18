@@ -25,9 +25,9 @@
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Interactive"],
     "defaultPrompt": [
-      "Use @Midtrans to create a Snap payment transaction.",
-      "Use @Midtrans to check the status of a payment or transaction.",
-      "Use @Midtrans to process a refund for an existing transaction."
+      "Create a Midtrans Snap payment page for an order with customer details, itemized line items, and a callback URL to handle the payment notification.",
+      "Check the transaction status of a Midtrans order by order ID and handle the HTTP notification to verify payment success, settlement, or failure.",
+      "Process a refund for a settled Midtrans transaction via the Core API, passing the original transaction ID and the refund amount."
     ],
     "brandColor": "#307FC1",
     "composerIcon": "./assets/midtrans.png",

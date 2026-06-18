@@ -1,10 +1,10 @@
 interface:
-  display_name: "Expo UI SwiftUI"
-  short_description: "Use @expo/ui/swift-ui views and modifiers inside Expo React Native apps"
+  display_name: "Expo - UI SwiftUI"
+  short_description: "SwiftUI views and modifiers inside Expo React Native apps."
   icon_small: "./assets/expo.png"
   icon_large: "./assets/expo.png"
   brand_color: "#000020"
-  default_prompt: "Use $expo-ui-swift-ui when adding or reviewing @expo/ui/swift-ui Host trees, SwiftUI-like components, modifiers, RNHostView usage, and local Expo-module extensions for missing SwiftUI capabilities."
+  default_prompt: "Add a SwiftUI host tree to my Expo app, render native SwiftUI components with modifiers for frame, background, and font styling, and wrap the host view in an RNHostView for React Native interoperability."
 
 policy:
   allow_implicit_invocation: true

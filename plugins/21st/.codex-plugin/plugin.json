@@ -35,9 +35,9 @@
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://21st.dev/magic",
     "defaultPrompt": [
-      "Use $21st to generate a React TSX component with shadcn/ui and Tailwind.",
-      "Use $21st to create or extend a design system: provide Tailwind tokens, component variants, and usage examples.",
-      "Use $21st to ensure accessibility and responsive design: suggest aria attributes and Tailwind utilities."
+      "Generate a React TSX component with shadcn/ui and Tailwind CSS, including responsive design and proper accessibility attributes.",
+      "Create or extend a design system by providing Tailwind CSS tokens, component variants, and usage examples for consistent UI development.",
+      "Search for a brand or company logo by name and return it as a ready-to-use JSX, TSX, or SVG component for a React project."
     ],
     "brandColor": "#0332ff",
     "composerIcon": "./assets/21st.jpeg",

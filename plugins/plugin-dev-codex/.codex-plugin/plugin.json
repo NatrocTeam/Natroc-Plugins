@@ -19,9 +19,9 @@
     "privacyPolicyURL": "https://openai.com/policies/privacy-policy/",
     "termsOfServiceURL": "https://openai.com/policies/terms-of-use/",
     "defaultPrompt": [
-      "Give me an analysis of the game studio plugin.",
-      "Evaluate this plugin.",
-      "Why did this score that way?"
+      "Give me a full analysis of this plugin with scores, strengths, weaknesses, and a list of what to fix first.",
+      "Evaluate this skill and tell me what needs the most attention to improve its quality.",
+      "Design a custom metric pack with team-specific evaluation rubrics and scoring criteria."
     ],
     "brandColor": "#0F766E",
     "composerIcon": "./assets/plugin-dev-codex.svg",

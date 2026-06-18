@@ -1,0 +1,10 @@
+interface:
+  display_name: "Three.js - Lighting"
+  short_description: "Light types, shadow mapping, environment lighting, and light probes."
+  icon_small: "./assets/threejs.svg"
+  icon_large: "./assets/threejs.svg"
+  brand_color: "#049EF4"
+  default_prompt: "Add a directional light with cascaded shadow maps, a hemisphere light for ambient sky-ground gradient, and a point light with distance attenuation inside a room scene."
+
+policy:
+  allow_implicit_invocation: true

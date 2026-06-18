@@ -1,10 +1,10 @@
 interface:
-  display_name: "21st - Logo Search"
-  short_description: "Find logos"
+  display_name: "21st - Logo Search - SVGL Brand Assets"
+  short_description: "Find and import brand logos as React components"
   icon_small: "./assets/21st.jpeg"
   icon_large: "./assets/21st.jpeg"
   brand_color: "#0332ff"
-  default_prompt: "Find logos for a given query."
+  default_prompt: "Search for a brand logo by name and return it as a JSX, TSX, or SVG component ready to drop into a React project."
 
 policy:
   allow_implicit_invocation: true

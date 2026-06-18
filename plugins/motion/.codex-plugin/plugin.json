@@ -25,9 +25,9 @@
     "websiteURL": "https://motion.dev",
     "capabilities": ["Read", "Write", "Interactive"],
     "defaultPrompt": [
-      "Use the motion plugin to access comprehensive documentation and examples for using the Motion library.",
-      "Use the motion plugin to understand the animation techniques for the Motion library.",
-      "Use the motion plugin to explore the available API endpoints and their usage."
+      "Animate a DOM element with spring-based transforms using Motion's animate function with configurable stiffness, damping, and mass.",
+      "Create a React component with AnimatePresence for smooth mount and unmount transitions, plus whileHover and whileTap gesture animations.",
+      "Add scroll-driven animations that scrub an element's opacity and scale based on scroll progress using Motion's scroll function."
     ],
     "composerIcon": "./assets/motion.png",
     "logo": "./assets/motion.png",

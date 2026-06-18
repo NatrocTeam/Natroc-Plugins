@@ -1,10 +1,10 @@
 interface:
-  display_name: "Code Review - Post Fix Review"
-  short_description: "Re-review applied patches for completeness, bypasses, new bugs, test quality, docs consistency, regression risk, and final verdict."
+  display_name: "Code Review - Post-Fix Review"
+  short_description: "Re-review applied patches for completeness."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the post-fix-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Re-review applied patches to verify they fully resolve the original findings. Check for bypasses, regressions, new bugs, test quality, documentation consistency, and provide a final PASS or FAIL verdict."
 
 policy:
   allow_implicit_invocation: true

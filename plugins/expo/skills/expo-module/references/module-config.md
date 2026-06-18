@@ -21,7 +21,7 @@ Required for autolinking. Must be adjacent to `package.json`.
 
 | Field                          | Description                                                                            |
 | ------------------------------ | -------------------------------------------------------------------------------------- |
-| `platforms`                    | Array: `"android"`, `"apple"` (or `"ios"`, `"macos"`, `"tvos"`), `"web"`, `"devtools"` |
+| `platforms`                    | Array: `"android"`, `"apple"` (or `"ios"`, `"macOS"`, `"tvos"`), `"web"`, `"devtools"` |
 | `apple.modules`                | Swift module class names                                                               |
 | `apple.appDelegateSubscribers` | Swift AppDelegate subscriber class names                                               |
 | `android.modules`              | Fully-qualified Kotlin module class names (package + class)                            |

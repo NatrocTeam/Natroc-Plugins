@@ -32,7 +32,11 @@
     "websiteURL": "https://expo.dev/",
     "privacyPolicyURL": "https://expo.dev/privacy",
     "termsOfServiceURL": "https://expo.dev/terms",
-    "defaultPrompt": "Use Expo when building, deploying, upgrading, debugging, or wiring Codex app Run actions for Expo and React Native apps.",
+    "defaultPrompt": [
+      "Build polished Expo and React Native interfaces with Expo Router navigation, screens, tabs, modals, styling, animations, and platform-adaptive layouts that follow iOS and Android design conventions.",
+      "Deploy Expo apps to production with EAS Build and EAS Submit, distribute preview builds through TestFlight and internal app stores, host API routes and web apps via EAS Hosting, and automate releases with EAS Workflow CI/CD pipelines.",
+      "Upgrade Expo projects to the latest SDK version, resolve dependency conflicts and breaking changes flagged by expo-doctor, and migrate deprecated Expo packages to their recommended replacements."
+    ],
     "composerIcon": "./assets/expo.png",
     "logo": "./assets/expo.png",
     "screenshots": [],

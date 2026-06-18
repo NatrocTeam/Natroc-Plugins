@@ -1,10 +1,10 @@
 interface:
   display_name: "Code Review - Backend Review"
-  short_description: "Audit backend handlers, services, validation, business logic, errors, logging, file upload, background jobs, and API behavior."
+  short_description: "Review backend handlers, services, and logic."
   icon_small: "./assets/logo.svg"
   icon_large: "./assets/logo.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use the backend-review skill for its documented code-review scope. Follow evidence policy, docs grounding, and fix gates."
+  default_prompt: "Review the backend code for correctness and safety. Examine handlers, services, validation logic, business rules, error handling, logging practices, file uploads, background jobs, and API behavior for bugs or unsafe patterns."
 
 policy:
   allow_implicit_invocation: true
