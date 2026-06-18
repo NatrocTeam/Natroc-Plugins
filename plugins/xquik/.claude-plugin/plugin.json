@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "xquik",
+  "version": "1.0.0",
+  "description": "X data automation guidance for using Xquik docs, SDKs, REST API, MCP, webhooks, and public source examples.",
+  "author": {
+    "name": "Xquik"
+  },
+  "homepage": "https://docs.xquik.com",
+  "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+  "license": "MIT",
+  "keywords": [
+    "xquik",
+    "x",
+    "twitter",
+    "automation",
+    "api",
+    "mcp",
+    "webhooks",
+    "sdk"
+  ],
+  "skills": "./skills/"
+}

@@ -34,6 +34,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 | [`react-typescript`](./plugins/react-typescript)         | Local-first React + TypeScript guidance for components, hooks, refs, events, utility types, and reusable patterns.                                                                                                 |
 | [`stitch`](./plugins/stitch)                             | MCP server bridge for Google Stitch - auto-connects 19 Stitch tools via STDIO-to-HTTPS transport for AI agent integration.                                                                                         |
 | [`typescript-lsp`](./plugins/typescript-lsp)             | TypeScript/JavaScript language server for enhanced code intelligence.                                                                                                                                              |
+| [`xquik`](./plugins/xquik)                               | X data automation guidance for using Xquik docs, SDKs, REST API, MCP, webhooks, and public source examples.                                                                                                        |
 
 ## Plugins Installation
 
