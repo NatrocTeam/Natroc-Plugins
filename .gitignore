@@ -8,3 +8,4 @@ build/
 docs/
 package-lock.json
 yarn.lock
+bun.lock
