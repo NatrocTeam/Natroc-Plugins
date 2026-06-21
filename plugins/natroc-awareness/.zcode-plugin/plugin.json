@@ -1,7 +1,6 @@
 {
-  "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
   "name": "natroc-awareness",
-  "version": "2.2.0",
+  "version": "2.1.0",
   "description": "Load compact installed Natroc plugin awareness at session start so agents can route tasks to matching plugin skills without dumping every plugin file into context.",
   "author": {
     "name": "PT Kelana Tech Solutions"
@@ -18,5 +17,5 @@
     "routing",
     "hooks"
   ],
-  "skills": "./skills/"
+  "skills": "skills/"
 }

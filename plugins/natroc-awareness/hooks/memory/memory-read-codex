@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# =============================================================================
+# UserPromptSubmit hook for natroc-awareness — Codex
+#
+# Reads ~/.codex/memory/MEMORY.md and injects as additionalContext.
+# =============================================================================
+set -euo pipefail
+
+MEMORY_FILE="${HOME}/.codex/memory/MEMORY.md"
+
+if [ ! -f "$MEMORY_FILE" ] || [ ! -s "$MEMORY_FILE" ]; then
+    exit 0
+fi
+
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+content=$(cat "$MEMORY_FILE")
+escaped=$(escape_for_json "$content")
+context="<AGENT-MEMORY>\nYou have persistent agent memory from previous sessions:\n\n${escaped}\n</AGENT-MEMORY>"
+
+printf '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"%s"}}\n' "$context"
+exit 0
