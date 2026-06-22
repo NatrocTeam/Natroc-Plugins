@@ -1,4 +1,4 @@
-name: Publish @natroc/plugins to npm
+name: Publish @natroc/plugins to npm and GitHub Packages
 
 on:
   release:
@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   id-token: write
+  packages: write
 
 concurrency:
   group: publish-packages-${{ github.repository }}
@@ -20,7 +21,7 @@ defaults:
 
 jobs:
   publish:
-    name: Build & publish to npm
+    name: Build & publish to npm and GitHub Packages
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -64,3 +65,8 @@ jobs:
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+          npm publish --registry https://npm.pkg.github.com --access public
