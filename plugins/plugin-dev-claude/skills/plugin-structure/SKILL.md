@@ -13,7 +13,7 @@ Claude Code plugins follow a standardized directory structure with automatic com
 **Key concepts:**
 
 - Conventional directory layout for automatic discovery
-- Manifest-driven configuration in `.claude-plugin/plugin.json`
+- Manifest-driven configuration in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, and `.zcode-plugin/plugin.json`
 - Component-based organization (commands, agents, skills, hooks)
 - Portable path references using `${CLAUDE_PLUGIN_ROOT}`
 - Explicit vs. auto-discovered component loading
@@ -25,24 +25,31 @@ Every Claude Code plugin follows this organizational pattern:
 ```
 plugin-name/
 ├── .claude-plugin/
-│   └── plugin.json          # Required: Plugin manifest
+│   └── plugin.json          # Required: Claude plugin manifest
+├── .codex-plugin/
+│   └── plugin.json          # Required: Codex plugin manifest
+├── .zcode-plugin/
+│   └── plugin.json          # Required: ZCode plugin manifest
 ├── commands/                 # Slash commands (.md files)
 ├── agents/                   # Subagent definitions (.md files)
 ├── skills/                   # Agent skills (subdirectories)
 │   └── skill-name/
 │       └── SKILL.md         # Required for each skill
 ├── hooks/
-│   └── hooks.json           # Event handler configuration
+│   ├── hooks.json           # Event handler configuration
+│   └── memory/              # Optional memory hook scripts
 ├── .mcp.json                # MCP server definitions
-└── scripts/                 # Helper scripts and utilities
+├── assets/                  # Plugin images and screenshots
+└── README.md                # Plugin documentation
 ```
 
 **Critical rules:**
 
 1. **Manifest location**: The `plugin.json` manifest MUST be in `.claude-plugin/` directory
-2. **Component locations**: All component directories (commands, agents, skills, hooks) MUST be at plugin root level, NOT nested inside `.claude-plugin/`
-3. **Optional components**: Only create directories for components the plugin actually uses
-4. **Naming convention**: Use kebab-case for all directory and file names
+2. **Multi-platform manifests**: Plugins SHOULD include `.codex-plugin/plugin.json` and `.zcode-plugin/plugin.json` for cross-agent compatibility
+3. **Component locations**: All component directories (commands, agents, skills, hooks) MUST be at plugin root level, NOT nested inside `.claude-plugin/`
+4. **Optional components**: Only create directories for components the plugin actually uses
+5. **Naming convention**: Use kebab-case for all directory and file names
 
 ## Plugin Manifest (plugin.json)
 
@@ -217,9 +224,10 @@ Skill instructions and guidance...
 ```
 hooks/
 ├── hooks.json           # Hook configuration
-└── scripts/
-    ├── validate.sh      # Hook script
-    └── check-style.sh   # Hook script
+├── hooks-codex.json     # Codex hook configuration (optional)
+└── memory/
+    ├── memory-read.sh   # Hook script
+    └── memory-write.sh  # Hook script
 ```
 
 **Configuration format**:
@@ -232,7 +240,7 @@ hooks/
       "hooks": [
         {
           "type": "command",
-          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/validate.sh",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/memory-read.sh",
           "timeout": 30
         }
       ]
@@ -277,7 +285,7 @@ Use `${CLAUDE_PLUGIN_ROOT}` environment variable for all intra-plugin path refer
 
 ```json
 {
-  "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/run.sh"
+  "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/memory-read.sh"
 }
 ```
 
@@ -305,13 +313,13 @@ Use `${CLAUDE_PLUGIN_ROOT}` environment variable for all intra-plugin path refer
 **In manifest JSON fields** (hooks, MCP servers):
 
 ```json
-"command": "${CLAUDE_PLUGIN_ROOT}/scripts/tool.sh"
+"command": "${CLAUDE_PLUGIN_ROOT}/hooks/memory/read-context.sh"
 ```
 
 **In component files** (commands, agents, skills):
 
 ```markdown
-Reference scripts at: ${CLAUDE_PLUGIN_ROOT}/scripts/helper.py
+Reference scripts at: ${CLAUDE_PLUGIN_ROOT}/hooks/memory/read.sh
 ```
 
 **In executed scripts**:
@@ -452,14 +460,18 @@ Complete plugin with all component types:
 my-plugin/
 ├── .claude-plugin/
 │   └── plugin.json
+├── .codex-plugin/
+│   └── plugin.json
+├── .zcode-plugin/
+│   └── plugin.json
 ├── commands/          # User-facing commands
 ├── agents/            # Specialized subagents
 ├── skills/            # Auto-activating skills
 ├── hooks/             # Event handlers
 │   ├── hooks.json
-│   └── scripts/
+│   └── memory/
 ├── .mcp.json          # External integrations
-└── scripts/           # Shared utilities
+└── assets/            # Images and screenshots
 ```
 
 ### Skill-Focused Plugin
@@ -479,25 +491,10 @@ my-plugin/
 
 ## Troubleshooting
 
-**Component not loading**:
+**Component not loading**: Verify file is in correct directory with correct extension, check YAML frontmatter syntax, ensure skill has `SKILL.md` (not `README.md`), and confirm plugin is enabled.
 
-- Verify file is in correct directory with correct extension
-- Check YAML frontmatter syntax (commands, agents, skills)
-- Ensure skill has `SKILL.md` (not `README.md` or other name)
-- Confirm plugin is enabled in Claude Code settings
+**Path resolution errors**: Replace all hardcoded paths with `${CLAUDE_PLUGIN_ROOT}`, verify paths are relative and start with `./` in manifest, and check that referenced files exist at specified paths.
 
-**Path resolution errors**:
-
-- Replace all hardcoded paths with `${CLAUDE_PLUGIN_ROOT}`
-- Verify paths are relative and start with `./` in manifest
-- Check that referenced files exist at specified paths
-- Test with `echo $CLAUDE_PLUGIN_ROOT` in hook scripts
-
-**Auto-discovery not working**:
-
-- Confirm directories are at plugin root (not in `.claude-plugin/`)
-- Check file naming follows conventions (kebab-case, correct extensions)
-- Verify custom paths in manifest are correct
-- Restart Claude Code to reload plugin configuration
+**Auto-discovery not working**: Confirm directories are at plugin root (not in `.claude-plugin/`), check file naming follows conventions (kebab-case, correct extensions), and verify custom paths in manifest are correct. Restart Claude Code to reload plugin configuration.
 
 For detailed examples, advanced patterns, and conflict resolution between plugins, see `references/` and `examples/` directories.

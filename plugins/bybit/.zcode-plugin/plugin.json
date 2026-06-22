@@ -1,0 +1,39 @@
+{
+  "name": "bybit",
+  "version": "1.0.0",
+  "description": "Trade and manage assets on Bybit (spot, derivatives, copy trading, bots, Earn, fiat & on-chain) through the official Bybit MCP server.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://www.bybit.com/",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "bybit",
+    "trading",
+    "crypto",
+    "mcp",
+    "exchange",
+    "derivatives",
+    "spot",
+    "futures",
+    "copy-trading",
+    "earn"
+  ],
+  "skills": "skills/",
+  "commands": [
+    "commands/account.md",
+    "commands/advanced.md",
+    "commands/alpha-trade.md",
+    "commands/copy-trading.md",
+    "commands/derivatives.md",
+    "commands/earn.md",
+    "commands/fiat.md",
+    "commands/market.md",
+    "commands/spot.md",
+    "commands/strategy.md",
+    "commands/tradfi.md",
+    "commands/trading-bot.md"
+  ],
+  "mcpServers": ".mcp.json"
+}

@@ -1,7 +1,7 @@
 param()
 
 # =============================================================================
-# Stop hook for natroc-awareness — Codex (PowerShell)
+# Stop hook for natroc-awareness - Codex (PowerShell)
 #
 # Instructs the agent to update ~/.codex/memory/MEMORY.md with new knowledge.
 # Exits silently if stop_hook_active is true (loop protection).
@@ -37,7 +37,7 @@ Before you stop, you MUST update the persistent agent memory file at:
    - Key insight: auth tokens must include workspace_id claim
    ```
 
-Do NOT overwrite existing memories — only append new ones. If nothing new was learned, add a simple note like "No new knowledge acquired this session."
+Do NOT overwrite existing memories - only append new ones. If nothing new was learned, add a simple note like "No new knowledge acquired this session."
 </EXTREMELY-IMPORTANT>
 "@
 

@@ -1,12 +1,16 @@
 # Standard Plugin Example
 
-A well-structured plugin with commands, agents, and skills.
+A well-structured plugin with commands, agents, and skills for multiple platforms.
 
 ## Directory Structure
 
 ```
 code-quality/
 ├── .claude-plugin/
+│   └── plugin.json
+├── .codex-plugin/
+│   └── plugin.json
+├── .zcode-plugin/
 │   └── plugin.json
 ├── commands/
 │   ├── lint.md
@@ -27,11 +31,13 @@ code-quality/
 │           └── integration-test.js
 ├── hooks/
 │   ├── hooks.json
-│   └── scripts/
+│   └── memory/
 │       └── validate-commit.sh
-└── scripts/
-    ├── run-linter.sh
-    └── generate-report.py
+├── .mcp.json
+├── assets/
+│   ├── logo.png
+│   └── logo_small.png
+└── README.md
 ```
 
 ## File Contents

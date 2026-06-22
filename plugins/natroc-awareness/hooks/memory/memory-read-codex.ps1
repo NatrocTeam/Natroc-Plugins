@@ -1,7 +1,7 @@
 param()
 
 # =============================================================================
-# UserPromptSubmit hook for natroc-awareness — Codex (PowerShell)
+# UserPromptSubmit hook for natroc-awareness - Codex (PowerShell)
 #
 # Reads ~/.codex/memory/MEMORY.md and injects as additionalContext.
 # =============================================================================

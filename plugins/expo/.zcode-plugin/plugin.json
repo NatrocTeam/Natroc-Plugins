@@ -1,0 +1,31 @@
+{
+  "name": "expo",
+  "version": "1.1.0",
+  "description": "Official Expo skills for building, deploying, upgrading, and debugging Expo and React Native apps.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://docs.expo.dev/skills/",
+  "repository": "https://github.com/expo/skills/tree/main/plugins/expo",
+  "license": "MIT",
+  "keywords": [
+    "expo",
+    "react-native",
+    "expo-router",
+    "eas",
+    "mobile",
+    "ios",
+    "android",
+    "deployment",
+    "upgrades",
+    "native-modules"
+  ],
+  "agents": [
+    "agents/expo-app-builder.md",
+    "agents/expo-native-module-author.md",
+    "agents/expo-deployer.md",
+    "agents/expo-upgrader.md"
+  ],
+  "commands": "commands/setup-codex-run-actions.md",
+  "skills": "skills/"
+}

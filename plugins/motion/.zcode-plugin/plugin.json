@@ -1,0 +1,24 @@
+{
+  "name": "motion",
+  "version": "1.1.0",
+  "description": "A plugin that provides comprehensive documentation and examples for using the Motion library, including animation techniques, API endpoints, request/response formats, and best practices.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "keywords": [
+    "Motion",
+    "animation",
+    "library",
+    "documentation",
+    "API",
+    "examples",
+    "best practices"
+  ],
+  "agents": [
+    "agents/motion-react-animator.md",
+    "agents/motion-javascript-animator.md"
+  ],
+  "skills": "skills/"
+}

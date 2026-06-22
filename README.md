@@ -6,6 +6,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 
 [![Claude Code](https://img.shields.io/badge/Plugins-FFFFFF?style=for-the-badge&logo=claude&logoColor=white&label=Claude%20Code&labelColor=D97757&color=522d21)](https://claude.com/product/claude-code)
 [![GitHub Release](https://img.shields.io/github/v/release/NatrocTeam/Natroc-Plugins?display_name=release&style=for-the-badge)](https://github.com/NatrocTeam/Natroc-Plugins/releases)
+[![NPM Version](https://img.shields.io/npm/v/%40natroc%2Fplugins?style=for-the-badge&logo=npm&logoColor=%23CB3837)](https://www.npmjs.com/package/@natroc/plugins)
 [![Codex](https://img.shields.io/badge/Plugins-3B43FF?style=for-the-badge&label=Codex&labelColor=A9A6FF)](https://openai.com/codex/)
 
 </div>
@@ -22,6 +23,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 | [`code-review`](./plugins/code-review)                   | Strict evidence-based code review and safe fix workflow for frontend, backend, fullstack, security, database, dependencies, testing, CI/CD, deployment, and verified patching.                                     |
 | [`context7`](./plugins/context7)                         | Fetch up-to-date library documentation, API references, and code examples via the Context7 MCP server.                                                                                                             |
 | [`expo`](./plugins/expo)                                 | Official Expo skills for building, deploying, upgrading, and debugging Expo and React Native apps.                                                                                                                 |
+| [`github`](./plugins/github)                             | Manage GitHub pull requests, commits, releases, and MCP integration via the GitHub MCP server.                                                                                                                     |
 | [`human-context-writer`](./plugins/human-context-writer) | Make AI agents write human-like context for better understanding and interaction.                                                                                                                                  |
 | [`midtrans`](./plugins/midtrans)                         | Midtrans payment gateway integration.                                                                                                                                                                              |
 | [`motion`](./plugins/motion)                             | Animation guidance for React and JavaScript using Motion (formerly Framer Motion).                                                                                                                                 |
@@ -44,7 +46,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 
 - Claude Code CLI
 
-  ```
+  ```bash
   # Add marketplace
   claude plugin marketplace add NatrocTeam/Natroc-Plugins
 
@@ -54,7 +56,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 
 - Claude Desktop (macOS & Windows)
 
-  ```
+  ```bash
   # Repository
   NatrocTeam/Natroc-Plugins
   ```
@@ -63,7 +65,7 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 
 - Codex CLI
 
-  ```
+  ```bash
   # Add marketplace
   codex plugin marketplace add NatrocTeam/Natroc-Plugins
 
@@ -73,13 +75,53 @@ A cross-agent plugin marketplace for Claude Code and Codex - extend your AI agen
 
 - Codex Desktop (macOS and Windows)
 
-  ```
+  ```bash
   # Source
   NatrocTeam/Natroc-Plugins
 
   # git ref
   main
   ```
+
+### ZCode
+
+- ZCode Desktop
+
+  ```bash
+  # Add marketplace
+  npx @natroc/plugins@latest zcode add
+  ```
+
+  ```bash
+  # Select and install all plugins
+  npx @natroc/plugins@latest zcode install
+  ```
+
+  ```bash
+  # Install spesific plugin from natroc marketplace
+  npx @natroc/plugins@latest zcode install
+  ```
+
+## CLI
+
+Manage Natroc plugins from the command line with [`@natroc/plugins`](https://www.npmjs.com/package/@natroc/plugins):
+
+```bash
+# Install globally
+npm install -g @natroc/plugins
+```
+
+```bash
+# List all available plugins
+natroc-plugins list
+```
+
+```bash
+# Manage ZCode plugins
+natroc-plugins zcode --help
+```
+
+See [`packages/README.md`](./packages/README.md) for full CLI documentation.
 
 ## Skills Installation Only
 

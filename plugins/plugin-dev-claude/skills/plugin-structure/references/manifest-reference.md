@@ -8,6 +8,18 @@ Complete reference for `plugin.json` configuration.
 
 The manifest MUST be in the `.claude-plugin/` directory at the plugin root. Claude Code will not recognize plugins without this file in the correct location.
 
+### Multi-Platform Manifests
+
+For cross-agent compatibility, plugins SHOULD also include:
+
+| Platform     | File                         | Runtime         |
+| ------------ | ---------------------------- | --------------- |
+| Claude Code  | `.claude-plugin/plugin.json` | Claude Code CLI |
+| OpenAI Codex | `.codex-plugin/plugin.json`  | Codex CLI       |
+| ZCode        | `.zcode-plugin/plugin.json`  | ZCode CLI       |
+
+The `.codex-plugin/plugin.json` uses a different schema with an `interface` block for display metadata (displayName, shortDescription, longDescription, category, capabilities, brandColor, defaultPrompt, logo paths). The `.zcode-plugin/plugin.json` follows the same schema as Claude's manifest.
+
 ## Complete Field Reference
 
 ### Core Fields
@@ -302,7 +314,7 @@ Hook configuration location or inline definition.
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/validate.sh",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/validate.sh",
             "timeout": 30
           }
         ]

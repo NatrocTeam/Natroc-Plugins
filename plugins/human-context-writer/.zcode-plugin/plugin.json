@@ -1,0 +1,11 @@
+{
+  "name": "human-context-writer",
+  "version": "1.2.0",
+  "description": "Guide agents through context intake, AI-writing pattern audit, voice matching, and natural rewrites that preserve the user's intent.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "skills": "skills/"
+}

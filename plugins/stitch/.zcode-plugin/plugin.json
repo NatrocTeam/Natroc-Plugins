@@ -1,0 +1,25 @@
+{
+  "name": "stitch",
+  "version": "1.0.0",
+  "description": "STDIO MCP server bridge for Google Stitch design platform - connect Claude Code to 14 native Stitch MCP tools plus 5 virtual SDK tools for project management, screen generation, design systems, and asset management.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/stitch",
+  "license": "MIT",
+  "keywords": [
+    "natroc",
+    "stitch",
+    "google-stitch",
+    "mcp",
+    "bridge",
+    "design",
+    "prototyping",
+    "screen-generation",
+    "design-systems",
+    "google-cloud"
+  ],
+  "skills": "skills/",
+  "mcpServers": ".mcp.json"
+}

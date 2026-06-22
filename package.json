@@ -3,14 +3,15 @@
   "version": "1.10.0",
   "description": "Collection of plugins for cross-agent development.",
   "scripts": {
+    "packages:install": "cd packages && pnpm install",
+    "packages:build": "cd packages && pnpm run build",
     "format:check": "prettier . --check",
     "format": "prettier . --write",
     "verify-plugins": "node scripts/verify-plugins.js",
     "bump": "node scripts/bump-plugin.js",
     "bump:patch": "node scripts/bump-plugin.js --patch",
     "bump:minor": "node scripts/bump-plugin.js --minor",
-    "bump:major": "node scripts/bump-plugin.js --major",
-    "publish": "recon publish"
+    "bump:major": "node scripts/bump-plugin.js --major"
   },
   "repository": {
     "type": "git",

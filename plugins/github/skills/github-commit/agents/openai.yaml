@@ -1,0 +1,10 @@
+interface:
+  display_name: "GitHub - Commit"
+  short_description: "Commit changes to a GitHub repository with a descriptive message and author information."
+  icon_small: "./assets/github_small.png"
+  icon_large: "./assets/github.png"
+  brand_color: "#FFFFFF"
+  default_prompt: "Commit changes to a GitHub repository with a descriptive message and author information."
+
+policy:
+  allow_implicit_invocation: true

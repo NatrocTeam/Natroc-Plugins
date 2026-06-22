@@ -18,6 +18,8 @@ pnpm run verify-plugins
 │   └── plugin.json                             # Claude Plugin Manifest (required)
 ├── .codex-plugin/
 │   └── plugin.json                             # Codex Plugin Manifest (required)
+├── .zcode-plugin/
+│   └── plugin.json                             # Zcode Plugin Manifest (optional)
 ├── .gitignore                                  # Optional for Both Agents
 ├── .mcp.json                                   # Optional for Both Agents
 ├── LICENSE                                     # Optional for Both Agents
@@ -36,8 +38,18 @@ pnpm run verify-plugins
 │   ├── hooks.json                              # Claude hook configuration
 │   ├── hooks-codex.json                        # Optional: Codex variant
 │   ├── user_prompt_submit_intent_gate.py       # Optional: Python hook command
+│   ├── session-start.ps1                        # Optional: PowerShell hook command
 │   ├── session-start                           # Optional: bash hook command (no extension)
-│   └── run-hook.cmd                            # Optional: cross-platform polyglot wrapper
+│   ├── run-hook.cmd                            # Optional: cross-platform polyglot wrapper
+│   └── memory/                                 # Optional: platform-specific memory scripts
+│       ├── memory-read                         # Bash: read Claude memory
+│       ├── memory-read.ps1                     # PowerShell: read Claude memory
+│       ├── memory-read-codex                   # Bash: read Codex memory
+│       ├── memory-read-codex.ps1               # PowerShell: read Codex memory
+│       ├── memory-write                        # Bash: write Claude memory
+│       ├── memory-write.ps1                    # PowerShell: write Claude memory
+│       ├── memory-write-codex                  # Bash: write Codex memory
+│       └── memory-write-codex.ps1              # PowerShell: write Codex memory
 └── skills/                                     # Required: at least one skill folder
     ├── assets/                                 # Optional: shared skill-level assets (ignored by verifier)
     └── <skill-name>/
@@ -55,7 +67,7 @@ pnpm run verify-plugins
 >
 > - Directories under `skills/` that are not skill folders (e.g. `assets/`) are ignored by the verifier.
 > - `hooks.json` and `hooks-codex.json` may be in the plugin root OR inside `hooks/`, but NOT both.
-> - Hook command files must use `.py`, `.cmd`, or no extension (bash script).
+> - Hook command files must use `.py`, `.ps1`, `.cmd`, or no extension (bash script).
 
 ---
 
@@ -63,11 +75,11 @@ pnpm run verify-plugins
 
 ### Plugin Root
 
-| Check               | Rule                                                                                                       |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Directory structure | Only allowed folders: `.claude-plugin`, `.codex-plugin`, `agents`, `assets`, `commands`, `hooks`, `skills` |
-| Root files          | Only allowed: `.app.json`, `.gitignore`, `.mcp.json`, `LICENSE`, `README.md`, `hooks.json`                 |
-| README.md           | Required, must be non-empty                                                                                |
+| Check               | Rule                                                                                                                        |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Directory structure | Only allowed folders: `.claude-plugin`, `.codex-plugin`, `.zcode-plugin`, `agents`, `assets`, `commands`, `hooks`, `skills` |
+| Root files          | Only allowed: `.app.json`, `.gitignore`, `.mcp.json`, `LICENSE`, `README.md`, `hooks.json`                                  |
+| README.md           | Required, must be non-empty                                                                                                 |
 
 ### Manifests
 
@@ -132,10 +144,10 @@ pnpm run verify-plugins
 
 ### Hooks
 
-| Check                 | Rule                                     |
-| --------------------- | ---------------------------------------- |
-| `hooks.json` location | Plugin root OR `hooks/` folder, not both |
-| Hook command formats  | `.py`, `.cmd`, or no extension (bash)    |
+| Check                 | Rule                                          |
+| --------------------- | --------------------------------------------- |
+| `hooks.json` location | Plugin root OR `hooks/` folder, not both      |
+| Hook command formats  | `.py`, `.ps1`, `.cmd`, or no extension (bash) |
 
 ### Assets
 

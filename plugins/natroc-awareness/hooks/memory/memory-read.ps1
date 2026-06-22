@@ -1,7 +1,7 @@
 param()
 
 # =============================================================================
-# UserPromptSubmit hook for natroc-awareness — Claude (PowerShell)
+# UserPromptSubmit hook for natroc-awareness - Claude (PowerShell)
 #
 # Reads ~/.claude/memory/MEMORY.md and injects as additionalContext.
 # =============================================================================

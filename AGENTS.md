@@ -47,7 +47,7 @@ Do not edit files before understanding the plugin structure and the affected met
 
 ## Repository structure
 
-```txt
+````txt
 .claude-plugin/
   marketplace.json
 
@@ -81,7 +81,13 @@ scripts/
   verify-plugins.js
   bump-plugin.js
   sync-version.js
-```
+
+packages/
+  README.md
+  package.json
+  build.js
+  src/
+  dist/
 
 Not every plugin is required to contain every optional folder. Only add folders and files that are useful for the plugin.
 
@@ -119,7 +125,7 @@ When writing documentation, skills, hooks, or agent instructions, you **MUST**:
 
 ```md
 The agent should inspect the relevant files before proposing changes.
-```
+````
 
 **Rejected:**
 
@@ -237,8 +243,11 @@ Hook configuration uses JSON files:
 Hook command files may use these formats:
 
 - `.py` - Python hook commands.
+- `.ps1` - PowerShell hook commands (cross-platform, native on Windows).
 - Extensionless - Bash hook scripts (e.g. `session-start`).
 - `.cmd` - Cross-platform polyglot wrappers (e.g. `run-hook.cmd`).
+
+Hook directories may include a `memory/` subdirectory for platform-specific memory scripts.
 
 A hook should:
 

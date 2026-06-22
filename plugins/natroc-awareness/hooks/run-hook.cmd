@@ -62,7 +62,7 @@ exit /b 0
 CMDBLOCK
 
 # =============================================================================
-# Unix portion — runs in bash natively.
+# Unix portion - runs in bash natively.
 # Priority:
 #   1. Extensionless bash script (native on Unix)
 #   2. .ps1 via pwsh if available
@@ -83,5 +83,5 @@ if [ -f "${SCRIPT_DIR}/${SCRIPT_NAME}.ps1" ]; then
     fi
 fi
 
-# No handler found — exit silently
+# No handler found - exit silently
 exit 0

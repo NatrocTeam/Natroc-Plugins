@@ -1,0 +1,29 @@
+{
+  "name": "openai-sdk",
+  "version": "1.1.0",
+  "description": "Self-contained OpenAI Client SDK and Agents SDK documentation for TypeScript and Python development plus existing-code validation.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/openai-sdk",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/openai-sdk",
+  "license": "MIT",
+  "keywords": [
+    "openai",
+    "sdk",
+    "typescript",
+    "python",
+    "responses-api",
+    "agents-sdk",
+    "client-sdk",
+    "realtime",
+    "structured-outputs",
+    "tools"
+  ],
+  "agents": [
+    "agents/openai-client-sdk-engineer.md",
+    "agents/openai-agents-sdk-engineer.md",
+    "agents/openai-sdk-reviewer.md"
+  ],
+  "skills": "skills/"
+}

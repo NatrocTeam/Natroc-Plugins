@@ -1,0 +1,10 @@
+interface:
+  display_name: "GitHub - MCP"
+  short_description: "Interact with the GitHub MCP server for advanced GitHub API operations."
+  icon_small: "./assets/github_small.png"
+  icon_large: "./assets/github.png"
+  brand_color: "#FFFFFF"
+  default_prompt: "Interact with the GitHub MCP server for advanced GitHub API operations."
+
+policy:
+  allow_implicit_invocation: true

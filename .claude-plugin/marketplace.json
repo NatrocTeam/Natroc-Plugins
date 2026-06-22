@@ -170,7 +170,7 @@
     },
     {
       "name": "plugin-dev-claude",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "Toolkit for building Claude Code plugins, with skills for creating agents, commands, hooks, MCP integrations, and plugin structure.",
       "author": {
         "name": "PT Kelana Tech Solutions"
@@ -240,6 +240,30 @@
       ],
       "category": "development",
       "source": "./plugins/expo"
+    },
+    {
+      "name": "github",
+      "version": "1.0.0",
+      "description": "GitHub Actions and API skills for repository management, CI/CD, and automation in software development workflows.",
+      "author": {
+        "name": "PT Kelana Tech Solutions"
+      },
+      "homepage": "https://github.com",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/github",
+      "license": "MIT",
+      "keywords": [
+        "github",
+        "actions",
+        "api",
+        "repository-management",
+        "ci/cd",
+        "automation",
+        "repositories",
+        "pull-requests",
+        "issues"
+      ],
+      "category": "development",
+      "source": "./plugins/github"
     },
     {
       "name": "code-review",

@@ -8,6 +8,10 @@ A complex, enterprise-grade plugin with MCP integration and advanced organizatio
 enterprise-devops/
 ├── .claude-plugin/
 │   └── plugin.json
+├── .codex-plugin/
+│   └── plugin.json
+├── .zcode-plugin/
+│   └── plugin.json
 ├── commands/
 │   ├── ci/
 │   │   ├── build.md
@@ -53,49 +57,18 @@ enterprise-devops/
 │           └── pipeline-patterns.md
 ├── hooks/
 │   ├── hooks.json
-│   └── scripts/
-│       ├── security/
-│       │   ├── scan-secrets.sh
-│       │   ├── validate-permissions.sh
-│       │   └── audit-changes.sh
-│       ├── quality/
-│       │   ├── check-config.sh
-│       │   └── verify-tests.sh
-│       └── workflow/
-│           ├── notify-team.sh
-│           └── update-status.sh
+│   ├── hooks-codex.json
+│   └── memory/
+│       ├── read-context.sh
+│       ├── read-context.ps1
+│       ├── write-context.sh
+│       └── write-context.ps1
 ├── .mcp.json
-├── servers/
-│   ├── kubernetes-mcp/
-│   │   ├── index.js
-│   │   ├── package.json
-│   │   └── lib/
-│   ├── terraform-mcp/
-│   │   ├── main.py
-│   │   └── requirements.txt
-│   └── github-actions-mcp/
-│       ├── server.js
-│       └── package.json
-├── lib/
-│   ├── core/
-│   │   ├── logger.js
-│   │   ├── config.js
-│   │   └── auth.js
-│   ├── integrations/
-│   │   ├── slack.js
-│   │   ├── pagerduty.js
-│   │   └── datadog.js
-│   └── utils/
-│       ├── retry.js
-│       └── validation.js
-└── config/
-    ├── environments/
-    │   ├── production.json
-    │   ├── staging.json
-    │   └── development.json
-    └── templates/
-        ├── deployment.yaml
-        └── service.yaml
+├── assets/
+│   ├── logo.png
+│   └── logo_small.png
+├── .app.json
+└── README.md
 ```
 
 ## File Contents
@@ -140,28 +113,11 @@ enterprise-devops/
 ```json
 {
   "mcpServers": {
-    "kubernetes": {
-      "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/kubernetes-mcp/index.js"],
-      "env": {
-        "KUBECONFIG": "${KUBECONFIG}",
-        "K8S_NAMESPACE": "${K8S_NAMESPACE:-default}"
-      }
-    },
-    "terraform": {
-      "command": "python",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/terraform-mcp/main.py"],
-      "env": {
-        "TF_STATE_BUCKET": "${TF_STATE_BUCKET}",
-        "AWS_REGION": "${AWS_REGION}"
-      }
-    },
-    "github-actions": {
-      "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/github-actions-mcp/server.js"],
-      "env": {
-        "GITHUB_TOKEN": "${GITHUB_TOKEN}",
-        "GITHUB_ORG": "${GITHUB_ORG}"
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PAT}"
       }
     }
   }
@@ -639,7 +595,7 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/kubernetes-ops/scripts/validate-manifest.sh de
       "hooks": [
         {
           "type": "command",
-          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/security/scan-secrets.sh",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/scan-secrets.sh",
           "timeout": 30
         }
       ]
@@ -661,7 +617,7 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/kubernetes-ops/scripts/validate-manifest.sh de
       "hooks": [
         {
           "type": "command",
-          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/workflow/update-status.sh",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/update-status.sh",
           "timeout": 15
         }
       ]
@@ -673,12 +629,12 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/kubernetes-ops/scripts/validate-manifest.sh de
       "hooks": [
         {
           "type": "command",
-          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/quality/check-config.sh",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/check-config.sh",
           "timeout": 45
         },
         {
           "type": "command",
-          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/workflow/notify-team.sh",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/notify-team.sh",
           "timeout": 30
         }
       ]
@@ -690,7 +646,7 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/kubernetes-ops/scripts/validate-manifest.sh de
       "hooks": [
         {
           "type": "command",
-          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/security/validate-permissions.sh",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/memory/validate-permissions.sh",
           "timeout": 20
         }
       ]
@@ -709,26 +665,11 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/kubernetes-ops/scripts/validate-manifest.sh de
 
 ### MCP Integration
 
-Three custom MCP servers:
+Custom MCP servers via `.mcp.json`.
 
-- **Kubernetes**: Cluster operations
-- **Terraform**: Infrastructure provisioning
-- **GitHub Actions**: CI/CD automation
+### Cross-Platform Manifests
 
-### Shared Libraries
-
-Reusable code in `lib/`:
-
-- **Core**: Common utilities (logging, config, auth)
-- **Integrations**: External services (Slack, Datadog)
-- **Utils**: Helper functions (retry, validation)
-
-### Configuration Management
-
-Environment-specific configs in `config/`:
-
-- **Environments**: Per-environment settings
-- **Templates**: Reusable deployment templates
+Supports Claude Code, Codex, and ZCode through separate manifest files.
 
 ### Security Automation
 
@@ -737,14 +678,6 @@ Multiple security hooks:
 - Secret scanning before writes
 - Permission validation on session start
 - Configuration auditing on completion
-
-### Monitoring Integration
-
-Built-in monitoring via lib integrations:
-
-- Datadog for metrics
-- PagerDuty for alerts
-- Slack for notifications
 
 ## Use Cases
 

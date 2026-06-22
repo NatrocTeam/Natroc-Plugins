@@ -307,10 +307,9 @@ Single hooks.json with all hooks:
 ```
 hooks/
 ├── hooks.json     # All hook definitions
-└── scripts/
-    ├── validate-write.sh
-    ├── validate-bash.sh
-    └── load-context.sh
+└── memory/
+    ├── read-context.sh
+    └── write-context.sh
 ```
 
 **hooks.json**:
@@ -337,15 +336,10 @@ Separate files per event type:
 ```
 hooks/
 ├── hooks.json              # Combines all
-├── pre-tool-use.json      # PreToolUse hooks
-├── post-tool-use.json     # PostToolUse hooks
-├── stop.json              # Stop hooks
-└── scripts/
-    ├── validate/
-    │   ├── write.sh
-    │   └── bash.sh
-    └── context/
-        └── load.sh
+├── hooks-codex.json        # Codex hook configuration
+└── memory/
+    ├── pre-tool-read.sh
+    └── post-tool-write.sh
 ```
 
 **hooks.json** (combines):
@@ -373,18 +367,11 @@ Group by functional purpose:
 ```
 hooks/
 ├── hooks.json
-└── scripts/
-    ├── security/
-    │   ├── validate-paths.sh
-    │   ├── check-credentials.sh
-    │   └── scan-malware.sh
-    ├── quality/
-    │   ├── lint-code.sh
-    │   ├── check-tests.sh
-    │   └── verify-docs.sh
-    └── workflow/
-        ├── notify-team.sh
-        └── update-status.sh
+├── hooks-codex.json
+└── memory/
+    ├── security-scan.sh
+    ├── validate-code.sh
+    └── notify-workflow.sh
 ```
 
 **When to use**:
@@ -395,17 +382,15 @@ hooks/
 
 ## Script Organization Patterns
 
-### Flat Scripts
+Scripts and utilities reside **inside skill directories** (`skills/<skill-name>/scripts/`) or **inside hooks** (`hooks/memory/`). The plugin root does not have a dedicated `scripts/` directory.
 
-All scripts in single directory:
+### Flat Scripts (inside a skill)
 
 ```
-scripts/
-├── build.sh
-├── test.py
-├── deploy.sh
-├── validate.js
-└── report.py
+skills/api-testing/scripts/
+├── run-tests.sh
+├── generate-report.py
+└── validate-schema.js
 ```
 
 **When to use**:
@@ -416,22 +401,17 @@ scripts/
 
 ### Categorized Scripts
 
-Group by purpose:
-
 ```
-scripts/
+skills/deployment/scripts/
 ├── build/
 │   ├── compile.sh
 │   └── package.sh
 ├── test/
 │   ├── run-unit.sh
 │   └── run-integration.sh
-├── deploy/
-│   ├── staging.sh
-│   └── production.sh
-└── utils/
-    ├── log.sh
-    └── notify.sh
+└── deploy/
+    ├── staging.sh
+    └── production.sh
 ```
 
 **When to use**:
@@ -442,10 +422,8 @@ scripts/
 
 ### Language-Based Organization
 
-Group by programming language:
-
 ```
-scripts/
+skills/automation/scripts/
 ├── bash/
 │   ├── build.sh
 │   └── deploy.sh
@@ -472,14 +450,14 @@ Components sharing common resources:
 ```
 plugin/
 ├── commands/
-│   ├── test.md        # Uses lib/test-utils.sh
-│   └── deploy.md      # Uses lib/deploy-utils.sh
+│   ├── test.md        # References skill scripts
+│   └── deploy.md      # References skill scripts
 ├── agents/
-│   └── tester.md      # References lib/test-utils.sh
+│   └── tester.md      # References skill scripts
 ├── hooks/
-│   └── scripts/
-│       └── pre-test.sh # Sources lib/test-utils.sh
-└── lib/
+│   └── memory/
+│       └── pre-test.sh # Sources skill scripts
+
     ├── test-utils.sh
     └── deploy-utils.sh
 ```
@@ -507,10 +485,15 @@ plugin/
 ├── commands/          # User interface layer
 ├── agents/            # Orchestration layer
 ├── skills/            # Knowledge layer
-└── lib/
-    ├── core/         # Core business logic
-    ├── integrations/ # External services
-    └── utils/        # Helper functions
+│   ├── skill-a/       # Skill with supporting scripts
+│   │   ├── SKILL.md
+│   │   └── scripts/
+│   │       └── helper.py
+│   └── skill-b/
+│       ├── SKILL.md
+│       └── references/
+│           └── guide.md
+└── .mcp.json          # External integrations
 ```
 
 **When to use**:
@@ -527,29 +510,19 @@ Nested plugin structure:
 plugin/
 ├── .claude-plugin/
 │   └── plugin.json
-├── core/              # Core functionality
-│   ├── commands/
-│   └── agents/
-└── extensions/        # Optional extensions
-    ├── extension-a/
-    │   ├── commands/
-    │   └── agents/
-    └── extension-b/
-        ├── commands/
-        └── agents/
+├── .codex-plugin/
+│   └── plugin.json
+├── .zcode-plugin/
+│   └── plugin.json
+├── commands/
+├── agents/
+├── skills/
+├── hooks/
+├── assets/
+└── README.md
 ```
 
-**Manifest**:
-
-```json
-{
-  "commands": [
-    "./core/commands",
-    "./extensions/extension-a/commands",
-    "./extensions/extension-b/commands"
-  ]
-}
-```
+**Manifest**: Custom paths in `plugin.json` can point to non-default locations, but all component directories MUST be at or under the plugin root.
 
 **When to use**:
 

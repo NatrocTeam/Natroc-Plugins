@@ -1,0 +1,10 @@
+interface:
+  display_name: "GitHub - Pull Request"
+  short_description: "Create, update, and manage GitHub pull requests."
+  icon_small: "./assets/github_small.png"
+  icon_large: "./assets/github.png"
+  brand_color: "#FFFFFF"
+  default_prompt: "Create, update, and manage GitHub pull requests."
+
+policy:
+  allow_implicit_invocation: true

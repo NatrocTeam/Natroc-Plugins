@@ -31,6 +31,7 @@ const allowedPluginRootFiles = new Set([
 const allowedPluginRootDirs = new Set([
   ".claude-plugin",
   ".codex-plugin",
+  ".zcode-plugin",
   "agents",
   "assets",
   "commands",
@@ -721,14 +722,19 @@ function validateHooks(pluginName, pluginPath) {
     return;
   }
 
+  const allowedHooksSubdirs = new Set(["memory"]);
+
   for (const entry of fs.readdirSync(hooksDir, { withFileTypes: true })) {
     const entryPath = path.join(hooksDir, entry.name);
 
     if (!entry.isFile()) {
+      if (allowedHooksSubdirs.has(entry.name)) {
+        continue;
+      }
       addIssue(
         pluginName,
         entryPath,
-        "Hooks folder may only contain hooks.json and hook command files.",
+        "Hooks folder may only contain hooks.json, hook command files, and a memory/ subdirectory.",
         "Remove generated folders and keep hook commands as regular files.",
       );
       continue;
@@ -740,12 +746,12 @@ function validateHooks(pluginName, pluginPath) {
     }
 
     const hookExt = path.extname(entry.name).toLowerCase();
-    const allowedHookExts = new Set([".py", ".cmd", ""]);
+    const allowedHookExts = new Set([".py", ".ps1", ".cmd", ""]);
     if (!allowedHookExts.has(hookExt)) {
       addIssue(
         pluginName,
         entryPath,
-        "Hook command files must use .py, .cmd, or no extension (bash script).",
+        "Hook command files must use .py, .ps1, .cmd, or no extension (bash script).",
         "Rename or replace this hook command with a supported format, or document another supported hook format in rules/verify.md.",
       );
     }

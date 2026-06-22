@@ -22,7 +22,7 @@
     "shortDescription": "A plugin for interacting with the Midtrans payment gateway.",
     "longDescription": "Midtrans is a comprehensive payment solution that allows businesses to accept payments online. This plugin provides seamless integration with the Midtrans API, enabling agents to manage payments, refunds, and other financial transactions.",
     "developerName": "PT Kelana Tech Solutions",
-    "category": "Productivity",
+    "category": "Development",
     "capabilities": ["Read", "Write", "Interactive"],
     "defaultPrompt": [
       "Create a Midtrans Snap payment page for an order with customer details, itemized line items, and a callback URL to handle the payment notification.",

@@ -1,0 +1,25 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "Manage GitHub pull requests, commits, releases, and MCP integration via the GitHub API.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/github",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/github",
+  "license": "MIT",
+  "keywords": [
+    "github",
+    "git",
+    "pull-request",
+    "commit",
+    "release",
+    "mcp",
+    "version-control",
+    "code-review",
+    "collaboration",
+    "ci-cd"
+  ],
+  "skills": "skills/",
+  "mcpServers": ".mcp.json"
+}

@@ -3,7 +3,7 @@ param(
 )
 
 # =============================================================================
-# SessionStart hook for natroc-awareness — Codex variant (PowerShell)
+# SessionStart hook for natroc-awareness - Codex variant (PowerShell)
 #
 # Injects the using-natroc-plugins SKILL.md into session context with
 # Codex-specific instructions.

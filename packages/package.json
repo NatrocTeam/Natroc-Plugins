@@ -1,0 +1,43 @@
+{
+  "name": "@natroc/plugins",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "natroc-plugins": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NatrocTeam/Natroc-Plugins.git"
+  },
+  "keywords": [
+    "natroc-plugins",
+    "natroc",
+    "plugins"
+  ],
+  "author": "PT Kelana Tech Solutions",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NatrocTeam/Natroc-Plugins/issues"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins#readme",
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}

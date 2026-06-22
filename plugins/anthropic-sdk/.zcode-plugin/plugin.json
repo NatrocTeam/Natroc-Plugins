@@ -1,0 +1,29 @@
+{
+  "name": "anthropic-sdk",
+  "version": "1.1.0",
+  "description": "Self-contained Anthropic Client SDK and Claude Agent SDK documentation for TypeScript and Python development plus existing-code validation.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "homepage": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/anthropic-sdk",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/anthropic-sdk",
+  "license": "MIT",
+  "keywords": [
+    "anthropic",
+    "claude",
+    "sdk",
+    "typescript",
+    "python",
+    "messages-api",
+    "agent-sdk",
+    "tools",
+    "streaming",
+    "structured-output"
+  ],
+  "agents": [
+    "agents/anthropic-client-sdk-engineer.md",
+    "agents/anthropic-agent-sdk-engineer.md",
+    "agents/anthropic-sdk-reviewer.md"
+  ],
+  "skills": "skills/"
+}

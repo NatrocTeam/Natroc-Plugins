@@ -38,7 +38,7 @@ Follow the current structure in `rules/verify.md`:
 - `commands/` is for Claude commands and must contain Markdown files.
 - Root `assets/` is for Codex assets and must use `jpeg`, `jpg`, `png`, or `svg`.
 - `hooks.json` and `hooks-codex.json` may be in the plugin root or in `hooks/`, but not both.
-- Hook command files may use `.py` (Python), `.cmd` (cross-platform wrapper), or no extension (bash script).
+- Hook command files may use `.py` (Python), `.ps1` (PowerShell), `.cmd` (cross-platform wrapper), or no extension (bash script).
 - Claude and Codex plugin manifest versions must match.
 
 Do not commit generated files or runtime caches such as `__pycache__/`, `.env`, build output, or local lockfiles not used by this repository.

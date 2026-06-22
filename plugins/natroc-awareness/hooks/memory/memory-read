@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# UserPromptSubmit hook for natroc-awareness — Claude
+# UserPromptSubmit hook for natroc-awareness - Claude
 #
 # Reads ~/.claude/memory/MEMORY.md and injects as additionalContext.
 # =============================================================================

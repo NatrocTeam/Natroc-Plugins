@@ -1,0 +1,11 @@
+{
+  "name": "midtrans",
+  "version": "1.1.0",
+  "description": "A plugin for Midtrans payment gateway integration.",
+  "author": {
+    "name": "PT Kelana Tech Solutions"
+  },
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "license": "MIT",
+  "skills": "skills/"
+}

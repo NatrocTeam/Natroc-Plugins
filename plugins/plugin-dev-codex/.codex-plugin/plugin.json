@@ -23,7 +23,7 @@
       "Evaluate this skill and tell me what needs the most attention to improve its quality.",
       "Design a custom metric pack with team-specific evaluation rubrics and scoring criteria."
     ],
-    "brandColor": "#0F766E",
+    "brandColor": "#5D73FF",
     "composerIcon": "./assets/plugin-dev-codex.svg",
     "logo": "./assets/plugin-dev-codex.svg",
     "screenshots": []
