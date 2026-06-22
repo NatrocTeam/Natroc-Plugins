@@ -123,28 +123,43 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.version.outputs.version }}
+          # GitHub Packages requires the npm scope to match the repository owner.
+          # The repo owner is "NatrocTeam", so the package is published there as
+          # @NatrocTeam/plugins (npmjs keeps the original @natroc/plugins name).
+          GH_OWNER: ${{ github.repository_owner }}
         run: |
           if [ -z "${GH_TOKEN}" ]; then
             echo "::error::GITHUB_TOKEN is not available"
             exit 1
           fi
+
+          # Lowercase the owner for the registry scope/auth lines (npm scopes are
+          # lowercase) while keeping the original case for the package name.
+          GH_OWNER_LC="$(printf '%s' "${GH_OWNER}" | tr '[:upper:]' '[:lower:]')"
+          export GH_PKG_NAME="@${GH_OWNER}/plugins"
+
           # Write a dedicated .npmrc for GitHub Packages only
           # (the setup-node generated file has an incompatible format for this registry).
           {
-            printf '@natroc:registry=https://npm.pkg.github.com/\n'
+            printf '@%s:registry=https://npm.pkg.github.com/\n' "${GH_OWNER_LC}"
             printf '//npm.pkg.github.com/:_authToken=%s\n' "${GH_TOKEN}"
           } > .gh-npmrc
-          # Always remove the token file, even if publishing fails.
-          trap 'rm -f .gh-npmrc' EXIT
 
-          if npm view "@natroc/plugins@${VERSION}" version --registry https://npm.pkg.github.com > /dev/null 2>&1; then
+          # Temporarily rewrite the package "name" so it matches the repo owner
+          # scope required by GitHub Packages. Always restore package.json and
+          # remove the token file, even if publishing fails.
+          cp package.json package.json.bak
+          trap 'mv -f package.json.bak package.json 2>/dev/null || true; rm -f .gh-npmrc' EXIT
+          node -e "const fs=require('fs');const p=require('./package.json');p.name=process.env.GH_PKG_NAME;fs.writeFileSync('./package.json',JSON.stringify(p,null,2)+'\n');"
+
+          if npm view "${GH_PKG_NAME}@${VERSION}" version --registry https://npm.pkg.github.com --userconfig .gh-npmrc > /dev/null 2>&1; then
             echo "Version ${VERSION} already exists on GitHub Packages, skipping"
             echo "result=skipped" >> "$GITHUB_OUTPUT"
           else
-            echo "Publishing @natroc/plugins@${VERSION} to GitHub Packages..."
+            echo "Publishing ${GH_PKG_NAME}@${VERSION} to GitHub Packages..."
             npm publish --registry https://npm.pkg.github.com --userconfig .gh-npmrc
             echo "result=published" >> "$GITHUB_OUTPUT"
-            echo "Published @natroc/plugins@${VERSION} to GitHub Packages"
+            echo "Published ${GH_PKG_NAME}@${VERSION} to GitHub Packages"
           fi
 
       - name: Publish summary
