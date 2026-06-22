@@ -18,7 +18,8 @@ concurrency:
 defaults:
   run:
     working-directory: packages
-    shell: bash
+    # Fail fast on any error, unset variable, or failed command in a pipe.
+    shell: bash -euo pipefail {0}
 
 jobs:
   publish:
@@ -28,80 +29,136 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: 9
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
           registry-url: https://registry.npmjs.org/
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
+          cache: pnpm
+          cache-dependency-path: packages/pnpm-lock.yaml
 
       - name: Read version from packages/package.json
         id: version
         run: |
+          if [ ! -f package.json ]; then
+            echo "::error::packages/package.json not found"
+            exit 1
+          fi
           VERSION="$(node -p "require('./package.json').version")"
+          if [ -z "${VERSION}" ] || [ "${VERSION}" = "undefined" ]; then
+            echo "::error::Could not read a valid 'version' from packages/package.json"
+            exit 1
+          fi
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "Version from package.json: ${VERSION}"
+          echo "Version from packages/package.json: ${VERSION}"
+
+      - name: Validate release tag matches package version
+        if: github.event_name == 'release'
+        env:
+          PKG_VERSION: ${{ steps.version.outputs.version }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          if [ -z "${TAG_NAME}" ]; then
+            echo "::error::Release tag name is empty"
+            exit 1
+          fi
+          # Strip an optional leading "v" from the release tag (e.g. v1.2.3 -> 1.2.3).
+          TAG_VERSION="${TAG_NAME#v}"
+          if [ "${TAG_VERSION}" != "${PKG_VERSION}" ]; then
+            echo "::error::Release tag '${TAG_NAME}' (parsed '${TAG_VERSION}') does not match packages/package.json version '${PKG_VERSION}'."
+            exit 1
+          fi
+          echo "Release tag matches package version: ${PKG_VERSION}"
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build
 
-      - name: Verify output
+      - name: Verify build output
         run: |
           if [ ! -f dist/index.js ]; then
-            echo "Build failed: dist/index.js not found"
+            echo "::error::Build failed: dist/index.js not found"
             exit 1
           fi
-          echo "dist/index.js ready ($(wc -c < dist/index.js) bytes)"
+          SIZE="$(wc -c < dist/index.js)"
+          if [ "${SIZE}" -eq 0 ]; then
+            echo "::error::Build failed: dist/index.js is empty"
+            exit 1
+          fi
+          echo "dist/index.js ready (${SIZE} bytes)"
 
       - name: Publish to npm
         id: publish_npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
-          set +e
-          VERSION="$(node -p "require('./package.json').version")"
-          if npm view "@natroc/plugins@${VERSION}" version &>/dev/null; then
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "::error::NPM_TOKEN secret is not set"
+            exit 1
+          fi
+          # `npm view` exits non-zero when the version does not exist, which is
+          # expected; guard it so `set -e` does not abort the step.
+          if npm view "@natroc/plugins@${VERSION}" version > /dev/null 2>&1; then
             echo "Version ${VERSION} already exists on npm, skipping"
             echo "result=skipped" >> "$GITHUB_OUTPUT"
           else
+            echo "Publishing @natroc/plugins@${VERSION} to npm..."
             npm publish --provenance --access public
-            PUBLISH_EXIT=$?
-            if [ $PUBLISH_EXIT -ne 0 ]; then
-              echo "result=failed" >> "$GITHUB_OUTPUT"
-              echo "npm publish failed with exit code ${PUBLISH_EXIT}, continuing..."
-            else
-              echo "result=published" >> "$GITHUB_OUTPUT"
-              echo "Published @natroc/plugins@${VERSION} to npm"
-            fi
+            echo "result=published" >> "$GITHUB_OUTPUT"
+            echo "Published @natroc/plugins@${VERSION} to npm"
           fi
-          set -e
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to GitHub Packages
+        id: publish_gh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
-          set +e
-          VERSION="$(node -p "require('./package.json').version")"
-          # Write a clean .npmrc for GitHub Packages only (setup-node file has incompatible format)
-          printf '@natroc:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=%s\n' \
-            "${{ secrets.GITHUB_TOKEN }}" > .gh-npmrc
-          if npm view "@natroc/plugins@${VERSION}" version --registry https://npm.pkg.github.com &>/dev/null; then
-            echo "Version ${VERSION} already exists on GitHub Packages, skipping"
-          else
-            npm publish --registry https://npm.pkg.github.com --access public \
-              --userconfig .gh-npmrc
-            PUBLISH_EXIT=$?
-            if [ $PUBLISH_EXIT -ne 0 ]; then
-              echo "GitHub Packages publish failed with exit code ${PUBLISH_EXIT}, continuing..."
-            else
-              echo "Published @natroc/plugins@${VERSION} to GitHub Packages"
-            fi
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::error::GITHUB_TOKEN is not available"
+            exit 1
           fi
-          set -e
+          # Write a dedicated .npmrc for GitHub Packages only
+          # (the setup-node generated file has an incompatible format for this registry).
+          {
+            printf '@natroc:registry=https://npm.pkg.github.com/\n'
+            printf '//npm.pkg.github.com/:_authToken=%s\n' "${GH_TOKEN}"
+          } > .gh-npmrc
+          # Always remove the token file, even if publishing fails.
+          trap 'rm -f .gh-npmrc' EXIT
+
+          if npm view "@natroc/plugins@${VERSION}" version --registry https://npm.pkg.github.com > /dev/null 2>&1; then
+            echo "Version ${VERSION} already exists on GitHub Packages, skipping"
+            echo "result=skipped" >> "$GITHUB_OUTPUT"
+          else
+            echo "Publishing @natroc/plugins@${VERSION} to GitHub Packages..."
+            npm publish --registry https://npm.pkg.github.com --userconfig .gh-npmrc
+            echo "result=published" >> "$GITHUB_OUTPUT"
+            echo "Published @natroc/plugins@${VERSION} to GitHub Packages"
+          fi
+
+      - name: Publish summary
+        if: always()
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          NPM_RESULT: ${{ steps.publish_npm.outputs.result }}
+          GH_RESULT: ${{ steps.publish_gh.outputs.result }}
+        run: |
+          {
+            echo "### Publish summary"
+            echo ""
+            echo "| Target | Version | Result |"
+            echo "| --- | --- | --- |"
+            echo "| npm | ${VERSION:-unknown} | ${NPM_RESULT:-not-run} |"
+            echo "| GitHub Packages | ${VERSION:-unknown} | ${GH_RESULT:-not-run} |"
+          } >> "$GITHUB_STEP_SUMMARY"
