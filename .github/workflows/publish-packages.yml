@@ -88,16 +88,15 @@ jobs:
       - name: Publish to GitHub Packages
         run: |
           set +e
-          echo "=== Debug .npmrc ==="
-          echo "NPM_CONFIG_USERCONFIG=${NPM_CONFIG_USERCONFIG}"
-          cat "${NPM_CONFIG_USERCONFIG}" 2>/dev/null || echo "(file not found)"
-          echo "=== End debug ==="
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> "${NPM_CONFIG_USERCONFIG}"
           VERSION="$(node -p "require('./package.json').version")"
+          # Write a clean .npmrc for GitHub Packages only (setup-node file has incompatible format)
+          printf '@natroc:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=%s\n' \
+            "${{ secrets.GITHUB_TOKEN }}" > .gh-npmrc
           if npm view "@natroc/plugins@${VERSION}" version --registry https://npm.pkg.github.com &>/dev/null; then
             echo "Version ${VERSION} already exists on GitHub Packages, skipping"
           else
-            npm publish --registry https://npm.pkg.github.com --access public
+            npm publish --registry https://npm.pkg.github.com --access public \
+              --userconfig .gh-npmrc
             PUBLISH_EXIT=$?
             if [ $PUBLISH_EXIT -ne 0 ]; then
               echo "GitHub Packages publish failed with exit code ${PUBLISH_EXIT}, continuing..."
