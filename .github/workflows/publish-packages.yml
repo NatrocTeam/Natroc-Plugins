@@ -63,11 +63,42 @@ jobs:
           echo "dist/index.js ready ($(wc -c < dist/index.js) bytes)"
 
       - name: Publish to npm
-        run: npm publish --provenance --access public
+        id: publish_npm
+        run: |
+          set +e
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@natroc/plugins@${VERSION}" version &>/dev/null; then
+            echo "Version ${VERSION} already exists on npm, skipping"
+            echo "result=skipped" >> "$GITHUB_OUTPUT"
+          else
+            npm publish --provenance --access public
+            PUBLISH_EXIT=$?
+            if [ $PUBLISH_EXIT -ne 0 ]; then
+              echo "result=failed" >> "$GITHUB_OUTPUT"
+              echo "npm publish failed with exit code ${PUBLISH_EXIT}, continuing..."
+            else
+              echo "result=published" >> "$GITHUB_OUTPUT"
+              echo "Published @natroc/plugins@${VERSION} to npm"
+            fi
+          fi
+          set -e
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to GitHub Packages
         run: |
+          set +e
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> "${NPM_CONFIG_USERCONFIG}"
-          npm publish --registry https://npm.pkg.github.com --access public
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@natroc/plugins@${VERSION}" version --registry https://npm.pkg.github.com &>/dev/null; then
+            echo "Version ${VERSION} already exists on GitHub Packages, skipping"
+          else
+            npm publish --registry https://npm.pkg.github.com --access public
+            PUBLISH_EXIT=$?
+            if [ $PUBLISH_EXIT -ne 0 ]; then
+              echo "GitHub Packages publish failed with exit code ${PUBLISH_EXIT}, continuing..."
+            else
+              echo "Published @natroc/plugins@${VERSION} to GitHub Packages"
+            fi
+          fi
+          set -e
