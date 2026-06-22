@@ -61,6 +61,6 @@ jobs:
           echo "dist/index.js ready ($(wc -c < dist/index.js) bytes)"
 
       - name: Publish to npm
-        run: npm publish --provenance
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
