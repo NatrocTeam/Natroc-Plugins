@@ -88,6 +88,10 @@ jobs:
       - name: Publish to GitHub Packages
         run: |
           set +e
+          echo "=== Debug .npmrc ==="
+          echo "NPM_CONFIG_USERCONFIG=${NPM_CONFIG_USERCONFIG}"
+          cat "${NPM_CONFIG_USERCONFIG}" 2>/dev/null || echo "(file not found)"
+          echo "=== End debug ==="
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> "${NPM_CONFIG_USERCONFIG}"
           VERSION="$(node -p "require('./package.json').version")"
           if npm view "@natroc/plugins@${VERSION}" version --registry https://npm.pkg.github.com &>/dev/null; then
