@@ -1,5 +1,46 @@
 # Changelog
 
+## [1.11.0] - 2026-06-22 [(dc10bc4)](https://github.com/NatrocTeam/Natroc-Plugins/commit/dc10bc47af8be257e19ddc91d37e389a6d73b0a0)
+
+### Added
+
+- **github**: New plugin with 4 skills for GitHub MCP integration
+  - `github-mcp` skill - server overview, tool naming, routing, and complete ~70-tool catalog
+  - `github-commit` skill - single/multi-file commits, branch creation, commit history
+  - `github-pr` skill - full PR lifecycle (create, review, merge, Copilot reviews)
+  - `github-releases` skill - list releases, get by tag, prepare release notes
+  - Claude Code, Codex, and ZCode manifests with full interface branding (`#FFFFFF`)
+  - `.mcp.json` HTTP transport to `api.githubcopilot.com/mcp`
+  - `.app.json` connector registration for Codex
+  - Plugin README with toolset support table, quick start, and skill routing
+- **zcode**: Add `.zcode-plugin/plugin.json` manifests for all 21 plugins
+- **packages**: New `@natroc/plugins` CLI package
+  - `natroc-plugins list` - list all available plugins with versions
+  - `natroc-plugins zcode add` - register marketplace + copy plugins to ZCode cache
+  - `natroc-plugins zcode install` - interactive checkbox install (Select All, keyboard nav, pagination)
+  - Levenshtein-based fuzzy matching with did-you-mean suggestions
+  - esbuild build system with ESM output, metafile reporting
+  - Colored terminal output (spinner, progress bar, checkmarks)
+- **ci**: Add GitHub Actions publish workflow (`publish-packages.yml`)
+  - Triggers on release published, reads version from `packages/package.json`
+  - Builds with pnpm, publishes to npm with `--provenance`
+- **natroc-awareness**: Cross-platform persistent agent memory hooks
+  - `memory-read`/`memory-write` scripts (bash + PowerShell) for Claude (`~/.claude/memory/`)
+  - `memory-read-codex`/`memory-write-codex` scripts (bash + PowerShell) for Codex (`~/.codex/memory/`)
+  - `UserPromptSubmit` hook injects memory context before every user prompt
+  - `Stop` hook persists new knowledge when agent finishes
+  - `stop_hook_active` loop protection to prevent recursion
+  - PowerShell `session-start` and `session-start-codex` hooks
+  - Platform-agnostic `run-hook.cmd` polyglot wrapper (PowerShell → Git Bash → exit silently)
+
+### Changed
+
+- **marketplace**: Register github in both `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`
+- **marketplace**: Update README plugins table with github entry
+- **verifier**: Allow `.ps1` hook command format in addition to existing extensions
+- **verifier**: Allow `memory/` subdirectory inside `hooks/` for hook scripts
+- **rules**: Update `rules/verify.md` and `CONTRIBUTING.md` for `.ps1` hooks and `memory/` subdirectory
+
 ## [1.10.0] - 2026-06-19 [(59fce2a)](https://github.com/NatrocTeam/Natroc-Plugins/commit/59fce2aa85898e751983214ae4d60de714a3eb71)
 
 ### Added
