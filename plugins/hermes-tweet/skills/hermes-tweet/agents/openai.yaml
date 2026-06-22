@@ -1,0 +1,10 @@
+interface:
+  display_name: "Hermes Tweet"
+  short_description: "Use Hermes Agent for X/Twitter reads and gated actions."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#111827"
+  default_prompt: "Use Hermes Tweet to choose the right Hermes Agent X/Twitter read or approval-gated action workflow."
+
+policy:
+  allow_implicit_invocation: true

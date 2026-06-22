@@ -266,6 +266,28 @@
       "source": "./plugins/github"
     },
     {
+      "name": "hermes-tweet",
+      "version": "0.1.6",
+      "description": "Native Hermes Agent X/Twitter plugin guidance for Xquik reads and approval-gated actions.",
+      "author": {
+        "name": "Xquik"
+      },
+      "homepage": "https://github.com/Xquik-dev/hermes-tweet#readme",
+      "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/hermes-tweet",
+      "license": "MIT",
+      "keywords": [
+        "hermes-agent",
+        "hermes-plugin",
+        "xquik",
+        "twitter",
+        "x",
+        "social-media",
+        "automation"
+      ],
+      "category": "social",
+      "source": "./plugins/hermes-tweet"
+    },
+    {
       "name": "code-review",
       "version": "1.1.0",
       "description": "Strict evidence-based code review and safe fix workflow for frontend, backend, fullstack, security, database, dependencies, testing, CI/CD, deployment, and verified patching.",
