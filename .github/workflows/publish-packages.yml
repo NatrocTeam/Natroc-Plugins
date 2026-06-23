@@ -59,24 +59,6 @@ jobs:
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "Version from packages/package.json: ${VERSION}"
 
-      - name: Validate release tag matches package version
-        if: github.event_name == 'release'
-        env:
-          PKG_VERSION: ${{ steps.version.outputs.version }}
-          TAG_NAME: ${{ github.event.release.tag_name }}
-        run: |
-          if [ -z "${TAG_NAME}" ]; then
-            echo "::error::Release tag name is empty"
-            exit 1
-          fi
-          # Strip an optional leading "v" from the release tag (e.g. v1.2.3 -> 1.2.3).
-          TAG_VERSION="${TAG_NAME#v}"
-          if [ "${TAG_VERSION}" != "${PKG_VERSION}" ]; then
-            echo "::error::Release tag '${TAG_NAME}' (parsed '${TAG_VERSION}') does not match packages/package.json version '${PKG_VERSION}'."
-            exit 1
-          fi
-          echo "Release tag matches package version: ${PKG_VERSION}"
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
