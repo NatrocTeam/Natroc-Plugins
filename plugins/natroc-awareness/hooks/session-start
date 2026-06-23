@@ -7,6 +7,10 @@
 # =============================================================================
 set -euo pipefail
 
+# Reset the per-session memory-written flag so this session starts fresh.
+# Best-effort: never let a missing/unwritable flag file fail the hook.
+rm -f "${HOME}/.claude/memory/.last-written" 2>/dev/null || true
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "${SCRIPT_DIR}/.." && pwd)}"
 

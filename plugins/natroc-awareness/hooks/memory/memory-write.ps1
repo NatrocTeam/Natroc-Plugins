@@ -4,16 +4,56 @@ param()
 # Stop hook for natroc-awareness - Claude (PowerShell)
 #
 # Instructs the agent to update ~/.claude/memory/MEMORY.md with new knowledge.
-# Exits silently if stop_hook_active is true (loop protection).
+#
+# Loop protection (two layers):
+#   1. stop_hook_active guard (built-in): if true, this is a continuation Stop
+#      and the primary write step already ran, so stay silent.
+#   2. session flag guard: if ~/.claude/memory/.last-written already contains
+#      the current session_id, memory was already written this session, so
+#      stay silent and let the agent stop cleanly.
+#
+# On the first Stop of a session, the flag is missing, so we inject the
+# write-memory instruction. The instruction tells the agent to append the
+# session_id to the flag file right after updating MEMORY.md. On the next
+# Stop, the flag matches and the hook becomes a no-op - breaking the
+# forced continuation loop while still updating memory every task.
 # =============================================================================
 
 $input = [Console]::In.ReadToEnd()
+
+# --- Loop protection layer 1: continuation Stop (built-in) -----------------
 if ($input -match '"stop_hook_active"\s*:\s*true') {
     exit 0
 }
 
-$memoryFile = Join-Path $HOME ".claude" "memory" "MEMORY.md"
-$memoryDir = Split-Path $memoryFile -Parent
+$memoryDir = Join-Path $HOME ".claude" "memory"
+$memoryFile = Join-Path $memoryDir "MEMORY.md"
+$flagFile = Join-Path $memoryDir ".last-written"
+
+# --- Extract session_id from Claude Stop hook input ------------------------
+$sessionId = $null
+if ($input -match '"session_id"\s*:\s*"([^"]*)"') {
+    $sessionId = $matches[1]
+}
+
+# --- Loop protection layer 2: session flag ---------------------------------
+if ($sessionId -and (Test-Path $flagFile)) {
+    $stored = (Get-Content $flagFile -Raw -ErrorAction SilentlyContinue) -as [string]
+    if ($stored -and $stored.Trim() -eq $sessionId) {
+        exit 0
+    }
+}
+
+# Build the flag-write step. When session_id is unavailable (older runtime
+# or unexpected input), fall back to a timestamp marker so the loop still
+# terminates instead of stalling on missing identity.
+if ($sessionId) {
+    $flagMarker = $sessionId
+    $flagCmd = "printf '%s' '$sessionId' > '$flagFile'"
+} else {
+    $flagMarker = [string][int][double]::Parse((Get-Date -UFormat %s))
+    $flagCmd = "printf '%s' '$flagMarker' > '$flagFile'"
+}
 
 $instruction = @"
 <EXTREMELY-IMPORTANT>
@@ -38,6 +78,13 @@ Before you stop, you MUST update the persistent agent memory file at:
    ```
 
 Do NOT overwrite existing memories - only append new ones. If nothing new was learned, add a simple note like "No new knowledge acquired this session."
+
+### Loop guard (MANDATORY):
+After updating `$memoryFile, run this exact command to mark memory as written for this session (prevents the Stop hook from re-prompting you):
+
+```bash
+$flagCmd
+```
 </EXTREMELY-IMPORTANT>
 "@
 
