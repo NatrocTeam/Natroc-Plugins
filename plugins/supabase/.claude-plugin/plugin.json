@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "supabase",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Supabase guidance - Database, Auth, Edge Functions, Realtime, Storage, Vectors, and CLI.",
   "author": {
     "name": "PT Kelana Tech Solutions"
@@ -19,5 +19,6 @@
     "vectors",
     "postgres"
   ],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
 }
