@@ -154,9 +154,21 @@ export async function install(args) {
   }
 
   // ── Interactive ───────────────────────────────────────────────────────
+  const natrocAwareness = allPlugins.find((p) => p.name === "natroc-awareness");
+  const otherPlugins = allPlugins.filter((p) => p.name !== "natroc-awareness");
+
   const choices = [
     { name: "__select_all__", label: "Select All", checked: true },
-    ...allPlugins.map((p) => ({
+    ...(natrocAwareness
+      ? [
+          {
+            name: natrocAwareness.name,
+            label: `${natrocAwareness.name} ${c(natrocAwareness.version, "dim")} ${c("(Recommended: for domain routing & session awareness)", "green")}`,
+            checked: true,
+          },
+        ]
+      : []),
+    ...otherPlugins.map((p) => ({
       name: p.name,
       label: `${p.name} ${c(p.version, "dim")}`,
       checked: true,

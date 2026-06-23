@@ -2,7 +2,7 @@
 
 # Natroc Plugins
 
-**Cross-platform CLI for managing Natroc plugins - works on Windows, Linux, and macOS.**
+**Cross-platform CLI for managing Natroc plugins — works on Windows, Linux, and macOS.**
 
 </div>
 
@@ -11,14 +11,17 @@
 ## Quick Start
 
 ```bash
-# Install globally
-npm install -g @natroc/plugins
+# No install required — run from anywhere
+npx @natroc/plugins list
 
-# List all available plugins
-natroc-plugins list
+# Register all plugins to ZCode
+npx @natroc/plugins zcode add
 
-# Get help
-natroc-plugins --help
+# Install plugins to ZCode
+npx @natroc/plugins zcode install
+
+# Install a specific plugin
+npx @natroc/plugins zcode install --<plugin-name>
 ```
 
 ## Commands
@@ -42,13 +45,11 @@ natroc-plugins --help
 
 ```bash
 # Install dependencies
+cd packages
 pnpm install
 
 # Build
 pnpm run build
-
-# Build output
-#   dist/index.js   - bundled CLI with shebang
 ```
 
 ### Build output
@@ -56,11 +57,12 @@ pnpm run build
 ```
   natroc-plugins build
 
-  ✓ Entry:    src/index.js (3.3 KB)
+  ✓ Entry:    src/index.js (3.7 KB)
   ⋯ Bundling...
-  ✓ Built:    dist/index.js (22.1 KB)
-  ✓ Duration: 45 ms
-  ✓ Modules:  8 bundled
+  ✓ Built:    dist/index.js (25.1 KB)
+  ✓ Duration: 34 ms
+  ✓ Modules:  9 bundled
+  ✓ Plugins:  23 plugin(s) copied
 
   Build complete.
 ```
@@ -69,16 +71,16 @@ pnpm run build
 
 ```bash
 # Build then publish to npm
+cd packages
 pnpm run build
 npm publish
 ```
 
-Or create a **GitHub Release** - the CI workflow publishes automatically.
+Or create a **GitHub Release** — the CI workflow publishes automatically.
 
 ## Requirements
 
 - Node.js 18+
-- pnpm (for development)
 
 ## License
 

@@ -9,20 +9,19 @@ import {
 } from "fs";
 import { join, resolve } from "path";
 import os from "os";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 import { c, success, fail } from "../../../utils/logger.js";
 import { suggest } from "../../../utils/validate.js";
+import { pluginsDir } from "../../../utils/resolve-plugins.js";
 
 const MARKETPLACE_NAME = "natroc-plugins";
 
 export async function add(args) {
-  // ── Flag validation ─────────────────────────────────────────────────────
+  // —— Flag validation ——
   for (const arg of args) {
     if (arg.startsWith("--")) {
       console.error(`\n  ${c("Unknown flag:", "red")} ${c(arg, "yellow")}`);
       console.error(
-        `  ${c("Usage:", "dim")} ${c("zcode add", "cyan")} ${c("(takes no flags or arguments)", "dim")}\n`,
+        `  ${c("Usage:", "dim")} ${c("zcode add", "cyan")} ${c("(takes no arguments)", "dim")}\n`,
       );
       process.exit(1);
     }
@@ -39,16 +38,12 @@ export async function add(args) {
     process.exit(1);
   }
 
-  // ── Locate all plugins in the natroc repo ──────────────────────────────
-  const repoPluginsDir = resolve(
-    dirname(fileURLToPath(import.meta.url)),
-    "..",
-    "..",
-    "plugins",
-  );
-
-  if (!existsSync(repoPluginsDir)) {
-    fail(`Plugins directory not found: ${repoPluginsDir}`);
+  // —— Locate bundled plugins ——
+  let repoPluginsDir;
+  try {
+    repoPluginsDir = pluginsDir();
+  } catch (err) {
+    fail(err.message);
     process.exit(1);
   }
 
@@ -66,7 +61,7 @@ export async function add(args) {
     MARKETPLACE_NAME,
   );
 
-  // ── Read each plugin's version from manifest ────────────────────────────
+  // —— Read each plugin's version from manifest ——
   const plugins = [];
 
   for (const name of pluginDirs) {
@@ -83,7 +78,6 @@ export async function add(args) {
       const json = JSON.parse(raw);
       version = json.version || null;
     } catch {
-      // skip plugins without valid manifest
       continue;
     }
 
@@ -97,7 +91,7 @@ export async function add(args) {
     });
   }
 
-  // ── Write marketplace.json (overwrite if exists) ─────────────────────────
+  // —— Write marketplace.json ——
   const marketDir = join(
     os.homedir(),
     ".zcode",
@@ -126,7 +120,7 @@ export async function add(args) {
     process.exit(1);
   }
 
-  // ── Copy plugins to cache ──────────────────────────────────────────────
+  // —— Copy plugins to cache ——
   let copied = 0;
 
   for (const plugin of plugins) {
@@ -146,7 +140,7 @@ export async function add(args) {
     }
   }
 
-  // ── Summary ────────────────────────────────────────────────────────────
+  // —— Summary ——
   success(`Marketplace "${MARKETPLACE_NAME}" registered`);
   success(`Plugins: ${plugins.length} registered, ${copied} copied to cache`);
   success(marketFile);

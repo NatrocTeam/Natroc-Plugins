@@ -1,17 +1,18 @@
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
 import { c } from "../../utils/logger.js";
-
-// From bundled dist/index.js: dist/../../plugins/ = plugins/
-const PLUGINS_DIR = resolve(import.meta.dirname, "..", "..", "plugins");
+import { pluginsDir } from "../../utils/resolve-plugins.js";
 
 export function list() {
-  if (!existsSync(PLUGINS_DIR)) {
-    console.log(`\n  ${c("No plugins directory found.", "dim")}`);
+  let pluginsDirPath;
+  try {
+    pluginsDirPath = pluginsDir();
+  } catch {
+    console.log(`\n  ${c("Plugins directory not found from bundle.", "dim")}`);
     return;
   }
 
-  const dirs = readdirSync(PLUGINS_DIR, { withFileTypes: true })
+  const dirs = readdirSync(pluginsDirPath, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .sort();
@@ -26,7 +27,7 @@ export function list() {
 
   for (const name of dirs) {
     const manifestPath = resolve(
-      PLUGINS_DIR,
+      pluginsDirPath,
       name,
       ".claude-plugin",
       "plugin.json",

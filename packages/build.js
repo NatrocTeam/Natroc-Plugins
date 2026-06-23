@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild";
-import { existsSync, statSync } from "fs";
+import { existsSync, readdirSync, statSync, cpSync, rmSync } from "fs";
 import { resolve } from "path";
 
 // ── Colors ──────────────────────────────────────────────────────────────────
@@ -84,6 +84,37 @@ async function main() {
     console.log(
       `  ${c("✓", "green")} ${c("Modules:", "bold")} ${c(`${moduleCount} bundled`, "dim")}`,
     );
+
+    // ── Copy plugins to package ─────────────────────────────────────────────
+    const sourcePlugins = resolve("..", "plugins");
+    const targetPlugins = resolve("plugins");
+
+    if (!existsSync(sourcePlugins)) {
+      console.log(
+        `  ${c("✘", "red")} ${c("Source plugins/ directory not found:", "red")} ${c(sourcePlugins, "yellow")}`,
+      );
+      console.log(`  ${c("Build complete with warnings.", "dim")}\n`);
+    } else {
+      if (existsSync(targetPlugins)) {
+        rmSync(targetPlugins, { recursive: true, force: true });
+      }
+
+      cpSync(sourcePlugins, targetPlugins, { recursive: true, force: true });
+
+      let count = 0;
+      if (existsSync(targetPlugins)) {
+        try {
+          count = readdirSync(targetPlugins, { withFileTypes: true }).filter(
+            (d) => d.isDirectory(),
+          ).length;
+        } catch {}
+      }
+
+      console.log(
+        `  ${c("✓", "green")} ${c("Plugins:", "bold")} ${c(`${count} plugin(s) copied`, "dim")}`,
+      );
+    }
+
     console.log(`\n  ${c("Build complete.", "green")}\n`);
   } catch (err) {
     console.log(
