@@ -1,5 +1,48 @@
 # Changelog
 
+## [1.12.0] - 2026-06-23 [(fe9bd55)](https://github.com/NatrocTeam/Natroc-Plugins/commit/fe9bd55a34f7008ee30c991ffe9e12cc8b5d3e56)
+
+### Features
+
+- **packages**: bundle plugins in npm package for npx support
+  - Copy `plugins/` during build so plugin data ships with the npm package
+  - Add `resolve-plugins.js`: find `plugins/` relative to bundle location (works from anywhere)
+  - Update `list`, `zcode add` to use bundled plugins — no `--path` flag needed
+  - Prioritize `natroc-awareness` in `zcode install` prompt with "Recommended" label
+  - Update README: use `npx` directly, global install no longer recommended
+
+- **supabase**: add initial MCP configuration for Supabase server
+  - Add Supabase MCP server integration at version 1.1.0
+
+- **hermes-tweet**: add initial plugin configuration for Hermes Agent X/Twitter
+  - New plugin for X/Twitter automation via Hermes Agent (@kriptoburak)
+
+- **husky**: add pre-push hooks for quality gates
+  - Run `verify-plugins` and `format:check` automatically on `git push`
+  - Use `postinstall` script for cross-package-manager compatibility (npm, pnpm, yarn, bun)
+
+### Fixes
+
+- **natroc-awareness — Stop hook infinite loop** (4 files)
+  - Fix guard condition incorrectly gated on `session_id` (always null → never fired)
+  - Change fallback marker from per-second timestamp (`date +%s`) to stable daily date (`date +%Y-%m-%d`)
+  - Fix cached copies in `~/.claude/plugins/cache/` (not just repo files — the actual running scripts)
+  - Fix marketplace copies in `~/.claude/plugins/marketplaces/`
+  - Applies to all 4 script variants: Claude/Codex × bash/PowerShell
+
+- **verify-plugins**: add mandatory `.zcode-plugin/plugin.json` validation
+  - Zcode manifest is now REQUIRED (was optional)
+  - Zcode version must match both Claude and Codex manifest versions
+  - Detected 3 version mismatches on first run (all fixed)
+
+- **bump-plugin.js**: now also updates `.zcode-plugin/plugin.json` version
+  - `sync-version.js` already handled separately
+
+- **publish workflow**: multiple fixes for GitHub Packages publishing
+  - Dynamic package name based on repository owner
+  - Enhanced error handling and validation checks
+  - CI workflow improvements
+
 ## [1.11.0] - 2026-06-22 [(dc10bc4)](https://github.com/NatrocTeam/Natroc-Plugins/commit/dc10bc47af8be257e19ddc91d37e389a6d73b0a0)
 
 ### Added
