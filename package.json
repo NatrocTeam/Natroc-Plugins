@@ -11,7 +11,8 @@
     "bump": "node scripts/bump-plugin.js",
     "bump:patch": "node scripts/bump-plugin.js --patch",
     "bump:minor": "node scripts/bump-plugin.js --minor",
-    "bump:major": "node scripts/bump-plugin.js --major"
+    "bump:major": "node scripts/bump-plugin.js --major",
+    "postinstall": "husky"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/NatrocTeam/Natroc-Plugins#readme",
   "devDependencies": {
+    "husky": "^9.1.7",
     "prettier": "^3.8.3"
   }
 }
