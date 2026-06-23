@@ -19,7 +19,7 @@ pnpm run verify-plugins
 ├── .codex-plugin/
 │   └── plugin.json                             # Codex Plugin Manifest (required)
 ├── .zcode-plugin/
-│   └── plugin.json                             # Zcode Plugin Manifest (optional)
+│   └── plugin.json                             # Zcode Plugin Manifest (required)
 ├── .gitignore                                  # Optional for Both Agents
 ├── .mcp.json                                   # Optional for Both Agents
 ├── LICENSE                                     # Optional for Both Agents
@@ -88,7 +88,8 @@ pnpm run verify-plugins
 | Manifest folder     | May only contain `plugin.json`                                                             |
 | Manifest `name`     | Must match plugin folder name                                                              |
 | Manifest `version`  | Must be a non-empty string                                                                 |
-| Version consistency | Claude manifest version must equal Codex manifest version                                  |
+| Version consistency | Claude and Codex manifest versions must match                                              |
+| Zcode consistency   | Zcode manifest version must match both Claude and Codex manifest versions                  |
 | Marketplace version | Claude manifest version must match `.claude-plugin/marketplace.json` entry for that plugin |
 
 ### Categories

@@ -40,7 +40,8 @@ function printHelp() {
 The script updates:
   - .claude-plugin/marketplace.json plugins[].version
   - plugins/<plugin-name>/.claude-plugin/plugin.json version
-  - plugins/<plugin-name>/.codex-plugin/plugin.json version`);
+  - plugins/<plugin-name>/.codex-plugin/plugin.json version
+  - plugins/<plugin-name>/.zcode-plugin/plugin.json version`);
 }
 
 function parseArgs(argv) {
@@ -235,10 +236,16 @@ function loadTarget(pluginName) {
     ".codex-plugin",
     "plugin.json",
   );
+  const zcodeManifestPath = path.join(
+    pluginPath,
+    ".zcode-plugin",
+    "plugin.json",
+  );
 
   const marketplace = readJson(marketplacePath, "Claude marketplace");
   const claudeManifest = readJson(claudeManifestPath, "Claude plugin manifest");
   const codexManifest = readJson(codexManifestPath, "Codex plugin manifest");
+  const zcodeManifest = readJson(zcodeManifestPath, "Zcode plugin manifest");
 
   if (!Array.isArray(marketplace.plugins)) {
     fail("Claude marketplace must include a plugins array.", [
@@ -274,6 +281,7 @@ function loadTarget(pluginName) {
 
   parseVersion(claudeManifest.version, "Claude plugin manifest");
   parseVersion(codexManifest.version, "Codex plugin manifest");
+  parseVersion(zcodeManifest.version, "Zcode plugin manifest");
 
   if (claudeManifest.version !== codexManifest.version) {
     fail("Claude and Codex plugin manifest versions do not match.", [
@@ -283,13 +291,23 @@ function loadTarget(pluginName) {
     ]);
   }
 
+  if (zcodeManifest.version !== claudeManifest.version) {
+    fail("Zcode and Claude plugin manifest versions do not match.", [
+      `Current Zcode version: ${zcodeManifest.version}`,
+      `Current Claude version: ${claudeManifest.version}`,
+      "Make the manifest versions match before bumping.",
+    ]);
+  }
+
   return {
     marketplace,
     marketplacePlugin,
     claudeManifest,
     codexManifest,
+    zcodeManifest,
     claudeManifestPath,
     codexManifestPath,
+    zcodeManifestPath,
   };
 }
 
@@ -310,16 +328,19 @@ async function main() {
     target.marketplacePlugin.version = nextVersion;
     target.claudeManifest.version = nextVersion;
     target.codexManifest.version = nextVersion;
+    target.zcodeManifest.version = nextVersion;
 
     writeJson(marketplacePath, target.marketplace);
     writeJson(target.claudeManifestPath, target.claudeManifest);
     writeJson(target.codexManifestPath, target.codexManifest);
+    writeJson(target.zcodeManifestPath, target.zcodeManifest);
 
     console.log("");
     console.log(`Updated ${pluginName}: ${currentVersion} -> ${nextVersion}`);
     console.log(`  ${rel(marketplacePath)} plugins[].version`);
     console.log(`  ${rel(target.claudeManifestPath)} version`);
     console.log(`  ${rel(target.codexManifestPath)} version`);
+    console.log(`  ${rel(target.zcodeManifestPath)} version`);
   } finally {
     rl.close();
   }

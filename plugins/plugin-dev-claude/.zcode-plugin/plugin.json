@@ -1,6 +1,6 @@
 {
   "name": "plugin-dev-claude",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Plugin development toolkit with skills for creating agents, commands, hooks, MCP integrations, and comprehensive plugin structure guidance",
   "author": {
     "name": "PT Kelana Tech Solutions"

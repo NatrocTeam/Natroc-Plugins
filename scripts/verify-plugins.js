@@ -1110,6 +1110,12 @@ function validatePlugin(
     ".codex-plugin",
     "Codex",
   );
+  const zcodeManifest = validateManifestDir(
+    pluginName,
+    pluginPath,
+    ".zcode-plugin",
+    "Zcode",
+  );
 
   if (
     claudeManifest !== null &&
@@ -1123,6 +1129,36 @@ function validatePlugin(
       path.join(pluginPath, ".codex-plugin", "plugin.json"),
       "Claude and Codex plugin manifest versions must match.",
       `Set both manifest versions to the same value. Current values: Claude ${claudeManifest.version}, Codex ${codexManifest.version}.`,
+    );
+  }
+
+  if (
+    zcodeManifest !== null &&
+    typeof zcodeManifest.version === "string" &&
+    claudeManifest !== null &&
+    typeof claudeManifest.version === "string" &&
+    zcodeManifest.version !== claudeManifest.version
+  ) {
+    addIssue(
+      pluginName,
+      path.join(pluginPath, ".zcode-plugin", "plugin.json"),
+      "Zcode plugin manifest version must match Claude manifest version.",
+      `Set both manifest versions to the same value. Current values: Zcode ${zcodeManifest.version}, Claude ${claudeManifest.version}.`,
+    );
+  }
+
+  if (
+    zcodeManifest !== null &&
+    typeof zcodeManifest.version === "string" &&
+    codexManifest !== null &&
+    typeof codexManifest.version === "string" &&
+    zcodeManifest.version !== codexManifest.version
+  ) {
+    addIssue(
+      pluginName,
+      path.join(pluginPath, ".zcode-plugin", "plugin.json"),
+      "Zcode plugin manifest version must match Codex manifest version.",
+      `Set both manifest versions to the same value. Current values: Zcode ${zcodeManifest.version}, Codex ${codexManifest.version}.`,
     );
   }
 
