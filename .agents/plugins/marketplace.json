@@ -149,6 +149,18 @@
       "category": "Development"
     },
     {
+      "name": "hermes-tweet",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hermes-tweet"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Social"
+    },
+    {
       "name": "code-review",
       "source": {
         "source": "local",
