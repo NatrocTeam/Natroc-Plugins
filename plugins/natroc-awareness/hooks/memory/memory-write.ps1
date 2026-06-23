@@ -36,23 +36,25 @@ if ($input -match '"session_id"\s*:\s*"([^"]*)"') {
     $sessionId = $matches[1]
 }
 
-# --- Loop protection layer 2: session flag ---------------------------------
-if ($sessionId -and (Test-Path $flagFile)) {
-    $stored = (Get-Content $flagFile -Raw -ErrorAction SilentlyContinue) -as [string]
-    if ($stored -and $stored.Trim() -eq $sessionId) {
-        exit 0
-    }
-}
-
-# Build the flag-write step. When session_id is unavailable (older runtime
-# or unexpected input), fall back to a timestamp marker so the loop still
-# terminates instead of stalling on missing identity.
+# --- Determine marker: session_id when available, else stable daily date -------
 if ($sessionId) {
-    $flagMarker = $sessionId
+    $expectedMarker = $sessionId
     $flagCmd = "printf '%s' '$sessionId' > '$flagFile'"
 } else {
-    $flagMarker = [string][int][double]::Parse((Get-Date -UFormat %s))
-    $flagCmd = "printf '%s' '$flagMarker' > '$flagFile'"
+    # Use YYYY-MM-DD as stable daily marker instead of a per-second timestamp.
+    # A per-second timestamp changes every call and the agent can never "catch up",
+    # causing an infinite Stop→instruction→Stop loop on runtimes that don't pass session_id.
+    $expectedMarker = (Get-Date -Format "yyyy-MM-dd")
+    $flagCmd = "printf '%s' '$expectedMarker' > '$flagFile'"
+}
+
+# --- Loop protection layer 2: session flag ---------------------------------
+# Check against whichever marker we resolved above (session_id or daily date)
+if ((Test-Path $flagFile)) {
+    $stored = (Get-Content $flagFile -Raw -ErrorAction SilentlyContinue) -as [string]
+    if ($stored -and $stored.Trim() -eq $expectedMarker) {
+        exit 0
+    }
 }
 
 $instruction = @"

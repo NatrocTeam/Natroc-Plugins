@@ -32,11 +32,23 @@ fi
 # --- Extract session_id from Claude Stop hook input ------------------------
 session_id=$(printf '%s' "$input" | sed -n 's/.*"session_id"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -n1)
 
+# --- Determine marker: session_id when available, else stable daily date -------
+if [ -n "$session_id" ]; then
+    expected_marker="$session_id"
+    flag_cmd="printf '%s' \"${session_id}\" > \"${FLAG_FILE}\""
+else
+    # Use YYYY-MM-DD as stable daily marker instead of a per-second timestamp.
+    # A per-second timestamp changes every call and the agent can never "catch up",
+    # causing an infinite Stop→instruction→Stop loop on runtimes that don't pass session_id.
+    expected_marker="$(date +%Y-%m-%d 2>/dev/null || printf '%s' '1970-01-01')"
+    flag_cmd="printf '%s' \"${expected_marker}\" > \"${FLAG_FILE}\""
+fi
+
 # --- Loop protection layer 2: session flag ---------------------------------
-# If memory was already written for this session, do not force another write.
-if [ -n "$session_id" ] && [ -f "$FLAG_FILE" ]; then
+# Check against whichever marker we resolved above (session_id or daily date)
+if [ -f "$FLAG_FILE" ]; then
     stored_id=$(cat "$FLAG_FILE" 2>/dev/null || printf '')
-    if [ "$stored_id" = "$session_id" ]; then
+    if [ "$stored_id" = "$expected_marker" ]; then
         exit 0
     fi
 fi
@@ -50,17 +62,6 @@ escape_for_json() {
     s="${s//$'\t'/\\t}"
     printf '%s' "$s"
 }
-
-# Build the flag-write step. When session_id is unavailable (older runtime
-# or unexpected input), fall back to a timestamp marker so the loop still
-# terminates instead of stalling on missing identity.
-if [ -n "$session_id" ]; then
-    flag_marker="$session_id"
-    flag_cmd="printf '%s' \"${session_id}\" > \"${FLAG_FILE}\""
-else
-    flag_marker="$(date +%s 2>/dev/null || printf '0')"
-    flag_cmd="printf '%s' \"${flag_marker}\" > \"${FLAG_FILE}\""
-fi
 
 instruction="\
 <EXTREMELY-IMPORTANT>
