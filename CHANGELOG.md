@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.13.0] - 2026-06-25 [(e6addce)](https://github.com/NatrocTeam/Natroc-Plugins/commit/e6addce1b260553cf4f3821a54e51337923554d0)
+
+### Features
+
+- **nextjs**: Add `next-production` skill for production security hardening
+  - SKILL.md with 37 production checkpoints covering Server Actions, Route Handlers, Data Access Layer, auth/session, CSP, SSRF, uploads, rate limits, audit logging, and CI/CD
+  - 3 references: production-security-checklist (64 items), nextjs-secure-patterns (8 code patterns), review-report-template
+  - 4 evaluation test cases in evals/evals.json
+  - Add MIT LICENSE file to plugin root
+
+### Changed
+
+- **nextjs**: Update descriptions and keywords - add production, security, hardening - across Claude, Codex, and ZCode manifests
+- **nextjs**: Update README with next-production skill table, usage section, and plugin structure tree
+
 ## [1.12.0] - 2026-06-23 [(fe9bd55)](https://github.com/NatrocTeam/Natroc-Plugins/commit/fe9bd55a34f7008ee30c991ffe9e12cc8b5d3e56)
 
 ### Features
@@ -7,7 +22,7 @@
 - **packages**: bundle plugins in npm package for npx support
   - Copy `plugins/` during build so plugin data ships with the npm package
   - Add `resolve-plugins.js`: find `plugins/` relative to bundle location (works from anywhere)
-  - Update `list`, `zcode add` to use bundled plugins — no `--path` flag needed
+  - Update `list`, `zcode add` to use bundled plugins - no `--path` flag needed
   - Prioritize `natroc-awareness` in `zcode install` prompt with "Recommended" label
   - Update README: use `npx` directly, global install no longer recommended
 
@@ -23,10 +38,10 @@
 
 ### Fixes
 
-- **natroc-awareness — Stop hook infinite loop** (4 files)
+- **natroc-awareness - Stop hook infinite loop** (4 files)
   - Fix guard condition incorrectly gated on `session_id` (always null → never fired)
   - Change fallback marker from per-second timestamp (`date +%s`) to stable daily date (`date +%Y-%m-%d`)
-  - Fix cached copies in `~/.claude/plugins/cache/` (not just repo files — the actual running scripts)
+  - Fix cached copies in `~/.claude/plugins/cache/` (not just repo files - the actual running scripts)
   - Fix marketplace copies in `~/.claude/plugins/marketplaces/`
   - Applies to all 4 script variants: Claude/Codex × bash/PowerShell
 
