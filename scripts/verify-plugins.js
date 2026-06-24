@@ -77,6 +77,14 @@ function toTitleCase(kebab) {
     .join(" ");
 }
 
+function toKebabCase(value) {
+  return value
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.toLowerCase())
+    .join("-");
+}
+
 const ALLOWED_CATEGORIES_TITLE = new Set(
   [...ALLOWED_CATEGORIES_KEBAB].map(toTitleCase),
 );
@@ -477,6 +485,18 @@ function validateManifestDir(pluginName, pluginPath, dirName, label) {
     );
   }
 
+  if (
+    typeof manifest.description !== "string" ||
+    manifest.description.trim() === ""
+  ) {
+    addIssue(
+      pluginName,
+      manifestPath,
+      `${label} manifest must include a non-empty string description.`,
+      `Set "description" in ${rel(manifestPath)} to a human-readable summary.`,
+    );
+  }
+
   return manifest;
 }
 
@@ -823,7 +843,7 @@ function getSkillBody(pluginName, filePath) {
     return null;
   }
 
-  const normalized = text.replace(/^﻿/, "");
+  const normalized = text.replace(/^\uFEFF/, "");
   const lines = normalized.split(/\r?\n/);
 
   if (lines[0] !== "---") {
@@ -1191,6 +1211,14 @@ function validatePlugin(
     validateCodexManifestCategory(pluginName, pluginPath, codexManifest);
   }
 
+  validateCategoryConsistency(
+    pluginName,
+    pluginPath,
+    codexManifest,
+    claudeMarketplace,
+    codexMarketplace,
+  );
+
   validateAppJson(pluginName, pluginPath, codexManifest);
 
   validateRootAgents(pluginName, pluginPath);
@@ -1468,12 +1496,19 @@ function validateCodexManifestCategory(pluginName, pluginPath, manifest) {
     return;
   }
 
+  const manifestPath = path.join(pluginPath, ".codex-plugin", "plugin.json");
+
   if (!manifest.interface || typeof manifest.interface !== "object") {
+    addIssue(
+      pluginName,
+      manifestPath,
+      `Codex manifest for "${pluginName}" is missing a required interface object with a category field.`,
+      `Add an "interface" object with a "category" field to ${rel(manifestPath)}.`,
+    );
     return;
   }
 
   const category = manifest.interface.category;
-  const manifestPath = path.join(pluginPath, ".codex-plugin", "plugin.json");
 
   validateCategory(
     pluginName,
@@ -1481,6 +1516,93 @@ function validateCodexManifestCategory(pluginName, pluginPath, manifest) {
     category,
     ALLOWED_CATEGORIES_TITLE,
     `Codex manifest interface.category for "${pluginName}"`,
+  );
+}
+
+function validateCategoryConsistency(
+  pluginName,
+  pluginPath,
+  codexManifest,
+  claudeMarketplace,
+  codexMarketplace,
+) {
+  const codexManifestPath = path.join(
+    pluginPath,
+    ".codex-plugin",
+    "plugin.json",
+  );
+
+  const codexManifestCategory =
+    codexManifest &&
+    typeof codexManifest === "object" &&
+    codexManifest.interface &&
+    typeof codexManifest.interface.category === "string"
+      ? codexManifest.interface.category
+      : null;
+
+  const claudeMarketplaceEntry =
+    claudeMarketplace && Array.isArray(claudeMarketplace.plugins)
+      ? claudeMarketplace.plugins.find((p) => p && p.name === pluginName)
+      : null;
+
+  const claudeMarketplaceCategory =
+    claudeMarketplaceEntry &&
+    typeof claudeMarketplaceEntry.category === "string"
+      ? claudeMarketplaceEntry.category
+      : null;
+
+  const codexMarketplaceEntry =
+    codexMarketplace && Array.isArray(codexMarketplace.plugins)
+      ? codexMarketplace.plugins.find((p) => p && p.name === pluginName)
+      : null;
+
+  const codexMarketplaceCategory =
+    codexMarketplaceEntry && typeof codexMarketplaceEntry.category === "string"
+      ? codexMarketplaceEntry.category
+      : null;
+
+  const normalizedKebab = (title) => toKebabCase(title);
+
+  const sources = [
+    {
+      label: ".codex-plugin/plugin.json interface.category",
+      value: codexManifestCategory,
+      path: codexManifestPath,
+    },
+    {
+      label: ".claude-plugin/marketplace.json category",
+      value: claudeMarketplaceCategory,
+      path: path.join(rootDir, ".claude-plugin", "marketplace.json"),
+    },
+    {
+      label: ".agents/plugins/marketplace.json category",
+      value: codexMarketplaceCategory,
+      path: path.join(rootDir, ".agents", "plugins", "marketplace.json"),
+    },
+  ].filter((source) => source.value !== null);
+
+  if (sources.length < 2) {
+    return;
+  }
+
+  const reference = normalizedKebab(sources[0].value);
+  const mismatched = sources.filter(
+    (source) => normalizedKebab(source.value) !== reference,
+  );
+
+  if (mismatched.length === 0) {
+    return;
+  }
+
+  const summary = sources
+    .map((source) => `${source.label}="${source.value}"`)
+    .join(", ");
+
+  addIssue(
+    pluginName,
+    mismatched[0].path,
+    `Category must be consistent across all three locations (same category, casing per file). Found: ${summary}.`,
+    "Set the same category in all three locations: kebab-case in .claude-plugin/marketplace.json, Title Case in .codex-plugin/plugin.json interface.category and .agents/plugins/marketplace.json.",
   );
 }
 
