@@ -1,7 +1,7 @@
 {
   "name": "nextjs",
-  "version": "1.1.0",
-  "description": "Next.js best practices, cache components, and upgrade guidance for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
+  "version": "1.2.0",
+  "description": "Next.js best practices, cache components, upgrade guidance, and production security patterns for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
   "author": {
     "name": "PT Kelana Tech Solutions"
   },
@@ -21,7 +21,10 @@
     "ppr",
     "upgrade",
     "migration",
-    "typescript"
+    "typescript",
+    "production",
+    "security",
+    "hardening"
   ],
   "skills": "skills/",
   "mcpServers": ".mcp.json"

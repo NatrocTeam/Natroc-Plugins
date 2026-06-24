@@ -1,0 +1,72 @@
+[
+  {
+    "name": "new-production-blueprint",
+    "prompt": "Create a production-ready Next.js App Router security blueprint for a dashboard app with auth, Server Actions, DAL, validation, CSP, rate limits, and CI.",
+    "expected_output": {
+      "must_include": [
+        "server-only",
+        "Data Access Layer",
+        "Server Action",
+        "authorization",
+        "Zod",
+        "HttpOnly",
+        "SameSite",
+        "Content-Security-Policy",
+        "rate limit",
+        "Cache-Control: no-store",
+        "CI"
+      ],
+      "must_not_include": [
+        "store JWT in localStorage",
+        "Access-Control-Allow-Origin: * with credentials",
+        "delete via GET"
+      ]
+    }
+  },
+  {
+    "name": "server-action-review",
+    "prompt": "Review this Server Action: it deletes a project by id from FormData but only hides the delete button from non-admin users in the client UI. Explain the production issue and fix it.",
+    "expected_output": {
+      "must_include": [
+        "UI hiding is not security",
+        "Server Action is callable directly",
+        "require authentication",
+        "check authorization",
+        "validate id",
+        "ownership"
+      ]
+    }
+  },
+  {
+    "name": "route-handler-hardening",
+    "prompt": "Make a Next.js Route Handler POST endpoint production-ready for creating private user data with cookie auth.",
+    "expected_output": {
+      "must_include": [
+        "POST",
+        "Origin",
+        "CSRF",
+        "content-length",
+        "request.json",
+        "schema validation",
+        "requireUser",
+        "authorization",
+        "Cache-Control: no-store"
+      ]
+    }
+  },
+  {
+    "name": "description-triggering",
+    "prompt": "My Next.js app uses use client everywhere, passes raw Prisma user objects to client components, and has secrets in NEXT_PUBLIC variables. Audit it.",
+    "expected_output": {
+      "must_include": [
+        "use client",
+        "raw database records",
+        "DTO",
+        "NEXT_PUBLIC",
+        "server-only",
+        "Critical",
+        "High"
+      ]
+    }
+  }
+]

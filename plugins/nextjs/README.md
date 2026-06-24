@@ -9,7 +9,7 @@ and upgrade paths - no external documentation needed during development work.
 
 ## What's Included
 
-This plugin provides four skills:
+This plugin provides five skills:
 
 | Skill                   | Description                                                                                                                                                                                                                                                                         |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -17,6 +17,7 @@ This plugin provides four skills:
 | `next-cache-components` | Next.js 16 Cache Components - PPR, `use cache` directive, `cacheLife`, `cacheTag`, `updateTag`, cache invalidation, migration from `unstable_cache`                                                                                                                                 |
 | `next-docs`             | Curated index of official Next.js 16.2.9 documentation - Getting Started, Guides, API Reference, Glossary, Architecture, and Community resources                                                                                                                                    |
 | `next-upgrade`          | Structured upgrade workflow with codemods, version-specific migration guides (v14 → v15 → v16), and dependency management                                                                                                                                                           |
+| `next-production`       | Production security hardening with 37 checkpoints for Server Actions, Route Handlers, Data Access Layer, auth/session, CSP, SSRF, uploads, rate limits, audit logging, CI/CD, and deployment readiness                                                                              |
 
 ## Prerequisites
 
@@ -63,6 +64,14 @@ To find specific Next.js docs (API reference, guides, glossary):
 
 ```
 Use $nextjs next-docs to look up the cacheLife API.
+```
+
+### Production Security
+
+To audit or harden a Next.js app for production:
+
+```
+Use $nextjs next-production to review this app for production security.
 ```
 
 ### Upgrading Next.js
@@ -115,6 +124,14 @@ plugins/nextjs/
 │   │       ├── Glossary.md
 │   │       ├── Architecture.md
 │   │       └── Community.md
-│   └── next-upgrade/                   # Upgrade workflow skill
+│   ├── next-production/                 # Production security skill
+│   │   ├── SKILL.md
+│   │   ├── evals/
+│   │   │   └── evals.json
+│   │   └── references/
+│   │       ├── nextjs-secure-patterns.md
+│   │       ├── production-security-checklist.md
+│   │       └── review-report-template.md
+│   └── next-upgrade/
 │       └── SKILL.md
 ```

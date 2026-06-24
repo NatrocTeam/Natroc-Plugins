@@ -1,7 +1,7 @@
 {
   "name": "nextjs",
-  "version": "1.1.0",
-  "description": "Next.js best practices, cache components, and upgrade guidance for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
+  "version": "1.2.0",
+  "description": "Next.js best practices, cache components, upgrade guidance, and production security patterns for building production-ready applications with App Router, Server Components, caching, and the latest Next.js features.",
   "author": {
     "name": "PT Kelana Tech Solutions"
   },
@@ -21,13 +21,16 @@
     "ppr",
     "upgrade",
     "migration",
-    "typescript"
+    "typescript",
+    "production",
+    "security",
+    "hardening"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Next.js",
-    "shortDescription": "Next.js best practices, cache components, upgrade guidance, and production patterns for App Router and Server Components.",
-    "longDescription": "Local-first Next.js guidance for agents building, upgrading, debugging, and reviewing Next.js applications. Covers file conventions, RSC boundaries, async patterns, runtime selection, directives, functions, error handling, data patterns, route handlers, metadata, image/font optimization, bundling, scripts, hydration errors, suspense boundaries, parallel routes, self-hosting, debug tricks, and Next.js 16 Cache Components (PPR, use cache, cacheLife, cacheTag, updateTag). Also includes structured upgrade workflows with codemods and version-specific migration guides.",
+    "shortDescription": "Next.js best practices, cache components, upgrade guidance, and production security patterns for App Router and Server Components.",
+    "longDescription": "Local-first Next.js guidance for agents building, upgrading, debugging, reviewing, and hardening Next.js applications. Covers file conventions, RSC boundaries, async patterns, runtime selection, directives, functions, error handling, data patterns, route handlers, metadata, image/font optimization, bundling, scripts, hydration errors, suspense boundaries, parallel routes, self-hosting, debug tricks, and Next.js 16 Cache Components (PPR, use cache, cacheLife, cacheTag, updateTag). Also includes structured upgrade workflows with codemods, version-specific migration guides, and production security patterns with 37 checkpoints for auth, CSP, Server Actions, DAL, SSRF, uploads, rate limits, audit logging, and CI/CD hardening.",
     "developerName": "PT Kelana Tech Solutions",
     "category": "Development",
     "capabilities": ["Read", "Write", "Interactive"],
