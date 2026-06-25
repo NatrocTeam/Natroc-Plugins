@@ -1,5 +1,41 @@
 # Changelog
 
+## [1.14.0] - 2026-06-25 [(80dbc52)](https://github.com/NatrocTeam/Natroc-Plugins/commit/80dbc5255cabd04ef0de43bf0218c3017a131d34)
+
+### Features
+
+- **nextjs**: Add `nextjs-docs` documentation researcher subagent
+  - New `agents/docs.md` — fetches `llms.txt` + WebFetch every `nextjs.org/docs` page with the `.md` suffix
+  - Read-only subagent (Read, Grep, Glob, WebFetch) — cannot write/edit files
+  - Return structured context to main session with API signatures, directives, config keys
+
+- **husky**: Add pre-commit pull guard
+  - New `.husky/pre-commit` — checks for remote changes before committing
+  - Prevents conflicts with automatic pull before committing
+
+### Changed
+
+- **all agents**: Normalize `model` field across 40 agent files
+  - `claude-sonnet-4-6` → `sonnet` (model-agnostic, sesuai Natroc AGENTS.md rules)
+  - Includes: 21st, anthropic-sdk, code-review, context7, expo, motion, ollama-sdk, openai-sdk, plugin-dev-claude, plugin-dev-codex, react-typescript
+
+- **nextjs**: Bump plugin version to 1.3.0
+  - Update descriptions across Claude, Codex, and ZCode manifests
+  - Update README with new 5-skill + 1-subagent structure
+
+- **nextjs**: Restructure `next-docs` skills
+  - Rewrite SKILL.md — live WebFetch via `llms.txt` + `.md` suffix, not local references
+  - Remove 6 redundant reference files (replaced by `llms.txt`)
+
+- **husky**: Simplify pre-push checks
+  - Streamline pre-push hooks — more concise without changing functionality
+
+### Removed
+
+- **nextjs**: Remove 6 stale reference files from `skills/next-docs/references/`
+  - API-Reference.md, Architecture.md, Community.md, Getting-Started.md, Glossary.md, Guides.md
+  - All content is now fetched live from `nextjs.org/docs/llms.txt`
+
 ## [1.13.0] - 2026-06-25 [(e6addce)](https://github.com/NatrocTeam/Natroc-Plugins/commit/e6addce1b260553cf4f3821a54e51337923554d0)
 
 ### Features
