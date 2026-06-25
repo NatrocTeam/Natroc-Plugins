@@ -137,7 +137,7 @@ You can install individual skills (without the full plugin) using [`npx skills`]
 - Install a specific plugin's skills directly:
 
   ```
-  npx skills add NatrocTeam/Natroc-Plugins --plugin natroc-awareness
+  npx skills add NatrocTeam/Natroc-Plugins --skill github
   ```
 
 ## Validation
@@ -156,6 +156,12 @@ See [`CHANGELOG.md`](./CHANGELOG.md) for release history and version details.
 ## Contributing
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for contribution guidelines, validation steps, and version bump instructions.
+
+## Contributors
+
+<a href="https://github.com/NatrocTeam/Natroc-Plugins/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NatrocTeam/Natroc-Plugins" alt="Contributors" width="100" />
+</a>
 
 ## License
 

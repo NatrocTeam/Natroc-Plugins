@@ -459,8 +459,9 @@ This plugin is part of `NatrocTeam/Natroc-Plugins`. To contribute improvements:
 
 ```text
 plugin-dev-claude/
-├── .codex-plugin/plugin.json
 ├── .claude-plugin/plugin.json
+├── .codex-plugin/plugin.json
+├── .zcode-plugin/plugin.json
 ├── agents/
 ├── assets/
 ├── commands/
@@ -469,7 +470,7 @@ plugin-dev-claude/
 
 ## Version
 
-1.0.0 - Marketplace package with seven Claude Code plugin development skills,
+1.2.1 - Marketplace package with seven Claude Code plugin development skills,
 three validation/generation agents, and one guided plugin creation command.
 
 ## Author
@@ -478,7 +479,7 @@ PT Kelana Tech Solutions
 
 ## License
 
-MIT License - See repository for details
+Apache-2.0 - See repository for details
 
 ---
 

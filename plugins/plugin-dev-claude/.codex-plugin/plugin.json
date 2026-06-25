@@ -5,7 +5,7 @@
   "author": {
     "name": "PT Kelana Tech Solutions"
   },
-  "repository": "https://github.com/NatrocTeam/Natroc-Plugins",
+  "repository": "https://github.com/NatrocTeam/Natroc-Plugins/tree/main/plugins/plugin-dev-claude",
   "license": "Apache-2.0",
   "keywords": [
     "plugin-development",
@@ -21,7 +21,7 @@
     "displayName": "Plugin Dev Claude",
     "shortDescription": "Build and review Claude Code plugins with structured development guidance.",
     "longDescription": "Plugin Dev Claude provides Codex-compatible skill metadata for a Claude Code plugin development toolkit, covering plugin structure, skill creation, agent design, command development, hook implementation, MCP integration, and plugin settings patterns.",
-    "developerName": "Anthropic",
+    "developerName": "PT Kelana Tech Solutions",
     "category": "Development",
     "capabilities": ["Read", "Write", "Interactive"],
     "websiteURL": "https://code.claude.com/",
