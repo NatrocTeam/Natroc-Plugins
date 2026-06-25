@@ -1,2 +1,5 @@
-pnpm run verify-plugins
-pnpm run format:check
+echo "→ Running plugin verifier"
+node scripts/verify-plugins.js
+
+echo "→ Checking Prettier formatting"
+prettier . --check

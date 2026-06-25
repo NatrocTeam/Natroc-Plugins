@@ -1,0 +1,318 @@
+#!/usr/bin/env sh
+
+branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+if [ -z "$branch" ]; then
+  branch="current branch"
+fi
+
+upstream=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}" 2>/dev/null)
+
+if [ -z "$upstream" ]; then
+  cat <<EOF
+
+✗ Commit blocked: this branch has no upstream tracking branch.
+
+Branch:
+  $branch
+
+Why this happened:
+  The pre-commit hook must run 'git pull' before committing, but Git does not
+  know which remote branch '$branch' should pull from.
+
+What you should do:
+  1. Set the upstream branch once:
+
+     git branch --set-upstream-to=origin/$branch $branch
+
+     If the remote branch does not exist yet, use:
+
+     git push -u origin $branch
+
+  2. Run this again:
+
+     git pull --ff-only
+     git commit
+
+EOF
+  exit 1
+fi
+
+before_head=$(git rev-parse HEAD 2>/dev/null)
+
+set +e
+pull_output=$(git pull --ff-only 2>&1)
+pull_status=$?
+set -e
+
+after_head=$(git rev-parse HEAD 2>/dev/null)
+
+is_already_up_to_date=false
+case "$pull_output" in
+  *"Already up to date."*|*"Already up-to-date."*)
+    is_already_up_to_date=true
+    ;;
+esac
+
+if [ "$pull_status" -eq 0 ] && [ "$is_already_up_to_date" = true ] && [ "$before_head" = "$after_head" ]; then
+  echo "✓ Pre-commit pull check passed: $branch is already up to date with $upstream."
+  exit 0
+fi
+
+if [ "$pull_status" -eq 0 ]; then
+  cat <<EOF
+
+✗ Commit blocked: git pull succeeded but brought remote updates into your branch.
+
+Branch:
+  $branch
+
+Upstream:
+  $upstream
+
+What happened:
+  The hook ran 'git pull --ff-only' before committing. Remote changes were found
+  and your local branch was updated from:
+
+  $before_head
+
+  to:
+
+  $after_head
+
+Why the commit was stopped:
+  Your commit should be created only after you review the freshly pulled changes.
+  This prevents committing on top of a base that changed without you noticing.
+
+Git pull output:
+$pull_output
+
+What you should do next:
+  1. Review the new remote changes:
+
+     git status --short
+     git log --oneline --decorate -5
+
+  2. Re-run any checks you need after the update.
+
+  3. Re-stage your intended changes if needed:
+
+     git add <files>
+
+  4. Commit again:
+
+     git commit
+
+EOF
+  exit 1
+fi
+
+unmerged_files=$(git diff --name-only --diff-filter=U 2>/dev/null)
+
+if [ -n "$unmerged_files" ]; then
+  cat <<EOF
+
+✗ Commit blocked: git pull produced merge conflicts.
+
+Branch:
+  $branch
+
+Upstream:
+  $upstream
+
+Conflicted files:
+$unmerged_files
+
+Git pull output:
+$pull_output
+
+What you should do next:
+  1. Resolve each conflicted file listed above.
+  2. Mark resolved files as staged:
+
+     git add <resolved-files>
+
+  3. Finish the merge or rebase if Git asks you to.
+  4. Run validation again if needed.
+  5. Commit again after the repository is clean.
+
+If you want to abort the in-progress merge/rebase:
+
+  git merge --abort
+
+or, if you were rebasing:
+
+  git rebase --abort
+
+EOF
+  exit 1
+fi
+
+case "$pull_output" in
+  *"Your local changes to the following files would be overwritten"*|*"Please commit your changes or stash them before you merge"*|*"would be overwritten by merge"*)
+    cat <<EOF
+
+✗ Commit blocked: git pull could not continue because local changes would be overwritten.
+
+Branch:
+  $branch
+
+Upstream:
+  $upstream
+
+Git pull output:
+$pull_output
+
+Why this happened:
+  Remote changes touch files that also have local modifications. Git stopped to
+  protect your work.
+
+What you should do next:
+  Option A - Keep local work temporarily aside, then pull:
+
+     git stash push -u -m "pre-commit pull guard"
+     git pull --ff-only
+     git stash pop
+
+  Option B - Commit or split your local changes first, then pull again.
+
+  After resolving the situation, run:
+
+     git status --short
+     git commit
+
+EOF
+    exit 1
+    ;;
+  *"Not possible to fast-forward"*|*"fatal: Not possible to fast-forward"*|*"Need to specify how to reconcile divergent branches"*)
+    cat <<EOF
+
+✗ Commit blocked: your branch cannot be fast-forwarded cleanly.
+
+Branch:
+  $branch
+
+Upstream:
+  $upstream
+
+Git pull output:
+$pull_output
+
+Why this happened:
+  The pre-commit hook uses 'git pull --ff-only' to avoid automatic merge commits.
+  Your local branch and the remote branch have diverged, so Git needs a manual
+  rebase or merge decision.
+
+What you should do next:
+  Recommended linear-history option:
+
+     git fetch origin
+     git rebase $upstream
+
+  If your team prefers merge commits:
+
+     git fetch origin
+     git merge $upstream
+
+  Then resolve any conflicts, run checks, and commit again.
+
+EOF
+    exit 1
+    ;;
+  *"There is no tracking information"*|*"no upstream"*|*"no tracking information"*)
+    cat <<EOF
+
+✗ Commit blocked: Git could not find an upstream branch to pull from.
+
+Branch:
+  $branch
+
+Git pull output:
+$pull_output
+
+What you should do next:
+  Set upstream tracking once:
+
+     git branch --set-upstream-to=origin/$branch $branch
+
+  Or publish this branch and set upstream:
+
+     git push -u origin $branch
+
+  Then run:
+
+     git pull --ff-only
+     git commit
+
+EOF
+    exit 1
+    ;;
+  *"Authentication failed"*|*"Permission denied"*|*"Could not read from remote repository"*|*"Repository not found"*|*"unable to access"*|*"Could not resolve host"*|*"Failed to connect"*|*"Connection timed out"*)
+    cat <<EOF
+
+✗ Commit blocked: git pull failed because Git could not access the remote.
+
+Branch:
+  $branch
+
+Upstream:
+  $upstream
+
+Git pull output:
+$pull_output
+
+Likely causes:
+  - GitHub authentication expired or lacks permission.
+  - Network/DNS/proxy/VPN issue.
+  - Remote URL is wrong or repository access changed.
+
+What you should do next:
+  1. Check remote URL:
+
+     git remote -v
+
+  2. Check authentication by fetching manually:
+
+     git fetch origin
+
+  3. If authentication is the issue, re-login or refresh credentials.
+  4. After fetch/pull works, run:
+
+     git pull --ff-only
+     git commit
+
+EOF
+    exit 1
+    ;;
+esac
+
+cat <<EOF
+
+✗ Commit blocked: git pull failed with an unexpected error.
+
+Branch:
+  $branch
+
+Upstream:
+  $upstream
+
+Exit code:
+  $pull_status
+
+Git pull output:
+$pull_output
+
+What you should do next:
+  1. Inspect the repository state:
+
+     git status --short --branch
+
+  2. Try the pull manually to see the full Git guidance:
+
+     git pull --ff-only
+
+  3. Fix the issue Git reports.
+  4. When 'git pull --ff-only' succeeds and says 'Already up to date.', commit again.
+
+EOF
+exit 1
