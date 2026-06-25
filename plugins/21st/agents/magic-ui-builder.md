@@ -2,7 +2,7 @@
 name: magic-ui-builder
 description: Use this agent when the user needs a React UI component created, refined, redesigned, or inspired by 21st.dev Magic. Typical triggers include generating a new TSX component from a natural-language brief, improving an existing component file with the Magic refiner, and browsing component inspiration before implementation. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - magic-ui
 memory: user

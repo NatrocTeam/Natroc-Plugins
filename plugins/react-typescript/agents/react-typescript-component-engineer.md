@@ -2,7 +2,7 @@
 name: react-typescript-component-engineer
 description: Use this agent when the user needs React TypeScript implementation work for TSX components, props, hooks, context, events, refs, or reusable component patterns. Typical triggers include creating or refactoring typed components, fixing hook or reducer types, designing context/provider APIs, and adapting local TSX examples into a project. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - react-typescript
   - react-typescript-components

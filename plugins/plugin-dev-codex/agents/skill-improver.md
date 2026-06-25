@@ -33,7 +33,7 @@ description: |
   assistant: "I'll use the skill-improver agent to apply the highest-priority fixes."
   </example>
 tools: ["Read", "Grep", "Glob", "Bash", "Write", "Edit"]
-model: claude-opus-4-8
+model: opus
 skills:
   - evaluate-plugin
   - evaluate-skill

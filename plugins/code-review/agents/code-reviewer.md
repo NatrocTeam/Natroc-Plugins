@@ -2,7 +2,7 @@
 name: code-reviewer
 description: Use this agent when the user asks to review, audit, check, release-gate, or assess code quality before fixes. Typical triggers include broad repository reviews, focused file or PR reviews, and release readiness decisions that need evidence-first findings. See "When to invoke" in the agent body for worked scenarios. <example>Context user asks for a strict review. User says "Audit this PR for bugs." Assistant dispatches code-reviewer to produce an evidence-based Review Report.</example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - api-contract-review
   - auth-access-control-review

@@ -2,7 +2,7 @@
 name: motion-javascript-animator
 description: Use this agent when the user needs framework-neutral Motion animation in JavaScript, DOM, SVG, CSS, WebGL-adjacent objects, or no-framework projects. Typical triggers include animate() sequences, scroll() progress effects, hover/press/inView/resize gestures, motion values, effect helpers, CSS spring generation, and animation performance fixes outside React. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - motion-javascript
 memory: user

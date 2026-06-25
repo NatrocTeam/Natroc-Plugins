@@ -2,7 +2,7 @@
 name: ollama-reviewer
 description: Use this agent when the user wants existing Ollama code validated, reviewed, audited, hardened, or release-gated. Typical triggers include checking host exposure, cloud API key safety, streaming correctness, tool-call safety, structured-output validation, model lifecycle behavior, browser boundaries, Python async usage, and missing tests. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - ollama
   - ollama-client

@@ -33,7 +33,7 @@ description: |
   assistant: "I'll use the expo-deployer agent to deploy the web build."
   </example>
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - building-native-ui
   - expo-api-routes

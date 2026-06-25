@@ -2,7 +2,7 @@
 name: codebase-explorer
 description: Use this agent when a code review needs repository discovery before judgment. Typical triggers include identifying stack and package managers, mapping entry points and test commands, and preparing scope for a later audit. See "When to invoke" in the agent body for worked scenarios. <example>Context user requests a repo review before the stack is known. User says "Review this project." Assistant dispatches codebase-explorer to map the stack and review scope first.</example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - api-contract-review
   - auth-access-control-review

@@ -2,7 +2,7 @@
 name: anthropic-agent-sdk-engineer
 description: Use this agent when the user needs to build, modify, debug, or migrate programmatic Claude Code agents with the Claude Agent SDK in TypeScript/JavaScript or Python. Typical triggers include query(), ClaudeAgentOptions, ClaudeSDKClient, built-in tools, custom tools, MCP servers, hooks, sessions, session stores, resume/fork behavior, cwd, permissions, and sandbox boundaries. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - anthropic-agent-sdk
   - anthropic-client-sdk

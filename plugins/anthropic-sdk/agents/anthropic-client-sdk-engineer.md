@@ -2,7 +2,7 @@
 name: anthropic-client-sdk-engineer
 description: Use this agent when the user needs to build, modify, debug, or migrate direct Anthropic Claude API integrations with the TypeScript/JavaScript or Python Client SDK. Typical triggers include Messages API calls, streaming, structured output, tool use, token counting, batches, models, multimodal content, provider-specific clients, and server-side API key wiring. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - anthropic-agent-sdk
   - anthropic-client-sdk

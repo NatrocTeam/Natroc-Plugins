@@ -2,7 +2,7 @@
 name: motion-react-animator
 description: Use this agent when the user needs React animation work with Motion for React. Typical triggers include adding or refactoring motion components, migrating framer-motion imports to motion/react, implementing AnimatePresence or layout transitions, and fixing gestures, scroll effects, motion values, accessibility, or bundle-size issues. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - motion-react
 memory: user

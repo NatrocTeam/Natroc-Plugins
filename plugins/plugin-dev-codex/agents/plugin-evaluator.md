@@ -33,7 +33,7 @@ description: |
   assistant: "I'll use the plugin-evaluator agent to re-score the plugin."
   </example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - evaluate-plugin
   - evaluate-skill

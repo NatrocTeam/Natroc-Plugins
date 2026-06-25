@@ -2,7 +2,7 @@
 name: ollama-runtime-engineer
 description: Use this agent when the user needs Ollama runtime, model lifecycle, local daemon, host, cloud model, or operational work. Typical triggers include configuring OLLAMA_HOST, checking model availability, pulling models, creating custom models, using cloud models, diagnosing connection failures, and validating deployment/runtime assumptions. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - ollama
   - ollama-client

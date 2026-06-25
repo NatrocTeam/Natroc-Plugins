@@ -2,7 +2,7 @@
 name: anthropic-sdk-reviewer
 description: Use this agent when the user wants existing Anthropic Client SDK or Claude Agent SDK code validated, reviewed, audited, hardened, or release-gated. Typical triggers include API key safety, Messages API shape, streaming correctness, structured output validation, tool loops, built-in tool permissions, MCP server safety, hook behavior, session storage, provider variants, retries, timeouts, and missing tests. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - anthropic-agent-sdk
   - anthropic-client-sdk

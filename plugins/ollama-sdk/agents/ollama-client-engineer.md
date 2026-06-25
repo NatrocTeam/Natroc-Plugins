@@ -2,7 +2,7 @@
 name: ollama-client-engineer
 description: Use this agent when the user needs Ollama TypeScript or Python client work. Typical triggers include adding chat, generate, streaming, structured outputs, tool calls, multimodal images, embeddings, cloud API headers, browser imports, async Python clients, or validating existing Ollama client code. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - ollama
   - ollama-client

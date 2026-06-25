@@ -2,7 +2,7 @@
 name: react-typescript-type-reviewer
 description: Use this agent when the user needs a review, audit, or diagnosis of React TypeScript type safety, component API design, hook/context typing, refs/events, reusable patterns, or strictness migration risk. Typical triggers include reviewing a TSX component API, explaining type errors, checking public prop types, and finding unsafe any/object/cast-heavy code. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - react-typescript
   - react-typescript-components

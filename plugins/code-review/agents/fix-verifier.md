@@ -2,7 +2,7 @@
 name: fix-verifier
 description: Use this agent when fixes have been applied and the workflow needs verification, regression checks, post-fix review, or a final fix report. Typical triggers include running lint, typecheck, tests, build, targeted audits, and deciding whether the patched findings can be marked PASS. See "When to invoke" in the agent body for worked scenarios. <example>Context patches are complete and need proof. User says "Verify the fixes and final verdict." Assistant dispatches fix-verifier to run checks and produce a Fix Report.</example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - api-contract-review
   - auth-access-control-review

@@ -32,7 +32,7 @@ description: |
   assistant: "I'll use the plugin-validator agent to check the manifest."
   </example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - agent-development
   - command-development

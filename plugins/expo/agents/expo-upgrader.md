@@ -33,7 +33,7 @@ description: |
   assistant: "I'll use the expo-upgrader agent to migrate off expo-av."
   </example>
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - building-native-ui
   - expo-api-routes

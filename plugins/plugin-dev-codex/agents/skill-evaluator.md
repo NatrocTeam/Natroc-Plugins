@@ -33,7 +33,7 @@ description: |
   assistant: "I'll use the skill-evaluator agent to re-score the skill."
   </example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - evaluate-plugin
   - evaluate-skill

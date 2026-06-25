@@ -31,7 +31,7 @@ description: |
   </commentary>
   </example>
 tools: ["Read", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - agent-development
   - command-development

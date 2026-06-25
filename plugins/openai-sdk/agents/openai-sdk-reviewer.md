@@ -2,7 +2,7 @@
 name: openai-sdk-reviewer
 description: Use this agent when the user wants existing OpenAI SDK code validated, reviewed, audited, hardened, or release-gated. Typical triggers include checking API key safety, streaming correctness, webhook verification, Agents SDK tool safety, session/tracing behavior, retry/idempotency issues, and missing tests. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - openai-agents-sdk
   - openai-client-sdk

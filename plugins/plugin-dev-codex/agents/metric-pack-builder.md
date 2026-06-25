@@ -33,7 +33,7 @@ description: |
   assistant: "I'll use the metric-pack-builder agent to design the metric pack."
   </example>
 tools: ["Read", "Write", "Edit", "Glob", "Bash"]
-model: claude-opus-4-8
+model: opus
 skills:
   - evaluate-plugin
   - evaluate-skill

@@ -2,7 +2,7 @@
 name: fix-planner
 description: Use this agent when confirmed review findings need a safe implementation plan before editing files. Typical triggers include planning fixes for selected finding IDs, estimating patch risk, and mapping verification or rollback steps before implementation. See "When to invoke" in the agent body for worked scenarios. <example>Context user approves fixing selected findings. User says "Plan fixes for CR-001 and CR-004." Assistant dispatches fix-planner to create scoped plans before edits.</example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - api-contract-review
   - auth-access-control-review

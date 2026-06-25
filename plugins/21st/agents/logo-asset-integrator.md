@@ -2,7 +2,7 @@
 name: logo-asset-integrator
 description: Use this agent when the user needs brand logos, company icons, social proof logo strips, or SVGL assets integrated into a React project. Typical triggers include adding GitHub, Discord, Slack, Vercel, Notion, or other brand logos, converting returned assets to JSX/TSX/SVG, and wiring logo components into an existing UI. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - logo-search
 memory: user

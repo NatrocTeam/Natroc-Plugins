@@ -30,7 +30,7 @@ description: |
   </commentary>
   </example>
 tools: ["Write", "Read"]
-model: claude-opus-4-8
+model: opus
 skills:
   - agent-development
   - command-development

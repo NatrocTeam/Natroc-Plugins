@@ -2,7 +2,7 @@
 name: security-auditor
 description: Use this agent when code review scope includes security, auth, access control, secrets, injection, XSS, CSRF, SSRF, unsafe uploads, dependency risk, or production hardening. Typical triggers include security-gate reviews, authentication or authorization audits, and vulnerability-focused release checks. See "When to invoke" in the agent body for worked scenarios. <example>Context user requests a security gate. User says "Check auth and access control before release." Assistant dispatches security-auditor to verify attack paths and evidence.</example>
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: claude-sonnet-4-6
+model: sonnet
 skills:
   - api-contract-review
   - auth-access-control-review

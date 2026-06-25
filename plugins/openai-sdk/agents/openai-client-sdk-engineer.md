@@ -2,7 +2,7 @@
 name: openai-client-sdk-engineer
 description: Use this agent when the user needs direct OpenAI Client SDK work in TypeScript, JavaScript, or Python. Typical triggers include adding Responses API calls, validating existing Client SDK code, fixing streaming or webhook handling, wiring files or Realtime, migrating an existing Chat Completions path, and hardening Client SDK error handling. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - openai-agents-sdk
   - openai-client-sdk

@@ -2,7 +2,7 @@
 name: openai-agents-sdk-engineer
 description: Use this agent when the user needs OpenAI Agents SDK work in TypeScript, JavaScript, or Python. Typical triggers include building agent workflows with tools, validating existing Agents SDK code, handoffs, agents as tools, guardrails, sessions, tracing, streaming, human approval, sandbox agents, or fixing an existing Agents SDK orchestration. See "When to invoke" in the agent body for worked scenarios.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: claude-opus-4-8
+model: opus
 skills:
   - openai-agents-sdk
   - openai-client-sdk

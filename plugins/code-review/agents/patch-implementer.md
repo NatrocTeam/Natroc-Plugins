@@ -2,7 +2,7 @@
 name: patch-implementer
 description: Use this agent when the user has explicitly approved a fix plan and files need to be patched safely. Typical triggers include applying selected finding fixes, implementing minimal root-cause patches, and updating warranted regression tests after approval. See "When to invoke" in the agent body for worked scenarios. <example>Context user approves a fix plan. User says "Apply the approved fix for CR-002." Assistant dispatches patch-implementer to make the minimal scoped patch.</example>
 tools: ["Read", "Write", "Edit", "Grep", "Glob", "Bash"]
-model: claude-opus-4-8
+model: opus
 skills:
   - api-contract-review
   - auth-access-control-review
